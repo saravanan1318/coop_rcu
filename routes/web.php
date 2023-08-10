@@ -29,23 +29,29 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/society/loan/issue', [SocietyController::class, 'issuelist']);
     Route::get('/society/loan/issue/add', [SocietyController::class, 'issueadd']);
     Route::post('/society/loan/issue/store', [SocietyController::class, 'issuestore']);
+    Route::get('/society/deposit/outstanding', [SocietyController::class, 'outstandinglist']);
+    Route::get('/society/deposit/outstanding/add', [SocietyController::class, 'outstandingadd']);
+    Route::post('/society/deposit/outstanding/store', [SocietyController::class, 'outstandingstore']);
+    Route::get('/society/deposit/fdgovt', [SocietyController::class, 'fdgovtlist']);
+    Route::get('/society/deposit/fdgovt/add', [SocietyController::class, 'fdgovtadd']);
+    Route::post('/society/deposit/fdgovt/store', [SocietyController::class, 'fdgovtstore']);
 });
 
 
 
-Route::get('/clear-cache', function() {
+Route::get('/clear-cache', function () {
     $exitCode = Artisan::call('cache:clear');
     // return what you want
 });
-Route::get('/clear-config', function() {
+Route::get('/clear-config', function () {
     $exitCode = Artisan::call('config:clear');
     // return what you want
 });
-Route::get('/clear-optimize', function() {
+Route::get('/clear-optimize', function () {
     $exitCode = Artisan::call('optimize');
     // return what you want
 });
-Route::get('/clear-route', function() {
+Route::get('/clear-route', function () {
     $exitCode = Artisan::call('config:route');
     // return what you want
 });

@@ -10,8 +10,8 @@
 
   <!-- Template Main JS File -->
   <script src="/assets/js/main.js"></script>
-<script type="">
-    $("#signin").click(function (e) {
+  <script type="">
+      $("#signin").click(function (e) {
         console.log("Form is trying to submit");
         e.preventDefault();
         if($("#loginform").validate()){
@@ -23,6 +23,21 @@
         e.preventDefault();
         if($("#issueadd").validate()){
             $("#issueadd").submit();
+        }
+    });
+    $("#outstandingsubmit").click(function (e) {
+        console.log("Form is trying to submit");
+        e.preventDefault();
+        if($("#outstandingadd").validate()){
+            $("#outstandingadd").submit();
+        }
+    });
+    $("#fdgovtsubmit").click(function (e) {
+        console.log("Form is trying to submit");
+        e.preventDefault();
+        if($("#fdgovtadd").validate()){
+            $("#fdgovt
+            add").submit();
         }
     });
 </script>

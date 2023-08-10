@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Loan_issues extends Model
+class Deposit_fdgovts extends Model
 {
     use HasFactory;
 
-    protected $table = 'loan_issues';
+    protected $table = 'deposit_fdgovts';
     protected $primaryKey = 'id';
 
     public function user()
