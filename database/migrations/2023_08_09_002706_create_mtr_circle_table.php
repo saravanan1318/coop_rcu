@@ -13,12 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('student_params', function (Blueprint $table) {
-            //
-            $table->string('slmarksheetfile');
-            $table->string('hsmarksheetfile');
-            $table->string('ugmarksheetfile');
-            $table->string('bgmarksheetfile');
+        Schema::create('mtr_circle', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('region_id');
+            $table->string('circle_name');
+            $table->integer('status');
+            $table->timestamps();
         });
     }
 
@@ -29,8 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('student_params', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('mtr_circle');
     }
 };

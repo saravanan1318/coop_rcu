@@ -26,6 +26,9 @@ Route::get('logout', [LoginFormController::class, 'logout']);
 /**SocietyController */
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/society/dashboard', [SocietyController::class, 'dashboard']);
+    Route::get('/society/loan/issue', [SocietyController::class, 'issuelist']);
+    Route::get('/society/loan/issue/add', [SocietyController::class, 'issueadd']);
+    Route::post('/society/loan/issue/store', [SocietyController::class, 'issuestore']);
 });
 
 

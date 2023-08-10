@@ -18,4 +18,11 @@
             $("#loginform").submit();
         }
     });
+    $("#issuesubmit").click(function (e) {
+        console.log("Form is trying to submit");
+        e.preventDefault();
+        if($("#issueadd").validate()){
+            $("#issueadd").submit();
+        }
+    });
 </script>
