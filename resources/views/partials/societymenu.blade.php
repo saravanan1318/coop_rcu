@@ -2,14 +2,14 @@
 <aside id="sidebar" class="sidebar">
 
     <ul class="sidebar-nav" id="sidebar-nav">
-  
+
       <li class="nav-item">
         <a class="nav-link " href="#">
           <i class="bi bi-grid"></i>
           <span>Dashboard</span>
         </a>
       </li><!-- End Dashboard Nav -->
-  
+
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#issue-nav" data-bs-toggle="collapse" href="#">
           <i class="bi bi-journal-text"></i><span>Loan</span><i class="bi bi-chevron-down ms-auto"></i>
@@ -21,17 +21,17 @@
             </a>
           </li>
           <li>
-            <a href="#">
+            <a href="/society/loan/collection">
               <i class="bi bi-circle"></i><span>Collection</span>
             </a>
           </li>
           <li>
-            <a href="#">
+            <a href="/society/loan/annual">
               <i class="bi bi-circle"></i><span>Annual target (onetime)</span>
             </a>
           </li>
           <li>
-            <a href="#">
+            <a href="/society/loan/overallot">
               <i class="bi bi-circle"></i><span>Overall Outstanding (onetime)</span>
             </a>
           </li>
@@ -87,17 +87,17 @@
         </a>
         <ul id="purchase-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="#">
+            <a href="/society/purchase/fertilizer">
               <i class="bi bi-circle"></i><span>Fertilizer</span>
             </a>
           </li>
           <li>
-            <a href="#">
+            <a href="/society/purchase/pharmacy">
               <i class="bi bi-circle"></i><span>Pharmacy</span>
             </a>
           </li>
           <li>
-            <a href="#">
+            <a href="/society/purchase/ffo">
               <i class="bi bi-circle"></i><span>Farm Fresh Outlet</span>
             </a>
           </li>
@@ -195,7 +195,7 @@
         </ul>
       </li><!-- End Forms Nav -->
       {{-- <li class="nav-heading">Pages</li>
-  
+
       <li class="nav-item">
         <a class="nav-link collapsed" href="users-profile.html">
           <i class="bi bi-person"></i>
@@ -203,5 +203,5 @@
         </a>
       </li><!-- End Profile Page Nav --> --}}
     </ul>
-  
+
   </aside><!-- End Sidebar-->

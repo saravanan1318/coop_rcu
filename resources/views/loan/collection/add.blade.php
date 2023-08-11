@@ -2,12 +2,12 @@
 @section('content')
 <main id="main" class="main">
   <div class="pagetitle">
-    <h1>Issue</h1>
+    <h1>Collection</h1>
     <nav>
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="/society/dashboard">Dashboard</a></li>
         <li class="breadcrumb-item">Loan</li>
-        <li class="breadcrumb-item">issue</li>
+        <li class="breadcrumb-item">Collection</li>
         <li class="breadcrumb-item active">add</li>
       </ol>
     </nav>
@@ -18,7 +18,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
-                  <h5 class="card-title">Issue Add</h5>
+                  <h5 class="card-title">Collection Add</h5>
                   <div class="row">
                     <div class="col-sm-12 col-md-12 mb-4">
                         @if(session('status'))
@@ -40,7 +40,7 @@
                     </div>
                 </div>
                   <!-- Floating Labels Form -->
-                  <form action="{{url('/society/loan/issue/store')}}" method="post" id="issueadd" class="row g-3">
+                  <form action="{{url('/society/loan/collection/store')}}" method="post" id="collectionadd" class="row g-3">
                     @csrf
                     <div class="col-md-3">
                     </div>
@@ -48,7 +48,7 @@
                         <div class="row margindiv">
                             <div class="col-md-12">
                                 <div class="form-floating">
-                                  <input type="date" class="form-control" id="floatingName" name="issuedate" placeholder="date" required>
+                                  <input type="date" class="form-control" id="floatingName" name="collectiondate" placeholder="date" required>
                                   <label for="floatingName">Date</label>
                                 </div>
                             </div>
@@ -105,7 +105,7 @@
                     <div class="col-md-3">
                     </div>
                     <div class="text-center">
-                      <button type="submit" class="btn btn-primary" id="issuesubmit">Submit</button>
+                      <button type="submit" class="btn btn-primary" id="collectionsubmit">Submit</button>
                     </div>
                   </form><!-- End floating Labels Form -->
 

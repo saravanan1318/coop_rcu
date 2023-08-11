@@ -25,4 +25,18 @@
             $("#issueadd").submit();
         }
     });
+    $("#collectionsubmit").click(function (e) {
+        console.log("Form is trying to submit");
+        e.preventDefault();
+        if($("#collectionadd").validate()){
+            $("#collectionadd").submit();
+        }
+    });
+    $("#annualsubmit").click(function (e) {
+        console.log("Form is trying to submit");
+        e.preventDefault();
+        if($("#annualadd").validate()){
+            $("#annualadd").submit();
+        }
+    });
 </script>

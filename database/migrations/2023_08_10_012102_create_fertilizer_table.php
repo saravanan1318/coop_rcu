@@ -6,23 +6,18 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
+    /**fertilizer
      * Run the migrations.
      *
      * @return void
      */
     public function up()
     {
-        Schema::create('loan_issues', function (Blueprint $table) {
+        Schema::create('purchase_fertilizer', function (Blueprint $table) {
             $table->id();
             $table->string("user_id");
-            $table->string("loantype");
-            $table->date("issuedate");
-            $table->string("scstno");
-            $table->string("scstamount");
-            $table->string("othersno");
-            $table->string("othersamount");
-            $table->string("totalno");
+            $table->string("qty");
+            $table->date("amount");
             $table->string("totalamount");
             $table->timestamps();
         });
@@ -35,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('issues');
+        Schema::dropIfExists('purchase_fertilizer');
     }
 };

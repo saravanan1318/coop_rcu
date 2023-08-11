@@ -29,6 +29,32 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/society/loan/issue', [SocietyController::class, 'issuelist']);
     Route::get('/society/loan/issue/add', [SocietyController::class, 'issueadd']);
     Route::post('/society/loan/issue/store', [SocietyController::class, 'issuestore']);
+
+    Route::get('/society/loan/collection', [SocietyController::class, 'collectionlist']);
+    Route::get('/society/loan/collection/add', [SocietyController::class, 'collectionadd']);
+    Route::post('/society/loan/collection/store', [SocietyController::class, 'collectionstore']);
+
+    Route::get('/society/loan/annual', [SocietyController::class, 'annuallist']);
+    Route::get('/society/loan/annual/add', [SocietyController::class, 'annualadd']);
+    Route::post('/society/loan/annual/store', [SocietyController::class, 'annualstore']);
+
+    Route::get('/society/loan/overallot', [SocietyController::class, 'overallotlist']);
+    Route::get('/society/loan/overallot/add', [SocietyController::class, 'overallotadd']);
+    Route::post('/society/loan/overallot/store', [SocietyController::class, 'overallotstore']);
+
+    Route::get('/society/purchase/fertilizer', [SocietyController::class, 'fertilizerlist']);
+    Route::get('/society/purchase/fertilizer/add', [SocietyController::class, 'fertilizeradd']);
+    Route::post('/society/purchase/fertilizer/store', [SocietyController::class, 'fertilizerstore']);
+
+    Route::get('/society/purchase/pharmacy', [SocietyController::class, 'pharmacylist']);
+    Route::get('/society/purchase/pharmacy/add', [SocietyController::class, 'pharmacyadd']);
+    Route::post('/society/purchase/pharmacy/store', [SocietyController::class, 'pharmacystore']);
+
+    Route::get('/society/purchase/ffo', [SocietyController::class, 'ffolist']);
+    Route::get('/society/purchase/ffo/add', [SocietyController::class, 'ffoadd']);
+    Route::post('/society/purchase/ffo/store', [SocietyController::class, 'ffostore']);
+
+
 });
 
 
