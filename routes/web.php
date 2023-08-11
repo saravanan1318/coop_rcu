@@ -35,6 +35,12 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/society/deposit/fdgovt', [SocietyController::class, 'fdgovtlist']);
     Route::get('/society/deposit/fdgovt/add', [SocietyController::class, 'fdgovtadd']);
     Route::post('/society/deposit/fdgovt/store', [SocietyController::class, 'fdgovtstore']);
+    Route::get('/society/deposit/fdind', [SocietyController::class, 'fdindlist']);
+    Route::get('/society/deposit/fdgind/add', [SocietyController::class, 'fdindadd']);
+    Route::post('/society/deposit/fdind/store', [SocietyController::class, 'fdgindstore']);
+    Route::get('/society/deposit/fdist/issue', [SocietyController::class, 'fdistlist']);
+    Route::get('/society/deposit/fdist/add', [SocietyController::class, 'fdistadd']);
+    Route::post('/society/deposit/fdist/store', [SocietyController::class, 'fdiststore']);
 });
 
 

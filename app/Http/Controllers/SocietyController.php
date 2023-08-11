@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Deposit_fdgovts;
+use App\Models\Deposit_fdinds;
 use App\Models\Deposit_outstanding;
 use App\Models\Deposit_outstandings;
 use App\Models\Fdgovt;
@@ -156,5 +157,47 @@ class SocietyController extends Controller
         $fdgovts->save();
 
         return redirect('/society/deposit/fdgovt/add')->with('status', 'FD Government Deposit added successfully');
+    }
+    function fdindlist()
+    {
+
+        $deposit_fdinds = Deposit_fdinds::where('user_id', Auth::user()->id)->get();
+
+        return view("deposit.fdind.list", compact('deposit_fdinds'));
+    }
+
+    function fdindadd()
+    {
+        return view("deposit.fdind.add");
+    }
+
+    function fdindstore(Request $request)
+    {
+
+        $validated = $request->validate([
+            'recieveddate' => 'required',
+            'recievedothersno' => 'required',
+            'recievedothersamount' => 'required'
+        ]);
+
+        $recievedtotalno = $request->scstno + $request->recievedothersno;
+        $recievedtotalamount = $request->scstamount + $request->recievedothersamount;
+        $closedtotalno = $request->scstno + $request->closedothersno;
+        $closedtotalamount = $request->scstamount + $request->closedothersamount;
+        $fdinds = new Loan_issues;
+        $fdinds->user_id = Auth::user()->id;
+        $fdinds->recieveddate = $request->recieveddate;
+        $fdinds->recievedothersno = $request->recievedothersno;
+        $fdinds->recievedothersamount = $request->recievedothersamount;
+        $fdinds->recievedtotalno = $recievedtotalno;
+        $fdinds->recivedtotalamount = $recievedtotalamount;
+        $fdinds->closeddate = $request->closeddate;
+        $fdinds->closedothersno = $request->closedothersno;
+        $fdinds->closeddothersamount = $request->closeddothersamount;
+        $fdinds->closedtotalno = $closedtotalno;
+        $fdinds->closedtotalamount = $closedtotalamount;
+        $fdinds->save();
+
+        return redirect('/society/deposit/fdind/add')->with('status', 'FD Government Deposit added successfully');
     }
 }
