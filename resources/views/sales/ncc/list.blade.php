@@ -6,7 +6,7 @@
     <nav>
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="/society/dashboard">Dashboard</a></li>
-        <li class="breadcrumb-item">purchase</li>
+        <li class="breadcrumb-item">sales</li>
         <li class="breadcrumb-item">Petrol/Diesel Bunks</li>
         <li class="breadcrumb-item active">add</li>
       </ol>
@@ -28,7 +28,7 @@
                     </div>
                     <div class="col-sm-4 col-md-4 mb-4">
                         <div class="text-center">
-                            <a href="/society/purchase/ncc/add"  class="btn btn-primary" >Add</a>
+                            <a href="/society/sales/ncc/add"  class="btn btn-primary" >Add</a>
                         </div>
                     </div>
                 </div>
@@ -58,15 +58,15 @@
                           </tr>
                         </thead>
                         <tbody>
-                            @foreach($purchase_ncc as $purchase_ncc)
+                            @foreach($sales_ncc as $sales_ncc)
                                 <tr>
-                                    <th scope="row">{{ $purchase_ncc->id }}</th>
-                                    <td>{{ $purchase_ncc->nccdate}}</td>
-                                    <td>{{ $purchase_ncc->scstno }}</td>
-                                    <td>{{ $purchase_ncc->Quantity }}</td>
-                                    <td>{{ $purchase_ncc->amount }}</td>
-                                    <td>{{ $purchase_ncc->totalamount }}</td>
-                                   <td><a href='/society/purchase/ncc/edit/{{$purchase_ncc->id}}'>view</a></td>
+                                    <th scope="row">{{ $sales_ncc->id }}</th>
+                                    <td>{{ $sales_ncc->nccdate}}</td>
+                                    <td>{{ $sales_ncc->scstno }}</td>
+                                    <td>{{ $sales_ncc->Quantity }}</td>
+                                    <td>{{ $sales_ncc->amount }}</td>
+                                    <td>{{ $sales_ncc->totalamount }}</td>
+                                   <td><a href='/society/sales/ncc/edit/{{$sales_ncc->id}}'>view</a></td>
                                 </tr>
                             @endforeach
                         </tbody>

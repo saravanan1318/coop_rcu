@@ -6,7 +6,7 @@
     <nav>
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="/society/dashboard">Dashboard</a></li>
-        <li class="breadcrumb-item">purchase</li>
+        <li class="breadcrumb-item">sales</li>
         <li class="breadcrumb-item">Petrol/Diesel Bunks</li>
         <li class="breadcrumb-item active">add</li>
       </ol>
@@ -18,7 +18,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
-                  <h5 class="card-title">Petrol/Diesel Bunks Add</h5>
+                  <h5 class="card-title">pdbunk Add</h5>
                   <div class="row">
                     <div class="col-sm-4 col-md-4 mb-4">
 
@@ -28,7 +28,7 @@
                     </div>
                     <div class="col-sm-4 col-md-4 mb-4">
                         <div class="text-center">
-                            <a href="/society/purchase/ncc/add"  class="btn btn-primary" >Add</a>
+                            <a href="/society/sales/pdbunk/add"  class="btn btn-primary" >Add</a>
                         </div>
                     </div>
                 </div>
@@ -50,7 +50,7 @@
                         <thead>
                           <tr>
                             <th scope="col">#</th>
-                            <th scope="col">ncc Date</th>
+                            <th scope="col">pdbunk Date</th>
                             <th scope="col">Quantity</th>
                             <th scope="col">Amount</th>
                             <th scope="col">Total Amount</th>
@@ -58,15 +58,15 @@
                           </tr>
                         </thead>
                         <tbody>
-                            @foreach($purchase_ncc as $purchase_ncc)
+                            @foreach($sales_pdbunk as $sales_pdbunk)
                                 <tr>
-                                    <th scope="row">{{ $purchase_ncc->id }}</th>
-                                    <td>{{ $purchase_ncc->nccdate}}</td>
-                                    <td>{{ $purchase_ncc->scstno }}</td>
-                                    <td>{{ $purchase_ncc->Quantity }}</td>
-                                    <td>{{ $purchase_ncc->amount }}</td>
-                                    <td>{{ $purchase_ncc->totalamount }}</td>
-                                   <td><a href='/society/purchase/ncc/edit/{{$purchase_ncc->id}}'>view</a></td>
+                                    <th scope="row">{{ $sales_pdbunk->id }}</th>
+                                    <td>{{ $sales_pdbunk->pdbunkdate}}</td>
+                                    <td>{{ $sales_pdbunk->scstno }}</td>
+                                    <td>{{ $sales_pdbunk->Quantity }}</td>
+                                    <td>{{ $sales_pdbunk->amount }}</td>
+                                    <td>{{ $sales_pdbunk->totalamount }}</td>
+                                   <td><a href='/society/sales/pdbunk/edit/{{$sales_pdbunk->id}}'>view</a></td>
                                 </tr>
                             @endforeach
                         </tbody>

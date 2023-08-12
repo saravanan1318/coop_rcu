@@ -107,7 +107,7 @@
             </a>
           </li>
           <li>
-            <a href="#">
+            <a href="/society/purchase/ncc">
               <i class="bi bi-circle"></i><span>Non controlled commodities</span>
             </a>
           </li>
@@ -119,27 +119,27 @@
         </a>
         <ul id="sales-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="#">
+            <a href="/society/sales/fertilizer">
               <i class="bi bi-circle"></i><span>Fertilizer</span>
             </a>
           </li>
           <li>
-            <a href="#">
+            <a href="/society/sales/pharmacy">
               <i class="bi bi-circle"></i><span>Pharmacy</span>
             </a>
           </li>
           <li>
-            <a href="#">
+            <a href="/society/sales/ffo">
               <i class="bi bi-circle"></i><span>Farm Fresh Outlet</span>
             </a>
           </li>
           <li>
-            <a href="#">
+            <a href="/society/sales/pdbunk">
               <i class="bi bi-circle"></i><span>Petrol/Diesel Bunks</span>
             </a>
           </li>
           <li>
-            <a href="#">
+            <a href="/society/sales/ncc">
               <i class="bi bi-circle"></i><span>Non controlled commodities</span>
             </a>
           </li>

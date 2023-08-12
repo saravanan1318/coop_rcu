@@ -6,7 +6,7 @@
     <nav>
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="/society/dashboard">Dashboard</a></li>
-        <li class="breadcrumb-item">purchase</li>
+        <li class="breadcrumb-item">sales</li>
         <li class="breadcrumb-item">Petrol/Diesel Bunks</li>
         <li class="breadcrumb-item active">add</li>
       </ol>
@@ -40,7 +40,7 @@
                     </div>
                 </div>
                   <!-- Floating Labels Form -->
-                  <form action="{{url('/society/purchase/ncc/store')}}" method="post" id="nccadd" class="row g-3">
+                  <form action="{{url('/society/sales/ncc/store')}}" method="post" id="nccadd" class="row g-3">
                     @csrf
                     <div class="col-md-3">
                     </div>

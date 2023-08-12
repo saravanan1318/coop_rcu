@@ -62,6 +62,29 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/society/purchase/ncc/add', [SocietyController::class, 'nccadd']);
     Route::post('/society/purchase/ncc/store', [SocietyController::class, 'nccstore']);
 
+    //sales
+
+    Route::get('/society/sales/fertilizer', [SocietyController::class, 'fertilizerlist']);
+    Route::get('/society/sales/fertilizer/add', [SocietyController::class, 'fertilizeradd']);
+    Route::post('/society/sales/fertilizer/store', [SocietyController::class, 'fertilizerstore']);
+
+    Route::get('/society/sales/pharmacy', [SocietyController::class, 'pharmacylist']);
+    Route::get('/society/sales/pharmacy/add', [SocietyController::class, 'pharmacyadd']);
+    Route::post('/society/sales/pharmacy/store', [SocietyController::class, 'pharmacystore']);
+
+    Route::get('/society/sales/ffo', [SocietyController::class, 'ffolist']);
+    Route::get('/society/sales/ffo/add', [SocietyController::class, 'ffoadd']);
+    Route::post('/society/sales/ffo/store', [SocietyController::class, 'ffostore']);
+
+    Route::get('/society/sales/pdbunk', [SocietyController::class, 'pdbunklist']);
+    Route::get('/society/sales/pdbunk/add', [SocietyController::class, 'pdbunkadd']);
+    Route::post('/society/sales/pdbunk/store', [SocietyController::class, 'pdbunkstore']);
+
+    Route::get('/society/sales/ncc', [SocietyController::class, 'ncclist']);
+    Route::get('/society/sales/ncc/add', [SocietyController::class, 'nccadd']);
+    Route::post('/society/sales/ncc/store', [SocietyController::class, 'nccstore']);
+
+
 Route::get('/society/deposit/outstanding', [SocietyController::class, 'outstandinglist']);
     Route::get('/society/deposit/outstanding/add', [SocietyController::class, 'outstandingadd']);
     Route::post('/society/deposit/outstanding/store', [SocietyController::class, 'outstandingstore']);

@@ -2,12 +2,12 @@
 @section('content')
 <main id="main" class="main">
   <div class="pagetitle">
-    <h1>Petrol/Diesel Bunks</h1>
+    <h1>Non controlled commodities</h1>
     <nav>
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="/society/dashboard">Dashboard</a></li>
-        <li class="breadcrumb-item">purchase</li>
-        <li class="breadcrumb-item">Petrol/Diesel Bunks</li>
+        <li class="breadcrumb-item">sales</li>
+        <li class="breadcrumb-item">Non controlled commodities</li>
         <li class="breadcrumb-item active">add</li>
       </ol>
     </nav>
@@ -18,7 +18,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
-                  <h5 class="card-title">Petrol/Diesel Bunks Add</h5>
+                  <h5 class="card-title">Non controlled commodities Add</h5>
                   <div class="row">
                     <div class="col-sm-12 col-md-12 mb-4">
                         @if(session('status'))
@@ -40,7 +40,7 @@
                     </div>
                 </div>
                   <!-- Floating Labels Form -->
-                  <form action="{{url('/society/purchase/ncc/store')}}" method="post" id="nccadd" class="row g-3">
+                  <form action="{{url('/society/sales/ncc/store')}}" method="post" id="nccadd" class="row g-3">
                     @csrf
                     <div class="col-md-3">
                     </div>
@@ -48,7 +48,7 @@
                         <div class="row margindiv">
                             <div class="col-md-12">
                                 <div class="form-floating">
-                                  <input type="date" class="form-control" id="floatingName" name="nccdate" placeholder="date" required>
+                                  <input type="date" class="form-control" id="floatingName" name="pdbunkdate" placeholder="date" required>
                                   <label for="floatingName">Date</label>
                                 </div>
                             </div>
@@ -75,7 +75,7 @@
                     <div class="col-md-3">
                     </div>
                     <div class="text-center">
-                      <button type="submit" class="btn btn-primary" id="nccsubmit">Submit</button>
+                      <button type="submit" class="btn btn-primary" id="pdbunksubmit">Submit</button>
                     </div>
                   </form><!-- End floating Labels Form -->
 

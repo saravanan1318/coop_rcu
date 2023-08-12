@@ -2,44 +2,40 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Loan_annual;
-use App\Models\Loan_overallot;
-use App\Models\Loan_collection;
-use App\Models\purchase_Fertilizer;
-use App\Models\Purchase_ffo;
-use App\Models\Purchase_pharmacy;
-use App\Models\Purchase_pdbunk;
-
 //deposit
 use App\Models\Deposit_currents;
 use App\Models\Deposit_fdgovts;
 use App\Models\Deposit_fdinds;
 use App\Models\Deposit_fdists;
-use App\Models\Deposit_outstanding;
 use App\Models\Deposit_outstandings;
 use App\Models\Deposit_rds;
 use App\Models\Deposit_sbs;
-use App\Models\Fdgovt;
 use App\Models\Godowns;
-
+use App\Models\Loan_annual;
+use App\Models\Loan_collection;
+use App\Models\Loan_issues;
+use App\Models\Loan_overallot;
+use App\Models\Mtr_loan;
+//purchase
+use App\Models\purchase_Fertilizer;
+use App\Models\Purchase_ffo;
+use App\Models\Purchase_ncc;
+use App\Models\Purchase_pdbunk;
+use App\Models\Purchase_pharmacy;
+use App\Models\Sales_ffo;
+use App\Models\Sales_ncc;
+use App\Models\Sales_pdbunk;
+use App\Models\Sales_pharmacy;
 //services
-
-
 use App\Models\Services_agris;
 use App\Models\Services_cscs;
 use App\Models\Services_drys;
 use App\Models\Services_lodgings;
 use App\Models\Services_pss;
 use App\Models\Services_psss;
-
-
-use Hash;
-use Session;
 use Illuminate\Http\Request;
-use App\Models\User;
 use Illuminate\Support\Facades\Auth;
-use App\Models\Loan_issues;
-use App\Models\Mtr_loan;
+
 
 class SocietyController extends Controller
 {
@@ -167,7 +163,7 @@ class SocietyController extends Controller
 
 
         return redirect('/society/loan/collection/add')->with('status', 'Loan collection added successfully');
-       // return view("issue");
+       // return view("collection");
     }
 
         //Annual targer Form
@@ -208,7 +204,7 @@ class SocietyController extends Controller
 
 
             return redirect('/society/loan/annual/add')->with('status', 'Loan issue added successfully');
-           // return view("issue");
+           // return view("annual");
         }
         //Overall Outstanding targer Form
 
@@ -248,50 +244,10 @@ class SocietyController extends Controller
 
 
             return redirect('/society/loan/overallot/add')->with('status', 'Loan issue added successfully');
-           // return view("issue");
+           // return view("overallot");
         }
 
-         //purchase_Fertilizer
-    function Fertilizerlist(){
-
-        $purchase_Fertilizer = purchase_Fertilizer::where('user_id', Auth::user()->id)->get();
-
-        return view("purchase.fertilizer.list", compact('purchase_Fertilizer'));
-    }
-
-    function Fertilizeradd(){
-        return view("purchase.fertilizer.add");
-    }
-
-    function Fertilizerstore(Request $request){
-
-        $validated = $request->validate([
-            'Fertilizerdate' => 'required',
-            'scstno' => 'required',
-            'scstamount' => 'required',
-            'othersno' => 'required',
-            'othersamount' => 'required'
-        ]);
-
-        $totalno = $request->scstno + $request->othersno;
-        $totalamount = $request->scstamount + $request->othersamount;
-        $Fertilizer = new Purchase_Fertilizer;
-        $Fertilizer->user_id = Auth::user()->id;
-        $Fertilizer->issuedate = $request->issuedate;
-        $Fertilizer->scstno = $request->scstno;
-        $Fertilizer->scstamount = $request->scstamount;
-        $Fertilizer->othersno = $request->othersno;
-        $Fertilizer->othersamount = $request->othersamount;
-        $Fertilizer->totalno = $totalno;
-        $Fertilizer->totalamount = $totalamount;
-        $Fertilizer->save();
-
-
-        return redirect('/society/purchase/Fertilizer/add')->with('status', 'Fertilizer added successfully');
-       // return view("issue");
-    }
-
-         //purchase_pharmacy
+         //   //purchase_pharmacy
          function Pharmacylist(){
 
             $purchase_Pharmacy = Purchase_pharmacy::where('user_id', Auth::user()->id)->get();
@@ -400,6 +356,235 @@ function pdbunkstore(Request $request){
     return redirect('/society/purchase/pdbunk/add')->with('status', 'pdbunk added successfully');
    // return view("issue");
 }
+
+//purchase_Non controlled commodities
+function ncclist(){
+
+    $purchase_ncc =Purchase_ncc::where('user_id', Auth::user()->id)->get();
+
+    return view("purchase.ncc.list", compact('purchase_ncc'));
+}
+
+function nccadd(){
+    return view("purchase.ncc.add");
+}
+
+function nccstore(Request $request){
+
+    $validated = $request->validate([
+        'nccdate' => 'required',
+        'scstno' => 'required',
+        'scstamount' => 'required',
+        'othersno' => 'required',
+        'othersamount' => 'required'
+    ]);
+
+    $totalno = $request->scstno + $request->othersno;
+    $totalamount = $request->scstamount + $request->othersamount;
+    $ncc = new Purchase_ncc;
+    $ncc->user_id = Auth::user()->id;
+    $ncc->issuedate = $request->issuedate;
+    $ncc->qty = $request->qty;
+    $ncc->amount = $request->amount;
+    $ncc->totalamount = $totalamount;
+    $ncc->save();
+
+
+    return redirect('/society/purchase/ncc/add')->with('status', 'Non controlled commodities added successfully');
+   // return view("issue");
+}
+
+//Sales Fertilizer
+
+    function Fertilizerlist(){
+
+        $purchase_Fertilizer = purchase_Fertilizer::where('user_id', Auth::user()->id)->get();
+
+        return view("purchase.fertilizer.list", compact('purchase_Fertilizer'));
+    }
+
+    function Fertilizeradd(){
+        return view("purchase.fertilizer.add");
+    }
+
+    function Fertilizerstore(Request $request){
+
+        $validated = $request->validate([
+            'Fertilizerdate' => 'required',
+            'scstno' => 'required',
+            'scstamount' => 'required',
+            'othersno' => 'required',
+            'othersamount' => 'required'
+        ]);
+
+        $totalno = $request->scstno + $request->othersno;
+        $totalamount = $request->scstamount + $request->othersamount;
+        $Fertilizer = new Purchase_Fertilizer;
+        $Fertilizer->user_id = Auth::user()->id;
+        $Fertilizer->issuedate = $request->issuedate;
+        $Fertilizer->scstno = $request->scstno;
+        $Fertilizer->scstamount = $request->scstamount;
+        $Fertilizer->othersno = $request->othersno;
+        $Fertilizer->othersamount = $request->othersamount;
+        $Fertilizer->totalno = $totalno;
+        $Fertilizer->totalamount = $totalamount;
+        $Fertilizer->save();
+
+
+        return redirect('/society/purchase/Fertilizer/add')->with('status', 'Fertilizer added successfully');
+       // return view("issue");
+    }
+
+         //sales_pharmacy
+
+         function Pharmacyslist(){
+
+            $sales_Pharmacy = Sales_pharmacy::where('user_id', Auth::user()->id)->get();
+
+            return view("sales.pharmacy.list", compact('sales_Pharmacy'));
+        }
+
+        function Pharmacysadd(){
+            return view("sales.pharmacy.add");
+        }
+
+        function pharmacysstore(Request $request){
+
+            $validated = $request->validate([
+                'pharmacydate' => 'required',
+                'scstno' => 'required',
+                'scstamount' => 'required',
+                'othersno' => 'required',
+                'othersamount' => 'required'
+            ]);
+
+            $totalno = $request->scstno + $request->othersno;
+            $totalamount = $request->scstamount + $request->othersamount;
+            $pharmacy = new sales_Pharmacy;
+            $pharmacy->user_id = Auth::user()->id;
+            $pharmacy->issuedate = $request->issuedate;
+            $pharmacy->qty = $request->qty;
+            $pharmacy->amount = $request->amount;
+            $pharmacy->totalamount = $totalamount;
+            $pharmacy->save();
+
+
+            return redirect('/society/sales/pharmacy/add')->with('status', 'pharmacy added successfully');
+           // return view("issue");
+        }
+//sales_ffo
+function ffoslist(){
+
+    $sales_ffo = sales_ffo::where('user_id', Auth::user()->id)->get();
+
+    return view("sales.ffo.list", compact('sales_ffo'));
+}
+
+function ffosadd(){
+    return view("sales.ffo.add");
+}
+
+function ffosstore(Request $request){
+
+    $validated = $request->validate([
+        'ffodate' => 'required',
+        'scstno' => 'required',
+        'scstamount' => 'required',
+        'othersno' => 'required',
+        'othersamount' => 'required'
+    ]);
+
+    $totalno = $request->scstno + $request->othersno;
+    $totalamount = $request->scstamount + $request->othersamount;
+    $ffo = new sales_ffo;
+    $ffo->user_id = Auth::user()->id;
+    $ffo->issuedate = $request->issuedate;
+    $ffo->qty = $request->qty;
+    $ffo->amount = $request->amount;
+    $ffo->totalamount = $totalamount;
+    $ffo->save();
+
+
+    return redirect('/society/sales/ffo/add')->with('status', 'ffo added successfully');
+   // return view("issue");
+}
+
+//sales_pdbunk
+function pdbunkslist(){
+
+    $sales_pdbunk = sales_pdbunk::where('user_id', Auth::user()->id)->get();
+
+    return view("sales.pdbunk.list", compact('sales_pdbunk'));
+}
+
+function pdbunksadd(){
+    return view("sales.pdbunk.add");
+}
+
+function pdbunksstore(Request $request){
+
+    $validated = $request->validate([
+        'pdbunkdate' => 'required',
+        'scstno' => 'required',
+        'scstamount' => 'required',
+        'othersno' => 'required',
+        'othersamount' => 'required'
+    ]);
+
+    $totalno = $request->scstno + $request->othersno;
+    $totalamount = $request->scstamount + $request->othersamount;
+    $pdbunk = new sales_pdbunk;
+    $pdbunk->user_id = Auth::user()->id;
+    $pdbunk->issuedate = $request->issuedate;
+    $pdbunk->qty = $request->qty;
+    $pdbunk->amount = $request->amount;
+    $pdbunk->totalamount = $totalamount;
+    $pdbunk->save();
+
+
+    return redirect('/society/sales/pdbunk/add')->with('status', 'pdbunk added successfully');
+   // return view("issue");
+}
+
+//sales_Non controlled commodities
+function nccslist(){
+
+    $sales_ncc =sales_ncc::where('user_id', Auth::user()->id)->get();
+
+    return view("sales.ncc.list", compact('sales_ncc'));
+}
+
+function nccsadd(){
+    return view("sales.ncc.add");
+}
+
+function nccsstore(Request $request){
+
+    $validated = $request->validate([
+        'nccdate' => 'required',
+        'scstno' => 'required',
+        'scstamount' => 'required',
+        'othersno' => 'required',
+        'othersamount' => 'required'
+    ]);
+
+    $totalno = $request->scstno + $request->othersno;
+    $totalamount = $request->scstamount + $request->othersamount;
+    $ncc = new sales_ncc;
+    $ncc->user_id = Auth::user()->id;
+    $ncc->issuedate = $request->issuedate;
+    $ncc->qty = $request->qty;
+    $ncc->amount = $request->amount;
+    $ncc->totalamount = $totalamount;
+    $ncc->save();
+
+
+    return redirect('/society/sales/ncc/add')->with('status', 'Non controlled commodities added successfully');
+   // return view("issue");
+}
+
+
+
 
 //Deposit
 function outstandinglist()
@@ -934,7 +1119,7 @@ function outstandinglist()
             'no_of_farmers' => 'required',
             'qualitymt' => 'required',
             'qualitylts' => 'required',
-            'purchase' => 'required',
+            'sales' => 'required',
         ]);
 
 
@@ -944,7 +1129,7 @@ function outstandinglist()
         $psss->no_of_farmers = $request->no_of_farmers;
         $psss->qualitymt = $request->qualitymt;
         $psss->qualitylts = $request->qualitylts;
-        $psss->purchase = $request->purchase;
+        $psss->sales = $request->sales;
         $psss->save();
 
         return redirect('/services/pss/add')->with('status', 'Providing seeds added successfully');
