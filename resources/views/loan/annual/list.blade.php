@@ -2,12 +2,12 @@
 @section('content')
 <main id="main" class="main">
   <div class="pagetitle">
-    <h1>ANNUAL TARGET</h1>
+    <h1>Target & outstanding (onetime)</h1>
     <nav>
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="/society/dashboard">Dashboard</a></li>
         <li class="breadcrumb-item">Loan</li>
-        <li class="breadcrumb-item">Annual Target</li>
+        <li class="breadcrumb-item">Target & outstanding (onetime)</li>
         <li class="breadcrumb-item active">add</li>
       </ol>
     </nav>
@@ -50,28 +50,22 @@
                         <thead>
                           <tr>
                             <th scope="col">#</th>
-                            <th scope="col">Annual target Date</th>
-                            <th scope="col">SC / SC No.</th>
-                            <th scope="col">SC / SC Amount</th>
-                            <th scope="col">Others No.</th>
-                            <th scope="col">Others Amount</th>
-                            <th scope="col">Total No.</th>
-                            <th scope="col">Total Amount</th>
-                            <th scope="col">Action</th>
+                            <th scope="col">Loan type</th>
+                            <th scope="col">Overall outstanding</th>
+                            <th scope="col">Current outstanding</th>
+                            <th scope="col">Current Year</th>
+                            <th scope="col">Annual target</th>
                           </tr>
                         </thead>
                         <tbody>
-                            @foreach($loan_annual as $loan_annual)
+                            @foreach($loan_onetimeentry as $loan_onetime)
                                 <tr>
-                                    <th scope="row">{{ $loan_annual->id }}</th>
-                                    <td>{{ $loan_annual->annualdate}}</td>
-                                    <td>{{ $loan_annual->scstno }}</td>
-                                    <td>{{ $loan_annual->scstamount }}</td>
-                                    <td>{{ $loan_annual->othersno }}</td>
-                                    <td>{{ $loan_annual->othersamount }}</td>
-                                    <td>{{ $loan_annual->totalno }}</td>
-                                    <td>{{ $loan_annual->totalamount }}</td>
-                                   <td><a href='/society/loan/annual/edit/{{$loan_annual->id}}'>view</a></td>
+                                    <th scope="row">{{ $loan_onetime->id }}</th>
+                                    <td>{{ $loan_onetime->loan_id}}</td>
+                                    <td>{{ $loan_onetime->overall_outstanding }}</td>
+                                    <td>{{ $loan_onetime->current_outstanding }}</td>
+                                    <td>{{ $loan_onetime->current_year }}</td>
+                                    <td>{{ $loan_onetime->annual_target }}</td>
                                 </tr>
                             @endforeach
                         </tbody>

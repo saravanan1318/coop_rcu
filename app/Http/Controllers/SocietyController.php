@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Validator;
+
 //deposit
 use App\Models\Deposit_currents;
 use App\Models\Deposit_fdgovts;
@@ -16,6 +18,8 @@ use App\Models\Loan_collection;
 use App\Models\Loan_issues;
 use App\Models\Loan_overallot;
 use App\Models\Mtr_loan;
+use App\Models\Loan_onetimeentry;
+
 //purchase
 use App\Models\purchase_Fertilizer;
 use App\Models\Purchase_ffo;
@@ -70,34 +74,35 @@ class SocietyController extends Controller
 
     function issuestore(Request $request){
 
-        $validated = $request->validate([
+        $validator = $request->validate([
+            'loan_id' => 'required',
             'issuedate' => 'required',
-            'loantype' => 'required',
+            'loan_id' => 'required',
             'scstno' => 'required|numeric',
             'scstamount' => 'required|numeric',
             'othersno' => 'required|numeric',
             'othersamount' => 'required|numeric'
         ],
         [
+             'loan_id.required' => 'The Loan type field can not be blank value.',
              'issuedate.required' => 'The Issue date field can not be blank value.',
-             'loantype.required' => 'The Loan type field can not be blank value.',
-             'scstno.required' => 'The SC / ST No. field can not be blank value.',
-             'scstamount.required' => 'The SC / ST Amount field can not be blank value.',
-             'othersno.required' => 'The Others Amount field can not be blank value.',
-             'othersamount.required' => 'The Others No field can not be blank value.',
-             'scstno.numeric' => 'The SC / ST No. field can must be numeric.',
-             'scstamount.numeric' => 'The SC / ST Amount field must be numeric.',
-             'othersno.numeric' => 'The Others No field must be numeric.',
-             'othersamount.numeric' => 'TheOthers Amount field must be numeric.',
+             'loan_id.required' => 'Loan type field can not be blank value.',
+             'scstno.required' => 'SC / ST No. field can not be blank value.',
+             'scstamount.required' => 'SC / ST Amount field can not be blank value.',
+             'othersno.required' => 'Others Amount field can not be blank value.',
+             'othersamount.required' => 'Others No field can not be blank value.',
+             'scstno.numeric' => 'SC / ST No. field can must be numeric.',
+             'scstamount.numeric' => 'SC / ST Amount field must be numeric.',
+             'othersno.numeric' => 'Others No field must be numeric.',
+             'othersamount.numeric' => 'Others Amount field must be numeric.',
         ]);
-
 
         $totalno = $request->scstno + $request->othersno;
         $totalamount = $request->scstamount + $request->othersamount;
         $issues = new Loan_issues;
         $issues->user_id = Auth::user()->id;
+        $issues->loan_id = $request->loan_id;
         $issues->issuedate = $request->issuedate;
-        $issues->loantype =$request->loantype;
         $issues->scstno = $request->scstno;
         $issues->scstamount = $request->scstamount;
         $issues->othersno = $request->othersno;
@@ -130,7 +135,7 @@ class SocietyController extends Controller
 
         $validated = $request->validate([
             'collectiondate' => 'required',
-            'loantype' => 'required',
+            'loan_id' => 'required',
             'scstno' => 'required|numeric',
             'scstamount' => 'required|numeric',
             'othersno' => 'required|numeric',
@@ -138,7 +143,7 @@ class SocietyController extends Controller
         ],
         [
              'collectiondate.required' => 'The Collection date field can not be blank value.',
-             'loantype.required' => 'The Loan type field can not be blank value.',
+             'loan_id.required' => 'The Loan type field can not be blank value.',
              'scstno.required' => 'The SC / ST No. field can not be blank value.',
              'scstamount.required' => 'The SC / ST Amount field can not be blank value.',
              'othersno.required' => 'The Others Amount field can not be blank value.',
@@ -153,7 +158,7 @@ class SocietyController extends Controller
         $totalamount = $request->scstamount + $request->othersamount;
         $collection = new Loan_collection;
         $collection->user_id = Auth::user()->id;
-        $collection->loantype = $request->loantype;
+        $collection->loan_id = $request->loan_id;
         $collection->collectiondate = $request->collectiondate;
         $collection->scstno = $request->scstno;
         $collection->scstamount = $request->scstamount;
@@ -168,123 +173,128 @@ class SocietyController extends Controller
        // return view("collection");
     }
 
-        //Annual targer Form
+    //Annual targer Form
 
-        function annuallist(){
+    function annuallist(){
 
-            $loan_annual = Loan_annual::where('user_id', Auth::user()->id)->get();
+        $loan_onetimeentry = Loan_onetimeentry::where('user_id', Auth::user()->id)->get();
 
-            return view("loan.annual.list", compact('loan_annual'));
-        }
+        return view("loan.annual.list", compact('loan_onetimeentry'));
+    }
 
-        function annualadd(){
-            return view("loan.annual.add");
-        }
+    function annualadd(){
 
-        function annualstore(Request $request){
+        $mtr_loan = Mtr_loan::all();
+        return view("loan.annual.add", compact('mtr_loan'));
+    }
 
-            $validated = $request->validate([
-                'issuedate' => 'required',
-                'scstno' => 'required',
-                'scstamount' => 'required',
-                'othersno' => 'required',
-                'othersamount' => 'required'
-            ]);
+    function annualstore(Request $request){
 
-            $totalno = $request->scstno + $request->othersno;
-            $totalamount = $request->scstamount + $request->othersamount;
-            $annual = new Loan_annual;
-            $annual->user_id = Auth::user()->id;
-            $annual->issuedate = $request->issuedate;
-            $annual->scstno = $request->scstno;
-            $annual->scstamount = $request->scstamount;
-            $annual->othersno = $request->othersno;
-            $annual->othersamount = $request->othersamount;
-            $annual->totalno = $totalno;
-            $annual->totalamount = $totalamount;
-            $annual->save();
+        $validated = $request->validate([
+            'loan_id' => 'required',
+            'overall_outstanding' => 'required',
+            'current_outstanding' => 'required',
+            'current_year' => 'required',
+            'annual_target' => 'required'
+        ],
+        [
+             'loan_id.required' => 'Loan type field can not be blank value.',
+             'overall_outstanding.required' => 'Overall outstanding field can not be blank value.',
+             'current_outstanding.required' => 'Current outstanding field can not be blank value.',
+             'current_year.required' => 'Current year field can not be blank value.',
+             'annual_target.required' => 'Annual target field can not be blank value.'
+        ]);
 
-
-            return redirect('/society/loan/annual/add')->with('status', 'Loan issue added successfully');
-           // return view("annual");
-        }
-        //Overall Outstanding targer Form
-
-        function overallotlist(){
-
-            $loan_overallot = Loan_overallot::where('user_id', Auth::user()->id)->get();
-
-            return view("loan.overallot.list", compact('loan_overallot'));
-        }
-
-        function overallotadd(){
-            return view("loan.overallot.add");
-        }
-
-        function overallotstore(Request $request){
-
-            $validated = $request->validate([
-                'issuedate' => 'required',
-                'scstno' => 'required',
-                'scstamount' => 'required',
-                'othersno' => 'required',
-                'othersamount' => 'required'
-            ]);
-
-            $totalno = $request->scstno + $request->othersno;
-            $totalamount = $request->scstamount + $request->othersamount;
-            $overallot = new Loan_overallot;
-            $overallot->user_id = Auth::user()->id;
-            $overallot->issuedate = $request->issuedate;
-            $overallot->scstno = $request->scstno;
-            $overallot->scstamount = $request->scstamount;
-            $overallot->othersno = $request->othersno;
-            $overallot->othersamount = $request->othersamount;
-            $overallot->totalno = $totalno;
-            $overallot->totalamount = $totalamount;
-            $overallot->save();
+        $annual = new Loan_onetimeentry;
+        $annual->user_id = Auth::user()->id;
+        $annual->loan_id = $request->loan_id;
+        $annual->overall_outstanding = $request->overall_outstanding;
+        $annual->current_outstanding = $request->current_outstanding;
+        $annual->current_year = $request->current_year;
+        $annual->annual_target = $request->annual_target;
+        $annual->save();
 
 
-            return redirect('/society/loan/overallot/add')->with('status', 'Loan issue added successfully');
-           // return view("overallot");
-        }
+        return redirect('/society/loan/annual/add')->with('status', 'Loan issue added successfully');
+        // return view("annual");
+    }
+    //Overall Outstanding targer Form
 
-         //   //purchase_pharmacy
-         function Pharmacylist(){
+    function overallotlist(){
 
-            $purchase_Pharmacy = Purchase_pharmacy::where('user_id', Auth::user()->id)->get();
+        $loan_overallot = Loan_overallot::where('user_id', Auth::user()->id)->get();
 
-            return view("purchase.pharmacy.list", compact('purchase_Pharmacy'));
-        }
+        return view("loan.overallot.list", compact('loan_overallot'));
+    }
 
-        function Pharmacyadd(){
-            return view("purchase.pharmacy.add");
-        }
+    function overallotadd(){
+        return view("loan.overallot.add");
+    }
 
-        function pharmacystore(Request $request){
+    function overallotstore(Request $request){
 
-            $validated = $request->validate([
-                'pharmacydate' => 'required',
-                'scstno' => 'required',
-                'scstamount' => 'required',
-                'othersno' => 'required',
-                'othersamount' => 'required'
-            ]);
+        $validated = $request->validate([
+            'issuedate' => 'required',
+            'scstno' => 'required',
+            'scstamount' => 'required',
+            'othersno' => 'required',
+            'othersamount' => 'required'
+        ]);
 
-            $totalno = $request->scstno + $request->othersno;
-            $totalamount = $request->scstamount + $request->othersamount;
-            $pharmacy = new Purchase_Pharmacy;
-            $pharmacy->user_id = Auth::user()->id;
-            $pharmacy->issuedate = $request->issuedate;
-            $pharmacy->qty = $request->qty;
-            $pharmacy->amount = $request->amount;
-            $pharmacy->totalamount = $totalamount;
-            $pharmacy->save();
+        $totalno = $request->scstno + $request->othersno;
+        $totalamount = $request->scstamount + $request->othersamount;
+        $overallot = new Loan_overallot;
+        $overallot->user_id = Auth::user()->id;
+        $overallot->issuedate = $request->issuedate;
+        $overallot->scstno = $request->scstno;
+        $overallot->scstamount = $request->scstamount;
+        $overallot->othersno = $request->othersno;
+        $overallot->othersamount = $request->othersamount;
+        $overallot->totalno = $totalno;
+        $overallot->totalamount = $totalamount;
+        $overallot->save();
 
 
-            return redirect('/society/purchase/pharmacy/add')->with('status', 'pharmacy added successfully');
-           // return view("issue");
-        }
+        return redirect('/society/loan/overallot/add')->with('status', 'Loan issue added successfully');
+        // return view("overallot");
+    }
+
+        //   //purchase_pharmacy
+        function Pharmacylist(){
+
+        $purchase_Pharmacy = Purchase_pharmacy::where('user_id', Auth::user()->id)->get();
+
+        return view("purchase.pharmacy.list", compact('purchase_Pharmacy'));
+    }
+
+    function Pharmacyadd(){
+        return view("purchase.pharmacy.add");
+    }
+
+    function pharmacystore(Request $request){
+
+        $validated = $request->validate([
+            'pharmacydate' => 'required',
+            'scstno' => 'required',
+            'scstamount' => 'required',
+            'othersno' => 'required',
+            'othersamount' => 'required'
+        ]);
+
+        $totalno = $request->scstno + $request->othersno;
+        $totalamount = $request->scstamount + $request->othersamount;
+        $pharmacy = new Purchase_Pharmacy;
+        $pharmacy->user_id = Auth::user()->id;
+        $pharmacy->issuedate = $request->issuedate;
+        $pharmacy->qty = $request->qty;
+        $pharmacy->amount = $request->amount;
+        $pharmacy->totalamount = $totalamount;
+        $pharmacy->save();
+
+
+        return redirect('/society/purchase/pharmacy/add')->with('status', 'pharmacy added successfully');
+        // return view("issue");
+    }
 //purchase_ffo
 function ffolist(){
 

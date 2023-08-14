@@ -46,48 +46,51 @@
                     </div>
                     <div class="col-md-6">
                         <div class="row margindiv">
+                          <div class="col-md-12">
+                              <div class="form-floating">
+                              <select class="form-control" id="floatingName" name="loan_id" value="{{ old('loan_id') }}">
+                                @foreach($mtr_loan as $loan)
+                                  <option value="{{ $loan->id }}">{{ $loan->loantype }}</option>
+                                @endforeach
+                              </select>
+                                <label for="floatingName">Loan Type</label>
+                              </div>
+                          </div>
+                      </div>
+                        <div class="row margindiv">
                             <div class="col-md-12">
                                 <div class="form-floating">
-                                  <input type="date" class="form-control" id="floatingName" name="annualdate" placeholder="date" required>
-                                  <label for="floatingName">Date</label>
+                                  <input type="month" class="form-control" id="floatingName" name="current_year" placeholder="date" required>
+                                  <label for="floatingName">Current year</label>
                                 </div>
                             </div>
                         </div>
                         <div class="row margindiv">
                             <div class="col-md-12">
                                 <div class="form-floating">
-                                  <input type="text" class="form-control" id="floatingName" name="scstno" placeholder="Your SC / ST No." required>
-                                  <label for="floatingName">SC / ST No.</label>
+                                  <input type="text" class="form-control" id="floatingName" name="overall_outstanding" placeholder="Your overall outstanding." required>
+                                  <label for="floatingName">Overall outstanding.</label>
                                 </div>
-                                <div class="invalid-feedback">Please enter your SC / ST No.</div>
+                                <div class="invalid-feedback">Please enter your Overall outstanding.</div>
                             </div>
                         </div>
                         <div class="row margindiv">
                             <div class="col-md-12">
                                 <div class="form-floating">
-                                  <input type="text" class="form-control" id="floatingName"  name="scstamount" placeholder="Your SC / ST Amount." required>
-                                  <label for="floatingName">Your SC / ST Amount.</label>
+                                  <input type="text" class="form-control" id="floatingName"  name="current_outstanding" placeholder="Your Current outstanding." required>
+                                  <label for="floatingName">Your Current outstanding.</label>
                                 </div>
-                                <div class="invalid-feedback">Please enter your SC / ST Amount.</div>
+                                <div class="invalid-feedback">Please enter your Current outstanding.</div>
                             </div>
                         </div>
                         <div class="row margindiv">
                             <div class="col-md-12">
                                 <div class="form-floating">
-                                  <input type="text" class="form-control" id="floatingName" name="othersno" placeholder="Your Others No." required>
-                                  <label for="floatingName">Others No.</label>
+                                  <input type="text" class="form-control" id="floatingName" name="annual_target" placeholder="Your Annual target." required>
+                                  <label for="floatingName">Annual target.</label>
                                 </div>
-                                <div class="invalid-feedback">Please enter your Others No.</div>
+                                <div class="invalid-feedback">Please enter your Annual target.</div>
                             </div>
-                        </div>
-                        <div class="row margindiv">
-                            <div class="col-md-12">
-                                <div class="form-floating">
-                                  <input type="text" class="form-control" id="floatingName" name="othersamount" placeholder="Your Others Amount.">
-                                  <label for="floatingName">Others Amount.</label>
-                                </div>
-                            </div>
-                            <div class="invalid-feedback">Please enter your Others Amount.</div>
                         </div>
                     </div>
                     <div class="col-md-3">

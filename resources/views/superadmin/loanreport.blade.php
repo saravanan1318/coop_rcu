@@ -22,31 +22,43 @@
                         <table class="table table-responsive datatable">
                             <thead>
                             <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">Issue Date</th>
-                                <th scope="col">SC / SC No.</th>
-                                <th scope="col">SC / SC Amount</th>
-                                <th scope="col">Others No.</th>
-                                <th scope="col">Others Amount</th>
-                                <th scope="col">Total No.</th>
-                                <th scope="col">Total Amount</th>
-                                <th scope="col">Action</th>
+                                <th scope="col">Date</th>
+                                <th scope="col">Loan Types</th>
+                                <th scope="col">Overall Outstanding</th>
+                                <th scope="col">Outstanding in the current financial year (from 01.04.23)</th>
+                                <th scope="col">Annual Target</th>
+                                <th scope="col" colspan="4">Issued</th>
+                                <th scope="col" colspan="2">Collection</th>
+                                <th scope="col">% Achieved on target</th>
                             </tr>
+                            <tr>
+                              <th scope="col" colspan="5">Date</th>
+                              <th scope="col" >Others No.</th>
+                              <th scope="col" >Others Total</th>
+                              <th scope="col" >SC/ST No.</th>
+                              <th scope="col" >SC/ST Total</th>
+                              <th scope="col" >Numbers</th>
+                              <th scope="col" >Total</th>
+                              <th scope="col"></th>
+                          </tr>
                             </thead>
                             <tbody>
-                                @foreach($loan_issues as $loan_issue)
-                                    <tr>
-                                        <th scope="row">{{ $loan_issue->id }}</th>
-                                        <td>{{ $loan_issue->issuedate }}</td>
-                                        <td>{{ $loan_issue->scstno }}</td>
-                                        <td>{{ $loan_issue->scstamount }}</td>
-                                        <td>{{ $loan_issue->othersno }}</td>
-                                        <td>{{ $loan_issue->othersamount }}</td>
-                                        <td>{{ $loan_issue->totalno }}</td>
-                                        <td>{{ $loan_issue->totalamount }}</td>
-                                        <td><a href='/society/loan/issue/edit/{{$loan_issue->id}}'>view</a></td>
-                                    </tr>
-                                @endforeach
+                              @foreach($finalarr as $indarr)
+                                <tr>
+                                    <td>{{ $indarr['date'] }}</td>
+                                    <td>{{ $indarr['loantype'] }}</td>
+                                    <td>{{ $indarr['overall_outstanding'] }}</td>
+                                    <td>{{ $indarr['current_outstanding'] }}</td>
+                                    <td>{{ $indarr['annual_target'] }}</td>
+                                    <td>{{ $indarr['othersissuedtotalno'] }}</td>
+                                    <td>{{ $indarr['othersissuedtotalamount'] }}</td>
+                                    <td>{{ $indarr['scstissuedtotalno'] }}</td>
+                                    <td>{{ $indarr['scstissuedtotalamount'] }}</td>
+                                    <td>{{ $indarr['collectedtotalno'] }}</td>
+                                    <td>{{ $indarr['collectedtotalamount'] }}</td>
+                                    <td>{{ $indarr['collectedtotalamount'] }}</td>
+                                </tr>
+                            @endforeach
                             </tbody>
                         </table>
                     </div>

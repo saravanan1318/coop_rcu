@@ -48,7 +48,7 @@
                         <div class="row margindiv">
                             <div class="col-md-12">
                                 <div class="form-floating">
-                                  <input type="date" class="form-control" id="floatingName" name="issuedate" placeholder="date" required>
+                                  <input type="date" class="form-control" id="floatingName" name="issuedate" value="{{ old('issuedate') }}" placeholder="date" required>
                                   <label for="floatingName">Date</label>
                                 </div>
                             </div>
@@ -56,7 +56,7 @@
                         <div class="row margindiv">
                             <div class="col-md-12">
                                 <div class="form-floating">
-                                <select class="form-control" id="floatingName" name="loantype" >
+                                <select class="form-control" id="floatingName" name="loan_id" value="{{ old('loan_id') }}">
                                   @foreach($mtr_loan as $loan)
                                     <option value="{{ $loan->id }}">{{ $loan->loantype }}</option>
                                   @endforeach
@@ -68,7 +68,7 @@
                         <div class="row margindiv">
                             <div class="col-md-12">
                                 <div class="form-floating">
-                                  <input type="text" class="form-control" id="floatingName" name="scstno" placeholder="Your SC / ST No." required>
+                                  <input type="text" class="form-control" id="floatingName" name="scstno" value="{{ old('scstno') }}" placeholder="Your SC / ST No." required>
                                   <label for="floatingName">SC / ST No.</label>
                                 </div>
                                 <div class="invalid-feedback">Please enter your SC / ST No.</div>
@@ -77,7 +77,7 @@
                         <div class="row margindiv">
                             <div class="col-md-12">
                                 <div class="form-floating">
-                                  <input type="text" class="form-control" id="floatingName"  name="scstamount" placeholder="Your SC / ST Amount." required>
+                                  <input type="text" class="form-control" id="floatingName"  name="scstamount" value="{{ old('scstamount') }}" placeholder="Your SC / ST Amount." required>
                                   <label for="floatingName">Your SC / ST Amount.</label>
                                 </div>
                                 <div class="invalid-feedback">Please enter your SC / ST Amount.</div>
@@ -86,7 +86,7 @@
                         <div class="row margindiv">
                             <div class="col-md-12">
                                 <div class="form-floating">
-                                  <input type="text" class="form-control" id="floatingName" name="othersno" placeholder="Your Others No." required>
+                                  <input type="text" class="form-control" id="floatingName" name="othersno" value="{{ old('othersno') }}" placeholder="Your Others No." required>
                                   <label for="floatingName">Others No.</label>
                                 </div>
                                 <div class="invalid-feedback">Please enter your Others No.</div>
@@ -95,7 +95,7 @@
                         <div class="row margindiv">
                             <div class="col-md-12">
                                 <div class="form-floating">
-                                  <input type="text" class="form-control" id="floatingName" name="othersamount" placeholder="Your Others Amount.">
+                                  <input type="text" class="form-control" id="floatingName" name="othersamount" value="{{ old('othersamount') }}" placeholder="Your Others Amount.">
                                   <label for="floatingName">Others Amount.</label>
                                 </div>
                             </div>

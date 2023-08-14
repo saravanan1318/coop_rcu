@@ -27,12 +27,7 @@
           </li>
           <li>
             <a href="/society/loan/annual">
-              <i class="bi bi-circle"></i><span>Annual target (onetime)</span>
-            </a>
-          </li>
-          <li>
-            <a href="/society/loan/overallot">
-              <i class="bi bi-circle"></i><span>Overall Outstanding (onetime)</span>
+              <i class="bi bi-circle"></i><span>Target & outstanding (onetime)</span>
             </a>
           </li>
         </ul>
