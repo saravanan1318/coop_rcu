@@ -56,19 +56,37 @@
                         <div class="row margindiv">
                             <div class="col-md-12">
                                 <div class="form-floating">
-                                  <input type="text" class="form-control" id="floatingName" name="scstno" placeholder="Your SC / ST No." required>
-                                  <label for="floatingName">Quantity</label>
+                                  <input type="text" class="form-control" id="floatingName" name="NosV" placeholder="No of varieties" required>
+                                  <label for="floatingName">No of varieties</label>
                                 </div>
-                                <div class="invalid-feedback">Quantity</div>
+                                <div class="invalid-feedback">No of varieties</div>
                             </div>
                         </div>
                         <div class="row margindiv">
                             <div class="col-md-12">
                                 <div class="form-floating">
-                                  <input type="text" class="form-control" id="floatingName"  name="scstamount" placeholder="Your SC / ST Amount." required>
-                                  <label for="floatingName">Value (Rs.).</label>
+                                  <input type="text" class="form-control" id="floatingName"  name="NosF" placeholder="No of farmers" required>
+                                  <label for="floatingName">No of farmers</label>
                                 </div>
-                                <div class="invalid-feedback">Value (Rs.)</div>
+                                <div class="invalid-feedback">No of farmers</div>
+                            </div>
+                        </div>
+                        <div class="row margindiv">
+                            <div class="col-md-12">
+                                <div class="form-floating">
+                                  <input type="text" class="form-control" id="floatingName"  name="Qty" placeholder="Quantity" required>
+                                  <label for="floatingName">Quantity In Kgs</label>
+                                </div>
+                                <div class="invalid-feedback">Quantity In Kgs</div>
+                            </div>
+                        </div>
+                        <div class="row margindiv">
+                            <div class="col-md-12">
+                                <div class="form-floating">
+                                  <input type="text" class="form-control" id="floatingName"  name="Sales" placeholder="Sales amount" required>
+                                  <label for="floatingName">Sales amount</label>
+                                </div>
+                                <div class="invalid-feedback">Sales amount</div>
                             </div>
                         </div>
                        </div>

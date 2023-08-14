@@ -22,6 +22,7 @@ use App\Models\Purchase_ffo;
 use App\Models\Purchase_ncc;
 use App\Models\Purchase_pdbunk;
 use App\Models\Purchase_pharmacy;
+use App\Models\sales_Fertilizer;
 use App\Models\Sales_ffo;
 use App\Models\Sales_ncc;
 use App\Models\Sales_pdbunk;
@@ -96,6 +97,7 @@ class SocietyController extends Controller
         $issues = new Loan_issues;
         $issues->user_id = Auth::user()->id;
         $issues->issuedate = $request->issuedate;
+        $issues->loantype =$request->loantype;
         $issues->scstno = $request->scstno;
         $issues->scstamount = $request->scstamount;
         $issues->othersno = $request->othersno;
@@ -398,35 +400,46 @@ function nccstore(Request $request){
 
     function Fertilizerlist(){
 
-        $purchase_Fertilizer = purchase_Fertilizer::where('user_id', Auth::user()->id)->get();
+        $sales_Fertilizer = Sales_Fertilizer::where('user_id', Auth::user()->id)->get();
 
-        return view("purchase.fertilizer.list", compact('purchase_Fertilizer'));
+        return view("sales.fertilizer.list", compact('sales_Fertilizer'));
     }
 
     function Fertilizeradd(){
-        return view("purchase.fertilizer.add");
+        return view("sales.fertilizer.add");
     }
 
     function Fertilizerstore(Request $request){
 
-        $validated = $request->validate([
-            'Fertilizerdate' => 'required',
-            'scstno' => 'required',
-            'scstamount' => 'required',
-            'othersno' => 'required',
-            'othersamount' => 'required'
+               $validated = $request->validate([
+            'issuedate' => 'required',
+            'loantype' => 'required',
+            'scstno' => 'required|numeric',
+            'scstamount' => 'required|numeric',
+            'othersno' => 'required|numeric',
+            'othersamount' => 'required|numeric'
+        ],
+        [
+             'issuedate.required' => 'The Issue date field can not be blank value.',
+             'loantype.required' => 'The Loan type field can not be blank value.',
+             'scstno.required' => 'The SC / ST No. field can not be blank value.',
+             'scstamount.required' => 'The SC / ST Amount field can not be blank value.',
+             'othersno.required' => 'The Others Amount field can not be blank value.',
+             'othersamount.required' => 'The Others No field can not be blank value.',
+             'scstno.numeric' => 'The SC / ST No. field can must be numeric.',
+             'scstamount.numeric' => 'The SC / ST Amount field must be numeric.',
+             'othersno.numeric' => 'The Others No field must be numeric.',
+             'othersamount.numeric' => 'TheOthers Amount field must be numeric.',
         ]);
 
-        $totalno = $request->scstno + $request->othersno;
-        $totalamount = $request->scstamount + $request->othersamount;
-        $Fertilizer = new Purchase_Fertilizer;
+
+       $totalamount = $request->totalamount;
+        $Fertilizer = new sales_Fertilizer;
         $Fertilizer->user_id = Auth::user()->id;
         $Fertilizer->issuedate = $request->issuedate;
-        $Fertilizer->scstno = $request->scstno;
-        $Fertilizer->scstamount = $request->scstamount;
-        $Fertilizer->othersno = $request->othersno;
-        $Fertilizer->othersamount = $request->othersamount;
-        $Fertilizer->totalno = $totalno;
+        $Fertilizer->nosveriety = $request->nosveriety;
+        $Fertilizer->nosfarmer = $request->nosfarmer;
+        $Fertilizer->qty = $request->qty;
         $Fertilizer->totalamount = $totalamount;
         $Fertilizer->save();
 

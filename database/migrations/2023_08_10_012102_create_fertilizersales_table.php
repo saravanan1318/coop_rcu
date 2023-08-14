@@ -13,11 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('sales_fertilizer', function (Blueprint $table) {
+        Schema::create('purchase_fertilizer', function (Blueprint $table) {
             $table->id();
             $table->string("user_id");
-            $table->string("qty");
-            $table->date("amount");
+            $table->date("Fertilizerdate");
+            $table->integer("nosveriety");
+            $table->integer("nosfarmer");
+            $table->integer("qty");
             $table->string("totalamount");
             $table->timestamps();
         });
@@ -30,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sales_fertilizer');
+        Schema::dropIfExists('purchase_fertilizer');
     }
 };

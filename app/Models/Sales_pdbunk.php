@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Purchase_pdbunk extends Model
+class Sales_pdbunk extends Model
 {
     use HasFactory;
 
-    protected $table = 'purchase_pdbunk';
+    protected $table = 'sales_pdbunk';
     protected $primaryKey = 'id';
 
 }

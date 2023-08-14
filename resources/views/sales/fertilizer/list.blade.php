@@ -51,9 +51,10 @@
                           <tr>
                             <th scope="col">#</th>
                             <th scope="col">Fertilizer Date</th>
-                            <th scope="col">Quantity</th>
-                            <th scope="col">Amount</th>
-                            <th scope="col">Total Amount</th>
+                            <th scope="col">No of varieties</th>
+                            <th scope="col">No of farmers</th>
+                            <th scope="col">Quantity In Kgs</th>
+                            <th scope="col">Sales amount</th>
                             <th scope="col">Action</th>
                           </tr>
                         </thead>
@@ -62,9 +63,9 @@
                                 <tr>
                                     <th scope="row">{{ $sales_Fertilizer->id }}</th>
                                     <td>{{ $sales_Fertilizer->Fertilizerdate}}</td>
-                                    <td>{{ $sales_Fertilizer->scstno }}</td>
-                                    <td>{{ $sales_Fertilizer->Quantity }}</td>
-                                    <td>{{ $sales_Fertilizer->amount }}</td>
+                                    <td>{{ $sales_Fertilizer->nosveriety }}</td>
+                                    <td>{{ $sales_Fertilizer->nosfarmer }}</td>
+                                    <td>{{ $sales_Fertilizer->qty }}</td>
                                     <td>{{ $sales_Fertilizer->totalamount }}</td>
                                    <td><a href='/society/sales/Fertilizer/edit/{{$sales_Fertilizer->id}}'>view</a></td>
                                 </tr>
