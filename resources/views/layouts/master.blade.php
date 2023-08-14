@@ -8,7 +8,12 @@
 </head>
 <body>
     @include('partials.header')
-    @include('partials.societymenu')
+    @if(Auth::user()->role == 5)  
+      @include('partials.societymenu')
+    @elseif(Auth::user()->role == 2)
+      @include('partials.superadminmenu')   
+    @endif
+    
     @yield('content')
     @include('partials.footer')
     </div>

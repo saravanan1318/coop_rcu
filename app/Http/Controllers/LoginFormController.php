@@ -28,8 +28,15 @@ class LoginFormController extends Controller
         
         $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials)) {
-            return redirect()->intended('/society/dashboard')
-                        ->withSuccess('Signed in');
+
+            if(Auth::user()->role == 5){
+                return redirect()->intended('/society/dashboard')
+                ->withSuccess('Signed in');
+            }else if(Auth::user()->role == 2){
+                return redirect()->intended('/superadmin/dashboard')
+                ->withSuccess('Signed in');
+            }
+           
         }
   
         return redirect('login')->with('error', 'Login details are not valid');

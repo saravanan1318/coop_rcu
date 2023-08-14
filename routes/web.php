@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WebsiteController;
 use App\Http\Controllers\SocietyController;
 use App\Http\Controllers\LoginFormController;
+use App\Http\Controllers\SuperAdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -142,7 +143,12 @@ Route::get('/society/deposit/outstanding', [SocietyController::class, 'outstandi
     Route::get('/society/services/lodging/add', [SocietyController::class, 'lodgingadd']);
     Route::post('/society/services/lodging/store', [SocietyController::class, 'lodgingstore']);
 
+    Route::get('/superadmin/dashboard', [SuperAdminController::class, 'dashboard']);
+    Route::get('/superadmin/loanreport', [SuperAdminController::class, 'loanreport']);
+
 });
+
+
 
 
 
