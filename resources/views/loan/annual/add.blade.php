@@ -60,7 +60,7 @@
                         <div class="row margindiv">
                             <div class="col-md-12">
                                 <div class="form-floating">
-                                  <input type="month" class="form-control" id="floatingName" name="current_year" placeholder="date" required>
+                                  <input type="text" class="form-control" id="floatingName" name="current_year" value="{{date("Y-04-01")}}" placeholder="date" readonly required>
                                   <label for="floatingName">Current year</label>
                                 </div>
                             </div>

@@ -17,29 +17,43 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
-                  <h5 class="card-title">Issue Report</h5>
-                    <div class="col-md-12">
-                        <table class="table table-responsive datatable">
-                            <thead>
+                  <h5 class="card-title">Loan Report</h5>
+                  <form action="{{url('/superadmin/loanreport')}}" method="get" id="loanreportform" class="row g-3">
+                    @csrf
+                      <div class="row margindiv">
+                        <div class="col-md-4">
+                            <div class="form-floating">
+                              <input type="date" class="form-control" id="floatingName" name="loanreportdate" placeholder="date" value="{{$loanreportdate}}" required>
+                              <label for="floatingName">Date</label>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                          <div class="text-center">
+                            <button type="submit" class="btn btn-primary" id="loanreportsubmit">Submit</button>
+                          </div>
+                      </div>
+                  </form
+                  </div>
+                    <div class="col-md-12" style="margin-top: 10px">
+                        <table class="table table-responsive table-bordered datatable">
+                            <thead style="text-align: center">
                             <tr>
-                                <th scope="col">Date</th>
-                                <th scope="col">Loan Types</th>
-                                <th scope="col">Overall Outstanding</th>
-                                <th scope="col">Outstanding in the current financial year (from 01.04.23)</th>
-                                <th scope="col">Annual Target</th>
-                                <th scope="col" colspan="4">Issued</th>
-                                <th scope="col" colspan="2">Collection</th>
-                                <th scope="col">% Achieved on target</th>
+                                <th scope="col" rowspan="2">Date</th>
+                                <th scope="col" rowspan="2">Loan Types</th>
+                                <th scope="col" rowspan="2">Overall Outstanding</th>
+                                <th scope="col" rowspan="2">Outstanding in the current financial year (from 01.04.23)</th>
+                                <th scope="col" rowspan="2">Annual Target</th>
+                                <th scope="col" colspan="4" rowspan="1">Issued</th>
+                                <th scope="col" colspan="2" rowspan="1">Collection</th>
+                                <th scope="col" rowspan="2">% Achieved on target</th>
                             </tr>
                             <tr>
-                              <th scope="col" colspan="5">Date</th>
-                              <th scope="col" >Others No.</th>
-                              <th scope="col" >Others Total</th>
+                              <th scope="col" >Total No.</th>
+                              <th scope="col" >Total Amount</th>
                               <th scope="col" >SC/ST No.</th>
-                              <th scope="col" >SC/ST Total</th>
+                              <th scope="col" >SC/ST Amount</th>
                               <th scope="col" >Numbers</th>
-                              <th scope="col" >Total</th>
-                              <th scope="col"></th>
+                              <th scope="col" >Amount</th>
                           </tr>
                             </thead>
                             <tbody>
@@ -50,13 +64,13 @@
                                     <td>{{ $indarr['overall_outstanding'] }}</td>
                                     <td>{{ $indarr['current_outstanding'] }}</td>
                                     <td>{{ $indarr['annual_target'] }}</td>
-                                    <td>{{ $indarr['othersissuedtotalno'] }}</td>
-                                    <td>{{ $indarr['othersissuedtotalamount'] }}</td>
+                                    <td>{{ $indarr['totalno'] }}</td>
+                                    <td>{{ $indarr['totalamount'] }}</td>
                                     <td>{{ $indarr['scstissuedtotalno'] }}</td>
                                     <td>{{ $indarr['scstissuedtotalamount'] }}</td>
                                     <td>{{ $indarr['collectedtotalno'] }}</td>
                                     <td>{{ $indarr['collectedtotalamount'] }}</td>
-                                    <td>{{ $indarr['collectedtotalamount'] }}</td>
+                                    <td>{{ $indarr['achieved'] }}</td>
                                 </tr>
                             @endforeach
                             </tbody>
