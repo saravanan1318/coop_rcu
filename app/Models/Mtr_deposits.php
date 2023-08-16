@@ -5,12 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Deposit_rds extends Model
+class Mtr_deposits extends Model
 {
     use HasFactory;
 
-    protected $table = 'deposit_rds';
+    protected $table = 'mtr_deposits';
     protected $primaryKey = 'id';
-
 
 }

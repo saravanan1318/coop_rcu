@@ -18,9 +18,8 @@ use App\Http\Controllers\SuperAdminController;
 */
 
 /**AUTH */
-//Route::get('loginform', [ 'as' => 'loginform', 'uses' => 'SocietyController@index']);
 Route::get('/', [LoginFormController::class, 'index']);
-Route::get('login', [LoginFormController::class, 'index']);
+Route::get('login', [ 'as' => 'login', 'uses' => 'LoginFormController@index']);
 Route::post('checklogin', [LoginFormController::class, 'checklogin']);
 Route::get('logout', [LoginFormController::class, 'logout']);
 
@@ -39,10 +38,14 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/society/loan/annual/add', [SocietyController::class, 'annualadd']);
     Route::post('/society/loan/annual/store', [SocietyController::class, 'annualstore']);
 
-    Route::get('/society/loan/overallot', [SocietyController::class, 'overallotlist']);
-    Route::get('/society/loan/overallot/add', [SocietyController::class, 'overallotadd']);
-    Route::post('/society/loan/overallot/store', [SocietyController::class, 'overallotstore']);
+    Route::get('/society/deposit/annual', [SocietyController::class, 'depositannuallist']);
+    Route::get('/society/deposit/annual/add', [SocietyController::class, 'depositannualadd']);
+    Route::post('/society/deposit/annual/store', [SocietyController::class, 'depositannualstore']);
 
+    Route::get('/society/deposit/list', [SocietyController::class, 'depositlist']);
+    Route::get('/society/deposit/add', [SocietyController::class, 'depositadd']);
+    Route::post('/society/deposit/store', [SocietyController::class, 'depositstore']);
+    
     Route::get('/society/purchase/fertilizer', [SocietyController::class, 'fertilizerlist']);
     Route::get('/society/purchase/fertilizer/add', [SocietyController::class, 'fertilizeradd']);
     Route::post('/society/purchase/fertilizer/store', [SocietyController::class, 'fertilizerstore']);
@@ -85,36 +88,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/society/sales/ncc/add', [SocietyController::class, 'nccadd']);
     Route::post('/society/sales/ncc/store', [SocietyController::class, 'nccstore']);
 
-
-Route::get('/society/deposit/outstanding', [SocietyController::class, 'outstandinglist']);
-    Route::get('/society/deposit/outstanding/add', [SocietyController::class, 'outstandingadd']);
-    Route::post('/society/deposit/outstanding/store', [SocietyController::class, 'outstandingstore']);
-
-    Route::get('/society/deposit/fdgovt', [SocietyController::class, 'fdgovtlist']);
-    Route::get('/society/deposit/fdgovt/add', [SocietyController::class, 'fdgovtadd']);
-    Route::post('/society/deposit/fdgovt/store', [SocietyController::class, 'fdgovtstore']);
-
-    Route::get('/society/deposit/fdind', [SocietyController::class, 'fdindlist']);
-    Route::get('/society/deposit/fdind/add', [SocietyController::class, 'fdindadd']);
-    Route::post('/society/deposit/fdind/store', [SocietyController::class, 'fdindstore']);
-
-    Route::get('/society/deposit/fdist', [SocietyController::class, 'fdistlist']);
-    Route::get('/society/deposit/fdist/add', [SocietyController::class, 'fdistadd']);
-    Route::post('/society/deposit/fdist/store', [SocietyController::class, 'fdiststore']);
-
-    Route::get('/society/deposit/rd/', [SocietyController::class, 'rdlist']);
-    Route::get('/society/deposit/rd/add', [SocietyController::class, 'rdadd']);
-    Route::post('/society/deposit/rd/store', [SocietyController::class, 'rdstore']);
-
-
-    Route::get('/society/deposit/sb', [SocietyController::class, 'sblist']);
-    Route::get('/society/deposit/sb/add', [SocietyController::class, 'sbadd']);
-    Route::post('/society/deposit/sb/store', [SocietyController::class, 'sbstore']);
-
-    Route::get('/society/deposit/current', [SocietyController::class, 'currentlist']);
-    Route::get('/society/deposit/current/add', [SocietyController::class, 'currentadd']);
-    Route::post('/society/deposit/current/store', [SocietyController::class, 'currentstore']);
-
     Route::get('/society/godown', [SocietyController::class, 'godownlist']);
     Route::get('/society/godown/add', [SocietyController::class, 'godownadd']);
     Route::post('/society/godown/store', [SocietyController::class, 'godownstore']);
@@ -145,6 +118,7 @@ Route::get('/society/deposit/outstanding', [SocietyController::class, 'outstandi
 
     Route::get('/superadmin/dashboard', [SuperAdminController::class, 'dashboard']);
     Route::get('/superadmin/loanreport', [SuperAdminController::class, 'loanreport']);
+    Route::get('/superadmin/depositreport', [SuperAdminController::class, 'depositreport']);
 
 });
 

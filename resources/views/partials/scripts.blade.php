@@ -39,4 +39,11 @@
             $("#annualadd").submit();
         }
     });
+    $("#depositsubmit").click(function (e) {
+        console.log("Form is trying to submit");
+        e.preventDefault();
+        if($("#depositsadd").validate()){
+            $("#depositsadd").submit();
+        }
+    });
 </script>

@@ -10,6 +10,9 @@ use App\Models\Loan_issues;
 use App\Models\Loan_overallot;
 use App\Models\Mtr_loan;
 use App\Models\Loan_onetimeentry;
+use App\Models\Deposit_onetimeentry;
+use App\Models\Mtr_deposits;
+use App\Models\Deposits;
 
 class SuperAdminController extends Controller
 {
@@ -101,6 +104,85 @@ class SuperAdminController extends Controller
 
         return view("superadmin.loanreport",compact('finalarr','loanreportdate'));
     }
+
+
+    function depositreport(Request $request){
+
+
+        $depositreportdate = $request->depositreportdate;
+
+        if(!empty($depositreportdate)){
+            $depositreportdate = $request->depositreportdate;
+        }else{
+            $depositreportdate = date("Y-m-d");
+        }
+
+        $mtr_deposits = Mtr_deposits::all();
+
+
+        $finalarr = array();
+
+        foreach($mtr_deposits as $mtr_deposit){
+
+
+            $deposit_onetimeentry = Deposit_onetimeentry::where('deposit_id', $mtr_deposit->id)->first();
+
+            $receivedtotal = DB::table('deposits')->select(DB::raw('SUM(recievedno) as recievedno'), DB::raw('SUM(recievedamount) as recievedamount'), DB::raw('SUM(closedno) as closedno'), DB::raw('SUM(closedamount) as closedamount'))->where('deposit_id', $mtr_deposit->id)->where('depositdate', $depositreportdate)->get();
+
+            $overalloutstandreceived = Deposits::where('deposit_id', $mtr_deposit->id)->sum('recievedamount');
+            $currentoveralloutstandreceived = Deposits::where('deposit_id', $mtr_deposit->id)->where('depositdate','>=', date("Y-m-01"))->sum('recievedamount');
+            
+            $overalloutstandclosed = Deposits::where('deposit_id', $mtr_deposit->id)->sum('closedamount');
+            $currentoveralloutstandclosed = Deposits::where('deposit_id', $mtr_deposit->id)->where('depositdate','>=', date("Y-m-01"))->sum('closedamount');
+            
+        
+            $overall_outstanding =  0;
+            $current_outstanding =  0;
+            $current_year =  0;
+            $annual_target =  0;
+            $annual_targetcalc =  1;
+
+            if(!is_null($deposit_onetimeentry)){
+                
+                $overall_outstanding =  $deposit_onetimeentry->overall_outstanding;
+                $current_outstanding =  $deposit_onetimeentry->current_outstanding;
+                $current_year =  $deposit_onetimeentry->current_year;
+                $annual_target =  $deposit_onetimeentry->annual_target;
+                $annual_targetcalc =  $deposit_onetimeentry->annual_target;
+            }
+
+            $overalloutstandreceived = $overall_outstanding +  $overalloutstandreceived - $overalloutstandclosed;
+            $currentoveralloutstandreceived =  $current_outstanding +  $currentoveralloutstandreceived - $currentoveralloutstandclosed;
+
+            $receivedno = $receivedtotal[0]->recievedno;
+            $receivedamount = $receivedtotal[0]->recievedamount;
+            $closedno = $receivedtotal[0]->closedno;
+            $closedamount = $receivedtotal[0]->closedamount;
+           
+            $achievedpercentage = ($receivedamount/$annual_targetcalc)*100;
+
+            $indarr = array();
+
+            $indarr['date'] =  date("d-m-Y",strtotime($depositreportdate));;
+            $indarr['loantype'] = $mtr_deposit->deposit_name;
+            $indarr['overall_outstanding'] = $this->IND_money_format($overalloutstandreceived);
+            $indarr['current_outstanding'] = $this->IND_money_format($currentoveralloutstandreceived);
+            $indarr['current_year'] = $current_year;
+            $indarr['annual_target'] = $this->IND_money_format($annual_target);
+            $indarr['receivedno'] = is_null($receivedno) ? 0 : $receivedno;
+            $indarr['receivedamount'] = is_null($receivedamount) ? 0 : $this->IND_money_format($receivedamount);
+            $indarr['closedno'] = is_null($closedno) ? 0 : $closedno;
+            $indarr['closedamount'] = is_null($closedamount) ? 0 : $this->IND_money_format($closedamount);
+            $indarr['achieved'] = number_format((float)$achievedpercentage, 2, '.', '');
+
+            array_push( $finalarr, $indarr);
+
+        }
+        
+
+        return view("superadmin.depositreport",compact('finalarr','depositreportdate'));
+    }
+
 
     function IND_money_format($number){
         $decimal = (string)($number - floor($number));

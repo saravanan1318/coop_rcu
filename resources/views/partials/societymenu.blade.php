@@ -39,38 +39,13 @@
         </a>
         <ul id="deposit-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="/society/deposit/outstanding">
-              <i class="bi bi-circle"></i><span>Outstanding in the current financial year(onetime)</span>
+            <a href="/society/deposit/list">
+              <i class="bi bi-circle"></i><span>Deposits</span>
             </a>
           </li>
           <li>
-            <a href="/society/deposit/fdgovt">
-              <i class="bi bi-circle"></i><span>FD – Government</span>
-            </a>
-          </li>
-          <li>
-            <a href="/society/deposit/fdind">
-              <i class="bi bi-circle"></i><span>FD – Individuals</span>
-            </a>
-          </li>
-          <li>
-            <a href="/society/deposit/fdist">
-              <i class="bi bi-circle"></i><span>FD – Institutions</span>
-            </a>
-          </li>
-          <li>
-            <a href="/society/deposit/rd">
-              <i class="bi bi-circle"></i><span>RD</span>
-            </a>
-          </li>
-          <li>
-            <a href="/society/deposit/sb">
-              <i class="bi bi-circle"></i><span>SB A/C</span>
-            </a>
-          </li>
-          <li>
-            <a href="/society/deposit/current">
-              <i class="bi bi-circle"></i><span>Current A/C</span>
+            <a href="/society/deposit/annual">
+              <i class="bi bi-circle"></i><span>Target & outstanding (onetime)</span>
             </a>
           </li>
         </ul>

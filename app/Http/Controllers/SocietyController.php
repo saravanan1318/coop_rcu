@@ -5,13 +5,9 @@ namespace App\Http\Controllers;
 use Validator;
 
 //deposit
-use App\Models\Deposit_currents;
-use App\Models\Deposit_fdgovts;
-use App\Models\Deposit_fdinds;
-use App\Models\Deposit_fdists;
-use App\Models\Deposit_outstandings;
-use App\Models\Deposit_rds;
-use App\Models\Deposit_sbs;
+use App\Models\Deposits;
+use App\Models\Mtr_deposits;
+use App\Models\Deposit_onetimeentry;
 use App\Models\Godowns;
 use App\Models\Loan_annual;
 use App\Models\Loan_collection;
@@ -218,49 +214,106 @@ class SocietyController extends Controller
         return redirect('/society/loan/annual/add')->with('status', 'Loan issue added successfully');
         // return view("annual");
     }
-    //Overall Outstanding targer Form
 
-    function overallotlist(){
+    //deposit
 
-        $loan_overallot = Loan_overallot::where('user_id', Auth::user()->id)->get();
+    function depositlist()
+    {
 
-        return view("loan.overallot.list", compact('loan_overallot'));
+        $deposits = Deposits::where('user_id', Auth::user()->id)->get();
+
+        return view("deposit.list", compact('deposits'));
     }
 
-    function overallotadd(){
-        return view("loan.overallot.add");
+    function depositadd()
+    {
+        $mtr_deposits = Mtr_deposits::all();
+        return view("deposit.add", compact('mtr_deposits'));
     }
 
-    function overallotstore(Request $request){
+    function depositstore(Request $request)
+    {
 
         $validated = $request->validate([
-            'issuedate' => 'required',
-            'scstno' => 'required',
-            'scstamount' => 'required',
-            'othersno' => 'required',
-            'othersamount' => 'required'
+            'deposit_id' => 'required',
+            'depositdate' => 'required',
+            'recievedno' => 'required',
+            'recievedamount' => 'required',
+            'closedno' => 'required',
+            'closedamount' => 'required'
+        ],
+        [
+             'deposit_id.required' => 'The Deposit type field can not be blank value.',
+             'depositdate.required' => 'The Deposit date field can not be blank value.',
+             'recievedno.required' => 'Received No. field can not be blank value.',
+             'recievedamount.required' => 'Received Amount field can not be blank value.',
+             'closedno.required' => 'Closed No. field can not be blank value.',
+             'closedamount.required' => 'Closed Amount field can not be blank value.'
         ]);
 
-        $totalno = $request->scstno + $request->othersno;
-        $totalamount = $request->scstamount + $request->othersamount;
-        $overallot = new Loan_overallot;
-        $overallot->user_id = Auth::user()->id;
-        $overallot->issuedate = $request->issuedate;
-        $overallot->scstno = $request->scstno;
-        $overallot->scstamount = $request->scstamount;
-        $overallot->othersno = $request->othersno;
-        $overallot->othersamount = $request->othersamount;
-        $overallot->totalno = $totalno;
-        $overallot->totalamount = $totalamount;
-        $overallot->save();
+        $deposits = new Deposits;
+        $deposits->user_id = Auth::user()->id;
+        $deposits->deposit_id = $request->deposit_id;
+        $deposits->depositdate = $request->depositdate;
+        $deposits->recievedno = $request->recievedno;
+        $deposits->recievedamount = $request->recievedamount;
+        $deposits->closedno = $request->closedno;
+        $deposits->closedamount = $request->closedamount;
+        $deposits->save();
 
-
-        return redirect('/society/loan/overallot/add')->with('status', 'Loan issue added successfully');
-        // return view("overallot");
+        return redirect('/society/deposit/add')->with('status', 'Deposit added successfully');
     }
 
+
+    //Annual targer Form
+
+    function depositannuallist(){
+
+        $deposit_onetimeentry = Deposit_onetimeentry::where('user_id', Auth::user()->id)->get();
+
+        return view("deposit.annual.list", compact('deposit_onetimeentry'));
+    }
+
+    function depositannualadd(){
+
+        $mtr_deposits = Mtr_deposits::all();
+        return view("deposit.annual.add", compact('mtr_deposits'));
+    }
+
+    function depositannualstore(Request $request){
+
+        $validated = $request->validate([
+            'deposit_id' => 'required',
+            'overall_outstanding' => 'required',
+            'current_outstanding' => 'required',
+            'current_year' => 'required',
+            'annual_target' => 'required'
+        ],
+        [
+            'deposit_id.required' => 'Loan type field can not be blank value.',
+            'overall_outstanding.required' => 'Overall outstanding field can not be blank value.',
+            'current_outstanding.required' => 'Current outstanding field can not be blank value.',
+            'current_year.required' => 'Current year field can not be blank value.',
+            'annual_target.required' => 'Annual target field can not be blank value.'
+        ]);
+
+        $annual = new Deposit_onetimeentry;
+        $annual->user_id = Auth::user()->id;
+        $annual->deposit_id = $request->deposit_id;
+        $annual->overall_outstanding = $request->overall_outstanding;
+        $annual->current_outstanding = $request->current_outstanding;
+        $annual->current_year = $request->current_year;
+        $annual->annual_target = $request->annual_target;
+        $annual->save();
+
+
+        return redirect('/society/deposit/annual/add')->with('status', 'Deposit Target and Outstanding added successfully');
+        // return view("annual");
+    }
+    
+
         //   //purchase_pharmacy
-        function Pharmacylist(){
+    function Pharmacylist(){
 
         $purchase_Pharmacy = Purchase_pharmacy::where('user_id', Auth::user()->id)->get();
 
@@ -656,51 +709,7 @@ function outstandinglist()
         return redirect('/society/deposit/outstanding/add')->with('status', 'Outstanding Deposit added successfully');
     }
 
-    function fdgovtlist()
-    {
-
-        $deposit_fdgovts = Deposit_fdgovts::where('user_id', Auth::user()->id)->get();
-
-        return view("deposit.fdgovt.list", compact('deposit_fdgovts'));
-    }
-
-    function fdgovtadd()
-    {
-        return view("deposit.fdgovt.add");
-    }
-
-    function fdgovtstore(Request $request)
-    {
-
-        $validated = $request->validate([
-            'recieveddate' => 'required',
-            'recievedothersno' => 'required',
-            'recievedothersamount' => 'required',
-            'closeddate' => 'required',
-            'closeddothersno' => 'required',
-            'closeddothersamount' => 'required'
-        ]);
-
-        $recievedtotalno = $request->scstno + $request->recievedothersno;
-        $recievedtotalamount = $request->scstamount + $request->recievedothersamount;
-        $closedtotalno = $request->scstno + $request->closedothersno;
-        $closedtotalamount = $request->scstamount + $request->closedothersamount;
-        $fdgovts = new Deposit_fdgovts;
-        $fdgovts->user_id = Auth::user()->id;
-        $fdgovts->recieveddate = $request->recieveddate;
-        $fdgovts->recievedothersno = $request->recievedothersno;
-        $fdgovts->recievedothersamount = $request->recievedothersamount;
-        $fdgovts->recievedtotalno = $recievedtotalno;
-        $fdgovts->recivedtotalamount = $recievedtotalamount;
-        $fdgovts->closeddate = $request->closeddate;
-        $fdgovts->closedothersno = $request->closedothersno;
-        $fdgovts->closeddothersamount = $request->closeddothersamount;
-        $fdgovts->closedtotalno = $closedtotalno;
-        $fdgovts->closedtotalamount = $closedtotalamount;
-        $fdgovts->save();
-
-        return redirect('/society/deposit/fdgovt/add')->with('status', 'FD Government Deposit added successfully');
-    }
+    
     function fdindlist()
     {
 
