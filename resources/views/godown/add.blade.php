@@ -123,7 +123,7 @@
         const utilized = parseFloat(utilizedInput.value);
         if (!isNaN(capacity) && !isNaN(utilized)) {
             const utilizationPercentage = (utilized / capacity) * 100;
-            utilizedPercentageInput.value = utilizationPercentage.toFixed(2);
+            utilizedPercentageInput.value = utilizationPercentage.toFixed(0);
         } else {
             utilizedPercentageInput.value = "";
         }
