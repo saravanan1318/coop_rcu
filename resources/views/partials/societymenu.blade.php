@@ -57,28 +57,8 @@
         </a>
         <ul id="purchase-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="/society/purchase/fertilizer">
-              <i class="bi bi-circle"></i><span>Fertilizer</span>
-            </a>
-          </li>
-          <li>
-            <a href="/society/purchase/pharmacy">
-              <i class="bi bi-circle"></i><span>Pharmacy</span>
-            </a>
-          </li>
-          <li>
-            <a href="/society/purchase/ffo">
-              <i class="bi bi-circle"></i><span>Farm Fresh Outlet</span>
-            </a>
-          </li>
-          <li>
-            <a href="/society/purchase/pdbunk">
-              <i class="bi bi-circle"></i><span>Petrol/Diesel Bunks</span>
-            </a>
-          </li>
-          <li>
-            <a href="/society/purchase/ncc">
-              <i class="bi bi-circle"></i><span>Non controlled commodities</span>
+            <a href="/society/purchase/list">
+              <i class="bi bi-circle"></i><span>Purchase</span>
             </a>
           </li>
         </ul>

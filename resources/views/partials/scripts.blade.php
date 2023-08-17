@@ -1,4 +1,5 @@
   <!-- Vendor JS Files -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
   <script src="/assets/vendor/apexcharts/apexcharts.min.js"></script>
   <script src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="/assets/vendor/chart.js/chart.umd.js"></script>
@@ -46,4 +47,110 @@
             $("#depositsadd").submit();
         }
     });
+    $('#purchase_id').on('change', function() {
+
+
+        $("#govtnoofvarieties").val("");
+        $("#govtquantity").val("");
+        $("#govtvalues").val("");
+        $("#coopnoofvarieties").val("");
+        $("#coopquantity").val("");
+        $("#coopvalues").val("");
+        $("#privatenoofvarieties").val("");
+        $("#privatequantity").val("");
+        $("#privatevalues").val("");
+        $("#jpcnoofvarieties").val("");
+        $("#jpcquantity").val("");
+        $("#jpcvalues").val("");
+
+        if(this.value == "1"){
+
+            $("#govtnoofvarieties").attr("readonly",false);
+            $("#govtquantity").attr("readonly",false);
+            $("#govtvalues").attr("readonly",false);
+            $("#coopnoofvarieties").attr("readonly",false);
+            $("#coopquantity").attr("readonly",false);
+            $("#coopvalues").attr("readonly",false);
+            $("#privatenoofvarieties").attr("readonly",false);
+            $("#privatequantity").attr("readonly",false);
+            $("#privatevalues").attr("readonly",false);
+            $("#jpcnoofvarieties").attr("readonly",true);
+            $("#jpcquantity").attr("readonly",true);
+            $("#jpcvalues").attr("readonly",true);
+            
+        }else if(this.value == "2"){
+
+            $("#govtnoofvarieties").attr("readonly",true);
+            $("#govtquantity").attr("readonly",true);
+            $("#govtvalues").attr("readonly",true);
+            $("#coopnoofvarieties").attr("readonly",true);
+            $("#coopquantity").attr("readonly",true);
+            $("#coopvalues").attr("readonly",true);
+            $("#privatenoofvarieties").attr("readonly",true);
+            $("#privatequantity").attr("readonly",false);
+            $("#privatevalues").attr("readonly",false);
+            $("#jpcnoofvarieties").attr("readonly",true);
+            $("#jpcquantity").attr("readonly",false);
+            $("#jpcvalues").attr("readonly",false);
+
+        }else if(this.value == "3"){
+            $("#govtnoofvarieties").attr("readonly",true);
+            $("#govtquantity").attr("readonly",true);
+            $("#govtvalues").attr("readonly",true);
+            $("#coopnoofvarieties").attr("readonly",true);
+            $("#coopquantity").attr("readonly",false);
+            $("#coopvalues").attr("readonly",false);
+            $("#privatenoofvarieties").attr("readonly",true);
+            $("#privatequantity").attr("readonly",false);
+            $("#privatevalues").attr("readonly",false);
+            $("#jpcnoofvarieties").attr("readonly",true);
+            $("#jpcquantity").attr("readonly",true);
+            $("#jpcvalues").attr("readonly",true);
+
+        }else if(this.value == "4"){
+
+            $("#govtnoofvarieties").attr("readonly",false);
+            $("#govtquantity").attr("readonly",false);
+            $("#govtvalues").attr("readonly",false);
+            $("#coopnoofvarieties").attr("readonly",true);
+            $("#coopquantity").attr("readonly",true);
+            $("#coopvalues").attr("readonly",true);
+            $("#privatenoofvarieties").attr("readonly",true);
+            $("#privatequantity").attr("readonly",true);
+            $("#privatevalues").attr("readonly",true);
+            $("#jpcnoofvarieties").attr("readonly",true);
+            $("#jpcquantity").attr("readonly",true);
+            $("#jpcvalues").attr("readonly",true);
+
+        }else if(this.value == "5"){
+
+            $("#govtnoofvarieties").attr("readonly",false);
+            $("#govtquantity").attr("readonly",true);
+            $("#govtvalues").attr("readonly",false);
+            $("#coopnoofvarieties").attr("readonly",false);
+            $("#coopquantity").attr("readonly",true);
+            $("#coopvalues").attr("readonly",false);
+            $("#privatenoofvarieties").attr("readonly",false);
+            $("#privatequantity").attr("readonly",true);
+            $("#privatevalues").attr("readonly",false);
+            $("#jpcnoofvarieties").attr("readonly",false);
+            $("#jpcquantity").attr("readonly",true);
+            $("#jpcvalues").attr("readonly",false);
+
+        }
+    });
+
+    $("#govtnoofvarieties").attr("readonly",false);
+    $("#govtquantity").attr("readonly",false);
+    $("#govtvalues").attr("readonly",false);
+    $("#coopnoofvarieties").attr("readonly",false);
+    $("#coopquantity").attr("readonly",false);
+    $("#coopvalues").attr("readonly",false);
+    $("#privatenoofvarieties").attr("readonly",false);
+    $("#privatequantity").attr("readonly",false);
+    $("#privatevalues").attr("readonly",false);
+    $("#jpcnoofvarieties").attr("readonly",true);
+    $("#jpcquantity").attr("readonly",true);
+    $("#jpcvalues").attr("readonly",true);
+    
 </script>

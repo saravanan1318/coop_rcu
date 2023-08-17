@@ -17,6 +17,8 @@ use App\Models\Mtr_loan;
 use App\Models\Loan_onetimeentry;
 
 //purchase
+use App\Models\Mtr_purchase;
+use App\Models\Purchases;
 use App\Models\purchase_Fertilizer;
 use App\Models\Purchase_ffo;
 use App\Models\Purchase_ncc;
@@ -311,6 +313,44 @@ class SocietyController extends Controller
         // return view("annual");
     }
     
+
+    function purchaselist()
+    {
+
+        $purchases = Purchases::where('user_id', Auth::user()->id)->get();
+
+        return view("purchase.list", compact('purchases'));
+    }
+
+    function purchaseadd()
+    {
+        $mtr_purchases = Mtr_purchase::all();
+        return view("purchase.add", compact('mtr_purchases'));
+    }
+
+    function purchasestore(Request $request)
+    {
+
+        $purchases = new Purchases;
+        $purchases->user_id = Auth::user()->id;
+        $purchases->purchase_id = $request->purchase_id;
+        $purchases->purchasedate = $request->purchasedate;
+        $purchases->govtnoofvarieties = isset($request->govtnoofvarieties) ? $request->govtnoofvarieties : NULL;
+        $purchases->govtquantity = isset($request->govtquantity) ? $request->govtquantity : NULL;
+        $purchases->govtvalues = isset($request->govtvalues) ? $request->govtvalues : NULL;
+        $purchases->coopnoofvarieties = isset($request->coopnoofvarieties) ? $request->coopnoofvarieties : NULL;
+        $purchases->coopquantity = isset($request->coopquantity) ? $request->coopquantity : NULL;
+        $purchases->coopvalues = isset($request->coopvalues) ? $request->coopvalues : NULL;
+        $purchases->jpcnoofvarieties = isset($request->jpcnoofvarieties) ? $request->jpcnoofvarieties : NULL;
+        $purchases->jpcquantity = isset($request->jpcquantity) ? $request->jpcquantity : NULL;
+        $purchases->jpcvalues = isset($request->jpcvalues) ? $request->jpcvalues : NULL;
+        $purchases->privatenoofvarieties = isset($request->privatenoofvarieties) ? $request->privatenoofvarieties : NULL;
+        $purchases->privatequantity =isset($request->privatequantity) ? $request->privatequantity : NULL;
+        $purchases->privatevalues =isset($request->privatevalues) ? $request->privatevalues : NULL;
+        $purchases->save();
+
+        return redirect('/society/purchase/add')->with('status', 'Purchase added successfully');
+    }
 
         //   //purchase_pharmacy
     function Pharmacylist(){

@@ -45,26 +45,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/society/deposit/list', [SocietyController::class, 'depositlist']);
     Route::get('/society/deposit/add', [SocietyController::class, 'depositadd']);
     Route::post('/society/deposit/store', [SocietyController::class, 'depositstore']);
-    
-    Route::get('/society/purchase/fertilizer', [SocietyController::class, 'fertilizerlist']);
-    Route::get('/society/purchase/fertilizer/add', [SocietyController::class, 'fertilizeradd']);
-    Route::post('/society/purchase/fertilizer/store', [SocietyController::class, 'fertilizerstore']);
 
-    Route::get('/society/purchase/pharmacy', [SocietyController::class, 'pharmacylist']);
-    Route::get('/society/purchase/pharmacy/add', [SocietyController::class, 'pharmacyadd']);
-    Route::post('/society/purchase/pharmacy/store', [SocietyController::class, 'pharmacystore']);
-
-    Route::get('/society/purchase/ffo', [SocietyController::class, 'ffolist']);
-    Route::get('/society/purchase/ffo/add', [SocietyController::class, 'ffoadd']);
-    Route::post('/society/purchase/ffo/store', [SocietyController::class, 'ffostore']);
-
-    Route::get('/society/purchase/pdbunk', [SocietyController::class, 'pdbunklist']);
-    Route::get('/society/purchase/pdbunk/add', [SocietyController::class, 'pdbunkadd']);
-    Route::post('/society/purchase/pdbunk/store', [SocietyController::class, 'pdbunkstore']);
-
-    Route::get('/society/purchase/ncc', [SocietyController::class, 'ncclist']);
-    Route::get('/society/purchase/ncc/add', [SocietyController::class, 'nccadd']);
-    Route::post('/society/purchase/ncc/store', [SocietyController::class, 'nccstore']);
+    Route::get('/society/purchase/list', [SocietyController::class, 'purchaselist']);
+    Route::get('/society/purchase/add', [SocietyController::class, 'purchaseadd']);
+    Route::post('/society/purchase/store', [SocietyController::class, 'purchasestore']);
 
     //sales
 
@@ -119,6 +103,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/superadmin/dashboard', [SuperAdminController::class, 'dashboard']);
     Route::get('/superadmin/loanreport', [SuperAdminController::class, 'loanreport']);
     Route::get('/superadmin/depositreport', [SuperAdminController::class, 'depositreport']);
+    Route::get('/superadmin/purchasereport', [SuperAdminController::class, 'purchasereport']);
 
 });
 
