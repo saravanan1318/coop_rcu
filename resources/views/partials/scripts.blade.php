@@ -12,41 +12,6 @@
   <!-- Template Main JS File -->
   <script src="/assets/js/main.js"></script>
 <script type="">
-    $("#signin").click(function (e) {
-        console.log("Form is trying to submit");
-        e.preventDefault();
-        if($("#loginform").validate()){
-            $("#loginform").submit();
-        }
-    });
-    $("#issuesubmit").click(function (e) {
-        console.log("Form is trying to submit");
-        e.preventDefault();
-        if($("#issueadd").validate()){
-            $("#issueadd").submit();
-        }
-    });
-    $("#collectionsubmit").click(function (e) {
-        console.log("Form is trying to submit");
-        e.preventDefault();
-        if($("#collectionadd").validate()){
-            $("#collectionadd").submit();
-        }
-    });
-    $("#annualsubmit").click(function (e) {
-        console.log("Form is trying to submit");
-        e.preventDefault();
-        if($("#annualadd").validate()){
-            $("#annualadd").submit();
-        }
-    });
-    $("#depositsubmit").click(function (e) {
-        console.log("Form is trying to submit");
-        e.preventDefault();
-        if($("#depositsadd").validate()){
-            $("#depositsadd").submit();
-        }
-    });
     $('#purchase_id').on('change', function() {
 
 
