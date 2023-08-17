@@ -67,7 +67,7 @@
                                         <td>{{ $godown->utilized }}</td>
                                         <td>{{ $godown->percentageutilized }}</td>
                                         <td>{{ $godown->income }}</td>
-                                        <td><a href='/society/godown/edit/{{$loan_issue->id}}'>view</a></td>
+                                        <td><a href='/society/godown/edit/{{$godown->id}}'>view</a></td>
                                     </tr>
                                     @endforeach
                                 </tbody>
