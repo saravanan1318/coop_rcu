@@ -48,6 +48,7 @@
                                 <thead>
                                     <tr>
                                         <th scope="col">#</th>
+                                        <th scope="col">Date</th>
                                         <th scope="col">Count</th>
                                         <th scope="col">Capacity (Metric Ton) </th>
                                         <th scope="col">Utilised</th>
@@ -60,10 +61,11 @@
                                     @foreach($godowns as $godown)
                                     <tr>
                                         <th scope="row">{{ $godown->id }}</th>
+                                        <td>{{ $godown->godowndate }}</td>
                                         <td>{{ $godown->count }}</td>
                                         <td>{{ $godown->capacity }}</td>
                                         <td>{{ $godown->utilized }}</td>
-                                        <td>{{ $godown->pecentageutilized }}</td>
+                                        <td>{{ $godown->percentageutilized }}</td>
                                         <td>{{ $godown->income }}</td>
                                         <td><a href='/society/godown/edit/{{$loan_issue->id}}'>view</a></td>
                                     </tr>

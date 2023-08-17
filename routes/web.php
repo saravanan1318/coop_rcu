@@ -6,6 +6,7 @@ use App\Http\Controllers\SocietyController;
 use App\Http\Controllers\LoginFormController;
 use App\Http\Controllers\SuperAdminController;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,7 +20,7 @@ use App\Http\Controllers\SuperAdminController;
 
 /**AUTH */
 Route::get('/', [LoginFormController::class, 'index']);
-Route::get('login', [ 'as' => 'login', 'uses' => 'LoginFormController@index']);
+Route::get('login', ['as' => 'login', 'uses' => 'LoginFormController@index']);
 Route::post('checklogin', [LoginFormController::class, 'checklogin']);
 Route::get('logout', [LoginFormController::class, 'logout']);
 
@@ -104,26 +105,26 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/superadmin/loanreport', [SuperAdminController::class, 'loanreport']);
     Route::get('/superadmin/depositreport', [SuperAdminController::class, 'depositreport']);
     Route::get('/superadmin/purchasereport', [SuperAdminController::class, 'purchasereport']);
-
+    Route::get('/superadmin/godownreport', [SuperAdminController::class, 'godownreport']);
 });
 
 
 
 
 
-Route::get('/clear-cache', function() {
+Route::get('/clear-cache', function () {
     $exitCode = Artisan::call('cache:clear');
     // return what you want
 });
-Route::get('/clear-config', function() {
+Route::get('/clear-config', function () {
     $exitCode = Artisan::call('config:clear');
     // return what you want
 });
-Route::get('/clear-optimize', function() {
+Route::get('/clear-optimize', function () {
     $exitCode = Artisan::call('optimize');
     // return what you want
 });
-Route::get('/clear-route', function() {
+Route::get('/clear-route', function () {
     $exitCode = Artisan::call('config:route');
     // return what you want
 });

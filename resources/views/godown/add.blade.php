@@ -44,6 +44,14 @@
                             <div class="col-md-3">
                             </div>
                             <div class="col-md-6">
+                                <div class="row margindiv">
+                                    <div class="col-md-12">
+                                        <div class="form-floating">
+                                            <input type="date" class="form-control" id="floatingName" name="godowndate" placeholder="date" required>
+                                            <label for="floatingName">Date</label>
+                                        </div>
+                                    </div>
+                                </div>
 
                                 <div class="row margindiv">
                                     <div class="col-md-12">
@@ -66,8 +74,8 @@
                                 <div class="row margindiv">
                                     <div class="col-md-12">
                                         <div class="form-floating">
-                                            <input type="text" class="form-control" id="floatingName" name="utilised" placeholder="Your Others Amount." required>
-                                            <label for="floatingName">Utilised</label>
+                                            <input type="text" class="form-control" id="floatingName" name="utilized" placeholder="Your Others Amount." required>
+                                            <label for="floatingName">Utilized</label>
                                         </div>
                                     </div>
                                     <div class="invalid-feedback">Please enter utilised.</div>
@@ -75,7 +83,7 @@
                                 <div class="row margindiv">
                                     <div class="col-md-12">
                                         <div class="form-floating">
-                                            <input type="text" class="form-control" id="floatingName" name="pecentageutilized" placeholder="Your Others Amount." required>
+                                            <input type="text" class="form-control" id="floatingName" name="percentageutilized" placeholder="Your Others Amount." required>
                                             <label for="floatingName">Utilised (in Percentage)</label>
                                         </div>
                                     </div>

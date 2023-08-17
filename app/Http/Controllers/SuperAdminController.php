@@ -13,23 +13,26 @@ use App\Models\Loan_onetimeentry;
 use App\Models\Deposit_onetimeentry;
 use App\Models\Mtr_deposits;
 use App\Models\Deposits;
+use App\Models\Godowns;
 
 class SuperAdminController extends Controller
 {
     //
 
-    function dashboard(){
+    function dashboard()
+    {
         return view("superadmin.dashboard");
     }
 
-    function loanreport(Request $request){
+    function loanreport(Request $request)
+    {
 
 
         $loanreportdate = $request->loanreportdate;
 
-        if(!empty($loanreportdate)){
+        if (!empty($loanreportdate)) {
             $loanreportdate = $request->loanreportdate;
-        }else{
+        } else {
             $loanreportdate = date("Y-m-d");
         }
 
@@ -38,29 +41,28 @@ class SuperAdminController extends Controller
 
         $finalarr = array();
 
-        foreach($mtr_loans as $mtr_loan){
+        foreach ($mtr_loans as $mtr_loan) {
 
 
             $loan_onetimeentry = Loan_onetimeentry::where('loan_id', $mtr_loan->id)->first();
 
-            $issuedtotal = DB::table('loan_issues')->select(DB::raw('SUM(totalamount) as totalamount'), DB::raw('SUM(totalno) as totalno'), DB::raw('SUM(scstno) as scstno'),DB::raw('SUM(scstamount) as scstamount'))->where('loan_id', $mtr_loan->id)->where('issuedate', $loanreportdate)->get();
+            $issuedtotal = DB::table('loan_issues')->select(DB::raw('SUM(totalamount) as totalamount'), DB::raw('SUM(totalno) as totalno'), DB::raw('SUM(scstno) as scstno'), DB::raw('SUM(scstamount) as scstamount'))->where('loan_id', $mtr_loan->id)->where('issuedate', $loanreportdate)->get();
             $collectedtotal = DB::table('loan_collection')->select(DB::raw('SUM(totalamount) as totalamount'), DB::raw('SUM(totalno) as totalno'))->where('loan_id', $mtr_loan->id)->where('collectiondate', $loanreportdate)->get();
 
             $overalloutstandissued = Loan_issues::where('loan_id', $mtr_loan->id)->sum('totalamount');
-            $currentoveralloutstandissued = Loan_issues::where('loan_id', $mtr_loan->id)->where('issuedate','>=', date("Y-m-01"))->sum('totalamount');
-            
+            $currentoveralloutstandissued = Loan_issues::where('loan_id', $mtr_loan->id)->where('issuedate', '>=', date("Y-m-01"))->sum('totalamount');
+
             $overalloutstandcollected = Loan_collection::where('loan_id', $mtr_loan->id)->sum('totalamount');
-            $currentoveralloutstandcollected = Loan_collection::where('loan_id', $mtr_loan->id)->where('collectiondate','>=', date("Y-m-01"))->sum('totalamount');
-            
-            
+            $currentoveralloutstandcollected = Loan_collection::where('loan_id', $mtr_loan->id)->where('collectiondate', '>=', date("Y-m-01"))->sum('totalamount');
+
             $overall_outstanding =  0;
             $current_outstanding =  0;
             $current_year =  0;
             $annual_target =  0;
             $annual_targetcalc =  1;
 
-            if(!is_null($loan_onetimeentry)){
-                
+            if (!is_null($loan_onetimeentry)) {
+
                 $overall_outstanding =  $loan_onetimeentry->overall_outstanding;
                 $current_outstanding =  $loan_onetimeentry->current_outstanding;
                 $current_year =  $loan_onetimeentry->current_year;
@@ -78,12 +80,12 @@ class SuperAdminController extends Controller
 
             $collectiontotalno = $collectedtotal[0]->totalno;
             $collectiontotalamount = $collectedtotal[0]->totalamount;
-           
-            $achievedpercentage = ($totalamount/$annual_targetcalc)*100;
+
+            $achievedpercentage = ($totalamount / $annual_targetcalc) * 100;
 
             $indarr = array();
 
-            $indarr['date'] =  date("d-m-Y",strtotime($loanreportdate));;
+            $indarr['date'] =  date("d-m-Y", strtotime($loanreportdate));;
             $indarr['loantype'] = $mtr_loan->loantype;
             $indarr['overall_outstanding'] = $this->IND_money_format($overalloutstandissued);
             $indarr['current_outstanding'] = $this->IND_money_format($currentoveralloutstandissued);
@@ -97,23 +99,23 @@ class SuperAdminController extends Controller
             $indarr['collectedtotalamount'] = is_null($collectiontotalamount) ? 0 : $this->IND_money_format($collectiontotalamount);
             $indarr['achieved'] = number_format((float)$achievedpercentage, 2, '.', '');
 
-            array_push( $finalarr, $indarr);
-
+            array_push($finalarr, $indarr);
         }
-        
 
-        return view("superadmin.loanreport",compact('finalarr','loanreportdate'));
+
+        return view("superadmin.loanreport", compact('finalarr', 'loanreportdate'));
     }
 
 
-    function depositreport(Request $request){
+    function depositreport(Request $request)
+    {
 
 
         $depositreportdate = $request->depositreportdate;
 
-        if(!empty($depositreportdate)){
+        if (!empty($depositreportdate)) {
             $depositreportdate = $request->depositreportdate;
-        }else{
+        } else {
             $depositreportdate = date("Y-m-d");
         }
 
@@ -122,28 +124,27 @@ class SuperAdminController extends Controller
 
         $finalarr = array();
 
-        foreach($mtr_deposits as $mtr_deposit){
-
+        foreach ($mtr_deposits as $mtr_deposit) {
 
             $deposit_onetimeentry = Deposit_onetimeentry::where('deposit_id', $mtr_deposit->id)->first();
 
             $receivedtotal = DB::table('deposits')->select(DB::raw('SUM(recievedno) as recievedno'), DB::raw('SUM(recievedamount) as recievedamount'), DB::raw('SUM(closedno) as closedno'), DB::raw('SUM(closedamount) as closedamount'))->where('deposit_id', $mtr_deposit->id)->where('depositdate', $depositreportdate)->get();
 
             $overalloutstandreceived = Deposits::where('deposit_id', $mtr_deposit->id)->sum('recievedamount');
-            $currentoveralloutstandreceived = Deposits::where('deposit_id', $mtr_deposit->id)->where('depositdate','>=', date("Y-m-01"))->sum('recievedamount');
-            
+            $currentoveralloutstandreceived = Deposits::where('deposit_id', $mtr_deposit->id)->where('depositdate', '>=', date("Y-m-01"))->sum('recievedamount');
+
             $overalloutstandclosed = Deposits::where('deposit_id', $mtr_deposit->id)->sum('closedamount');
-            $currentoveralloutstandclosed = Deposits::where('deposit_id', $mtr_deposit->id)->where('depositdate','>=', date("Y-m-01"))->sum('closedamount');
-            
-        
+            $currentoveralloutstandclosed = Deposits::where('deposit_id', $mtr_deposit->id)->where('depositdate', '>=', date("Y-m-01"))->sum('closedamount');
+
+
             $overall_outstanding =  0;
             $current_outstanding =  0;
             $current_year =  0;
             $annual_target =  0;
             $annual_targetcalc =  1;
 
-            if(!is_null($deposit_onetimeentry)){
-                
+            if (!is_null($deposit_onetimeentry)) {
+
                 $overall_outstanding =  $deposit_onetimeentry->overall_outstanding;
                 $current_outstanding =  $deposit_onetimeentry->current_outstanding;
                 $current_year =  $deposit_onetimeentry->current_year;
@@ -158,12 +159,12 @@ class SuperAdminController extends Controller
             $receivedamount = $receivedtotal[0]->recievedamount;
             $closedno = $receivedtotal[0]->closedno;
             $closedamount = $receivedtotal[0]->closedamount;
-           
-            $achievedpercentage = ($receivedamount/$annual_targetcalc)*100;
+
+            $achievedpercentage = ($receivedamount / $annual_targetcalc) * 100;
 
             $indarr = array();
 
-            $indarr['date'] =  date("d-m-Y",strtotime($depositreportdate));;
+            $indarr['date'] =  date("d-m-Y", strtotime($depositreportdate));;
             $indarr['loantype'] = $mtr_deposit->deposit_name;
             $indarr['overall_outstanding'] = $this->IND_money_format($overalloutstandreceived);
             $indarr['current_outstanding'] = $this->IND_money_format($currentoveralloutstandreceived);
@@ -175,35 +176,66 @@ class SuperAdminController extends Controller
             $indarr['closedamount'] = is_null($closedamount) ? 0 : $this->IND_money_format($closedamount);
             $indarr['achieved'] = number_format((float)$achievedpercentage, 2, '.', '');
 
-            array_push( $finalarr, $indarr);
-
+            array_push($finalarr, $indarr);
         }
-        
 
-        return view("superadmin.depositreport",compact('finalarr','depositreportdate'));
+
+        return view("superadmin.depositreport", compact('finalarr', 'depositreportdate'));
+    }
+
+    public function godownreport(Request $request)
+    {
+        $godownreportdate = $request->input('godownreportdate', date("Y-m-d"));
+
+        $godowns = Godowns::all();
+
+        $godownreportdata = array();
+
+        foreach ($godowns as $godown) {
+            $godowndate = $godown->godowndate;
+            $count = $godown->count;
+            $capacity = $godown->capacity;
+            $utilized = $godown->utilized;
+            $percentageUtilized = $godown->percentageutilized;
+            $income = $godown->income;
+
+            $godownData = array();
+            $godownData['godowndate'] = date("d-m-Y", strtotime($godowndate));
+            $godownData['count'] = $count;
+            $godownData['capacity'] = $capacity;
+            $godownData['utilized'] = $utilized;
+            $godownData['percentageutilized'] = $percentageUtilized;
+            $godownData['income'] = $income;
+
+            array_push($godownreportdata, $godownData);
+        }
+
+        return view("superadmin.godownreport", compact('godownreportdata', 'godownreportdate'));
     }
 
 
-    function IND_money_format($number){
+
+    function IND_money_format($number)
+    {
         $decimal = (string)($number - floor($number));
         $money = floor($number);
         $length = strlen($money);
         $delimiter = '';
         $money = strrev($money);
 
-        for($i=0;$i<$length;$i++){
-            if(( $i==3 || ($i>3 && ($i-1)%2==0) )&& $i!=$length){
-                $delimiter .=',';
+        for ($i = 0; $i < $length; $i++) {
+            if (($i == 3 || ($i > 3 && ($i - 1) % 2 == 0)) && $i != $length) {
+                $delimiter .= ',';
             }
-            $delimiter .=$money[$i];
+            $delimiter .= $money[$i];
         }
 
         $result = strrev($delimiter);
         $decimal = preg_replace("/0\./i", ".", $decimal);
         $decimal = substr($decimal, 0, 3);
 
-        if( $decimal != '0'){
-            $result = $result.$decimal;
+        if ($decimal != '0') {
+            $result = $result . $decimal;
         }
 
         return $result;
