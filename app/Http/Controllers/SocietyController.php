@@ -997,41 +997,7 @@ function outstandinglist()
         return redirect('/society/current/rd/add')->with('status', 'Current Account Deposit added successfully');
     }
 
-    function godownlist()
-    {
 
-        $godowns = Godowns::where('user_id', Auth::user()->id)->get();
-        return view("godown.list", compact('godowns'));
-    }
-
-    function godownadd()
-    {
-        return view("godown.add");
-    }
-
-    function godownstore(Request $request)
-    {
-
-        $validated = $request->validate([
-            'count' => 'required',
-            'capacity' => 'required',
-            'utilized' => 'required',
-            'pecentageutilized' => 'required',
-            'income' => 'required',
-        ]);
-
-
-        $godowns = new Godowns;
-        $godowns->user_id = Auth::user()->id;
-        $godowns->count = $request->count;
-        $godowns->capacity = $request->capacity;
-        $godowns->utilized = $request->utilized;
-        $godowns->pecentageutilized = $request->pecentageutilized;
-        $godowns->income = $request->income;
-        $godowns->save();
-
-        return redirect('/society/godown/add')->with('status', 'RD Deposit added successfully');
-    }
 
     function csclist()
     {
