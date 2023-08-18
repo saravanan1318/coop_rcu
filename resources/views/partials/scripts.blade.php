@@ -117,5 +117,98 @@
     $("#jpcnoofvarieties").attr("readonly",true);
     $("#jpcquantity").attr("readonly",true);
     $("#jpcvalues").attr("readonly",true);
+
+
+    $('#sale_id').on('change', function() {
+
+        $("#noofvarieties").val("");
+        $("#noofoutlets").val("");
+        $("#noofcustomers").val("");
+        $("#nooffarmers").val("");
+        $("#quantitykilo").val("");
+        $("#quantitylitres").val("");
+        $("#salesamountphysical").val("");
+        $("#salesamountcoopbazaar").val("");
+
+        if(this.value == "1"){
+
+            $("#noofvarieties").attr("readonly",false);
+            $("#noofoutlets").attr("readonly",true);
+            $("#noofcustomers").attr("readonly",true);
+            $("#nooffarmers").attr("readonly",false);
+            $("#quantitykilo").attr("readonly",false);
+            $("#quantitylitres").attr("readonly",true);
+            $("#salesamountphysical").attr("readonly",false);
+            $("#salesamountcoopbazaar").attr("readonly",true);
+            
+        }else if(this.value == "2"){
+
+            $("#noofvarieties").attr("readonly",false);
+            $("#noofoutlets").attr("readonly",true);
+            $("#noofcustomers").attr("readonly",true);
+            $("#nooffarmers").attr("readonly",false);
+            $("#quantitykilo").attr("readonly",false);
+            $("#quantitylitres").attr("readonly",false);
+            $("#salesamountphysical").attr("readonly",false);
+            $("#salesamountcoopbazaar").attr("readonly",true);
+
+        }else if(this.value == "3"){
+
+            $("#noofvarieties").attr("readonly",false);
+            $("#noofoutlets").attr("readonly",true);
+            $("#noofcustomers").attr("readonly",false);
+            $("#nooffarmers").attr("readonly",true);
+            $("#quantitykilo").attr("readonly",true);
+            $("#quantitylitres").attr("readonly",true);
+            $("#salesamountphysical").attr("readonly",false);
+            $("#salesamountcoopbazaar").attr("readonly",true);
+
+        }else if(this.value == "4"){
+
+            $("#noofvarieties").attr("readonly",false);
+            $("#noofoutlets").attr("readonly",true);
+            $("#noofcustomers").attr("readonly",false);
+            $("#nooffarmers").attr("readonly",true);
+            $("#quantitykilo").attr("readonly",true);
+            $("#quantitylitres").attr("readonly",true);
+            $("#salesamountphysical").attr("readonly",false);
+            $("#salesamountcoopbazaar").attr("readonly",true);
+
+
+        }else if(this.value == "5"){
+
+            $("#noofvarieties").attr("readonly",false);
+            $("#noofoutlets").attr("readonly",false);
+            $("#noofcustomers").attr("readonly",true);
+            $("#nooffarmers").attr("readonly",true);
+            $("#quantitykilo").attr("readonly",true);
+            $("#quantitylitres").attr("readonly",false);
+            $("#salesamountphysical").attr("readonly",false);
+            $("#salesamountcoopbazaar").attr("readonly",true);
+
+        }else if(this.value == "6"){
+
+            $("#noofvarieties").attr("readonly",false);
+            $("#noofoutlets").attr("readonly",true);
+            $("#noofcustomers").attr("readonly",true);
+            $("#nooffarmers").attr("readonly",true);
+            $("#quantitykilo").attr("readonly",false);
+            $("#quantitylitres").attr("readonly",false);
+            $("#salesamountphysical").attr("readonly",false);
+            $("#salesamountcoopbazaar").attr("readonly",false);
+
+        }else if(this.value == "7"){
+
+            $("#noofvarieties").attr("readonly",true);
+            $("#noofoutlets").attr("readonly",false);
+            $("#noofcustomers").attr("readonly",true);
+            $("#nooffarmers").attr("readonly",true);
+            $("#quantitykilo").attr("readonly",true);
+            $("#quantitylitres").attr("readonly",true);
+            $("#salesamountphysical").attr("readonly",false);
+            $("#salesamountcoopbazaar").attr("readonly",true);
+
+        }
+    });
     
 </script>
