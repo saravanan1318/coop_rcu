@@ -424,7 +424,6 @@ class SocietyController extends Controller
         return redirect('/society/sale/add')->with('status', 'Sale added successfully');
     }
 
-<<<<<<< HEAD
     function godownlist()
     {
 
@@ -473,8 +472,6 @@ class SocietyController extends Controller
 
         return redirect('/society/godown/add')->with('status', 'Godown added successfully');
     }
-
-
 
     function Fertilizeradd(){
         return view("sales.fertilizer.add");
@@ -719,11 +716,6 @@ function nccsstore(Request $request){
 
 //Deposit
 function outstandinglist()
-
-=======
-    //Deposit
-    function outstandinglist()
->>>>>>> ac41029 (goodown changes)
     {
 
         $deposit_outstandings = Deposit_outstandings::where('user_id', Auth::user()->id)->get();
