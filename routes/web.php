@@ -96,6 +96,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::post('/fetch/circle', [SuperAdminController::class, 'fetchcircle']);
     Route::post('/fetch/society', [SuperAdminController::class, 'fetchsociety']);
+    Route::get('/superadmin/godownreport', [SuperAdminController::class, 'godownreport']);
 
 });
 

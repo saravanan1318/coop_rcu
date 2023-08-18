@@ -348,7 +348,7 @@ class SocietyController extends Controller
         return redirect('/society/deposit/annual/add')->with('status', 'Deposit Target and Outstanding added successfully');
         // return view("annual");
     }
-    
+
 
     function purchaselist()
     {
@@ -423,6 +423,55 @@ class SocietyController extends Controller
         return redirect('/society/sale/add')->with('status', 'Sale added successfully');
     }
 
+    function godownlist()
+    {
+
+        $godowns = Godowns::where('user_id', Auth::user()->id)->get();
+        return view("godown.list", compact('godowns'));
+    }
+
+    function godownadd()
+    {
+        return view("godown.add");
+    }
+
+    function godownstore(Request $request)
+    {
+
+        $validated = $request->validate(
+            [
+                'godowndate' => 'required',
+                'count' => 'required',
+                'capacity' => 'required',
+                'utilized' => 'required',
+                'percentageutilized' => 'required',
+                'income' => 'required',
+            ],
+            [
+                'godowndate.required' => 'The Godown date field can not be blank value.',
+                'count.required' => 'The Countfield can not be blank value.',
+                'capacity.required' => 'The capacity field can not be blank value.',
+                'utilized.required' => 'Utilized Field can not be blank value.',
+                'percentageutilized.required' => 'Percentage Utilization field can not be blank value.',
+                'income.required' => 'Income field can not be blank value.',
+            ]
+
+        );
+
+
+        $godowns = new Godowns;
+        $godowns->user_id = Auth::user()->id;
+        $godowns->godowndate = $request->godowndate;
+        $godowns->count = $request->count;
+        $godowns->capacity = $request->capacity;
+        $godowns->utilized = $request->utilized;
+        $godowns->percentageutilized = $request->percentageutilized;
+        $godowns->income = $request->income;
+        $godowns->save();
+
+        return redirect('/society/godown/add')->with('status', 'Godown added successfully');
+    }
+
     //Deposit
     function outstandinglist()
     {
@@ -470,7 +519,7 @@ class SocietyController extends Controller
         return redirect('/society/deposit/outstanding/add')->with('status', 'Outstanding Deposit added successfully');
     }
 
-    
+
     function fdindlist()
     {
 
@@ -698,41 +747,7 @@ class SocietyController extends Controller
         return redirect('/society/current/rd/add')->with('status', 'Current Account Deposit added successfully');
     }
 
-    function godownlist()
-    {
 
-        $godowns = Godowns::where('user_id', Auth::user()->id)->get();
-        return view("godown.list", compact('godowns'));
-    }
-
-    function godownadd()
-    {
-        return view("godown.add");
-    }
-
-    function godownstore(Request $request)
-    {
-
-        $validated = $request->validate([
-            'count' => 'required',
-            'capacity' => 'required',
-            'utilized' => 'required',
-            'pecentageutilized' => 'required',
-            'income' => 'required',
-        ]);
-
-
-        $godowns = new Godowns;
-        $godowns->user_id = Auth::user()->id;
-        $godowns->count = $request->count;
-        $godowns->capacity = $request->capacity;
-        $godowns->utilized = $request->utilized;
-        $godowns->pecentageutilized = $request->pecentageutilized;
-        $godowns->income = $request->income;
-        $godowns->save();
-
-        return redirect('/society/godown/add')->with('status', 'RD Deposit added successfully');
-    }
 
     function csclist()
     {

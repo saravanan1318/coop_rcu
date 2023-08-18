@@ -21,6 +21,7 @@ use App\Models\Mtr_society;
 use App\Models\Mtr_role;
 use App\Models\User;
 
+use App\Models\Godowns;
 class SuperAdminController extends Controller
 {
     //
@@ -55,11 +56,11 @@ class SuperAdminController extends Controller
 
             $overalloutstandissued = Loan_issues::where('loan_id', $mtr_loan->id)->sum('totalamount');
             $currentoveralloutstandissued = Loan_issues::where('loan_id', $mtr_loan->id)->where('issuedate','>=', date("Y-m-01"))->sum('totalamount');
-            
+
             $overalloutstandcollected = Loan_collection::where('loan_id', $mtr_loan->id)->sum('totalamount');
             $currentoveralloutstandcollected = Loan_collection::where('loan_id', $mtr_loan->id)->where('collectiondate','>=', date("Y-m-01"))->sum('totalamount');
-            
-            
+
+
             $overall_outstanding =  0;
             $current_outstanding =  0;
             $current_year =  0;
@@ -67,7 +68,7 @@ class SuperAdminController extends Controller
             $annual_targetcalc =  1;
 
             if(!is_null($loan_onetimeentry)){
-                
+
                 $overall_outstanding =  $loan_onetimeentry->overall_outstanding;
                 $current_outstanding =  $loan_onetimeentry->current_outstanding;
                 $current_year =  $loan_onetimeentry->current_year;
@@ -85,7 +86,7 @@ class SuperAdminController extends Controller
 
             $collectiontotalno = $collectedtotal[0]->totalno;
             $collectiontotalamount = $collectedtotal[0]->totalamount;
-           
+
             $achievedpercentage = ($totalamount/$annual_targetcalc)*100;
 
             $indarr = array();
@@ -107,7 +108,7 @@ class SuperAdminController extends Controller
             array_push( $finalarr, $indarr);
 
         }
-        
+
 
         return view("superadmin.loanreport",compact('finalarr','loanreportdate'));
     }
@@ -138,11 +139,11 @@ class SuperAdminController extends Controller
 
             $overalloutstandreceived = Deposits::where('deposit_id', $mtr_deposit->id)->sum('recievedamount');
             $currentoveralloutstandreceived = Deposits::where('deposit_id', $mtr_deposit->id)->where('depositdate','>=', date("Y-m-01"))->sum('recievedamount');
-            
+
             $overalloutstandclosed = Deposits::where('deposit_id', $mtr_deposit->id)->sum('closedamount');
             $currentoveralloutstandclosed = Deposits::where('deposit_id', $mtr_deposit->id)->where('depositdate','>=', date("Y-m-01"))->sum('closedamount');
-            
-        
+
+
             $overall_outstanding =  0;
             $current_outstanding =  0;
             $current_year =  0;
@@ -150,7 +151,7 @@ class SuperAdminController extends Controller
             $annual_targetcalc =  1;
 
             if(!is_null($deposit_onetimeentry)){
-                
+
                 $overall_outstanding =  $deposit_onetimeentry->overall_outstanding;
                 $current_outstanding =  $deposit_onetimeentry->current_outstanding;
                 $current_year =  $deposit_onetimeentry->current_year;
@@ -165,7 +166,7 @@ class SuperAdminController extends Controller
             $receivedamount = $receivedtotal[0]->recievedamount;
             $closedno = $receivedtotal[0]->closedno;
             $closedamount = $receivedtotal[0]->closedamount;
-           
+
             $achievedpercentage = ($receivedamount/$annual_targetcalc)*100;
 
             $indarr = array();
@@ -185,7 +186,7 @@ class SuperAdminController extends Controller
             array_push( $finalarr, $indarr);
 
         }
-        
+
 
         return view("superadmin.depositreport",compact('finalarr','depositreportdate'));
     }
@@ -236,6 +237,35 @@ class SuperAdminController extends Controller
         return response()->json(array('data'=> $society), 200);
     }
 
+    public function godownreport(Request $request)
+    {
+        $godownreportdate = $request->input('godownreportdate', date("Y-m-d"));
+
+        $godowns = Godowns::all();
+
+        $godownreportdata = array();
+
+        foreach ($godowns as $godown) {
+            $godowndate = $godown->godowndate;
+            $count = $godown->count;
+            $capacity = $godown->capacity;
+            $utilized = $godown->utilized;
+            $percentageUtilized = $godown->percentageutilized;
+            $income = $godown->income;
+
+            $godownData = array();
+            $godownData['godowndate'] = date("d-m-Y", strtotime($godowndate));
+            $godownData['count'] = $count;
+            $godownData['capacity'] = $capacity;
+            $godownData['utilized'] = $utilized;
+            $godownData['percentageutilized'] = $percentageUtilized;
+            $godownData['income'] = $income;
+
+            array_push($godownreportdata, $godownData);
+        }
+
+        return view("superadmin.godownreport", compact('godownreportdata', 'godownreportdate'));
+    }
 
     function IND_money_format($number){
         $decimal = (string)($number - floor($number));
