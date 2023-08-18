@@ -627,19 +627,19 @@ function pdbunksstore(Request $request){
    // return view("issue");
 }
 
-//sales_Non controlled commodities
-function nccslist(){
+    //sales_Non controlled commodities
+    function nccslist(){
 
-    $sales_ncc =sales_ncc::where('user_id', Auth::user()->id)->get();
+        $sales_ncc =sales_ncc::where('user_id', Auth::user()->id)->get();
 
-    return view("sales.ncc.list", compact('sales_ncc'));
-}
+        return view("sales.ncc.list", compact('sales_ncc'));
+    }
 
-function nccsadd(){
-    return view("sales.ncc.add");
-}
+    function nccsadd(){
+        return view("sales.ncc.add");
+    }
 
-function nccsstore(Request $request){
+    function nccsstore(Request $request){
 
     $validated = $request->validate([
         'nccdate' => 'required',
@@ -662,60 +662,10 @@ function nccsstore(Request $request){
 
     return redirect('/society/sales/ncc/add')->with('status', 'Non controlled commodities added successfully');
    // return view("issue");
-}
-
-    function godownlist()
-    {
-
-        $godowns = Godowns::where('user_id', Auth::user()->id)->get();
-        return view("godown.list", compact('godowns'));
     }
 
-    function godownadd()
-    {
-        return view("godown.add");
-    }
-
-    function godownstore(Request $request)
-    {
-
-        $validated = $request->validate(
-            [
-                'godowndate' => 'required',
-                'count' => 'required',
-                'capacity' => 'required',
-                'utilized' => 'required',
-                'percentageutilized' => 'required',
-                'income' => 'required',
-            ],
-            [
-                'godowndate.required' => 'The Godown date field can not be blank value.',
-                'count.required' => 'The Countfield can not be blank value.',
-                'capacity.required' => 'The capacity field can not be blank value.',
-                'utilized.required' => 'Utilized Field can not be blank value.',
-                'percentageutilized.required' => 'Percentage Utilization field can not be blank value.',
-                'income.required' => 'Income field can not be blank value.',
-            ]
-
-        );
-
-
-        $godowns = new Godowns;
-        $godowns->user_id = Auth::user()->id;
-        $godowns->godowndate = $request->godowndate;
-        $godowns->count = $request->count;
-        $godowns->capacity = $request->capacity;
-        $godowns->utilized = $request->utilized;
-        $godowns->percentageutilized = $request->percentageutilized;
-        $godowns->income = $request->income;
-        $godowns->save();
-
-        return redirect('/society/godown/add')->with('status', 'Godown added successfully');
-    }
-
-
-//Deposit
-function outstandinglist()
+    //Deposit
+    function outstandinglist()
     {
 
         $deposit_outstandings = Deposit_outstandings::where('user_id', Auth::user()->id)->get();
@@ -988,9 +938,7 @@ function outstandinglist()
 
         return redirect('/society/current/rd/add')->with('status', 'Current Account Deposit added successfully');
     }
-
-
-
+    
     function csclist()
     {
 
