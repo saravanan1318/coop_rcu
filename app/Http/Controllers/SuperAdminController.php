@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use DB;
+use Illuminate\Support\Facades\Hash;
+
 
 use App\Models\Loan_collection;
 use App\Models\Loan_issues;
@@ -13,6 +15,11 @@ use App\Models\Loan_onetimeentry;
 use App\Models\Deposit_onetimeentry;
 use App\Models\Mtr_deposits;
 use App\Models\Deposits;
+use App\Models\Mtr_region;
+use App\Models\Mtr_circle;
+use App\Models\Mtr_society;
+use App\Models\Mtr_role;
+use App\Models\User;
 
 class SuperAdminController extends Controller
 {
@@ -181,6 +188,52 @@ class SuperAdminController extends Controller
         
 
         return view("superadmin.depositreport",compact('finalarr','depositreportdate'));
+    }
+
+    function userslist(){
+
+        $users = User::all();
+
+        return view("superadmin.userslist", compact('users'));
+    }
+
+    function useradd(){
+
+        $mtr_region = Mtr_region::all();
+        $mtr_role = Mtr_role::all();
+        return view("superadmin.useradd", compact('mtr_region','mtr_role'));
+    }
+
+    function userstore(Request $request){
+
+        
+        $User = new User;
+        $User->username = isset($request->username) ? $request->username : NULL;
+        $User->name = isset($request->name) ? $request->name : NULL;
+        $User->email = isset($request->email) ? $request->email : NULL;
+        $User->password = Hash::make(123456);
+        $User->region_id = isset($request->region_id) ? $request->region_id : NULL;
+        $User->circle_id = isset($request->circle_id) ? $request->circle_id : NULL;
+        $User->society_id = isset($request->society_id) ? $request->society_id : NULL;
+        $User->role = isset($request->role) ? $request->role : NULL;
+        $User->save();
+        
+        return redirect('/superadmin/user/add')->with('status', 'User added successfully');
+        
+    }
+
+
+    function fetchcircle(Request $request){
+
+        $cirlces = Mtr_circle::where('region_id',$request->region_id)->where('status', 1)->get();
+        return response()->json(array('data'=> $cirlces), 200);
+    }
+
+
+    function fetchsociety(Request $request){
+
+        $society = Mtr_society::where('circle_id',$request->circle_id)->where('region_id',$request->region_id)->where('status', 1)->get();
+        return response()->json(array('data'=> $society), 200);
     }
 
 

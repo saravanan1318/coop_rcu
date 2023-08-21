@@ -21,6 +21,12 @@
           <span>Deposit report</span>
         </a>
       </li><!-- End Dashboard Nav -->
+      <li class="nav-item">
+        <a class="nav-link " href="/superadmin/users">
+          <i class="bi bi-grid"></i>
+          <span>Users</span>
+        </a>
+      </li><!-- End Dashboard Nav -->
     </ul>
 
   </aside><!-- End Sidebar-->

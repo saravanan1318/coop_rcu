@@ -88,6 +88,14 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/superadmin/loanreport', [SuperAdminController::class, 'loanreport']);
     Route::get('/superadmin/depositreport', [SuperAdminController::class, 'depositreport']);
     Route::get('/superadmin/purchasereport', [SuperAdminController::class, 'purchasereport']);
+    Route::get('/superadmin/users', [SuperAdminController::class, 'userslist']);
+    Route::get('/superadmin/user/add', [SuperAdminController::class, 'useradd']);
+    Route::post('/superadmin/user/store', [SuperAdminController::class, 'userstore']);
+
+
+
+    Route::post('/fetch/circle', [SuperAdminController::class, 'fetchcircle']);
+    Route::post('/fetch/society', [SuperAdminController::class, 'fetchsociety']);
 
 });
 

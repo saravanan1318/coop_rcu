@@ -61,7 +61,48 @@ class SocietyController extends Controller
 
     function issueadd(){
 
-        $mtr_loan = Mtr_loan::all();
+        if(Auth::user()->role == 5){
+
+            $mtr_loan = Mtr_loan::all();
+
+        }else if(Auth::user()->role == 6){
+
+            $mtr_loan = Mtr_loan::whereNotIn('id', [22]);
+
+        }else if(Auth::user()->role == 7){
+
+            $mtr_loan =  Mtr_loan::whereIn('id', [11,24,25]);
+
+        }else if(Auth::user()->role == 8){
+
+            $mtr_loan =  Mtr_loan::whereIn('id', [11,24,25]);
+
+        }else if(Auth::user()->role == 9){
+
+            $mtr_loan =  Mtr_loan::whereIn('id', [1,11,22]);
+
+        }
+        else if(Auth::user()->role == 10){
+
+            $mtr_loan = Mtr_loan::whereNotIn('id', [22]);
+
+        }
+        else if(Auth::user()->role == 11){
+
+            $mtr_loan =  Mtr_loan::whereIn('id', [11,16]);
+
+        }
+        else if(Auth::user()->role == 12){
+
+            $mtr_loan =  Mtr_loan::whereNotIn('id', [22,23]);
+
+        }
+        else if(Auth::user()->role == 13){
+
+            $mtr_loan =  Mtr_loan::whereNotIn('id', [22,23]);
+
+        }
+       
         return view("loan.issue.add", compact('mtr_loan'));
     }
 

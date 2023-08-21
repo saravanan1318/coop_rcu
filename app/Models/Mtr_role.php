@@ -8,4 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Mtr_role extends Model
 {
     use HasFactory;
+
+    protected $table = 'mtr_role';
+    protected $primaryKey = 'id';
 }
