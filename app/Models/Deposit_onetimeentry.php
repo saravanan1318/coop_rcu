@@ -5,10 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Mtr_role extends Model
+class Deposit_onetimeentry extends Model
 {
     use HasFactory;
 
-    protected $table = 'mtr_role';
+    protected $table = 'deposit_onetimeentry';
     protected $primaryKey = 'id';
+    public $timestamps = false;
+
 }

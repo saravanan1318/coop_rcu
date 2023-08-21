@@ -30,7 +30,7 @@
                     <div class="col-12">
                     <label for="email" class="form-label">Email</label>
                     <div class="input-group has-validation">
-                      <input type="email" name="email" class="form-control" id="email" required>
+                      <input type="text" name="username" class="form-control" id="username" required>
                       <div class="invalid-feedback">Please enter your username.</div>
                     </div>
                   </div>

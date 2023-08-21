@@ -22,14 +22,16 @@ class LoginFormController extends Controller
     function checklogin(Request $request){
 
         $validated = $request->validate([
-            'email' => 'required',
+            'username' => 'required',
             'password' => 'required',
         ]);
         
-        $credentials = $request->only('email', 'password');
+        $credentials = $request->only('username', 'password');
         if (Auth::attempt($credentials)) {
 
-            if(Auth::user()->role == 5){
+            if(Auth::user()->role == 5 || Auth::user()->role == 6 || Auth::user()->role == 7 
+            || Auth::user()->role == 8 || Auth::user()->role == 9 || Auth::user()->role == 10 
+            || Auth::user()->role == 11 || Auth::user()->role == 12 || Auth::user()->role == 13){
                 return redirect()->intended('/society/dashboard')
                 ->withSuccess('Signed in');
             }else if(Auth::user()->role == 2){

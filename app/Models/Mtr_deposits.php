@@ -5,10 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Mtr_role extends Model
+class Mtr_deposits extends Model
 {
     use HasFactory;
 
-    protected $table = 'mtr_role';
+    protected $table = 'mtr_deposits';
     protected $primaryKey = 'id';
+
 }

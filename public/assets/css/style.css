@@ -1239,3 +1239,7 @@ h6 {
 .table{
   font-size: 11px;
 }
+
+input:read-only {
+  background-color: gray;
+}
