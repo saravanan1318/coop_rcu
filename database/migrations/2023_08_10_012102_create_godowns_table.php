@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('godowns', function (Blueprint $table) {
             $table->id();
             $table->string("user_id");
-
+            $table->date("godowndate");
             $table->string("count");
             $table->string("capacity");
             $table->string("utilized");
