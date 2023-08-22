@@ -16,6 +16,7 @@ use App\Models\Loan_issues;
 use App\Models\Loan_overallot;
 use App\Models\Mtr_loan;
 use App\Models\Loan_onetimeentry;
+use App\Models\Loan_issuesnew;
 
 //purchase
 use App\Models\Mtr_purchase;
@@ -110,7 +111,7 @@ class SocietyController extends Controller
             $mtr_loan =  Mtr_loan::whereNotIn('id', [22,23]);
 
         }
-       
+
         return view("loan.issue.add", compact('mtr_loan'));
     }
 
@@ -155,8 +156,106 @@ class SocietyController extends Controller
 
 
         return redirect('/society/loan/issue/add')->with('status', 'Loan issue added successfully');
-       // return view("issue");
+
     }
+ //Issue new Form
+ function issuelistnew(){
+
+    $loan_issuesnew = Loan_issuesnew::where('user_id', Auth::user()->id)->get();
+
+    return view("loan.issuenew.listnew", compact('loan_issuesnew'));
+}
+
+function issueaddnew(){
+
+    if(Auth::user()->role == 5){
+
+        $mtr_loan = Mtr_loan::all();
+
+    }else if(Auth::user()->role == 6){
+
+        $mtr_loan = Mtr_loan::whereNotIn('id', [22]);
+
+    }else if(Auth::user()->role == 7){
+
+        $mtr_loan =  Mtr_loan::whereIn('id', [11,24,25]);
+
+    }else if(Auth::user()->role == 8){
+
+        $mtr_loan =  Mtr_loan::whereIn('id', [11,24,25]);
+
+    }else if(Auth::user()->role == 9){
+
+        $mtr_loan =  Mtr_loan::whereIn('id', [1,11,22]);
+
+    }
+    else if(Auth::user()->role == 10){
+
+        $mtr_loan = Mtr_loan::whereNotIn('id', [22]);
+
+    }
+    else if(Auth::user()->role == 11){
+
+        $mtr_loan =  Mtr_loan::whereIn('id', [11,16]);
+
+    }
+    else if(Auth::user()->role == 12){
+
+        $mtr_loan =  Mtr_loan::whereNotIn('id', [22,23]);
+
+    }
+    else if(Auth::user()->role == 13){
+
+        $mtr_loan =  Mtr_loan::whereNotIn('id', [22,23]);
+
+    }
+
+    return view("loan.issuenew.addnew", compact('mtr_loan'));
+}
+
+function issuestorenew(Request $request){
+
+    $validator = $request->validate([
+        'loan_id' => 'required',
+        'issuedate' => 'required',
+        'loan_id' => 'required',
+        'scstno' => 'required|numeric',
+        'scstamount' => 'required|numeric',
+        'othersno' => 'required|numeric',
+        'othersamount' => 'required|numeric'
+    ],
+    [
+         'loan_id.required' => 'The Loan type field can not be blank value.',
+         'issuedate.required' => 'The Issue date field can not be blank value.',
+         'loan_id.required' => 'Loan type field can not be blank value.',
+         'scstno.required' => 'SC / ST No. field can not be blank value.',
+         'scstamount.required' => 'SC / ST Amount field can not be blank value.',
+         'othersno.required' => 'Others Amount field can not be blank value.',
+         'othersamount.required' => 'Others No field can not be blank value.',
+         'scstno.numeric' => 'SC / ST No. field can must be numeric.',
+         'scstamount.numeric' => 'SC / ST Amount field must be numeric.',
+         'othersno.numeric' => 'Others No field must be numeric.',
+         'othersamount.numeric' => 'Others Amount field must be numeric.',
+    ]);
+
+    $totalno = $request->scstno + $request->othersno;
+    $totalamount = $request->scstamount + $request->othersamount;
+    $issues = new Loan_issuesnew;
+    $issues->user_id = Auth::user()->id;
+    $issues->loan_id = $request->loan_id;
+    $issues->issuedate = $request->issuedate;
+    $issues->scstno = $request->scstno;
+    $issues->scstamount = $request->scstamount;
+    $issues->othersno = $request->othersno;
+    $issues->othersamount = $request->othersamount;
+    $issues->totalno = $totalno;
+    $issues->totalamount = $totalamount;
+    $issues->save();
+
+
+    return redirect('/society/loan/issuenew/addnew')->with('status', 'Loan issue added successfully');
+
+}
 
     //Collection Form
 
@@ -531,20 +630,20 @@ class SocietyController extends Controller
      //Crop target
      function croploantargetlist()
      {
- 
+
          $croploan_target = Croploan_target::where('user_id', Auth::user()->id)->get();
- 
+
          return view("croploan.target.list", compact('croploan_target'));
      }
- 
+
      function croploantargetadd()
      {
          return view("croploan.target.add");
      }
- 
+
      function croploantargetstore(Request $request)
      {
- 
+
          $validated = $request->validate([
              'month' => 'required',
              'target' => 'required'
@@ -555,8 +654,8 @@ class SocietyController extends Controller
          $croploan_target->month = $request->month;
          $croploan_target->target = $request->target;
          $croploan_target->status = 1;
-         $croploan_target->save(); 
- 
+         $croploan_target->save();
+
          return redirect('/society/croploan/target/add')->with('status', 'Crop Loan target added successfully');
      }
 
@@ -564,20 +663,20 @@ class SocietyController extends Controller
      //Crop target
      function croploanentrylist()
      {
- 
+
          $croploan_entry = Croploan_entry::where('user_id', Auth::user()->id)->get();
- 
+
          return view("croploan.entry.list", compact('croploan_entry'));
      }
- 
+
      function croploanentryadd()
      {
          return view("croploan.entry.add");
      }
- 
+
      function croploanentrystore(Request $request)
      {
- 
+
          $validated = $request->validate([
              'croploandate' => 'required',
              'applicationsreceived' => 'required',
@@ -601,7 +700,7 @@ class SocietyController extends Controller
              'overdueno.required' => 'Overdue number can not be blank value.',
              'overdueno.required' => 'Overdue amount can not be blank value.',
          ]);
- 
+
          $croploan_entry = new Croploan_entry;
          $croploan_entry->user_id = Auth::user()->id;
          $croploan_entry->croploandate = $request->croploandate;
@@ -615,7 +714,7 @@ class SocietyController extends Controller
          $croploan_entry->overdueno = $request->overdueno;
          $croploan_entry->overdueamount = $request->overdueamount;
          $croploan_entry->save();
- 
+
          return redirect('/society/croploan/entry/add')->with('status', 'Crop entry added successfully');
      }
 

@@ -2643,3 +2643,19 @@ $(document).ready(function () {
     });
 
 });
+
+
+//Daniel Changes in Script file
+
+$("#add_row").click(function(){
+
+    var i = $("#serialno").val();
+    var sno = parseInt(i);
+    sno = sno + 1;
+    // $('#addr'+i).html($('#addr'+b).html()).find('td:first-child').html(i+1);
+
+    i++;
+
+    $("#serialno").val(i)
+    calc();
+});

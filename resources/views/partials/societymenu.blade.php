@@ -22,6 +22,11 @@
             </a>
           </li>
           <li>
+            <a href="/society/loan/issuenew">
+              <i class="bi bi-circle"></i><span>Issuenew</span>
+            </a>
+          </li>
+          <li>
             <a href="/society/loan/collection">
               <i class="bi bi-circle"></i><span>Collection</span>
             </a>
