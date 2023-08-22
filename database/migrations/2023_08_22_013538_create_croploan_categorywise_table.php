@@ -6,19 +6,20 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**ffo
+    /**
      * Run the migrations.
      *
      * @return void
      */
     public function up()
     {
-        Schema::create('purchase_ffo', function (Blueprint $table) {
+        Schema::create('croploan_categorywise', function (Blueprint $table) {
             $table->id();
-            $table->string("user_id");
-            $table->string("qty");
-            $table->date("amount");
-            $table->string("totalamount");
+            $table->integer('user_id');
+            $table->integer('croploandate');
+            $table->integer('category_id');
+            $table->integer('number');
+            $table->integer('amount');
             $table->timestamps();
         });
     }
@@ -30,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('purchase_ffo');
+        Schema::dropIfExists('croploan_categorywise');
     }
 };

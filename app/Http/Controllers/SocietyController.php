@@ -36,6 +36,13 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 
+//Crop Loan
+use App\Models\Croploan_target;
+use App\Models\Croploan_entry;
+use App\Models\Croploan_categorywise;
+use App\Models\Croploan_cropwise;
+
+
 class SocietyController extends Controller
 {
     // public function __construct()
@@ -519,5 +526,97 @@ class SocietyController extends Controller
 
         return redirect('/society/deposit/outstanding/add')->with('status', 'Outstanding Deposit added successfully');
     }
+
+
+     //Crop target
+     function croploantargetlist()
+     {
+ 
+         $croploan_target = Croploan_target::where('user_id', Auth::user()->id)->get();
+ 
+         return view("croploan.target.list", compact('croploan_target'));
+     }
+ 
+     function croploantargetadd()
+     {
+         return view("croploan.target.add");
+     }
+ 
+     function croploantargetstore(Request $request)
+     {
+ 
+         $validated = $request->validate([
+             'month' => 'required',
+             'target' => 'required'
+         ]);
+
+         $croploan_target = new Croploan_target;
+         $croploan_target->user_id = Auth::user()->id;
+         $croploan_target->month = $request->month;
+         $croploan_target->target = $request->target;
+         $croploan_target->status = 1;
+         $croploan_target->save(); 
+ 
+         return redirect('/society/croploan/target/add')->with('status', 'Crop Loan target added successfully');
+     }
+
+
+     //Crop target
+     function croploanentrylist()
+     {
+ 
+         $croploan_entry = Croploan_entry::where('user_id', Auth::user()->id)->get();
+ 
+         return view("croploan.entry.list", compact('croploan_entry'));
+     }
+ 
+     function croploanentryadd()
+     {
+         return view("croploan.entry.add");
+     }
+ 
+     function croploanentrystore(Request $request)
+     {
+ 
+         $validated = $request->validate([
+             'croploandate' => 'required',
+             'applicationsreceived' => 'required',
+             'applicationssanctioned' => 'required',
+             'applicationspending' => 'required',
+             'totalcultivatedarea' => 'required',
+             'loanissuedarea' => 'required',
+             'outstandingno' => 'required',
+             'outstandingamount' => 'required',
+             'overdueno' => 'required'
+         ],
+         [
+             'croploandate.required' => 'The Crop loan date field can not be blank value.',
+             'applicationsreceived.required' => 'The Application Received can not be blank value.',
+             'applicationssanctioned.required' => 'The Application Sanctioned can not be blank value.',
+             'applicationspending.required' => 'Application Pending can not be blank value.',
+             'totalcultivatedarea.required' => 'Total cutivated area field can not be blank value.',
+             'loanissuedarea.required' => 'Loan issued area can not be blank value.',
+             'outstandingno.required' => 'Outstanding number can not be blank value.',
+             'outstandingamount.required' => 'Outstanding amount can not be blank value.',
+             'overdueno.required' => 'Overdue number can not be blank value.',
+             'overdueno.required' => 'Overdue amount can not be blank value.',
+         ]);
+ 
+         $croploan_entry = new Croploan_entry;
+         $croploan_entry->user_id = Auth::user()->id;
+         $croploan_entry->croploandate = $request->croploandate;
+         $croploan_entry->applicationsreceived = $request->applicationsreceived;
+         $croploan_entry->applicationssanctioned = $request->applicationssanctioned;
+         $croploan_entry->applicationspending = $request->applicationspending;
+         $croploan_entry->totalcultivatedarea = $request->totalcultivatedarea;
+         $croploan_entry->loanissuedarea = $request->loanissuedarea;
+         $croploan_entry->outstandingno = $request->outstandingno;
+         $croploan_entry->outstandingamount = $request->outstandingamount;
+         $croploan_entry->overdueno = $request->overdueno;
+         $croploan_entry->overdueamount = $request->overdueamount;
+         $croploan_entry->save();
+ 
+         return redirect('/society/croploan/entry/add')->with('status', 'Crop entry added successfully');
+     }
 
 }

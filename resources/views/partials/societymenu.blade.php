@@ -124,7 +124,30 @@
             </a>
           </li>
         </ul>
-      </li><!-- End Forms Nav -->
+      </li>
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#croploan-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-journal-text"></i><span>Crop Loan</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="croploan-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="/society/croploan/target">
+              <i class="bi bi-circle"></i><span>Target</span>
+            </a>
+          </li>
+          <li>
+            <a href="/society/croploan/entry">
+              <i class="bi bi-circle"></i><span>Daily crop loan entry</span>
+            </a>
+          </li>
+          <li>
+            <a href="/society/croploan/loanissued">
+              <i class="bi bi-circle"></i><span>loan issued</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <!-- End Forms Nav -->
       {{-- <li class="nav-heading">Pages</li>
 
       <li class="nav-item">

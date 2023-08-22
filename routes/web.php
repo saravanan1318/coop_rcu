@@ -19,7 +19,7 @@ use App\Http\Controllers\SuperAdminController;
 
 /**AUTH */
 Route::get('/', [LoginFormController::class, 'index']);
-Route::get('login', [ 'as' => 'login', 'uses' => 'LoginFormController@index']);
+Route::get('login', [LoginFormController::class, 'index']);
 Route::post('checklogin', [LoginFormController::class, 'checklogin']);
 Route::get('logout', [LoginFormController::class, 'logout']);
 
@@ -61,6 +61,22 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/society/godown/add', [SocietyController::class, 'godownadd']);
     Route::post('/society/godown/store', [SocietyController::class, 'godownstore']);
 
+    Route::get('/society/godown', [SocietyController::class, 'godownlist']);
+    Route::get('/society/godown/add', [SocietyController::class, 'godownadd']);
+    Route::post('/society/godown/store', [SocietyController::class, 'godownstore']);
+
+    Route::get('/society/croploan/target', [SocietyController::class, 'croploantargetlist']);
+    Route::get('/society/croploan/target/add', [SocietyController::class, 'croploantargetadd']);
+    Route::post('/society/croploan/target/store', [SocietyController::class, 'croploantargetstore']);
+
+    Route::get('/society/croploan/entry', [SocietyController::class, 'croploanentrylist']);
+    Route::get('/society/croploan/entry/add', [SocietyController::class, 'croploanentryadd']);
+    Route::post('/society/croploan/entry/store', [SocietyController::class, 'croploanentrystore']);
+
+    Route::get('/society/croploan/loanissued', [SocietyController::class, 'croploanloanissuedlist']);
+    Route::get('/society/croploan/loanissued/add', [SocietyController::class, 'croploanloanissuedadd']);
+    Route::post('/society/croploan/loanissued/store', [SocietyController::class, 'croploanloanissuedstore']);
+
     Route::get('/superadmin/dashboard', [SuperAdminController::class, 'dashboard']);
     Route::get('/superadmin/loanreport', [SuperAdminController::class, 'loanreport']);
     Route::get('/superadmin/depositreport', [SuperAdminController::class, 'depositreport']);
@@ -68,8 +84,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/superadmin/users', [SuperAdminController::class, 'userslist']);
     Route::get('/superadmin/user/add', [SuperAdminController::class, 'useradd']);
     Route::post('/superadmin/user/store', [SuperAdminController::class, 'userstore']);
-
-
 
     Route::post('/fetch/circle', [SuperAdminController::class, 'fetchcircle']);
     Route::post('/fetch/society', [SuperAdminController::class, 'fetchsociety']);

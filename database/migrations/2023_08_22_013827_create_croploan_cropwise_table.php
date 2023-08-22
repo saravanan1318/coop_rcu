@@ -6,19 +6,20 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**ncc
+    /**
      * Run the migrations.
      *
      * @return void
      */
     public function up()
     {
-        Schema::create('sales_ncc', function (Blueprint $table) {
+        Schema::create('croploan_cropwise', function (Blueprint $table) {
             $table->id();
-            $table->string("user_id");
-            $table->string("qty");
-            $table->date("amount");
-            $table->string("totalamount");
+            $table->integer('user_id');
+            $table->integer('croploandate');
+            $table->integer('crop_id');
+            $table->integer('number');
+            $table->integer('amount');
             $table->timestamps();
         });
     }
@@ -30,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sales_ncc');
+        Schema::dropIfExists('croploan_cropwise');
     }
 };
