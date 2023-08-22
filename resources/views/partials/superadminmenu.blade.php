@@ -27,6 +27,17 @@
           <span>Users</span>
         </a>
       </li><!-- End Dashboard Nav -->
+      </li>
+      <li class="nav-item">
+        <a class="nav-link " href="/superadmin/godownreport">
+          <i class="bi bi-grid"></i>
+          <span>Gowdown report</span>
+        </a>
+      </li>
+
+
+
+      <!-- End Dashboard Nav -->
     </ul>
 
   </aside><!-- End Sidebar-->

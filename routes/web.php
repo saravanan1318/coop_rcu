@@ -25,6 +25,7 @@ Route::get('logout', [LoginFormController::class, 'logout']);
 
 /**SocietyController */
 Route::group(['middleware' => 'auth'], function () {
+    
     Route::get('/society/dashboard', [SocietyController::class, 'dashboard']);
     Route::get('/society/loan/issue', [SocietyController::class, 'issuelist']);
     Route::get('/society/loan/issue/add', [SocietyController::class, 'issueadd']);
@@ -60,30 +61,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/society/godown/add', [SocietyController::class, 'godownadd']);
     Route::post('/society/godown/store', [SocietyController::class, 'godownstore']);
 
-    Route::get('/society/services/csc', [SocietyController::class, 'csclist']);
-    Route::get('/society/services/csc/add', [SocietyController::class, 'cscadd']);
-    Route::post('/society/services/csc/store', [SocietyController::class, 'cscstore']);
-
-    Route::get('/society/services/agri', [SocietyController::class, 'agrilist']);
-    Route::get('/society/services/agri/add', [SocietyController::class, 'agriadd']);
-    Route::post('/society/services/agri/store', [SocietyController::class, 'agristore']);
-
-    Route::get('/society/services/dry', [SocietyController::class, 'drylist']);
-    Route::get('/society/services/dry/add', [SocietyController::class, 'dryadd']);
-    Route::post('/society/services/dry/store', [SocietyController::class, 'drystore']);
-
-    Route::get('/society/services/ps', [SocietyController::class, 'pslist']);
-    Route::get('/society/services/ps/add', [SocietyController::class, 'psadd']);
-    Route::post('/society/services/ps/store', [SocietyController::class, 'psstore']);
-
-    Route::get('/society/services/pss', [SocietyController::class, 'psslist']);
-    Route::get('/society/services/pss/add', [SocietyController::class, 'pssadd']);
-    Route::post('/society/services/pss/store', [SocietyController::class, 'pssstore']);
-
-    Route::get('/society/services/lodging', [SocietyController::class, 'lodginglist']);
-    Route::get('/society/services/lodging/add', [SocietyController::class, 'lodgingadd']);
-    Route::post('/society/services/lodging/store', [SocietyController::class, 'lodgingstore']);
-
     Route::get('/superadmin/dashboard', [SuperAdminController::class, 'dashboard']);
     Route::get('/superadmin/loanreport', [SuperAdminController::class, 'loanreport']);
     Route::get('/superadmin/depositreport', [SuperAdminController::class, 'depositreport']);
@@ -96,6 +73,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::post('/fetch/circle', [SuperAdminController::class, 'fetchcircle']);
     Route::post('/fetch/society', [SuperAdminController::class, 'fetchsociety']);
+    Route::get('/superadmin/godownreport', [SuperAdminController::class, 'godownreport']);
 
 });
 
