@@ -27,6 +27,13 @@ Route::get('logout', [LoginFormController::class, 'logout']);
 Route::group(['middleware' => 'auth'], function () {
     
     Route::get('/society/dashboard', [SocietyController::class, 'dashboard']);
+
+    Route::get('/society/loan/add', [SocietyController::class, 'loanadd']);
+    Route::post('/society/loan/store', [SocietyController::class, 'loanstore']);
+    Route::get('/society/loan', [SocietyController::class, 'loanlist']);
+    Route::get('/society/loan/trans/{id}', [SocietyController::class, 'loantranslist']);
+
+
     Route::get('/society/loan/issue', [SocietyController::class, 'issuelist']);
     Route::get('/society/loan/issue/add', [SocietyController::class, 'issueadd']);
     Route::post('/society/loan/issue/store', [SocietyController::class, 'issuestore']);

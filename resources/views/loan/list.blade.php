@@ -2,13 +2,12 @@
 @section('content')
 <main id="main" class="main">
   <div class="pagetitle">
-    <h1>Issue</h1>
+    <h1>List</h1>
     <nav>
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="/society/dashboard">Dashboard</a></li>
         <li class="breadcrumb-item">Loan</li>
-        <li class="breadcrumb-item">issue</li>
-        <li class="breadcrumb-item active">add</li>
+        <li class="breadcrumb-item">List</li>
       </ol>
     </nav>
   </div><!-- End Page Title -->
@@ -50,28 +49,16 @@
                         <thead>
                           <tr>
                             <th scope="col">#</th>
-                            <th scope="col">Issue Date</th>
-                            <th scope="col">SC / SC No.</th>
-                            <th scope="col">SC / SC Amount</th>
-                            <th scope="col">Others No.</th>
-                            <th scope="col">Others Amount</th>
-                            <th scope="col">Total No.</th>
-                            <th scope="col">Total Amount</th>
+                            <th scope="col">Loan Date</th>
                             <th scope="col">Action</th>
                           </tr>
                         </thead>
                         <tbody>
-                            @foreach($loan_issues as $loan_issue)
+                            @foreach($loans as $loan)
                                 <tr>
-                                    <th scope="row">{{ $loan_issue->id }}</th>
-                                    <td>{{ $loan_issue->issuedate }}</td>
-                                    <td>{{ $loan_issue->scstno }}</td>
-                                    <td>{{ $loan_issue->scstamount }}</td>
-                                    <td>{{ $loan_issue->othersno }}</td>
-                                    <td>{{ $loan_issue->othersamount }}</td>
-                                    <td>{{ $loan_issue->totalno }}</td>
-                                    <td>{{ $loan_issue->totalamount }}</td>
-                                    <td><a href='/society/loan/issue/edit/{{$loan_issue->id}}'>view</a></td>
+                                    <th scope="row">{{ $loan->id }}</th>
+                                    <td>{{ $loan->loandate }}</td>
+                                    <td><a href='/society/loan/trans/{{$loan->id}}'>view</a></td>
                                 </tr>
                             @endforeach
                         </tbody>

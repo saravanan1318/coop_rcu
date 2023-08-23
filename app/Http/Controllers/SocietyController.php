@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Deposit_outstandings;
 use Validator;
 
+
+use App\Models\Loan;
+use App\Models\Loan_trans;
+
 //deposit
 use App\Models\Deposits;
 use App\Models\Mtr_deposits;
@@ -60,12 +64,103 @@ class SocietyController extends Controller
     }
 
     //Issue Form
+
+
+
     function issuelist(){
 
         $loan_issues = Loan_issues::where('user_id', Auth::user()->id)->get();
 
         return view("loan.issue.list", compact('loan_issues'));
     }
+
+
+    function loanadd(){
+
+        if(Auth::user()->role == 5){
+
+            $mtr_loan = Mtr_loan::all();
+
+        }else if(Auth::user()->role == 6){
+
+            $mtr_loan = Mtr_loan::whereNotIn('id', [22])->get();
+
+        }else if(Auth::user()->role == 7){
+
+            $mtr_loan =  Mtr_loan::whereIn('id', [11,24,25])->get();
+
+        }else if(Auth::user()->role == 8){
+
+            $mtr_loan =  Mtr_loan::whereIn('id', [11,24,25])->get();
+
+        }else if(Auth::user()->role == 9){
+
+            $mtr_loan =  Mtr_loan::whereIn('id', [1,11,22])->get();
+
+        }
+        else if(Auth::user()->role == 10){
+
+            $mtr_loan = Mtr_loan::whereNotIn('id', [22])->get();
+
+        }
+        else if(Auth::user()->role == 11){
+
+            $mtr_loan =  Mtr_loan::whereIn('id', [11,16])->get();
+
+        }
+        else if(Auth::user()->role == 12){
+
+            $mtr_loan =  Mtr_loan::whereNotIn('id', [22,23])->get();
+
+        }
+        else if(Auth::user()->role == 13){
+
+            $mtr_loan =  Mtr_loan::whereNotIn('id', [22,23])->get();
+
+        }
+       
+        return view("loan.add", compact('mtr_loan'));
+    }
+
+    function loanstore(Request $request){
+
+        $loan = new Loan;
+        $loan->user_id = Auth::user()->id;
+        $loan->loandate = $request->loandate;
+        $loan->save();
+
+        $arraycount = count($request->loantype_id);
+
+        for($i=0; $i< $arraycount; $i++){
+
+            $loan_trans = new Loan_trans;
+
+            $loan_trans->loan_id = $loan->id;
+            $loan_trans->loantype_id = $request->loantype_id[$i];
+            $loan_trans->disbursedno = $request->disbursedno[$i];
+            $loan_trans->disbursedamount = $request->disbursedamount[$i];
+            $loan_trans->collectedno = $request->collectedno[$i];
+            $loan_trans->collectedamount = $request->collectedamount[$i];
+            $loan_trans->save();
+        }
+
+        return redirect('/society/loan/add')->with('status', 'Loan added successfully');
+       // return view("issue");
+    }
+
+    function loanlist(){
+
+        $loans = Loan::where('user_id', Auth::user()->id)->get();
+
+        return view("loan.list", compact('loans'));
+    }
+
+    function loantranslist(Request $request){
+
+        $loan_trans = Loan_trans::with('loantype')->where('loan_id', $request->id)->get();
+        return view("loan.translist", compact('loan_trans'));
+    }
+
 
     function issueadd(){
 

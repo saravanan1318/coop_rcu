@@ -17,16 +17,16 @@
         </a>
         <ul id="issue-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="/society/loan/issue">
-              <i class="bi bi-circle"></i><span>Issue</span>
+            <a href="/society/loan">
+              <i class="bi bi-circle"></i><span>List</span>
             </a>
           </li>
-          <li>
+          {{-- <li>
             <a href="/society/loan/collection">
               <i class="bi bi-circle"></i><span>Collection</span>
             </a>
           </li>
-          <li>
+          <li> --}}
             <a href="/society/loan/annual">
               <i class="bi bi-circle"></i><span>Target & outstanding (onetime)</span>
             </a>
@@ -173,13 +173,8 @@
         </a>
         <ul id="issue-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="/society/loan/issue">
-              <i class="bi bi-circle"></i><span>Issue</span>
-            </a>
-          </li>
-          <li>
-            <a href="/society/loan/collection">
-              <i class="bi bi-circle"></i><span>Collection</span>
+            <a href="/society/loan">
+              <i class="bi bi-circle"></i><span>List</span>
             </a>
           </li>
           <li>
@@ -269,13 +264,8 @@
         </a>
         <ul id="issue-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="/society/loan/issue">
-              <i class="bi bi-circle"></i><span>Issue</span>
-            </a>
-          </li>
-          <li>
-            <a href="/society/loan/collection">
-              <i class="bi bi-circle"></i><span>Collection</span>
+            <a href="/society/loan">
+              <i class="bi bi-circle"></i><span>List</span>
             </a>
           </li>
           <li>
@@ -365,13 +355,8 @@
       </a>
       <ul id="issue-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
         <li>
-          <a href="/society/loan/issue">
-            <i class="bi bi-circle"></i><span>Issue</span>
-          </a>
-        </li>
-        <li>
-          <a href="/society/loan/collection">
-            <i class="bi bi-circle"></i><span>Collection</span>
+          <a href="/society/loan">
+            <i class="bi bi-circle"></i><span>List</span>
           </a>
         </li>
         <li>
@@ -461,13 +446,8 @@
       </a>
       <ul id="issue-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
         <li>
-          <a href="/society/loan/issue">
-            <i class="bi bi-circle"></i><span>Issue</span>
-          </a>
-        </li>
-        <li>
-          <a href="/society/loan/collection">
-            <i class="bi bi-circle"></i><span>Collection</span>
+          <a href="/society/loan">
+            <i class="bi bi-circle"></i><span>List</span>
           </a>
         </li>
         <li>
@@ -557,13 +537,8 @@
       </a>
       <ul id="issue-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
         <li>
-          <a href="/society/loan/issue">
-            <i class="bi bi-circle"></i><span>Issue</span>
-          </a>
-        </li>
-        <li>
-          <a href="/society/loan/collection">
-            <i class="bi bi-circle"></i><span>Collection</span>
+          <a href="/society/loan">
+            <i class="bi bi-circle"></i><span>List</span>
           </a>
         </li>
         <li>
@@ -653,13 +628,8 @@
       </a>
       <ul id="issue-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
         <li>
-          <a href="/society/loan/issue">
-            <i class="bi bi-circle"></i><span>Issue</span>
-          </a>
-        </li>
-        <li>
-          <a href="/society/loan/collection">
-            <i class="bi bi-circle"></i><span>Collection</span>
+          <a href="/society/loan">
+            <i class="bi bi-circle"></i><span>List</span>
           </a>
         </li>
         <li>
@@ -749,13 +719,8 @@
       </a>
       <ul id="issue-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
         <li>
-          <a href="/society/loan/issue">
-            <i class="bi bi-circle"></i><span>Issue</span>
-          </a>
-        </li>
-        <li>
-          <a href="/society/loan/collection">
-            <i class="bi bi-circle"></i><span>Collection</span>
+          <a href="/society/loan">
+            <i class="bi bi-circle"></i><span>List</span>
           </a>
         </li>
         <li>
@@ -845,13 +810,8 @@
       </a>
       <ul id="issue-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
         <li>
-          <a href="/society/loan/issue">
-            <i class="bi bi-circle"></i><span>Issue</span>
-          </a>
-        </li>
-        <li>
-          <a href="/society/loan/collection">
-            <i class="bi bi-circle"></i><span>Collection</span>
+          <a href="/society/loan">
+            <i class="bi bi-circle"></i><span>List</span>
           </a>
         </li>
         <li>
