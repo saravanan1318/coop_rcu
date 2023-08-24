@@ -11,6 +11,9 @@ class Deposits extends Model
 
     protected $table = 'deposits';
     protected $primaryKey = 'id';
+    public $timestamps = false;
 
-
+    public function deposittype() {
+        return $this->hasOne('App\Models\Mtr_deposits','id','deposit_id');
+    }
 }

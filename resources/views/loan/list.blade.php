@@ -33,13 +33,9 @@
                 </div>
                   <div class="row">
                     <div class="col-sm-12 col-md-12 mb-4">
-                        @if (count($errors) > 0)
-                            <div class="alert alert-danger">
-                                <ul>
-                                    @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
+                        @if(session('status'))
+                            <div class="alert alert-success">
+                                {{ session('status') }}
                             </div>
                         @endif
                     </div>

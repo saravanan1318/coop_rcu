@@ -5,21 +5,21 @@ namespace App\Http\Controllers;
 use App\Models\Deposit_outstandings;
 use Validator;
 
-
+//loan
 use App\Models\Loan;
 use App\Models\Loan_trans;
+use App\Models\Loan_annual;
+use App\Models\Loan_overallot;
+use App\Models\Mtr_loan;
+use App\Models\Loan_onetimeentry;
 
 //deposit
 use App\Models\Deposits;
 use App\Models\Mtr_deposits;
 use App\Models\Deposit_onetimeentry;
+
+
 use App\Models\Godowns;
-use App\Models\Loan_annual;
-use App\Models\Loan_collection;
-use App\Models\Loan_issues;
-use App\Models\Loan_overallot;
-use App\Models\Mtr_loan;
-use App\Models\Loan_onetimeentry;
 
 //purchase
 use App\Models\Mtr_purchase;
@@ -62,18 +62,6 @@ class SocietyController extends Controller
     function dashboard(){
         return view("dashboard");
     }
-
-    //Issue Form
-
-
-
-    function issuelist(){
-
-        $loan_issues = Loan_issues::where('user_id', Auth::user()->id)->get();
-
-        return view("loan.issue.list", compact('loan_issues'));
-    }
-
 
     function loanadd(){
 
@@ -144,7 +132,7 @@ class SocietyController extends Controller
             $loan_trans->save();
         }
 
-        return redirect('/society/loan/add')->with('status', 'Loan added successfully');
+        return redirect('/society/loan')->with('status', 'Loan added successfully');
        // return view("issue");
     }
 
@@ -159,155 +147,6 @@ class SocietyController extends Controller
 
         $loan_trans = Loan_trans::with('loantype')->where('loan_id', $request->id)->get();
         return view("loan.translist", compact('loan_trans'));
-    }
-
-
-    function issueadd(){
-
-        if(Auth::user()->role == 5){
-
-            $mtr_loan = Mtr_loan::all();
-
-        }else if(Auth::user()->role == 6){
-
-            $mtr_loan = Mtr_loan::whereNotIn('id', [22]);
-
-        }else if(Auth::user()->role == 7){
-
-            $mtr_loan =  Mtr_loan::whereIn('id', [11,24,25]);
-
-        }else if(Auth::user()->role == 8){
-
-            $mtr_loan =  Mtr_loan::whereIn('id', [11,24,25]);
-
-        }else if(Auth::user()->role == 9){
-
-            $mtr_loan =  Mtr_loan::whereIn('id', [1,11,22]);
-
-        }
-        else if(Auth::user()->role == 10){
-
-            $mtr_loan = Mtr_loan::whereNotIn('id', [22]);
-
-        }
-        else if(Auth::user()->role == 11){
-
-            $mtr_loan =  Mtr_loan::whereIn('id', [11,16]);
-
-        }
-        else if(Auth::user()->role == 12){
-
-            $mtr_loan =  Mtr_loan::whereNotIn('id', [22,23]);
-
-        }
-        else if(Auth::user()->role == 13){
-
-            $mtr_loan =  Mtr_loan::whereNotIn('id', [22,23]);
-
-        }
-       
-        return view("loan.issue.add", compact('mtr_loan'));
-    }
-
-    function issuestore(Request $request){
-
-        $validator = $request->validate([
-            'loan_id' => 'required',
-            'issuedate' => 'required',
-            'loan_id' => 'required',
-            'scstno' => 'required|numeric',
-            'scstamount' => 'required|numeric',
-            'othersno' => 'required|numeric',
-            'othersamount' => 'required|numeric'
-        ],
-        [
-             'loan_id.required' => 'The Loan type field can not be blank value.',
-             'issuedate.required' => 'The Issue date field can not be blank value.',
-             'loan_id.required' => 'Loan type field can not be blank value.',
-             'scstno.required' => 'SC / ST No. field can not be blank value.',
-             'scstamount.required' => 'SC / ST Amount field can not be blank value.',
-             'othersno.required' => 'Others Amount field can not be blank value.',
-             'othersamount.required' => 'Others No field can not be blank value.',
-             'scstno.numeric' => 'SC / ST No. field can must be numeric.',
-             'scstamount.numeric' => 'SC / ST Amount field must be numeric.',
-             'othersno.numeric' => 'Others No field must be numeric.',
-             'othersamount.numeric' => 'Others Amount field must be numeric.',
-        ]);
-
-        $totalno = $request->scstno + $request->othersno;
-        $totalamount = $request->scstamount + $request->othersamount;
-        $issues = new Loan_issues;
-        $issues->user_id = Auth::user()->id;
-        $issues->loan_id = $request->loan_id;
-        $issues->issuedate = $request->issuedate;
-        $issues->scstno = $request->scstno;
-        $issues->scstamount = $request->scstamount;
-        $issues->othersno = $request->othersno;
-        $issues->othersamount = $request->othersamount;
-        $issues->totalno = $totalno;
-        $issues->totalamount = $totalamount;
-        $issues->save();
-
-
-        return redirect('/society/loan/issue/add')->with('status', 'Loan issue added successfully');
-       // return view("issue");
-    }
-
-    //Collection Form
-
-    function collectionlist(){
-
-        $loan_collection = Loan_collection::where('user_id', Auth::user()->id)->get();
-
-        return view("loan.collection.list", compact('loan_collection'));
-    }
-
-    function collectionadd(){
-
-        $mtr_loan = Mtr_loan::all();
-        return view("loan.collection.add", compact('mtr_loan'));
-    }
-
-    function collectionstore(Request $request){
-
-        $validated = $request->validate([
-            'collectiondate' => 'required',
-            'loan_id' => 'required',
-            'scstno' => 'required|numeric',
-            'scstamount' => 'required|numeric',
-            'othersno' => 'required|numeric',
-            'othersamount' => 'required|numeric'
-        ],
-        [
-             'collectiondate.required' => 'The Collection date field can not be blank value.',
-             'loan_id.required' => 'The Loan type field can not be blank value.',
-             'scstno.required' => 'The SC / ST No. field can not be blank value.',
-             'scstamount.required' => 'The SC / ST Amount field can not be blank value.',
-             'othersno.required' => 'The Others Amount field can not be blank value.',
-             'othersamount.required' => 'The Others No field can not be blank value.',
-             'scstno.numeric' => 'The SC / ST No. field can must be numeric.',
-             'scstamount.numeric' => 'The SC / ST Amount field must be numeric.',
-             'othersno.numeric' => 'The Others No field must be numeric.',
-             'othersamount.numeric' => 'TheOthers Amount field must be numeric.',
-        ]);
-
-        $totalno = $request->scstno + $request->othersno;
-        $totalamount = $request->scstamount + $request->othersamount;
-        $collection = new Loan_collection;
-        $collection->user_id = Auth::user()->id;
-        $collection->loan_id = $request->loan_id;
-        $collection->collectiondate = $request->collectiondate;
-        $collection->scstno = $request->scstno;
-        $collection->scstamount = $request->scstamount;
-        $collection->othersno = $request->othersno;
-        $collection->othersamount = $request->othersamount;
-        $collection->totalno = $totalno;
-        $collection->totalamount = $totalamount;
-        $collection->save();
-
-
-        return redirect('/society/loan/collection/add')->with('status', 'Loan collection added successfully');
-       // return view("collection");
     }
 
     //Annual targer Form
@@ -375,34 +214,22 @@ class SocietyController extends Controller
     function depositstore(Request $request)
     {
 
-        $validated = $request->validate([
-            'deposit_id' => 'required',
-            'depositdate' => 'required',
-            'recievedno' => 'required',
-            'recievedamount' => 'required',
-            'closedno' => 'required',
-            'closedamount' => 'required'
-        ],
-        [
-             'deposit_id.required' => 'The Deposit type field can not be blank value.',
-             'depositdate.required' => 'The Deposit date field can not be blank value.',
-             'recievedno.required' => 'Received No. field can not be blank value.',
-             'recievedamount.required' => 'Received Amount field can not be blank value.',
-             'closedno.required' => 'Closed No. field can not be blank value.',
-             'closedamount.required' => 'Closed Amount field can not be blank value.'
-        ]);
+        $arraycount = count($request->deposittype_id);
 
-        $deposits = new Deposits;
-        $deposits->user_id = Auth::user()->id;
-        $deposits->deposit_id = $request->deposit_id;
-        $deposits->depositdate = $request->depositdate;
-        $deposits->recievedno = $request->recievedno;
-        $deposits->recievedamount = $request->recievedamount;
-        $deposits->closedno = $request->closedno;
-        $deposits->closedamount = $request->closedamount;
-        $deposits->save();
+        for($i=0; $i< $arraycount; $i++){
 
-        return redirect('/society/deposit/add')->with('status', 'Deposit added successfully');
+            $deposit = new Deposits;
+            $deposit->user_id = Auth::user()->id;
+            $deposit->depositdate = $request->depositdate;
+            $deposit->deposit_id = $request->deposittype_id[$i];
+            $deposit->recievedno = $request->recievedno[$i];
+            $deposit->recievedamount = $request->recievedamount[$i];
+            $deposit->closedno = $request->closedno[$i];
+            $deposit->closedamount = $request->closedamount[$i];
+            $deposit->save();
+        }
+
+        return redirect('/society/deposit/list')->with('status', 'Deposit added successfully');
     }
 
 
@@ -470,23 +297,32 @@ class SocietyController extends Controller
     function purchasestore(Request $request)
     {
 
-        $purchases = new Purchases;
-        $purchases->user_id = Auth::user()->id;
-        $purchases->purchase_id = $request->purchase_id;
-        $purchases->purchasedate = $request->purchasedate;
-        $purchases->govtnoofvarieties = isset($request->govtnoofvarieties) ? $request->govtnoofvarieties : NULL;
-        $purchases->govtquantity = isset($request->govtquantity) ? $request->govtquantity : NULL;
-        $purchases->govtvalues = isset($request->govtvalues) ? $request->govtvalues : NULL;
-        $purchases->coopnoofvarieties = isset($request->coopnoofvarieties) ? $request->coopnoofvarieties : NULL;
-        $purchases->coopquantity = isset($request->coopquantity) ? $request->coopquantity : NULL;
-        $purchases->coopvalues = isset($request->coopvalues) ? $request->coopvalues : NULL;
-        $purchases->jpcnoofvarieties = isset($request->jpcnoofvarieties) ? $request->jpcnoofvarieties : NULL;
-        $purchases->jpcquantity = isset($request->jpcquantity) ? $request->jpcquantity : NULL;
-        $purchases->jpcvalues = isset($request->jpcvalues) ? $request->jpcvalues : NULL;
-        $purchases->privatenoofvarieties = isset($request->privatenoofvarieties) ? $request->privatenoofvarieties : NULL;
-        $purchases->privatequantity =isset($request->privatequantity) ? $request->privatequantity : NULL;
-        $purchases->privatevalues =isset($request->privatevalues) ? $request->privatevalues : NULL;
-        $purchases->save();
+      
+
+        $arraycount = count($request->purchase_id);
+      
+        for($i=0; $i< $arraycount; $i++){
+
+            $purchases = new Purchases;
+            $purchases->user_id = Auth::user()->id;
+            $purchases->purchase_id = isset($request->purchase_id[$i]) ? $request->purchase_id[$i] : NULL;
+            $purchases->purchasedate = $request->purchasedate;
+            $purchases->govtnoofvarieties = isset($request->govtnoofvarieties[$i]) ? $request->govtnoofvarieties[$i] : NULL;
+            $purchases->govtquantity = isset($request->govtquantity[$i]) ? $request->govtquantity[$i] : NULL;
+            $purchases->govtvalues = isset($request->govtvalues[$i]) ? $request->govtvalues[$i] : NULL;
+            $purchases->coopnoofvarieties = isset($request->coopnoofvarieties[$i]) ? $request->coopnoofvarieties[$i] : NULL;
+            $purchases->coopquantity = isset($request->coopquantity[$i]) ? $request->coopquantity[$i] : NULL;
+            $purchases->coopvalues = isset($request->coopvalues[$i]) ? $request->coopvalues[$i] : NULL;
+            $purchases->jpcnoofvarieties = isset($request->jpcnoofvarieties[$i]) ? $request->jpcnoofvarieties[$i] : NULL;
+            $purchases->jpcquantity = isset($request->jpcquantity[$i]) ? $request->jpcquantity[$i] : NULL;
+            $purchases->jpcvalues = isset($request->jpcvalues[$i]) ? $request->jpcvalues[$i] : NULL;
+            $purchases->privatenoofvarieties = isset($request->privatenoofvarieties[$i]) ? $request->privatenoofvarieties[$i] : NULL;
+            $purchases->privatequantity =isset($request->privatequantity[$i]) ? $request->privatequantity[$i] : NULL;
+            $purchases->privatevalues =isset($request->privatevalues[$i]) ? $request->privatevalues[$i] : NULL;
+            $purchases->save();
+        }
+
+       
 
         return redirect('/society/purchase/add')->with('status', 'Purchase added successfully');
     }

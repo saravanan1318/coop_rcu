@@ -54,7 +54,6 @@
                                     <th scope="col" rowspan="2">Loan Types</th>
                                     <th scope="col" colspan="2" rowspan="1">Loan Disbursed</th>
                                     <th scope="col" colspan="2" rowspan="1">Loan Collection</th>
-                                    <th scope="col" rowspan="2">% Achieved on target</th>
                                     <th scope="col" rowspan="2">Action</th>
                                 </tr>
                                 <tr>
@@ -85,9 +84,6 @@
                                         </td>
                                         <td>
                                             <input type="text" class="form-control" id="floatingName"  name="collectedamount[]" value="{{ old('collectedamount[]') }}" placeholder="Collected Amount." required>
-                                        </td>
-                                        <td>
-                                            <input type="text" class="form-control" id="floatingName"  name="achieved[]" value="{{ old('achieved[]') }}" placeholder="Achieved in %" required>
                                         </td>
                                         <td>
                                         </td>
@@ -128,7 +124,7 @@
         console.log("Add new clicked");
         var rowadded = $("#rowadded").val();
         var updatedrowadded = parseInt(rowadded) + 1;
-        var html = '<tr data-id="'+updatedrowadded+'" id="row'+updatedrowadded+'"> <td> <select class="form-control" id="floatingName" name="loantype_id[]" ><option value="">--SELECT--</option> <?php foreach($mtr_loan as $loan){ ?> <option value="<?php echo $loan->id ?>"><?php echo $loan->loantype ?></option> <?php } ?> </select> </td> <td> <input type="text" class="form-control" id="floatingName"  name="disbursedno[]" placeholder="Disbursed No." required> </td> <td> <input type="text" class="form-control" id="floatingName"  name="disbursedamount[]" placeholder="Disbursed Amount." required> </td> <td> <input type="text" class="form-control" id="floatingName"  name="collectedno[]" placeholder="Collected No." required> </td> <td> <input type="text" class="form-control" id="floatingName"  name="collectedamount[]" placeholder="Collected Amount." required> </td> <td> <input type="text" class="form-control" id="floatingName"  name="achieved[]" placeholder="Achieved in %" required> </td> <td> <a  class="btn btn-danger deleterow" data-delete-id="'+updatedrowadded+'" onclick="deletethisrow('+updatedrowadded+')" >Delete</a> </td> </tr>';
+        var html = '<tr data-id="'+updatedrowadded+'" id="row'+updatedrowadded+'"> <td> <select class="form-control" id="floatingName" name="loantype_id[]" ><option value="">--SELECT--</option> <?php foreach($mtr_loan as $loan){ ?> <option value="<?php echo $loan->id ?>"><?php echo $loan->loantype ?></option> <?php } ?> </select> </td> <td> <input type="text" class="form-control" id="floatingName"  name="disbursedno[]" placeholder="Disbursed No." required> </td> <td> <input type="text" class="form-control" id="floatingName"  name="disbursedamount[]" placeholder="Disbursed Amount." required> </td> <td> <input type="text" class="form-control" id="floatingName"  name="collectedno[]" placeholder="Collected No." required> </td> <td> <input type="text" class="form-control" id="floatingName"  name="collectedamount[]" placeholder="Collected Amount." required> </td> <td> <a  class="btn btn-danger deleterow" data-delete-id="'+updatedrowadded+'" onclick="deletethisrow('+updatedrowadded+')" >Delete</a> </td> </tr>';
         console.log(html);
         $("#tbody").append(html);
         $("#rowadded").val(updatedrowadded);

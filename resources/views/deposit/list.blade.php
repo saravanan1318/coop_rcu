@@ -57,10 +57,11 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    {{$i=1}}
                                     @foreach($deposits as $deposit)
                                     <tr>
-                                        <th scope="row">{{ $deposit->id }}</th>
-                                        <td>{{ $deposit->deposit_id }}</td>
+                                        <th scope="row">{{ $i++ }}</th>
+                                        <td>{{ $deposit->deposittype->deposit_name }}</td>
                                         <td>{{ $deposit->depositdate }}</td>
                                         <td>{{ $deposit->recievedno }}</td>
                                         <td>{{ $deposit->recievedamount }}</td>
