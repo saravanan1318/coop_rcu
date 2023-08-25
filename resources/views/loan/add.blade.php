@@ -37,7 +37,7 @@
                         @endif
                     </div>
                 </div>
-                  <h5 class="card-title">Loan Disbursal and collecton</h5>
+                  <h5 class="card-title">Issue of Loan and Collection</h5>
                   <form action="{{url('/society/loan/store')}}" method="post" id="loanform" class="row g-3">
                     @csrf
                       <div class="row margindiv">
@@ -51,16 +51,16 @@
                             <table class="table table-responsive table-bordered datatable">
                                 <thead style="text-align: center">
                                 <tr>
-                                    <th scope="col" rowspan="2">Loan Types</th>
-                                    <th scope="col" colspan="2" rowspan="1">Loan Disbursed</th>
-                                    <th scope="col" colspan="2" rowspan="1">Loan Collection</th>
+                                    <th scope="col" rowspan="2">Type of Loan</th>
+                                    <th scope="col" colspan="2" rowspan="1">Issue of Loan</th>
+                                    <th scope="col" colspan="2" rowspan="1">Collection of Loan</th>
                                     <th scope="col" rowspan="2">Action</th>
                                 </tr>
                                 <tr>
-                                  <th scope="col" >No.</th>
-                                  <th scope="col" >Amount</th>
-                                  <th scope="col" >No.</th>
-                                  <th scope="col" >Amount</th>
+                                  <th scope="col" >No. of Loan</th>
+                                  <th scope="col" >Amount of Loan</th>
+                                  <th scope="col" >No. of Loan</th>
+                                  <th scope="col" >Amount of Loan</th>
                               </tr>
                                 </thead>
                                 <tbody id="tbody">
@@ -74,16 +74,16 @@
                                             </select>
                                         </td>
                                         <td>
-                                            <input type="text" class="form-control" id="floatingName"  name="disbursedno[]" value="{{ old('disbursedno[]') }}" placeholder="Disbursed No." required>
+                                            <input type="text" class="form-control" id="floatingName"  name="disbursedno[]" value="{{ old('disbursedno[]') }}"  required>
                                         </td>
                                         <td>
-                                            <input type="text" class="form-control" id="floatingName"  name="disbursedamount[]" value="{{ old('disbursedamount[]') }}" placeholder="Disbursed Amount." required>
+                                            <input type="text" class="form-control" id="floatingName"  name="disbursedamount[]" value="{{ old('disbursedamount[]') }}"  required>
                                         </td>
                                         <td>
-                                            <input type="text" class="form-control" id="floatingName"  name="collectedno[]" value="{{ old('collectedno[]') }}" placeholder="Collected No." required>
+                                            <input type="text" class="form-control" id="floatingName"  name="collectedno[]" value="{{ old('collectedno[]') }}"  required>
                                         </td>
                                         <td>
-                                            <input type="text" class="form-control" id="floatingName"  name="collectedamount[]" value="{{ old('collectedamount[]') }}" placeholder="Collected Amount." required>
+                                            <input type="text" class="form-control" id="floatingName"  name="collectedamount[]" value="{{ old('collectedamount[]') }}" required>
                                         </td>
                                         <td>
                                         </td>
@@ -92,7 +92,7 @@
                             </table>
                         </div>
                         <div class="col-md-10">
-                           
+
                         </div>
                         <div class="col-md-2">
                             <div class="text-center">
@@ -105,7 +105,7 @@
                         </div>
                         <div class="col-md-4">
                             <div class="text-center">
-                                <button type="submit" class="btn btn-primary" id="loansubmit">Submit</button>
+                                <button type="submit" class="btn btn-primary" id="loansubmit">Preview</button>
                             </div>
                         </div>
                         <div class="col-md-4">
@@ -124,7 +124,7 @@
         console.log("Add new clicked");
         var rowadded = $("#rowadded").val();
         var updatedrowadded = parseInt(rowadded) + 1;
-        var html = '<tr data-id="'+updatedrowadded+'" id="row'+updatedrowadded+'"> <td> <select class="form-control" id="floatingName" name="loantype_id[]" ><option value="">--SELECT--</option> <?php foreach($mtr_loan as $loan){ ?> <option value="<?php echo $loan->id ?>"><?php echo $loan->loantype ?></option> <?php } ?> </select> </td> <td> <input type="text" class="form-control" id="floatingName"  name="disbursedno[]" placeholder="Disbursed No." required> </td> <td> <input type="text" class="form-control" id="floatingName"  name="disbursedamount[]" placeholder="Disbursed Amount." required> </td> <td> <input type="text" class="form-control" id="floatingName"  name="collectedno[]" placeholder="Collected No." required> </td> <td> <input type="text" class="form-control" id="floatingName"  name="collectedamount[]" placeholder="Collected Amount." required> </td> <td> <a  class="btn btn-danger deleterow" data-delete-id="'+updatedrowadded+'" onclick="deletethisrow('+updatedrowadded+')" >Delete</a> </td> </tr>';
+        var html = '<tr data-id="'+updatedrowadded+'" id="row'+updatedrowadded+'"> <td> <select class="form-control" id="floatingName" name="loantype_id[]" ><option value="">--SELECT--</option> <?php foreach($mtr_loan as $loan){ ?> <option value="<?php echo $loan->id ?>"><?php echo $loan->loantype ?></option> <?php } ?> </select> </td> <td> <input type="text" class="form-control" id="floatingName"  name="disbursedno[]"  required> </td> <td> <input type="text" class="form-control" id="floatingName"  name="disbursedamount[]"  required> </td> <td> <input type="text" class="form-control" id="floatingName"  name="collectedno[]"  required> </td> <td> <input type="text" class="form-control" id="floatingName"  name="collectedamount[]"  required> </td> <td> <a  class="btn btn-danger deleterow" data-delete-id="'+updatedrowadded+'" onclick="deletethisrow('+updatedrowadded+')" >Delete</a> </td> </tr>';
         console.log(html);
         $("#tbody").append(html);
         $("#rowadded").val(updatedrowadded);
@@ -136,4 +136,3 @@
     }
 </script>
 @endsection
-    

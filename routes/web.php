@@ -25,7 +25,7 @@ Route::get('logout', [LoginFormController::class, 'logout']);
 
 /**SocietyController */
 Route::group(['middleware' => 'auth'], function () {
-    
+
     Route::get('/society/dashboard', [SocietyController::class, 'dashboard']);
 
     Route::get('/society/loan/add', [SocietyController::class, 'loanadd']);
@@ -59,9 +59,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/society/godown/add', [SocietyController::class, 'godownadd']);
     Route::post('/society/godown/store', [SocietyController::class, 'godownstore']);
 
-    Route::get('/society/godown', [SocietyController::class, 'godownlist']);
-    Route::get('/society/godown/add', [SocietyController::class, 'godownadd']);
-    Route::post('/society/godown/store', [SocietyController::class, 'godownstore']);
+    Route::get('/society/services', [SocietyController::class, 'serviceslist']);
+    Route::get('/society/services/add', [SocietyController::class, 'servicesadd']);
+    Route::post('/society/services/store', [SocietyController::class, 'servicesstore']);
 
     Route::get('/society/croploan/target', [SocietyController::class, 'croploantargetlist']);
     Route::get('/society/croploan/target/add', [SocietyController::class, 'croploantargetadd']);
@@ -86,26 +86,25 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/fetch/circle', [SuperAdminController::class, 'fetchcircle']);
     Route::post('/fetch/society', [SuperAdminController::class, 'fetchsociety']);
     Route::get('/superadmin/godownreport', [SuperAdminController::class, 'godownreport']);
-
 });
 
 
 
 
 
-Route::get('/clear-cache', function() {
+Route::get('/clear-cache', function () {
     $exitCode = Artisan::call('cache:clear');
     // return what you want
 });
-Route::get('/clear-config', function() {
+Route::get('/clear-config', function () {
     $exitCode = Artisan::call('config:clear');
     // return what you want
 });
-Route::get('/clear-optimize', function() {
+Route::get('/clear-optimize', function () {
     $exitCode = Artisan::call('optimize');
     // return what you want
 });
-Route::get('/clear-route', function() {
+Route::get('/clear-route', function () {
     $exitCode = Artisan::call('config:route');
     // return what you want
 });

@@ -17,8 +17,13 @@
         </a>
         <ul id="issue-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
+            <a href="/society/loan/add">
+              <i class="bi bi-circle"></i><span>Entry</span>
+            </a>
+          </li>
+          <li>
             <a href="/society/loan">
-              <i class="bi bi-circle"></i><span>List</span>
+              <i class="bi bi-circle"></i><span>View</span>
             </a>
           </li>
           {{-- <li>
@@ -27,8 +32,13 @@
             </a>
           </li>
           <li> --}}
+            <a href="/society/loan/annual/add">
+              <i class="bi bi-circle"></i><span>Annual Target & outstanding (onetime)</span>
+            </a>
+          </li>
+          <li>
             <a href="/society/loan/annual">
-              <i class="bi bi-circle"></i><span>Target & outstanding (onetime)</span>
+              <i class="bi bi-circle"></i><span>View</span>
             </a>
           </li>
         </ul>
@@ -40,13 +50,18 @@
         </a>
         <ul id="deposit-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="/society/deposit/list">
-              <i class="bi bi-circle"></i><span>Deposits</span>
+            <a href="/society/deposit/add">
+              <i class="bi bi-circle"></i><span>Entry</span>
             </a>
           </li>
           <li>
-            <a href="/society/deposit/annual">
-              <i class="bi bi-circle"></i><span>Target & outstanding (onetime)</span>
+            <a href="/society/deposit/list">
+              <i class="bi bi-circle"></i><span>View</span>
+            </a>
+          </li>
+          <li>
+            <a href="/society/deposit/annual/add">
+              <i class="bi bi-circle"></i><span>Annaul Target & outstanding (onetime)</span>
             </a>
           </li>
         </ul>
@@ -94,35 +109,11 @@
         </a>
         <ul id="services-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="/society/services/csc">
-              <i class="bi bi-circle"></i><span>Common Service Centres</span>
+            <a href="/society/services">
+              <i class="bi bi-circle"></i><span>Services</span>
             </a>
           </li>
-          <li>
-            <a href="/society/services/agri">
-              <i class="bi bi-circle"></i><span>Agri Implements (Tractor, Cutting machine. Etc.)</span>
-            </a>
-          </li>
-          <li>
-            <a href="/society/services/dry">
-              <i class="bi bi-circle"></i><span>Drying yard</span>
-            </a>
-          </li>
-          <li>
-            <a href="/society/services/ps">
-              <i class="bi bi-circle"></i><span>Providing Seeds</span>
-            </a>
-          </li>
-          <li>
-            <a href="/society/services/pss">
-              <i class="bi bi-circle"></i><span>Price Support Service</span>
-            </a>
-          </li>
-          <li>
-            <a href="/society/services/lodging">
-              <i class="bi bi-circle"></i><span>Lodging</span>
-            </a>
-          </li>
+
         </ul>
       </li>
       <li class="nav-item">

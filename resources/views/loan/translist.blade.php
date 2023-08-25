@@ -20,11 +20,11 @@
                     <table class="table table-responsive datatable">
                         <thead>
                           <tr>
-                            <th scope="col">Loan Type</th>
-                            <th scope="col">Disbursed Number</th>
-                            <th scope="col">Disbursed Amount</th>
-                            <th scope="col">Collected Number</th>
-                            <th scope="col">Collected Amount</th>
+                            <th scope="col" >Type of Loan</th>
+                            <th scope="col" >No. of Loan</th>
+                            <th scope="col" >Amount of Loan</th>
+                            <th scope="col" >No. of Loan</th>
+                            <th scope="col" >Amount of Loan</th>
                           </tr>
                         </thead>
                         <tbody>

@@ -55,62 +55,53 @@ class SocietyController extends Controller
     // }
 
     //
-    function index(){
+    function index()
+    {
         return view("login");
     }
 
-    function dashboard(){
+    function dashboard()
+    {
         return view("dashboard");
     }
 
-    function loanadd(){
+    function loanadd()
+    {
 
-        if(Auth::user()->role == 5){
+        if (Auth::user()->role == 5) {
 
             $mtr_loan = Mtr_loan::all();
-
-        }else if(Auth::user()->role == 6){
-
-            $mtr_loan = Mtr_loan::whereNotIn('id', [22])->get();
-
-        }else if(Auth::user()->role == 7){
-
-            $mtr_loan =  Mtr_loan::whereIn('id', [11,24,25])->get();
-
-        }else if(Auth::user()->role == 8){
-
-            $mtr_loan =  Mtr_loan::whereIn('id', [11,24,25])->get();
-
-        }else if(Auth::user()->role == 9){
-
-            $mtr_loan =  Mtr_loan::whereIn('id', [1,11,22])->get();
-
-        }
-        else if(Auth::user()->role == 10){
+        } else if (Auth::user()->role == 6) {
 
             $mtr_loan = Mtr_loan::whereNotIn('id', [22])->get();
+        } else if (Auth::user()->role == 7) {
 
+            $mtr_loan =  Mtr_loan::whereIn('id', [11, 24, 25])->get();
+        } else if (Auth::user()->role == 8) {
+
+            $mtr_loan =  Mtr_loan::whereIn('id', [11, 24, 25])->get();
+        } else if (Auth::user()->role == 9) {
+
+            $mtr_loan =  Mtr_loan::whereIn('id', [1, 11, 22])->get();
+        } else if (Auth::user()->role == 10) {
+
+            $mtr_loan = Mtr_loan::whereNotIn('id', [22])->get();
+        } else if (Auth::user()->role == 11) {
+
+            $mtr_loan =  Mtr_loan::whereIn('id', [11, 16])->get();
+        } else if (Auth::user()->role == 12) {
+
+            $mtr_loan =  Mtr_loan::whereNotIn('id', [22, 23])->get();
+        } else if (Auth::user()->role == 13) {
+
+            $mtr_loan =  Mtr_loan::whereNotIn('id', [22, 23])->get();
         }
-        else if(Auth::user()->role == 11){
 
-            $mtr_loan =  Mtr_loan::whereIn('id', [11,16])->get();
-
-        }
-        else if(Auth::user()->role == 12){
-
-            $mtr_loan =  Mtr_loan::whereNotIn('id', [22,23])->get();
-
-        }
-        else if(Auth::user()->role == 13){
-
-            $mtr_loan =  Mtr_loan::whereNotIn('id', [22,23])->get();
-
-        }
-       
         return view("loan.add", compact('mtr_loan'));
     }
 
-    function loanstore(Request $request){
+    function loanstore(Request $request)
+    {
 
         $loan = new Loan;
         $loan->user_id = Auth::user()->id;
@@ -119,7 +110,7 @@ class SocietyController extends Controller
 
         $arraycount = count($request->loantype_id);
 
-        for($i=0; $i< $arraycount; $i++){
+        for ($i = 0; $i < $arraycount; $i++) {
 
             $loan_trans = new Loan_trans;
 
@@ -132,18 +123,20 @@ class SocietyController extends Controller
             $loan_trans->save();
         }
 
-        return redirect('/society/loan')->with('status', 'Loan added successfully');
-       // return view("issue");
+        return redirect('/society/loan')->with('status', 'Issue of Loan and Collection added successfully');
+        // return view("issue");
     }
 
-    function loanlist(){
+    function loanlist()
+    {
 
         $loans = Loan::where('user_id', Auth::user()->id)->get();
 
         return view("loan.list", compact('loans'));
     }
 
-    function loantranslist(Request $request){
+    function loantranslist(Request $request)
+    {
 
         $loan_trans = Loan_trans::with('loantype')->where('loan_id', $request->id)->get();
         return view("loan.translist", compact('loan_trans'));
@@ -151,35 +144,40 @@ class SocietyController extends Controller
 
     //Annual targer Form
 
-    function annuallist(){
+    function annuallist()
+    {
 
         $loan_onetimeentry = Loan_onetimeentry::where('user_id', Auth::user()->id)->get();
 
         return view("loan.annual.list", compact('loan_onetimeentry'));
     }
 
-    function annualadd(){
+    function annualadd()
+    {
 
         $mtr_loan = Mtr_loan::all();
         return view("loan.annual.add", compact('mtr_loan'));
     }
 
-    function annualstore(Request $request){
+    function annualstore(Request $request)
+    {
 
-        $validated = $request->validate([
-            'loan_id' => 'required',
-            'overall_outstanding' => 'required',
-            'current_outstanding' => 'required',
-            'current_year' => 'required',
-            'annual_target' => 'required'
-        ],
-        [
-             'loan_id.required' => 'Loan type field can not be blank value.',
-             'overall_outstanding.required' => 'Overall outstanding field can not be blank value.',
-             'current_outstanding.required' => 'Current outstanding field can not be blank value.',
-             'current_year.required' => 'Current year field can not be blank value.',
-             'annual_target.required' => 'Annual target field can not be blank value.'
-        ]);
+        $validated = $request->validate(
+            [
+                'loan_id' => 'required',
+                'overall_outstanding' => 'required',
+                'current_outstanding' => 'required',
+                'current_year' => 'required',
+                'annual_target' => 'required'
+            ],
+            [
+                'loan_id.required' => 'Loan type field can not be blank value.',
+                'overall_outstanding.required' => 'Overall outstanding field can not be blank value.',
+                'current_outstanding.required' => 'Current outstanding field can not be blank value.',
+                'current_year.required' => 'Current year field can not be blank value.',
+                'annual_target.required' => 'Annual target field can not be blank value.'
+            ]
+        );
 
         $annual = new Loan_onetimeentry;
         $annual->user_id = Auth::user()->id;
@@ -191,7 +189,7 @@ class SocietyController extends Controller
         $annual->save();
 
 
-        return redirect('/society/loan/annual/add')->with('status', 'Loan issue added successfully');
+        return redirect('/society/loan/annual/add')->with('status', 'Annual Target & Outstanding added successfully');
         // return view("annual");
     }
 
@@ -216,7 +214,7 @@ class SocietyController extends Controller
 
         $arraycount = count($request->deposittype_id);
 
-        for($i=0; $i< $arraycount; $i++){
+        for ($i = 0; $i < $arraycount; $i++) {
 
             $deposit = new Deposits;
             $deposit->user_id = Auth::user()->id;
@@ -235,35 +233,40 @@ class SocietyController extends Controller
 
     //Annual targer Form
 
-    function depositannuallist(){
+    function depositannuallist()
+    {
 
         $deposit_onetimeentry = Deposit_onetimeentry::where('user_id', Auth::user()->id)->get();
 
         return view("deposit.annual.list", compact('deposit_onetimeentry'));
     }
 
-    function depositannualadd(){
+    function depositannualadd()
+    {
 
         $mtr_deposits = Mtr_deposits::all();
         return view("deposit.annual.add", compact('mtr_deposits'));
     }
 
-    function depositannualstore(Request $request){
+    function depositannualstore(Request $request)
+    {
 
-        $validated = $request->validate([
-            'deposit_id' => 'required',
-            'overall_outstanding' => 'required',
-            'current_outstanding' => 'required',
-            'current_year' => 'required',
-            'annual_target' => 'required'
-        ],
-        [
-            'deposit_id.required' => 'Loan type field can not be blank value.',
-            'overall_outstanding.required' => 'Overall outstanding field can not be blank value.',
-            'current_outstanding.required' => 'Current outstanding field can not be blank value.',
-            'current_year.required' => 'Current year field can not be blank value.',
-            'annual_target.required' => 'Annual target field can not be blank value.'
-        ]);
+        $validated = $request->validate(
+            [
+                'deposit_id' => 'required',
+                'overall_outstanding' => 'required',
+                'current_outstanding' => 'required',
+                'current_year' => 'required',
+                'annual_target' => 'required'
+            ],
+            [
+                'deposit_id.required' => 'Loan type field can not be blank value.',
+                'overall_outstanding.required' => 'Overall outstanding field can not be blank value.',
+                'current_outstanding.required' => 'Current outstanding field can not be blank value.',
+                'current_year.required' => 'Current year field can not be blank value.',
+                'annual_target.required' => 'Annual target field can not be blank value.'
+            ]
+        );
 
         $annual = new Deposit_onetimeentry;
         $annual->user_id = Auth::user()->id;
@@ -297,11 +300,11 @@ class SocietyController extends Controller
     function purchasestore(Request $request)
     {
 
-      
+
 
         $arraycount = count($request->purchase_id);
-      
-        for($i=0; $i< $arraycount; $i++){
+
+        for ($i = 0; $i < $arraycount; $i++) {
 
             $purchases = new Purchases;
             $purchases->user_id = Auth::user()->id;
@@ -317,12 +320,12 @@ class SocietyController extends Controller
             $purchases->jpcquantity = isset($request->jpcquantity[$i]) ? $request->jpcquantity[$i] : NULL;
             $purchases->jpcvalues = isset($request->jpcvalues[$i]) ? $request->jpcvalues[$i] : NULL;
             $purchases->privatenoofvarieties = isset($request->privatenoofvarieties[$i]) ? $request->privatenoofvarieties[$i] : NULL;
-            $purchases->privatequantity =isset($request->privatequantity[$i]) ? $request->privatequantity[$i] : NULL;
-            $purchases->privatevalues =isset($request->privatevalues[$i]) ? $request->privatevalues[$i] : NULL;
+            $purchases->privatequantity = isset($request->privatequantity[$i]) ? $request->privatequantity[$i] : NULL;
+            $purchases->privatevalues = isset($request->privatevalues[$i]) ? $request->privatevalues[$i] : NULL;
             $purchases->save();
         }
 
-       
+
 
         return redirect('/society/purchase/add')->with('status', 'Purchase added successfully');
     }
@@ -459,95 +462,96 @@ class SocietyController extends Controller
     }
 
 
-     //Crop target
-     function croploantargetlist()
-     {
- 
-         $croploan_target = Croploan_target::where('user_id', Auth::user()->id)->get();
- 
-         return view("croploan.target.list", compact('croploan_target'));
-     }
- 
-     function croploantargetadd()
-     {
-         return view("croploan.target.add");
-     }
- 
-     function croploantargetstore(Request $request)
-     {
- 
-         $validated = $request->validate([
-             'month' => 'required',
-             'target' => 'required'
-         ]);
+    //Crop target
+    function croploantargetlist()
+    {
 
-         $croploan_target = new Croploan_target;
-         $croploan_target->user_id = Auth::user()->id;
-         $croploan_target->month = $request->month;
-         $croploan_target->target = $request->target;
-         $croploan_target->status = 1;
-         $croploan_target->save(); 
- 
-         return redirect('/society/croploan/target/add')->with('status', 'Crop Loan target added successfully');
-     }
+        $croploan_target = Croploan_target::where('user_id', Auth::user()->id)->get();
+
+        return view("croploan.target.list", compact('croploan_target'));
+    }
+
+    function croploantargetadd()
+    {
+        return view("croploan.target.add");
+    }
+
+    function croploantargetstore(Request $request)
+    {
+
+        $validated = $request->validate([
+            'month' => 'required',
+            'target' => 'required'
+        ]);
+
+        $croploan_target = new Croploan_target;
+        $croploan_target->user_id = Auth::user()->id;
+        $croploan_target->month = $request->month;
+        $croploan_target->target = $request->target;
+        $croploan_target->status = 1;
+        $croploan_target->save();
+
+        return redirect('/society/croploan/target/add')->with('status', 'Crop Loan target added successfully');
+    }
 
 
-     //Crop target
-     function croploanentrylist()
-     {
- 
-         $croploan_entry = Croploan_entry::where('user_id', Auth::user()->id)->get();
- 
-         return view("croploan.entry.list", compact('croploan_entry'));
-     }
- 
-     function croploanentryadd()
-     {
-         return view("croploan.entry.add");
-     }
- 
-     function croploanentrystore(Request $request)
-     {
- 
-         $validated = $request->validate([
-             'croploandate' => 'required',
-             'applicationsreceived' => 'required',
-             'applicationssanctioned' => 'required',
-             'applicationspending' => 'required',
-             'totalcultivatedarea' => 'required',
-             'loanissuedarea' => 'required',
-             'outstandingno' => 'required',
-             'outstandingamount' => 'required',
-             'overdueno' => 'required'
-         ],
-         [
-             'croploandate.required' => 'The Crop loan date field can not be blank value.',
-             'applicationsreceived.required' => 'The Application Received can not be blank value.',
-             'applicationssanctioned.required' => 'The Application Sanctioned can not be blank value.',
-             'applicationspending.required' => 'Application Pending can not be blank value.',
-             'totalcultivatedarea.required' => 'Total cutivated area field can not be blank value.',
-             'loanissuedarea.required' => 'Loan issued area can not be blank value.',
-             'outstandingno.required' => 'Outstanding number can not be blank value.',
-             'outstandingamount.required' => 'Outstanding amount can not be blank value.',
-             'overdueno.required' => 'Overdue number can not be blank value.',
-             'overdueno.required' => 'Overdue amount can not be blank value.',
-         ]);
- 
-         $croploan_entry = new Croploan_entry;
-         $croploan_entry->user_id = Auth::user()->id;
-         $croploan_entry->croploandate = $request->croploandate;
-         $croploan_entry->applicationsreceived = $request->applicationsreceived;
-         $croploan_entry->applicationssanctioned = $request->applicationssanctioned;
-         $croploan_entry->applicationspending = $request->applicationspending;
-         $croploan_entry->totalcultivatedarea = $request->totalcultivatedarea;
-         $croploan_entry->loanissuedarea = $request->loanissuedarea;
-         $croploan_entry->outstandingno = $request->outstandingno;
-         $croploan_entry->outstandingamount = $request->outstandingamount;
-         $croploan_entry->overdueno = $request->overdueno;
-         $croploan_entry->overdueamount = $request->overdueamount;
-         $croploan_entry->save();
- 
-         return redirect('/society/croploan/entry/add')->with('status', 'Crop entry added successfully');
-     }
+    //Crop target
+    function croploanentrylist()
+    {
 
+        $croploan_entry = Croploan_entry::where('user_id', Auth::user()->id)->get();
+
+        return view("croploan.entry.list", compact('croploan_entry'));
+    }
+
+    function croploanentryadd()
+    {
+        return view("croploan.entry.add");
+    }
+
+    function croploanentrystore(Request $request)
+    {
+
+        $validated = $request->validate(
+            [
+                'croploandate' => 'required',
+                'applicationsreceived' => 'required',
+                'applicationssanctioned' => 'required',
+                'applicationspending' => 'required',
+                'totalcultivatedarea' => 'required',
+                'loanissuedarea' => 'required',
+                'outstandingno' => 'required',
+                'outstandingamount' => 'required',
+                'overdueno' => 'required'
+            ],
+            [
+                'croploandate.required' => 'The Crop loan date field can not be blank value.',
+                'applicationsreceived.required' => 'The Application Received can not be blank value.',
+                'applicationssanctioned.required' => 'The Application Sanctioned can not be blank value.',
+                'applicationspending.required' => 'Application Pending can not be blank value.',
+                'totalcultivatedarea.required' => 'Total cutivated area field can not be blank value.',
+                'loanissuedarea.required' => 'Loan issued area can not be blank value.',
+                'outstandingno.required' => 'Outstanding number can not be blank value.',
+                'outstandingamount.required' => 'Outstanding amount can not be blank value.',
+                'overdueno.required' => 'Overdue number can not be blank value.',
+                'overdueno.required' => 'Overdue amount can not be blank value.',
+            ]
+        );
+
+        $croploan_entry = new Croploan_entry;
+        $croploan_entry->user_id = Auth::user()->id;
+        $croploan_entry->croploandate = $request->croploandate;
+        $croploan_entry->applicationsreceived = $request->applicationsreceived;
+        $croploan_entry->applicationssanctioned = $request->applicationssanctioned;
+        $croploan_entry->applicationspending = $request->applicationspending;
+        $croploan_entry->totalcultivatedarea = $request->totalcultivatedarea;
+        $croploan_entry->loanissuedarea = $request->loanissuedarea;
+        $croploan_entry->outstandingno = $request->outstandingno;
+        $croploan_entry->outstandingamount = $request->outstandingamount;
+        $croploan_entry->overdueno = $request->overdueno;
+        $croploan_entry->overdueamount = $request->overdueamount;
+        $croploan_entry->save();
+
+        return redirect('/society/croploan/entry/add')->with('status', 'Crop entry added successfully');
+    }
 }

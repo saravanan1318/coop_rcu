@@ -18,7 +18,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
-                  <h5 class="card-title">Annual target Add</h5>
+                  <h5 class="card-title">Annual Target and Outstanding </h5>
                   <div class="row">
                     <div class="col-sm-12 col-md-12 mb-4">
                         @if(session('status'))
@@ -78,7 +78,7 @@
                             <div class="col-md-12">
                                 <div class="form-floating">
                                   <input type="text" class="form-control" id="floatingName"  name="current_outstanding" placeholder="Your Current outstanding." required>
-                                  <label for="floatingName">Your Current outstanding.</label>
+                                  <label for="floatingName"> Current outstanding (from 1st April to current date).</label>
                                 </div>
                                 <div class="invalid-feedback">Please enter your Current outstanding.</div>
                             </div>

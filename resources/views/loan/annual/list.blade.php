@@ -18,7 +18,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
-                  <h5 class="card-title">Annual Add</h5>
+                  <h5 class="card-title">Annual Target and Outstanding </h5>
                   <div class="row">
                     <div class="col-sm-4 col-md-4 mb-4">
 
@@ -52,7 +52,7 @@
                             <th scope="col">#</th>
                             <th scope="col">Loan type</th>
                             <th scope="col">Overall outstanding</th>
-                            <th scope="col">Current outstanding</th>
+                            <th scope="col">Current outstanding (from 1st April to current date)</th>
                             <th scope="col">Current Year</th>
                             <th scope="col">Annual target</th>
                           </tr>
