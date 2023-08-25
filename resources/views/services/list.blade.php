@@ -42,7 +42,7 @@
                                 @endif
                             </div>
                         </div>
-                        <h5 class="card-title">services</h5>
+                        <h5 class="card-title">Services</h5>
                         <div class="col-md-12 table-responsive">
                             <table class="table table-responsive table-bordered datatable" style="text-align: center">
                                 <thead>
@@ -50,37 +50,45 @@
                                         <th scope="col" >#</th>
                                         <th scope="col" rowspan="2">Date</th>
                                         <th scope="col" rowspan="2">Categories</th>
+                                        <th scope="col" rowspan="2">Count</th>
+                                        <th scope="col" rowspan="2">No of Centers</th>
                                         <th scope="col" rowspan="2">No of varieties</th>
-                                        <th scope="col" rowspan="2">No of Outlets</th>
                                         <th scope="col" rowspan="2">No of Customers</th>
-                                        <th scope="col" rowspan="2">No of farmers</th>
+                                        <th scope="col" rowspan="2">No of Farmers</th>
                                         <th scope="col" colspan="2">Quantity</th>
-                                        <th scope="col" colspan="2">services amount</th>
+                                        <th scope="col" rowspan="2">Purchase</th>
+                                        <th scope="col" colspan="2">Sales</th>
+                                        <th scope="col" rowspan="2">Income Generated (Rs)</th>
+                                        <th scope="col" rowspan="2">Profit (Rs)</th>
                                     </tr>
                                     <tr>
                                         <th scope="col" colspan="7"></th>
                                         <th scope="col">Kilo</th>
                                         <th scope="col">Litres</th>
+                                        <th scope="col">E-Trading</th>
                                         <th scope="col">Physical</th>
-                                        <th scope="col">Coop Bazaar</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach($services as $Services)
-                                    <tr>
-                                        <th scope="row">{{ $Services->id }}</th>
-                                        <td>{{ $Services->Servicesdate }}</td>
-                                        <td>{{ $Services->Services_id }}</td>
-                                        <td>{{ $Services->noofvarieties }}</td>
-                                        <td>{{ $Services->noofoutlets }}</td>
-                                        <td>{{ $Services->noofcustomers }}</td>
-                                        <td>{{ $Services->nooffarmers }}</td>
-                                        <td>{{ $Services->quantitykilo }}</td>
-                                        <td>{{ $Services->quantitylitres }}</td>
-                                        <td>{{ $Services->servicesamountphysical }}</td>
-                                        <td>{{ $Services->servicesamountcoopbazaar }}</td>
-                                    </tr>
-                                    @endforeach
+                                    @foreach($services as $service)
+                                <tr>
+                                  <th scope="row">{{ $service->id }}</th>
+                                  <td>{{ $service->servicesdate }}</td>
+                                  <td>{{ $service->services_id }}</td>
+                                  <td>{{ $service->count }}</td>
+                                  <td>{{ $service->noofcenters }}</td>
+                                  <td>{{ $service->noofvarieties }}</td>
+                                  <td>{{ $service->noofcustomers }}</td>
+                                  <td>{{ $service->nooffarmers }}</td>
+                                  <td>{{ $service->quantitykilo }}</td>
+                                  <td>{{ $service->quantitylitres }}</td>
+                                  <td>{{ $service->purchase }}</td>
+                                  <td>{{ $service->servicesamountetrading }}</td>
+                                  <td>{{ $service->servicesamountphysical }}</td>
+                                  <td>{{ $service->income }}</td>
+                                  <td>{{ $service->profit }}</td>
+                                  </tr>
+                                  @endforeach
                                 </tbody>
                             </table>
                         </div>

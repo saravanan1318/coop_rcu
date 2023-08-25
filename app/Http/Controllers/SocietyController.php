@@ -45,7 +45,8 @@ use App\Models\Croploan_target;
 use App\Models\Croploan_entry;
 use App\Models\Croploan_categorywise;
 use App\Models\Croploan_cropwise;
-
+use App\Models\Mtr_services;
+use App\Models\Services;
 
 class SocietyController extends Controller
 {
@@ -412,6 +413,45 @@ class SocietyController extends Controller
         $godowns->save();
 
         return redirect('/society/godown/add')->with('status', 'Godown added successfully');
+    }
+
+
+    function serviceslist()
+    {
+
+        $services = Services::where('user_id', Auth::user()->id)->get();
+
+        return view("services.list", compact('services'));
+    }
+
+    function servicesadd()
+    {
+        $mtr_services = Mtr_services::all();
+        return view("services.add", compact('mtr_services'));
+    }
+
+    function servicesstore(Request $request)
+    {
+
+        $services = new Services;
+        $services->user_id = Auth::user()->id;
+        $services->services_id = $request->services_id;
+        $services->servicesdate = $request->servicesdate;
+        $services->count = $request->count;
+        $services->noofcenters = isset($request->noofcenters) ? $request->noofcenters : NULL;
+        $services->noofvarieties = isset($request->noofvarieties) ? $request->noofvarieties : NULL;
+        $services->noofcustomers = isset($request->noofcustomers) ? $request->noofcustomers : NULL;
+        $services->nooffarmers = isset($request->nooffarmers) ? $request->nooffarmers : NULL;
+        $services->quantitykilo = isset($request->quantitykilo) ? $request->quantitykilo : NULL;
+        $services->quantitylitres = isset($request->quantitylitres) ? $request->quantitylitres : NULL;
+        $services->purchase = $request->purchase;
+        $services->salesamountetrading = isset($request->salesamountetrading) ? $request->salesamountetrading : NULL;
+        $services->salesamountphysical = isset($request->salesamountphysical) ? $request->salesamountphysical : NULL;
+        $services->income = $request->income;
+        $services->profit = $request->profit;
+        $services->save();
+
+        return redirect('/society/services/add')->with('status', 'Services added successfully');
     }
 
     //Deposit

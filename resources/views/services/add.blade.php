@@ -68,18 +68,19 @@
                                 <div class="row margindiv">
                                     <div class="col-md-4">
                                         <div class="form-floating">
+                                            <input type="text" class="form-control" id="noofoutlets	" name="noofcenters	" value="{{ old('noofoutlets') }}" placeholder="Your No of Outlets." required>
+                                            <label for="floatingName">No of Centers</label>
+                                        </div>
+                                        <div class="invalid-feedback">Please enter No of centers.</div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-floating">
                                             <input type="text" class="form-control" id="noofvarieties" name="noofvarieties" value="{{ old('noofvarieties') }}" placeholder="Your No of Varieties." required>
                                             <label for="floatingName">No of Varieties</label>
                                         </div>
                                         <div class="invalid-feedback">Please enter No of Varieties.</div>
                                     </div>
-                                    <div class="col-md-4">
-                                        <div class="form-floating">
-                                            <input type="text" class="form-control" id="noofoutlets	" name="noofoutlets	" value="{{ old('noofoutlets') }}" placeholder="Your No of Outlets." required>
-                                            <label for="floatingName">No of Outlets</label>
-                                        </div>
-                                        <div class="invalid-feedback">Please enter No of Outlets.</div>
-                                    </div>
+
                                     <div class="col-md-4">
                                         <div class="form-floating">
                                             <input type="text" class="form-control" id="noofcustomers" name="noofcustomers" value="{{ old('noofcustomers') }}" placeholder="Your No of Customers" required>
@@ -122,17 +123,43 @@
                                 <div class="row margindiv">
                                     <div class="col-md-4">
                                         <div class="form-floating">
+                                            <input type="text" class="form-control" id="servicesamountetrading" name="servicesamountetrading" value="{{ old('servicesamountetrading') }}" placeholder="Your Coop Bazaar." required>
+                                            <label for="floatingName">E-trading</label>
+                                        </div>
+                                        <div class="invalid-feedback">Please enter Coop Bazaar.</div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-floating">
                                             <input type="text" class="form-control" id="salesamountphysical" name="salesamountphysical" value="{{ old('salesamountphysical') }}" placeholder="Your Physical." required>
                                             <label for="floatingName">Physical</label>
                                         </div>
                                         <div class="invalid-feedback">Please enter Physical</div>
                                     </div>
-                                     <div class="col-md-4">
+
+                                </div>
+                                <div class="row margindiv">
+                                    <div class="col-md-4">
                                         <div class="form-floating">
-                                            <input type="text" class="form-control" id="salesamountcoopbazaar" name="salesamountcoopbazaar" value="{{ old('salesamountcoopbazaar') }}" placeholder="Your Coop Bazaar." required>
-                                            <label for="floatingName">Coop Bazaar</label>
+                                            <input type="text" class="form-control" id="purchase" name="purchase" value="{{ old('purchase') }}" placeholder="Purchase." required>
+                                            <label for="floatingName">Purchase</label>
                                         </div>
-                                        <div class="invalid-feedback">Please enter Coop Bazaar.</div>
+                                        <div class="invalid-feedback">Purchase.</div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" id="income" name="income" value="{{ old('income') }}" placeholder="Income." required>
+                                            <label for="floatingName">Income Generated</label>
+                                        </div>
+                                        <div class="invalid-feedback">Income Generated.</div>
+                                    </div>
+                                </div>
+                                <div class="row margindiv">
+                                    <div class="col-md-4">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" id="profit" name="profit" value="{{ old('profit') }}" placeholder="Profit" required>
+                                            <label for="floatingName">Profit</label>
+                                        </div>
+                                        <div class="invalid-feedback">Profit</div>
                                     </div>
                                 </div>
                             </div>
