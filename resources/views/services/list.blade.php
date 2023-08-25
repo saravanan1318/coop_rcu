@@ -48,7 +48,7 @@
                                 <thead>
                                     <tr>
                                         <th scope="col" >#</th>
-                                        <th scope="col" rowspan="2" >Date</th>
+                                        <th scope="col" rowspan="2">Date</th>
                                         <th scope="col" rowspan="2">Categories</th>
                                         <th scope="col" rowspan="2">No of varieties</th>
                                         <th scope="col" rowspan="2">No of Outlets</th>
