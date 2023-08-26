@@ -7,8 +7,7 @@ use DB;
 use Illuminate\Support\Facades\Hash;
 
 
-use App\Models\Loan_collection;
-use App\Models\Loan_issues;
+use App\Models\Loan;
 use App\Models\Loan_overallot;
 use App\Models\Mtr_loan;
 use App\Models\Loan_onetimeentry;
@@ -32,7 +31,7 @@ class SuperAdminController extends Controller
         return view("superadmin.dashboard");
     }
 
-    function loanreport(Request $request)
+    function loanreportold(Request $request)
     {
 
 
@@ -115,6 +114,21 @@ class SuperAdminController extends Controller
         return view("superadmin.loanreport", compact('finalarr', 'loanreportdate'));
     }
 
+    function loanreport(Request $request)
+    {
+
+        $loanreportdate = $request->loanreportdate;
+
+        if (!empty($loanreportdate)) {
+            $loanreportdate = $request->loanreportdate;
+        } else {
+            $loanreportdate = date("Y-m-d");
+        }
+
+        $loans = Loan::where('loandate', $loanreportdate)->get();
+
+        return view("superadmin.loanreport", compact('loans', 'loanreportdate'));
+    }
 
     function depositreport(Request $request)
     {

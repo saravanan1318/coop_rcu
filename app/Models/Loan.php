@@ -11,6 +11,9 @@ class Loan extends Model
 
     protected $table = 'loan';
     protected $primaryKey = 'id';
-    public $timestamps = false;
+
+    public function loantype() {
+        return $this->hasOne('App\Models\Mtr_loan','id','loantype_id');
+    }
 
 }

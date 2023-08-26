@@ -104,24 +104,19 @@ class SocietyController extends Controller
     function loanstore(Request $request)
     {
 
-        $loan = new Loan;
-        $loan->user_id = Auth::user()->id;
-        $loan->loandate = $request->loandate;
-        $loan->save();
-
         $arraycount = count($request->loantype_id);
 
         for ($i = 0; $i < $arraycount; $i++) {
 
-            $loan_trans = new Loan_trans;
-
-            $loan_trans->loan_id = $loan->id;
-            $loan_trans->loantype_id = $request->loantype_id[$i];
-            $loan_trans->disbursedno = $request->disbursedno[$i];
-            $loan_trans->disbursedamount = $request->disbursedamount[$i];
-            $loan_trans->collectedno = $request->collectedno[$i];
-            $loan_trans->collectedamount = $request->collectedamount[$i];
-            $loan_trans->save();
+            $loan = new Loan;
+            $loan->user_id = Auth::user()->id;
+            $loan->loandate = $request->loandate;
+            $loan->loantype_id = $request->loantype_id[$i];
+            $loan->disbursedno = $request->disbursedno[$i];
+            $loan->disbursedamount = $request->disbursedamount[$i];
+            $loan->collectedno = $request->collectedno[$i];
+            $loan->collectedamount = $request->collectedamount[$i];
+            $loan->save();
         }
 
         return redirect('/society/loan')->with('status', 'Issue of Loan and Collection added successfully');
@@ -134,13 +129,6 @@ class SocietyController extends Controller
         $loans = Loan::where('user_id', Auth::user()->id)->get();
 
         return view("loan.list", compact('loans'));
-    }
-
-    function loantranslist(Request $request)
-    {
-
-        $loan_trans = Loan_trans::with('loantype')->where('loan_id', $request->id)->get();
-        return view("loan.translist", compact('loan_trans'));
     }
 
     //Annual targer Form

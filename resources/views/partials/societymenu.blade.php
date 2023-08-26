@@ -73,8 +73,13 @@
         </a>
         <ul id="purchase-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
+            <a href="/society/purchase/add">
+              <i class="bi bi-circle"></i><span>Entry</span>
+            </a>
+          </li>
+          <li>
             <a href="/society/purchase/list">
-              <i class="bi bi-circle"></i><span>Purchase</span>
+              <i class="bi bi-circle"></i><span>View</span>
             </a>
           </li>
         </ul>

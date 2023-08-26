@@ -26,9 +26,9 @@
 
                     </div>
                     <div class="col-sm-4 col-md-4 mb-4">
-                        <div class="text-center">
+                        {{-- <div class="text-center">
                             <a href="/society/loan/add"  class="btn btn-primary" >Add</a>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
                   <div class="row">
@@ -40,26 +40,39 @@
                         @endif
                     </div>
                 </div>
-                <div class="col-md-12">
-                    <table class="table table-responsive datatable">
-                        <thead>
+                <div class="col-md-12" style="margin-top: 10px">
+                  <table class="table table-responsive table-bordered datatable">
+                      <thead style="text-align: center">
+                        <tr>
+                            <th scope="col" rowspan="2">Date</th>
+                            <th scope="col" rowspan="2">Loan Types</th>
+                            <th scope="col" colspan="2" rowspan="1">Disbursed</th>
+                            <th scope="col" colspan="2" rowspan="1">Collected</th>
+                        </tr>
+                        
+                      </thead>
+                      <tr style="text-align: center">
+                        <th scope="col" ></th>
+                        <th scope="col" ></th>
+                        <th scope="col" >No. of Loan</th>
+                        <th scope="col" >Amount of Loan</th>
+                        <th scope="col" >No. of Loan</th>
+                        <th scope="col" >Amount of Loan</th>
+                      </tr>
+                      <tbody>
+                        @foreach($loans as $loan)
                           <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Loan Date</th>
-                            <th scope="col">Action</th>
+                            <td>{{ $loan->loandate }}</td>
+                            <td>{{ $loan->loantype->loantype }}</td>
+                            <td>{{ $loan->disbursedno }}</td>
+                            <td>{{ $loan->disbursedamount }}</td>
+                            <td>{{ $loan->collectedno }}</td>
+                            <td>{{ $loan->collectedamount }}</td>
                           </tr>
-                        </thead>
-                        <tbody>
-                            @foreach($loans as $loan)
-                                <tr>
-                                    <th scope="row">{{ $loan->id }}</th>
-                                    <td>{{ $loan->loandate }}</td>
-                                    <td><a href='/society/loan/trans/{{$loan->id}}'>view</a></td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                      </table>
-                </div>
+                        @endforeach
+                      </tbody>
+                  </table>
+              </div>
             </div>
         </div>
     </div>
