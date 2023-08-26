@@ -113,11 +113,11 @@
                                     <div class="modal-dialog modal-lg">
                                       <div class="modal-content">
                                         <div class="modal-header">
-                                          <h5 class="modal-title">Fom preview</h5>
+                                          <h5 class="modal-title">Form preview</h5>
                                           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body" id="forminputs">
-                                          
+
                                         </div>
                                         <div class="modal-footer">
                                           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Edit</button>
@@ -135,7 +135,7 @@
             </div>
         </div>
      </div>
-     
+
   </section>
 
 </main><!-- End #main -->
@@ -171,7 +171,7 @@
             var collectedamount = $("#collectedamount"+i).val();
             html += '<tr><td>'+loantype+'</td><td>'+disbursedno+'</td><td>'+disbursedamount+'</td><td>'+collectedno+'</td><td>'+collectedamount+'</td></tr>';
         }
-        
+
         html += '</tbody></table>';
 
         $("#forminputs").html(html);

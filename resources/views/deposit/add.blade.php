@@ -92,7 +92,7 @@
                             </table>
                         </div>
                         <div class="col-md-10">
-                           
+
                         </div>
                         <div class="col-md-2">
                             <div class="text-center">
@@ -105,7 +105,27 @@
                         </div>
                         <div class="col-md-4">
                             <div class="text-center">
-                                <button type="submit" class="btn btn-primary" id="depositsubmit">Submit</button>
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#largeModal" onclick="forminputsappend()">
+                                    Preview
+                                </button>
+                                {{-- <button type="submit" class="btn btn-primary" id="loansubmit">Preview</button> --}}
+                                <div class="modal fade" id="largeModal" tabindex="-1">
+                                    <div class="modal-dialog modal-lg">
+                                      <div class="modal-content">
+                                        <div class="modal-header">
+                                          <h5 class="modal-title">Form preview</h5>
+                                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body" id="forminputs">
+
+                                        </div>
+                                        <div class="modal-footer">
+                                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Edit</button>
+                                          <button type="submit" class="btn btn-primary" id="loansubmit">Submit</button>
+                                        </div>
+                                      </div>
+                                    </div>
+                                </div><!-- End Large Modal-->
                             </div>
                         </div>
                         <div class="col-md-4">
@@ -134,6 +154,27 @@
         var rowtodelete = $(this).attr("data-delete-id");
         $("#row"+deletethisrow).remove();
     }
+    function forminputsappend() {
+    $("#forminputs").html("");
+
+    var html = '<table class="table table-responsive table-bordered datatable"><thead style="text-align: center"><tr><th scope="col" rowspan="2">Type of Deposit</th><th scope="col" colspan="2" rowspan="1">Deposits Received</th><th scope="col" colspan="2" rowspan="1">Deposits Closed</th></tr><tr><th scope="col">No.</th><th scope="col">Amount</th><th scope="col">No.</th><th scope="col">Amount</th></tr></thead><tbody id="tbody">';
+
+    var arraycount = parseInt($("#rowadded").val()) + 1;
+
+    for (var i = 1; i < arraycount; i++) {
+      var depositName = $("#deposittype_id" + i + " option:selected").text();
+      var recievedNo = $("input[name='recievedno[]']").eq(i - 1).val();
+      var recievedAmount = $("input[name='recievedamount[]']").eq(i - 1).val();
+      var closedNo = $("input[name='closedno[]']").eq(i - 1).val();
+      var closedAmount = $("input[name='closedamount[]']").eq(i - 1).val();
+
+      html += '<tr><td>' + depositName + '</td><td>' + recievedNo + '</td><td>' + recievedAmount + '</td><td>' + closedNo + '</td><td>' + closedAmount + '</td><td></td></tr>';
+    }
+
+    html += '</tbody></table>';
+
+    $("#forminputs").html(html);
+  }
+</script>
 </script>
 @endsection
-    

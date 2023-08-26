@@ -41,7 +41,7 @@
             $("#jpcnoofvarieties").attr("readonly",true);
             $("#jpcquantity").attr("readonly",true);
             $("#jpcvalues").attr("readonly",true);
-            
+
         }else if(this.value == "2"){
 
             $("#govtnoofvarieties").attr("readonly",true);
@@ -139,7 +139,7 @@
             $("#quantitylitres").attr("readonly",true);
             $("#salesamountphysical").attr("readonly",false);
             $("#salesamountcoopbazaar").attr("readonly",true);
-            
+
         }else if(this.value == "2"){
 
             $("#noofvarieties").attr("readonly",false);
@@ -209,7 +209,7 @@
 
         }
     });
-    
+
     $('#region_id').on('change', function() {
         $.ajax
         ({
@@ -250,8 +250,4 @@
             }
         });
     });
-
-
-
-   
 </script>

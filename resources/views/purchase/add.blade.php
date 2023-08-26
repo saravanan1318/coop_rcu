@@ -48,7 +48,7 @@
                                 </div>
                             </div>
                             <div class="col-md-12 table-responsive">
-                                
+
                                 <table class="table table-responsive table-bordered" style="text-align: center">
                                     <thead>
                                         <tr>
@@ -125,7 +125,7 @@
                                 </table>
                             </div>
                             <div class="col-md-10">
-                           
+
                             </div>
                             <div class="col-md-2">
                                 <div class="text-center">
@@ -134,11 +134,31 @@
                                 </div>
                             </div>
                             <div class="col-md-4">
-    
+
                             </div>
                             <div class="col-md-4">
                                 <div class="text-center">
-                                    <button type="submit" class="btn btn-primary" id="purchasesubmit">Submit</button>
+                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#largeModal" onclick="forminputsappend()">
+                                        Preview
+                                    </button>
+                                    {{-- <button type="submit" class="btn btn-primary" id="loansubmit">Preview</button> --}}
+                                    <div class="modal fade" id="largeModal" tabindex="-1">
+                                        <div class="modal-dialog modal-lg">
+                                          <div class="modal-content">
+                                            <div class="modal-header">
+                                              <h5 class="modal-title">Form preview</h5>
+                                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body" id="forminputs">
+
+                                            </div>
+                                            <div class="modal-footer">
+                                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Edit</button>
+                                              <button type="submit" class="btn btn-primary" id="loansubmit">Submit</button>
+                                            </div>
+                                          </div>
+                                        </div>
+                                    </div><!-- End Large Modal-->
                                 </div>
                             </div>
                             <div class="col-md-4">
@@ -196,7 +216,7 @@
                 $("#jpcnoofvarieties"+rowid).attr("readonly",true);
                 $("#jpcquantity"+rowid).attr("readonly",true);
                 $("#jpcvalues"+rowid).attr("readonly",true);
-                
+
             }else if(this.value == "2"){
 
                 $("#govtnoofvarieties"+rowid).attr("readonly",true);
@@ -298,7 +318,7 @@
             $("#jpcnoofvarieties"+rowid).attr("readonly",true);
             $("#jpcquantity"+rowid).attr("readonly",true);
             $("#jpcvalues"+rowid).attr("readonly",true);
-            
+
         }else if(this.value == "2"){
 
             $("#govtnoofvarieties"+rowid).attr("readonly",true);
@@ -360,6 +380,35 @@
 
         }
     });
+    function forminputsappend() {
+    $("#forminputs").html("");
+
+    var html = '<table class="table table-responsive table-bordered datatable"> <thead style="text-align: center"> <tr> <th scope="col" rowspan="2">Type of Purchase</th> <th scope="col" colspan="3" rowspan="1">Govt. Institutions</th> <th scope="col" colspan="3" rowspan="1">Coop Institutions</th> <th scope="col" colspan="3" rowspan="1">Private Traders</th> <th scope="col" colspan="3">JPC Approved Traders</th> </tr> <tr> <th scope="col">No. of Varieties</th> <th scope="col">Quantity</th> <th scope="col">Value (Rs.)</th> <th scope="col">No. of Varieties</th> <th scope="col">Quantity</th> <th scope="col">Value (Rs.)</th> <th scope="col">No. of Varieties</th> <th scope="col">Quantity</th> <th scope="col">Value (Rs.)</th> <th scope="col">No. of Varieties</th> <th scope="col">Quantity</th> <th scope="col">Value (Rs.)</th> </tr> </thead> <tbody id="tbody">';
+
+    var arraycount = parseInt($("#rowadded").val()) + 1;
+
+    for (var i = 1; i < arraycount; i++) {
+        var purchasetype = $("#purchase_id" + i + " option:selected").text();
+        var govtNoOfVarieties = $("#govtnoofvarieties" + i).val();
+        var govtQuantity = $("#govtquantity" + i).val();
+        var govtValue = $("#govtvalues" + i).val();
+        var coopNoOfVarieties = $("#coopnoofvarieties" + i).val();
+        var coopQuantity = $("#coopquantity" + i).val();
+        var coopValue = $("#coopvalues" + i).val();
+        var privateNoOfVarieties = $("#privatenoofvarieties" + i).val();
+        var privateQuantity = $("#privatequantity" + i).val();
+        var privateValue = $("#privatevalues" + i).val();
+        var jpcNoOfVarieties = $("#jpcnoofvarieties" + i).val();
+        var jpcQuantity = $("#jpcquantity" + i).val();
+        var jpcValue = $("#jpcvalues" + i).val();
+
+        html += '<tr><td>' + purchasetype + '</td><td>' + govtNoOfVarieties + '</td><td>' + govtQuantity + '</td><td>' + govtValue + '</td><td>' + coopNoOfVarieties + '</td><td>' + coopQuantity + '</td><td>' + coopValue + '</td><td>' + privateNoOfVarieties + '</td><td>' + privateQuantity + '</td><td>' + privateValue + '</td><td>' + jpcNoOfVarieties + '</td><td>' + jpcQuantity + '</td><td>' + jpcValue + '</td></tr>';
+    }
+
+    html += '</tbody></table>';
+
+    $("#forminputs").html(html);
+}
 
 </script>
 @endsection
