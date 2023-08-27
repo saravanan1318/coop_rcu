@@ -342,7 +342,7 @@ class SuperAdminController extends Controller
 
     public function export_loanreport(Request $request){
 
-        $filename = "loan_export_".$request->loanreportdate;
+        $filename = "loan_export_".$request->loanreportdate.".xlsx";
         return Excel::download(new LoanExport($request->loanreportdate), $filename);
     }
 
