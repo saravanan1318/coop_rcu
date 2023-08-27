@@ -13,4 +13,8 @@ class Purchases extends Model
     protected $primaryKey = 'id';
 
 
+    public function purchasetype() {
+        return $this->hasOne('App\Models\Mtr_purchase','id','purchase_id');
+    }
+
 }

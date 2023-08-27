@@ -32,6 +32,11 @@
                             <button type="submit" class="btn btn-primary" id="loanreportsubmit">Submit</button>
                           </div>
                       </div>
+                      <div class="col-md-4">
+                        <div class="text-center">
+                          <a href="{{url('/export/loanreport')}}?loanreportdate={{$loanreportdate}}" class="btn btn-success" >Download as Excel</a>
+                        </div>
+                    </div>
                   </form
                 </div>
                   <div class="row">

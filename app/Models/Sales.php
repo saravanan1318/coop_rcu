@@ -12,5 +12,8 @@ class Sales extends Model
     protected $table = 'sales';
     protected $primaryKey = 'id';
 
+    public function saletype() {
+        return $this->hasOne('App\Models\Mtr_Sale','id','sale_id');
+    }
 
 }

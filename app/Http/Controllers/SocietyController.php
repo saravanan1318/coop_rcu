@@ -126,7 +126,7 @@ class SocietyController extends Controller
     function loanlist()
     {
 
-        $loans = Loan::where('user_id', Auth::user()->id)->get();
+        $loans = Loan::where('user_id', Auth::user()->id)->paginate(5);
 
         return view("loan.list", compact('loans'));
     }
@@ -187,7 +187,7 @@ class SocietyController extends Controller
     function depositlist()
     {
 
-        $deposits = Deposits::where('user_id', Auth::user()->id)->get();
+        $deposits = Deposits::where('user_id', Auth::user()->id)->paginate(5);
 
         return view("deposit.list", compact('deposits'));
     }
@@ -275,7 +275,7 @@ class SocietyController extends Controller
     function purchaselist()
     {
 
-        $purchases = Purchases::where('user_id', Auth::user()->id)->get();
+        $purchases = Purchases::where('user_id', Auth::user()->id)->paginate(5);
 
         return view("purchase.list", compact('purchases'));
     }
@@ -323,7 +323,7 @@ class SocietyController extends Controller
     function saleslist()
     {
 
-        $sales = Sales::where('user_id', Auth::user()->id)->get();
+        $sales = Sales::where('user_id', Auth::user()->id)->paginate(5);
 
         return view("sales.list", compact('sales'));
     }
@@ -337,19 +337,25 @@ class SocietyController extends Controller
     function salesstore(Request $request)
     {
 
-        $sales = new Sales;
-        $sales->user_id = Auth::user()->id;
-        $sales->sale_id = $request->sale_id;
-        $sales->saledate = $request->saledate;
-        $sales->noofvarieties = isset($request->noofvarieties) ? $request->noofvarieties : NULL;
-        $sales->noofoutlets = isset($request->noofoutlets) ? $request->noofoutlets : NULL;
-        $sales->noofcustomers = isset($request->noofcustomers) ? $request->noofcustomers : NULL;
-        $sales->nooffarmers = isset($request->nooffarmers) ? $request->nooffarmers : NULL;
-        $sales->quantitykilo = isset($request->quantitykilo) ? $request->quantitykilo : NULL;
-        $sales->quantitylitres = isset($request->quantitylitres) ? $request->quantitylitres : NULL;
-        $sales->salesamountphysical = isset($request->salesamountphysical) ? $request->salesamountphysical : NULL;
-        $sales->salesamountcoopbazaar = isset($request->salesamountcoopbazaar) ? $request->salesamountcoopbazaar : NULL;
-        $sales->save();
+        $arraycount = count($request->sale_id);
+
+        for ($i = 0; $i < $arraycount; $i++) {
+
+            $sales = new Sales;
+            $sales->user_id = Auth::user()->id;
+            $sales->sale_id = isset($request->sale_id[$i]) ? $request->sale_id[$i] : NULL;
+            $sales->saledate = $request->saledate;
+            $sales->noofvarieties = isset($request->noofvarieties[$i]) ? $request->noofvarieties[$i] : NULL;
+            $sales->noofoutlets = isset($request->noofoutlets[$i]) ? $request->noofoutlets[$i] : NULL;
+            $sales->noofcustomers = isset($request->noofcustomers[$i]) ? $request->noofcustomers[$i] : NULL;
+            $sales->nooffarmers = isset($request->nooffarmers[$i]) ? $request->nooffarmers[$i] : NULL;
+            $sales->quantitykilo = isset($request->quantitykilo[$i]) ? $request->quantitykilo[$i] : NULL;
+            $sales->quantitylitres = isset($request->quantitylitres[$i]) ? $request->quantitylitres[$i] : NULL;
+            $sales->salesamountphysical = isset($request->salesamountphysical[$i]) ? $request->salesamountphysical[$i] : NULL;
+            $sales->salesamountcoopbazaar = isset($request->salesamountcoopbazaar[$i]) ? $request->salesamountcoopbazaar[$i] : NULL;
+            $sales->save();
+        }
+
 
         return redirect('/society/sale/add')->with('status', 'Sale added successfully');
     }

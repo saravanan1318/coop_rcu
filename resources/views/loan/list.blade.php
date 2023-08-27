@@ -72,6 +72,9 @@
                         @endforeach
                       </tbody>
                   </table>
+                  <div class="d-flex">
+                    {!! $loans->links() !!}
+                </div>
               </div>
             </div>
         </div>

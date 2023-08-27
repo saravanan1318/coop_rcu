@@ -22,6 +22,18 @@
         </a>
       </li><!-- End Dashboard Nav -->
       <li class="nav-item">
+        <a class="nav-link " href="/superadmin/purchasereport">
+          <i class="bi bi-grid"></i>
+          <span>Purchase report</span>
+        </a>
+      </li><!-- End Dashboard Nav -->
+      <li class="nav-item">
+        <a class="nav-link " href="/superadmin/salereport">
+          <i class="bi bi-grid"></i>
+          <span>Sale report</span>
+        </a>
+      </li><!-- End Dashboard Nav -->
+      <li class="nav-item">
         <a class="nav-link " href="/superadmin/users">
           <i class="bi bi-grid"></i>
           <span>Users</span>

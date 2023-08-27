@@ -75,7 +75,7 @@
                                     @foreach($purchases as $purchase)
                                     <tr>
                                         <th scope="row">{{ $purchase->id }}</th>
-                                        <td>{{ $purchase->purchase_id }}</td>
+                                        <td>{{ $purchase->purchasetype->purchase_name }}</td>
                                         <td>{{ $purchase->purchasedate }}</td>
                                         <td>{{ $purchase->govtnoofvarieties }}</td>
                                         <td>{{ $purchase->govtquantity }}</td>
@@ -93,6 +93,9 @@
                                     @endforeach
                                 </tbody>
                             </table>
+                            <div class="d-flex">
+                                {!! $purchases->links() !!}
+                            </div>
                         </div>
                     </div>
                 </div>

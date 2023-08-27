@@ -35,42 +35,33 @@
                   </form
                   </div>
                     <div class="col-md-12" style="margin-top: 10px">
-                        <table class="table table-responsive table-bordered datatable">
-                            <thead style="text-align: center">
+                      <table class="table table-responsive">
+                        <thead>
                             <tr>
-                                <th scope="col" rowspan="2">Date</th>
-                                <th scope="col" rowspan="2">Deposit Types</th>
-                                <th scope="col" rowspan="2">Overall Outstanding</th>
-                                <th scope="col" rowspan="2">Outstanding in the current financial year (from 01.04.23)</th>
-                                <th scope="col" rowspan="2">Annual Target</th>
-                                <th scope="col" colspan="2" rowspan="1">Deposit Received</th>
-                                <th scope="col" colspan="2" rowspan="1">Deposit Closed</th>
-                                <th scope="col" rowspan="2">% Achieved on target</th>
+                                <th scope="col">Deposit Name</th>
+                                <th scope="col">Deposit Date</th>
+                                <th scope="col">Received No.</th>
+                                <th scope="col">Received Amount</th>
+                                <th scope="col">Closed No.</th>
+                                <th scope="col">Closed Amount</th>
                             </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($deposits as $deposit)
                             <tr>
-                              <th scope="col" >No.</th>
-                              <th scope="col" >Amount</th>
-                              <th scope="col" >Numbers</th>
-                              <th scope="col" >Amount</th>
-                          </tr>
-                            </thead>
-                            <tbody>
-                              @foreach($finalarr as $indarr)
-                                <tr>
-                                    <td>{{ $indarr['date'] }}</td>
-                                    <td>{{ $indarr['loantype'] }}</td>
-                                    <td>{{ $indarr['overall_outstanding'] }}</td>
-                                    <td>{{ $indarr['current_outstanding'] }}</td>
-                                    <td>{{ $indarr['annual_target'] }}</td>
-                                    <td>{{ $indarr['receivedno'] }}</td>
-                                    <td>{{ $indarr['receivedamount'] }}</td>
-                                    <td>{{ $indarr['closedno'] }}</td>
-                                    <td>{{ $indarr['closedamount'] }}</td>
-                                    <td>{{ $indarr['achieved'] }}</td>
-                                </tr>
+                                <td>{{ $deposit->deposittype->deposit_name }}</td>
+                                <td>{{ $deposit->depositdate }}</td>
+                                <td>{{ $deposit->recievedno }}</td>
+                                <td>{{ $deposit->recievedamount }}</td>
+                                <td>{{ $deposit->closedno }}</td>
+                                <td>{{ $deposit->closedamount }}</td>
+                            </tr>
                             @endforeach
-                            </tbody>
-                        </table>
+                        </tbody>
+                    </table>
+                    <div class="d-flex">
+                        {!! $deposits->links() !!}
+                    </div>
                     </div>
                 </div>
             </div>

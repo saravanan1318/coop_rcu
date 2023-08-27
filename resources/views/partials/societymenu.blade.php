@@ -90,8 +90,13 @@
         </a>
         <ul id="sales-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
+            <a href="/society/sale/add">
+              <i class="bi bi-circle"></i><span>Entry</span>
+            </a>
+          </li>
+          <li>
             <a href="/society/sale/list">
-              <i class="bi bi-circle"></i><span>Sales</span>
+              <i class="bi bi-circle"></i><span>View</span>
             </a>
           </li>
         </ul>

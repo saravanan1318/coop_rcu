@@ -79,6 +79,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/superadmin/loanreport', [SuperAdminController::class, 'loanreport']);
     Route::get('/superadmin/depositreport', [SuperAdminController::class, 'depositreport']);
     Route::get('/superadmin/purchasereport', [SuperAdminController::class, 'purchasereport']);
+    Route::get('/superadmin/salereport', [SuperAdminController::class, 'salereport']);
     Route::get('/superadmin/users', [SuperAdminController::class, 'userslist']);
     Route::get('/superadmin/user/add', [SuperAdminController::class, 'useradd']);
     Route::post('/superadmin/user/store', [SuperAdminController::class, 'userstore']);
@@ -86,6 +87,14 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/fetch/circle', [SuperAdminController::class, 'fetchcircle']);
     Route::post('/fetch/society', [SuperAdminController::class, 'fetchsociety']);
     Route::get('/superadmin/godownreport', [SuperAdminController::class, 'godownreport']);
+
+
+    //export table to excel
+    Route::get('export/loanreport',[SuperAdminController::class, 'export_loanreport'])->name('export.loanreport');
+    Route::get('export/depositreport',[SuperAdminController::class, 'export_depositreport'])->name('export.depositreport');
+    Route::get('export/purchasereport',[SuperAdminController::class, 'export_purchasereport'])->name('export.purchasereport');
+    Route::get('export/salereport',[SuperAdminController::class, 'export_salereport'])->name('export.salereport');
+
 });
 
 

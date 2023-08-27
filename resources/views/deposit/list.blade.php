@@ -19,17 +19,6 @@
                     <div class="card-body">
                         <h5 class="card-title">Deposit List</h5>
                         <div class="row">
-                            <div class="col-sm-4 col-md-4 mb-4">
-                            </div>
-                            <div class="col-sm-4 col-md-4 mb-4">
-                            </div>
-                            <div class="col-sm-4 col-md-4 mb-4">
-                                <div class="text-center">
-                                    <a href="/society/deposit/add" class="btn btn-primary">Add</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
                             <div class="col-sm-12 col-md-12 mb-4">
                                 @if (count($errors) > 0)
                                 <div class="alert alert-danger">
@@ -44,10 +33,9 @@
                         </div>
                         <h5 class="card-title">Deposits</h5>
                         <div class="col-md-12">
-                            <table class="table table-responsive datatable">
+                            <table class="table table-responsive">
                                 <thead>
                                     <tr>
-                                        <th scope="col">#</th>
                                         <th scope="col">Deposit Name</th>
                                         <th scope="col">Deposit Date</th>
                                         <th scope="col">Received No.</th>
@@ -57,10 +45,8 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {{$i=1}}
                                     @foreach($deposits as $deposit)
                                     <tr>
-                                        <th scope="row">{{ $i++ }}</th>
                                         <td>{{ $deposit->deposittype->deposit_name }}</td>
                                         <td>{{ $deposit->depositdate }}</td>
                                         <td>{{ $deposit->recievedno }}</td>
@@ -71,6 +57,9 @@
                                     @endforeach
                                 </tbody>
                             </table>
+                            <div class="d-flex">
+                                {!! $deposits->links() !!}
+                            </div>
                         </div>
                     </div>
                 </div>

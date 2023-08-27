@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use DB;
 use Illuminate\Support\Facades\Hash;
-
+use Excel;
 
 use App\Models\Loan;
 use App\Models\Loan_overallot;
@@ -14,6 +14,8 @@ use App\Models\Loan_onetimeentry;
 use App\Models\Deposit_onetimeentry;
 use App\Models\Mtr_deposits;
 use App\Models\Deposits;
+use App\Models\Purchases;
+use App\Models\Sales;
 use App\Models\Mtr_region;
 use App\Models\Mtr_circle;
 use App\Models\Mtr_society;
@@ -21,6 +23,8 @@ use App\Models\Mtr_role;
 use App\Models\User;
 
 use App\Models\Godowns;
+
+use App\Exports\LoanExport;
 
 class SuperAdminController extends Controller
 {
@@ -125,12 +129,12 @@ class SuperAdminController extends Controller
             $loanreportdate = date("Y-m-d");
         }
 
-        $loans = Loan::where('loandate', $loanreportdate)->get();
+        $loans = Loan::where('loandate', $loanreportdate)->paginate(5);
 
         return view("superadmin.loanreport", compact('loans', 'loanreportdate'));
     }
 
-    function depositreport(Request $request)
+    function depositreportold(Request $request)
     {
 
 
@@ -205,6 +209,54 @@ class SuperAdminController extends Controller
 
 
         return view("superadmin.depositreport", compact('finalarr', 'depositreportdate'));
+    }
+
+    function depositreport(Request $request)
+    {
+
+        $depositreportdate = $request->depositreportdate;
+
+        if (!empty($depositreportdate)) {
+            $depositreportdate = $request->depositreportdate;
+        } else {
+            $depositreportdate = date("Y-m-d");
+        }
+
+        $deposits = Deposits::where('depositdate', $depositreportdate)->paginate(5);
+
+        return view("superadmin.depositreport", compact('deposits', 'depositreportdate'));
+    }
+
+    function purchasereport(Request $request)
+    {
+
+        $purchasereportdate = $request->purchasereportdate;
+
+        if (!empty($purchasereportdate)) {
+            $purchasereportdate = $request->purchasereportdate;
+        } else {
+            $purchasereportdate = date("Y-m-d");
+        }
+
+        $purchases = Purchases::where('purchasedate', $purchasereportdate)->paginate(5);
+
+        return view("superadmin.purchasereport", compact('purchases', 'purchasereportdate'));
+    }
+
+    function salereport(Request $request)
+    {
+
+        $salereportdate = $request->salereportdate;
+
+        if (!empty($salereportdate)) {
+            $salereportdate = $request->salereportdate;
+        } else {
+            $salereportdate = date("Y-m-d");
+        }
+
+        $sales = Sales::where('saledate', $salereportdate)->paginate(5);
+
+        return view("superadmin.salereport", compact('sales', 'salereportdate'));
     }
 
     function userslist()
@@ -285,6 +337,11 @@ class SuperAdminController extends Controller
         }
 
         return view("superadmin.godownreport", compact('godownreportdata', 'godownreportdate'));
+    }
+
+
+    public function export_loanreport(Request $request){
+        return Excel::download(new LoanExport($request->loanreportdate), 'loan.xlsx');
     }
 
     function IND_money_format($number)
