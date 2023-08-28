@@ -88,6 +88,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/fetch/society', [SuperAdminController::class, 'fetchsociety']);
     Route::get('/superadmin/godownreport', [SuperAdminController::class, 'godownreport']);
 
+    Route::get('/tableau/dashboard', [SuperAdminController::class, 'tableaudashboard']);
+
 
     //export table to excel
     Route::get('export/loanreport',[SuperAdminController::class, 'export_loanreport'])->name('export.loanreport');

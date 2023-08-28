@@ -346,6 +346,12 @@ class SuperAdminController extends Controller
         return Excel::download(new LoanExport($request->loanreportdate), $filename);
     }
 
+    public function tableaudashboard(Request $request){
+
+       
+        return view("superadmin.tableaudashboard");
+    }
+
     function IND_money_format($number)
     {
         $decimal = (string)($number - floor($number));
