@@ -9,7 +9,7 @@
               <div class="card-body">
                 <div class="pt-4 pb-2">
                   <h5 class="card-title text-center pb-0 fs-4">REGISTRAR OF COOPERATIVE SOCIETIES</h5>
-                  <p class="text-center small">Enter your Email & Password to login</p>
+                  <p class="text-center small">Enter your Username  & Password to login</p>
                 </div>
                 <div class="row">
                     <div class="col-sm-12 col-md-12 mb-4">
