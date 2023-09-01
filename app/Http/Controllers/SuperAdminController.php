@@ -25,6 +25,7 @@ use App\Models\User;
 use App\Models\Godowns;
 
 use App\Exports\LoanExport;
+use App\Models\Croploan_entry;
 use App\Models\Services;
 
 class SuperAdminController extends Controller
@@ -275,6 +276,22 @@ class SuperAdminController extends Controller
         $services = Services::where('servicesdate', $servicereportdate)->paginate(5);
 
         return view("superadmin.servicereport", compact('services', 'servicereportdate'));
+    }
+
+    function croploanreport(Request $request)
+    {
+
+        $croploanreportdate = $request->croploanreportdate;
+
+        if (!empty($croploanreportdate)) {
+            $croploanreportdate = $request->croploanreportdate;
+        } else {
+            $croploanreportdate = date("Y-m-d");
+        }
+
+        $croploan_entry = Croploan_entry::where('croploandate', $croploanreportdate)->paginate(5);
+
+        return view("superadmin.croploanreport", compact('croploan_entry', 'croploanreportdate'));
     }
 
     function userslist()

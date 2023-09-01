@@ -81,6 +81,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/superadmin/purchasereport', [SuperAdminController::class, 'purchasereport']);
     Route::get('/superadmin/salereport', [SuperAdminController::class, 'salereport']);
     Route::get('/superadmin/servicereport', [SuperAdminController::class, 'servicereport']);
+    Route::get('/superadmin/croploanreport', [SuperAdminController::class, 'croploanreport']);
     Route::get('/superadmin/users', [SuperAdminController::class, 'userslist']);
     Route::get('/superadmin/user/add', [SuperAdminController::class, 'useradd']);
     Route::post('/superadmin/user/store', [SuperAdminController::class, 'userstore']);

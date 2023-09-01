@@ -38,13 +38,20 @@
           <i class="bi bi-grid"></i>
           <span>Service report</span>
         </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link " href="/superadmin/croploanreport">
+          <i class="bi bi-grid"></i>
+          <span>Crop Loan report</span>
+        </a>
       </li><!-- End Dashboard Nav -->
       <li class="nav-item">
         <a class="nav-link " href="/superadmin/users">
           <i class="bi bi-grid"></i>
           <span>Users</span>
         </a>
-      </li><!-- End Dashboard Nav -->
+      </li>
+      <!-- End Dashboard Nav -->
       </li>
       <li class="nav-item">
         <a class="nav-link " href="/superadmin/godownreport">
