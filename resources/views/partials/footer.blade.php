@@ -8,6 +8,6 @@
     <!-- You can delete the links only if you purchased the pro version. -->
     <!-- Licensing information: https://bootstrapmade.com/license/ -->
     <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
-    Designed by <a href="https://tsinfotechsolutions.com/">TS infotech solutions</a>
+    Designed by <a href="https://tsinfotechsolutions.com/">Trophy systems</a>
   </div>
 </footer><!-- End Footer -->
