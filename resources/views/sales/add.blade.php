@@ -78,28 +78,28 @@
                                                 </select>
                                             </td>
                                             <td>
-                                                <input type="text" class="form-control" style=" width: 150px; " id="noofvarieties1" name="noofvarieties[]" value="{{ old('noofvarieties') }}" placeholder="Your No of Varieties." required>
+                                                <input type="text" class="form-control" style=" width: 150px; " id="noofvarieties1" name="noofvarieties[]" value="{{ old('noofvarieties') }}"  required>
                                             </td>
                                             <td>
-                                                <input type="text" class="form-control" style=" width: 150px; " id="noofoutlets1" name="noofoutlets[]" value="{{ old('noofoutlets') }}" placeholder="Your No of Outlets." required>
+                                                <input type="text" class="form-control" style=" width: 150px; " id="noofoutlets1" name="noofoutlets[]" value="{{ old('noofoutlets') }}"  required>
                                             </td>
                                             <td>
-                                                <input type="text" class="form-control" style=" width: 150px; " id="noofcustomers1" name="noofcustomers[]" value="{{ old('noofcustomers') }}" placeholder="Your No of Customers" required>
+                                                <input type="text" class="form-control" style=" width: 150px; " id="noofcustomers1" name="noofcustomers[]" value="{{ old('noofcustomers') }}"  required>
                                             </td>
                                             <td>
-                                                <input type="text" class="form-control" style=" width: 150px; " id="nooffarmers1" name="nooffarmers[]" value="{{ old('nooffarmers') }}" placeholder="Your No of farmers" required>
+                                                <input type="text" class="form-control" style=" width: 150px; " id="nooffarmers1" name="nooffarmers[]" value="{{ old('nooffarmers') }}"  required>
                                             </td>
                                             <td>
-                                                <input type="text" class="form-control" style=" width: 150px; " id="quantitykilo1" name="quantitykilo[]" value="{{ old('quantitykilo') }}" placeholder="Your Quantity in Kilo." required>
+                                                <input type="text" class="form-control" style=" width: 150px; " id="quantitykilo1" name="quantitykilo[]" value="{{ old('quantitykilo') }}"  required>
                                             </td>
                                             <td>
-                                                <input type="text" class="form-control" style=" width: 150px; " id="quantitylitres1" name="quantitylitres[]" value="{{ old('quantitylitres') }}" placeholder="Your Quantity in Litres." required>
+                                                <input type="text" class="form-control" style=" width: 150px; " id="quantitylitres1" name="quantitylitres[]" value="{{ old('quantitylitres') }}" required>
                                             </td>
                                             <td>
-                                                <input type="text" class="form-control" style=" width: 150px; " id="salesamountphysical1" name="salesamountphysical[]" value="{{ old('salesamountphysical') }}" placeholder="Your Physical." required>
+                                                <input type="text" class="form-control" style=" width: 150px; " id="salesamountphysical1" name="salesamountphysical[]" value="{{ old('salesamountphysical') }}"  required>
                                             </td>
                                             <td>
-                                                <input type="text" class="form-control" style=" width: 150px; " id="salesamountcoopbazaar1" name="salesamountcoopbazaar[]" value="{{ old('salesamountcoopbazaar') }}" placeholder="Your Coop Bazaar." required>
+                                                <input type="text" class="form-control" style=" width: 150px; " id="salesamountcoopbazaar1" name="salesamountcoopbazaar[]" value="{{ old('salesamountcoopbazaar') }}"  required>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -159,7 +159,7 @@
         console.log("Add new clicked");
         var rowadded = $("#rowadded").val();
         var updatedrowadded = parseInt(rowadded) + 1;
-        var html = '<tr data-id="'+updatedrowadded+'" id="row'+updatedrowadded+'"> <td> <select class="form-control sale_id" data-rowid="'+updatedrowadded+'" id="sale_id'+updatedrowadded+'" style=" width: 150px; " name="sale_id[]" ><option value="">--SELECT--</option> <?php foreach($mtr_sales as $sales){ ?> <option value="<?php echo $sales->id ?>"><?php echo $sales->sale_name ?></option> <?php } ?> </select> <td> <input type="text" class="form-control" style=" width: 150px; " id="noofvarieties'+updatedrowadded+'" name="noofvarieties[]" value="{{ old('noofvarieties') }}" placeholder="Your No of Varieties." required> </td> <td> <input type="text" class="form-control" style=" width: 150px; " id="noofoutlets'+updatedrowadded+'" name="noofoutlets[]" value="{{ old('noofoutlets') }}" placeholder="Your No of Outlets." required> </td> <td> <input type="text" class="form-control" style=" width: 150px; " id="noofcustomers'+updatedrowadded+'" name="noofcustomers[]" value="{{ old('noofcustomers') }}" placeholder="Your No of Customers" required> </td> <td> <input type="text" class="form-control" style=" width: 150px; " id="nooffarmers'+updatedrowadded+'" name="nooffarmers[]" value="{{ old('nooffarmers') }}" placeholder="Your No of farmers" required> </td> <td> <input type="text" class="form-control" style=" width: 150px; " id="quantitykilo'+updatedrowadded+'" name="quantitykilo[]" value="{{ old('quantitykilo') }}" placeholder="Your Quantity in Kilo." required> </td> <td> <input type="text" class="form-control" style=" width: 150px; " id="quantitylitres'+updatedrowadded+'" name="quantitylitres[]" value="{{ old('quantitylitres') }}" placeholder="Your Quantity in Litres." required> </td> <td> <input type="text" class="form-control" style=" width: 150px; " id="salesamountphysical'+updatedrowadded+'" name="salesamountphysical[]" value="{{ old('salesamountphysical') }}" placeholder="Your Physical." required> </td> <td> <input type="text" class="form-control" style=" width: 150px; " id="salesamountcoopbazaar'+updatedrowadded+'" name="salesamountcoopbazaar[]" value="{{ old('salesamountcoopbazaar') }}" placeholder="Your Coop Bazaar." required> </td> <td> <a  class="btn btn-danger deleterow" data-delete-id="'+updatedrowadded+'" onclick="deletethisrow('+updatedrowadded+')" >Delete</a> </td> </tr>';
+        var html = '<tr data-id="'+updatedrowadded+'" id="row'+updatedrowadded+'"> <td> <select class="form-control sale_id" data-rowid="'+updatedrowadded+'" id="sale_id'+updatedrowadded+'" style=" width: 150px; " name="sale_id[]" ><option value="">--SELECT--</option> <?php foreach($mtr_sales as $sales){ ?> <option value="<?php echo $sales->id ?>"><?php echo $sales->sale_name ?></option> <?php } ?> </select> <td> <input type="text" class="form-control" style=" width: 150px; " id="noofvarieties'+updatedrowadded+'" name="noofvarieties[]" value="{{ old('noofvarieties') }}" required> </td> <td> <input type="text" class="form-control" style=" width: 150px; " id="noofoutlets'+updatedrowadded+'" name="noofoutlets[]" value="{{ old('noofoutlets') }}" required> </td> <td> <input type="text" class="form-control" style=" width: 150px; " id="noofcustomers'+updatedrowadded+'" name="noofcustomers[]" value="{{ old('noofcustomers') }}" required> </td> <td> <input type="text" class="form-control" style=" width: 150px; " id="nooffarmers'+updatedrowadded+'" name="nooffarmers[]" value="{{ old('nooffarmers') }}"  required> </td> <td> <input type="text" class="form-control" style=" width: 150px; " id="quantitykilo'+updatedrowadded+'" name="quantitykilo[]" value="{{ old('quantitykilo') }}" required> </td> <td> <input type="text" class="form-control" style=" width: 150px; " id="quantitylitres'+updatedrowadded+'" name="quantitylitres[]" value="{{ old('quantitylitres') }}"  required> </td> <td> <input type="text" class="form-control" style=" width: 150px; " id="salesamountphysical'+updatedrowadded+'" name="salesamountphysical[]" value="{{ old('salesamountphysical') }}" required> </td> <td> <input type="text" class="form-control" style=" width: 150px; " id="salesamountcoopbazaar'+updatedrowadded+'" name="salesamountcoopbazaar[]" value="{{ old('salesamountcoopbazaar') }}"  required> </td> <td> <a  class="btn btn-danger deleterow" data-delete-id="'+updatedrowadded+'" onclick="deletethisrow('+updatedrowadded+')" >Delete</a> </td> </tr>';
 
         console.log(html);
         $("#tbody").append(html);
@@ -368,7 +368,7 @@
     var arraycount = parseInt($("#rowadded").val()) + 1;
 
     for (var i = 1; i < arraycount; i++) {
-        var saletype = $("#sale_id" + i + " option:selected").text();
+        var saletype = $(".sale_id" + i + " option:selected").text();
         var noofvarieties = $("#noofvarieties" + i).val();
         var noofoutlets = $("#noofoutlets" + i).val();
         var noofcustomers = $("#noofcustomers" + i).val();
@@ -385,6 +385,7 @@
 
     $("#forminputs").html(html);
 }
-
 </script>
+
+
 @endsection

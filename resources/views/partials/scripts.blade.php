@@ -10,10 +10,8 @@
 
   <!-- Template Main JS File -->
   <script src="/assets/js/main.js"></script>
-<script type="">
+  <script type="">
     $('#purchase_id').on('change', function() {
-
-
         $("#govtnoofvarieties").val("");
         $("#govtquantity").val("");
         $("#govtvalues").val("");
@@ -218,7 +216,6 @@
             data: {"region_id":this.value,"_token":"<?php echo csrf_token() ?>"},
             success:function(data) {
                console.log(data.data);
-
                var html = "<option value=''>SELECT</option>";
                var circle = data.data;
                for(var i=0; i<circle.length; i++){
@@ -245,7 +242,6 @@
                     html += '<option value="'+society[i].id+'">'+society[i].society_name+'</option>';
                    // html += '<option value='+circle[i]->id+'>'+circle[i]->circle_name+'</option>';
                }
-
                $("#society_id").html(html);
             }
         });

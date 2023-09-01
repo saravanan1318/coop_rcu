@@ -32,6 +32,12 @@
           <i class="bi bi-grid"></i>
           <span>Sale report</span>
         </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link " href="/superadmin/servicereport">
+          <i class="bi bi-grid"></i>
+          <span>Service report</span>
+        </a>
       </li><!-- End Dashboard Nav -->
       <li class="nav-item">
         <a class="nav-link " href="/superadmin/users">

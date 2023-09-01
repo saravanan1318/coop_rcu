@@ -25,6 +25,7 @@ use App\Models\User;
 use App\Models\Godowns;
 
 use App\Exports\LoanExport;
+use App\Models\Services;
 
 class SuperAdminController extends Controller
 {
@@ -259,6 +260,23 @@ class SuperAdminController extends Controller
         return view("superadmin.salereport", compact('sales', 'salereportdate'));
     }
 
+
+    function servicereport(Request $request)
+    {
+
+        $servicereportdate = $request->servicereportdate;
+
+        if (!empty($servicereportdate)) {
+            $servicereportdate = $request->servicereportdate;
+        } else {
+            $servicereportdate = date("Y-m-d");
+        }
+
+        $services = Services::where('servicesdate', $servicereportdate)->paginate(5);
+
+        return view("superadmin.servicereport", compact('services', 'servicereportdate'));
+    }
+
     function userslist()
     {
 
@@ -340,15 +358,17 @@ class SuperAdminController extends Controller
     }
 
 
-    public function export_loanreport(Request $request){
+    public function export_loanreport(Request $request)
+    {
 
-        $filename = "loan_export_".$request->loanreportdate.".xlsx";
+        $filename = "loan_export_" . $request->loanreportdate . ".xlsx";
         return Excel::download(new LoanExport($request->loanreportdate), $filename);
     }
 
-    public function tableaudashboard(Request $request){
+    public function tableaudashboard(Request $request)
+    {
 
-       
+
         return view("superadmin.tableaudashboard");
     }
 

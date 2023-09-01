@@ -83,8 +83,8 @@
                                   <td>{{ $service->quantitykilo }}</td>
                                   <td>{{ $service->quantitylitres }}</td>
                                   <td>{{ $service->purchase }}</td>
-                                  <td>{{ $service->servicesamountetrading }}</td>
-                                  <td>{{ $service->servicesamountphysical }}</td>
+                                  <td>{{ $service->salesamountetrading }}</td>
+                                  <td>{{ $service->salesamountphysical }}</td>
                                   <td>{{ $service->income }}</td>
                                   <td>{{ $service->profit }}</td>
                                   </tr>

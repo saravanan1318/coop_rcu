@@ -68,7 +68,14 @@
                                 <div class="row margindiv">
                                     <div class="col-md-4">
                                         <div class="form-floating">
-                                            <input type="text" class="form-control" id="noofoutlets	" name="noofcenters	" value="{{ old('noofoutlets') }}" placeholder="Your No of Outlets." required>
+                                            <input type="text" class="form-control" id="count" name="count" value="{{ old('count') }}" placeholder="Count" required>
+                                            <label for="floatingName">Count</label>
+                                        </div>
+                                        <div class="invalid-feedback">Please enter Count</div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" id="noofcenters" name="noofcenters" value="{{ old('noofcenters') }}" placeholder="Your No of Outlets." required>
                                             <label for="floatingName">No of Centers</label>
                                         </div>
                                         <div class="invalid-feedback">Please enter No of centers.</div>
@@ -80,7 +87,7 @@
                                         </div>
                                         <div class="invalid-feedback">Please enter No of Varieties.</div>
                                     </div>
-
+                                    <div class="row margindiv">
                                     <div class="col-md-4">
                                         <div class="form-floating">
                                             <input type="text" class="form-control" id="noofcustomers" name="noofcustomers" value="{{ old('noofcustomers') }}" placeholder="Your No of Customers" required>
@@ -123,7 +130,7 @@
                                 <div class="row margindiv">
                                     <div class="col-md-4">
                                         <div class="form-floating">
-                                            <input type="text" class="form-control" id="servicesamountetrading" name="servicesamountetrading" value="{{ old('servicesamountetrading') }}" placeholder="Your Coop Bazaar." required>
+                                            <input type="text" class="form-control" id="salesamountetrading" name="salesamountetrading" value="{{ old('servicesamountetrading') }}" placeholder="Your E-Trading." required>
                                             <label for="floatingName">E-trading</label>
                                         </div>
                                         <div class="invalid-feedback">Please enter Coop Bazaar.</div>
