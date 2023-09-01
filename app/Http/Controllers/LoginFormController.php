@@ -6,6 +6,11 @@ use Session;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Mtr_society;
+use App\Models\Mtr_region;
+use App\Models\Mtr_circle;
+use App\Models\Mtr_role;
+use App\Models\Mtr_societytype;
 
 class LoginFormController extends Controller
 {
@@ -29,15 +34,8 @@ class LoginFormController extends Controller
         $credentials = $request->only('username', 'password');
         if (Auth::attempt($credentials)) {
 
-            if(Auth::user()->role == 5 || Auth::user()->role == 6 || Auth::user()->role == 7 
-            || Auth::user()->role == 8 || Auth::user()->role == 9 || Auth::user()->role == 10 
-            || Auth::user()->role == 11 || Auth::user()->role == 12 || Auth::user()->role == 13){
-                return redirect()->intended('/society/dashboard')
+            return redirect()->intended('/society/dashboard')
                 ->withSuccess('Signed in');
-            }else if(Auth::user()->role == 2){
-                return redirect()->intended('/superadmin/dashboard')
-                ->withSuccess('Signed in');
-            }
            
         }
   
@@ -49,4 +47,36 @@ class LoginFormController extends Controller
         Auth::logout();
         return redirect('login');
     }
+
+    public function importsocietyusers(){
+
+       
+
+        ini_set('max_execution_time', 18000); //30 minutes
+
+        $mtr_society = Mtr_society::all();
+        
+        foreach($mtr_society as $society){
+            //dd($society->region_id);
+            $regioncode = Mtr_region::where('id', $society->region_id)->first();
+            $circlecode = Mtr_circle::where('region_id', $society->region_id)->where('id', $society->circle_id)->first();
+            $role = Mtr_societytype::where('id', $society->societytype_id)->first();
+            
+            $username = $regioncode['region_code'].$circlecode['circle_code'].$role['societycode'].sprintf("%04d", $society->id);
+            
+            $User = new User;
+            $User->username = $username;
+            $User->name = $society->society_name;
+            $User->password = Hash::make(123456);
+            $User->region_id = $society->region_id;
+            $User->circle_id = $society->circle_id;
+            $User->society_id = $society->id;
+            $User->role = $role['role_id'];
+            //dd($User);
+            $User->save();
+
+        }
+       
+    }
+
 }

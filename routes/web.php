@@ -23,6 +23,10 @@ Route::get('login', [LoginFormController::class, 'index']);
 Route::post('checklogin', [LoginFormController::class, 'checklogin']);
 Route::get('logout', [LoginFormController::class, 'logout']);
 
+
+Route::get('import-societyusers', [LoginFormController::class, 'importsocietyusers']);
+
+
 /**SocietyController */
 Route::group(['middleware' => 'auth'], function () {
 
