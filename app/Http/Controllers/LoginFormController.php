@@ -48,52 +48,58 @@ class LoginFormController extends Controller
         return redirect('login');
     }
 
-    public function importsocietyusers(){
+    public function importsocietyusers(Request $request){
 
-       
+    //   dd( $request->region_id);
+    
 
+       if(isset($request->region_id)){
         ini_set('max_execution_time', 18000); //30 minutes
 
-       // $mtr_society = Mtr_society::limit(400)->get();
-        $mtr_society = Mtr_society::where('id','>', 6546)->get();
-       // dd($mtr_society);
-       $individualsocietycount = 1;
-        foreach($mtr_society as $society){
-            //dd($society->region_id);
-            $regioncode = Mtr_region::where('id', $society->region_id)->first();
-            $circlecode = Mtr_circle::where('region_id', $society->region_id)->where('id', $society->circle_id)->first();
-            $role = Mtr_societytype::where('id', $society->societytype_id)->first();
-
-            if($individualsocietycount == 1){
-                $actualregion_id = $society->region_id;
-                $actualcircle_id = $society->circle_id;
-                $actualcirclecode = $circlecode;
-               
-            }else if($actualregion_id == $society->region_id && $actualcircle_id == $society->circle_id && $actualcirclecode == $circlecode){
-               // $individualsocietycount++;
-            }else{
-                $individualsocietycount = 1;
-                $actualregion_id = $society->region_id;
-                $actualcircle_id = $society->circle_id;
-                $actualcirclecode = $circlecode;
-            }
-            
-            $username = $regioncode['region_code'].$circlecode['circle_code'].$role['societycode'].sprintf("%04d", $individualsocietycount);
-            
-            $User = new User;
-            $User->username = $username;
-            $User->name = $society->society_name;
-            $User->password = Hash::make(123456);
-            $User->region_id = $society->region_id;
-            $User->circle_id = $society->circle_id;
-            $User->society_id = $society->id;
-            $User->role = $role['role_id'];
-            //dd($User);
-            $User->save();
-
-            $individualsocietycount++;
-
-        }
+        // $mtr_society = Mtr_society::limit(400)->get();
+         $mtr_society = Mtr_society::where('region_id','=', $request->region_id)->orderBy('region_id', 'ASC')
+         ->orderBy('circle_id', 'ASC')->orderBy('societytype_id', 'ASC')->get();
+        $individualsocietycount = 1;
+         foreach($mtr_society as $society){
+             //dd($society->region_id);
+             $regioncode = Mtr_region::where('id', $society->region_id)->first();
+             $circlecode = Mtr_circle::where('region_id', $society->region_id)->where('id', $society->circle_id)->first();
+             $role = Mtr_societytype::where('id', $society->societytype_id)->first();
+ 
+             if($individualsocietycount == 1){
+                 $actualregion_id = $society->region_id;
+                 $actualcircle_id = $society->circle_id;
+                 $actualsocietytype_id = $society->societytype_id;
+                 $actualcirclecode = $circlecode;
+                
+             }else if($actualregion_id == $society->region_id && $actualcircle_id == $society->circle_id && $actualcirclecode == $circlecode && $actualsocietytype_id == $society->societytype_id){
+                // $individualsocietycount++;
+             }else{
+                 $individualsocietycount = 1;
+                 $actualregion_id = $society->region_id;
+                 $actualcircle_id = $society->circle_id;
+                 $actualsocietytype_id = $society->societytype_id;
+                 $actualcirclecode = $circlecode;
+             }
+             
+             $username = $regioncode['region_code'].$circlecode['circle_code'].$role['societycode'].sprintf("%04d", $individualsocietycount);
+             
+             $User = new User;
+             $User->username = $username;
+             $User->name = $society->society_name;
+             $User->password = Hash::make(123456);
+             $User->region_id = $society->region_id;
+             $User->circle_id = $society->circle_id;
+             $User->society_id = $society->id;
+             $User->role = $role['role_id'];
+             //dd($User);
+             $User->save();
+ 
+             $individualsocietycount++;
+ 
+         }
+       }
+       
        
     }
 
