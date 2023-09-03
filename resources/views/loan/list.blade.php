@@ -17,7 +17,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
-                  <h5 class="card-title">Issue of Loan and Collection</h5>
+                  {{-- <h5 class="card-title">Issue of Loan and Collection</h5> --}}
                   <div class="row">
                     <div class="col-sm-4 col-md-4 mb-4">
 

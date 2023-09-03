@@ -17,18 +17,6 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Godown Add</h5>
-                        <div class="row">
-                            <div class="col-sm-4 col-md-4 mb-4">
-                            </div>
-                            <div class="col-sm-4 col-md-4 mb-4">
-                            </div>
-                            <div class="col-sm-4 col-md-4 mb-4">
-                                <div class="text-center">
-                                    <a href="/society/godown/add" class="btn btn-primary">Add</a>
-                                </div>
-                            </div>
-                        </div>
                         <div class="row">
                             <div class="col-sm-12 col-md-12 mb-4">
                                 @if (count($errors) > 0)
@@ -44,7 +32,7 @@
                         </div>
                         <h5 class="card-title">Godown</h5>
                         <div class="col-md-12">
-                            <table class="table table-responsive datatable">
+                            <table class="table table-responsive">
                                 <thead>
                                     <tr>
                                         <th scope="col">#</th>
@@ -54,7 +42,7 @@
                                         <th scope="col">Utilised</th>
                                         <th scope="col">Utilised (%).</th>
                                         <th scope="col">Income in Rental</th>
-                                        <th scope="col">Action</th>
+                                        {{-- <th scope="col">Action</th> --}}
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -67,11 +55,14 @@
                                         <td>{{ $godown->utilized }}</td>
                                         <td>{{ $godown->percentageutilized }}</td>
                                         <td>{{ $godown->income }}</td>
-                                        <td><a href='/society/godown/edit/{{$godown->id}}'>view</a></td>
+                                        {{-- <td><a href='/society/godown/edit/{{$godown->id}}'>view</a></td> --}}
                                     </tr>
                                     @endforeach
                                 </tbody>
                             </table>
+                            <div class="d-flex">
+                                {!! $godowns->links() !!}
+                            </div>
                         </div>
 
                     </div>

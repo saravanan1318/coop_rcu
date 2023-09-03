@@ -2,7 +2,7 @@
 @section('content')
 <main id="main" class="main">
     <div class="pagetitle">
-        <h1>Deposit</h1>
+        <h1>Deposits</h1>
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="/society/dashboard">Dashboard</a></li>
@@ -17,7 +17,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Deposit List</h5>
+                        {{-- <h5 class="card-title">Deposit List</h5> --}}
                         <div class="row">
                             <div class="col-sm-12 col-md-12 mb-4">
                                 @if (count($errors) > 0)
@@ -31,7 +31,6 @@
                                 @endif
                             </div>
                         </div>
-                        <h5 class="card-title">Deposits</h5>
                         <div class="col-md-12">
                             <table class="table table-responsive">
                                 <thead>

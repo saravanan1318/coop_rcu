@@ -377,4 +377,48 @@ class SuperAdminController extends Controller
 
         return $result;
     }
+
+    function loanlist()
+    {
+
+        $loans = Loan::select('*')->with('loantype')->paginate(5);
+        return view("loan.list", compact('loans'));
+    }
+
+
+    function depositlist()
+    {
+        $deposits = Deposits::select('*')->with('deposittype')->paginate(5);
+
+         return view("deposit.list", compact('deposits'));
+    }
+
+    function purchaselist()
+    {
+        $purchases = Purchases::select('*')->with('purchasetype')->paginate(5);
+
+        return view("purchase.list", compact('purchases'));
+    }
+    
+    function saleslist()
+    {
+        $sales = Sales::select('*')->with('saletype')->paginate(5);
+
+        return view("sales.list", compact('sales'));
+    }
+
+    function godownlist()
+    {
+
+        $godowns = Godowns::select('*')->paginate(5);
+        return view("godown.list", compact('godowns'));
+    }
+
+    function serviceslist()
+    {
+
+        $services = Services::select('*')->paginate(5);
+        return view("services.list", compact('services'));
+    }
+    
 }

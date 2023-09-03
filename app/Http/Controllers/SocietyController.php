@@ -363,7 +363,7 @@ class SocietyController extends Controller
     function godownlist()
     {
 
-        $godowns = Godowns::where('user_id', Auth::user()->id)->get();
+        $godowns = Godowns::where('user_id', Auth::user()->id)->paginate(5);
         return view("godown.list", compact('godowns'));
     }
 
@@ -375,36 +375,24 @@ class SocietyController extends Controller
     function godownstore(Request $request)
     {
 
-        $validated = $request->validate(
-            [
-                'godowndate' => 'required',
-                'count' => 'required',
-                'capacity' => 'required',
-                'utilized' => 'required',
-                'percentageutilized' => 'required',
-                'income' => 'required',
-            ],
-            [
-                'godowndate.required' => 'The Godown date field can not be blank value.',
-                'count.required' => 'The Countfield can not be blank value.',
-                'capacity.required' => 'The capacity field can not be blank value.',
-                'utilized.required' => 'Utilized Field can not be blank value.',
-                'percentageutilized.required' => 'Percentage Utilization field can not be blank value.',
-                'income.required' => 'Income field can not be blank value.',
-            ]
 
-        );
+        $arraycount = count($request->count);
 
+        for ($i = 0; $i < $arraycount; $i++) {
 
-        $godowns = new Godowns;
-        $godowns->user_id = Auth::user()->id;
-        $godowns->godowndate = $request->godowndate;
-        $godowns->count = $request->count;
-        $godowns->capacity = $request->capacity;
-        $godowns->utilized = $request->utilized;
-        $godowns->percentageutilized = $request->percentageutilized;
-        $godowns->income = $request->income;
-        $godowns->save();
+            $godowns = new Godowns;
+            $godowns->user_id = Auth::user()->id;
+            $godowns->godowndate = $request->godowndate;
+            $godowns->count = isset($request->count[$i]) ? $request->count[$i] : NULL;
+            $godowns->capacity = isset($request->capacity[$i]) ? $request->capacity[$i] : NULL;
+            $godowns->utilized = isset($request->utilized[$i]) ? $request->utilized[$i] : NULL;
+            $godowns->percentageutilized = isset($request->percentageutilized[$i]) ? $request->percentageutilized[$i] : NULL;
+            $godowns->income = isset($request->income[$i]) ? $request->income[$i] : NULL;
+            $godowns->save();
+
+        }
+
+       
 
         return redirect('/society/godown/add')->with('status', 'Godown added successfully');
     }
@@ -426,24 +414,32 @@ class SocietyController extends Controller
 
     function servicesstore(Request $request)
     {
+        //dd($request);
 
-        $services = new Services;
-        $services->user_id = Auth::user()->id;
-        $services->services_id = $request->services_id;
-        $services->servicesdate = $request->servicesdate;
-        $services->count = $request->count;
-        $services->noofcenters = isset($request->noofcenters) ? $request->noofcenters : NULL;
-        $services->noofvarieties = isset($request->noofvarieties) ? $request->noofvarieties : NULL;
-        $services->noofcustomers = isset($request->noofcustomers) ? $request->noofcustomers : NULL;
-        $services->nooffarmers = isset($request->nooffarmers) ? $request->nooffarmers : NULL;
-        $services->quantitykilo = isset($request->quantitykilo) ? $request->quantitykilo : NULL;
-        $services->quantitylitres = isset($request->quantitylitres) ? $request->quantitylitres : NULL;
-        $services->purchase = $request->purchase;
-        $services->salesamountetrading = isset($request->salesamountetrading) ? $request->salesamountetrading : NULL;
-        $services->salesamountphysical = isset($request->salesamountphysical) ? $request->salesamountphysical : NULL;
-        $services->income = $request->income;
-        $services->profit = $request->profit;
-        $services->save();
+        $arraycount = count($request->count);
+
+        for ($i = 0; $i < $arraycount; $i++) {
+
+            $services = new Services;
+            $services->user_id = Auth::user()->id;
+            $services->services_id = isset($request->service_id[$i]) ? $request->service_id[$i] : NULL;
+            $services->servicesdate = $request->servicedate;
+            $services->count =  isset($request->count[$i]) ? $request->count[$i] : NULL;
+            $services->noofcentres = isset($request->noofcentres[$i]) ? $request->noofcentres[$i] : NULL;
+            $services->noofvarieties = isset($request->noofvarieties[$i]) ? $request->noofvarieties[$i] : NULL;
+            $services->noofcustomers = isset($request->noofcustomers[$i]) ? $request->noofcustomers[$i] : NULL;
+            $services->nooffarmers = isset($request->nooffarmers[$i]) ? $request->nooffarmers[$i] : NULL;
+            $services->quantitykilos = isset($request->quantitykilos[$i]) ? $request->quantitykilos[$i] : NULL;
+            $services->quantitylitres = isset($request->quantitylitres[$i]) ? $request->quantitylitres[$i] : NULL;
+            $services->purchase = isset($request->purchase[$i]) ? $request->purchase[$i] : NULL;
+            $services->salesamountetrading = isset($request->salesamountetrading[$i]) ? $request->salesamountetrading[$i] : NULL;
+            $services->salesamountphysical = isset($request->salesamountphysical[$i]) ? $request->salesamountphysical[$i] : NULL;
+            $services->incomegenerated = isset($request->salesamountphysical[$i]) ? $request->salesamountphysical[$i] : NULL;
+            $services->profit = isset($request->profit[$i]) ? $request->profit[$i] : NULL;
+
+            $services->save();
+
+        }
 
         return redirect('/society/services/add')->with('status', 'Services added successfully');
     }

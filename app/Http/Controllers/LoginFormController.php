@@ -34,8 +34,22 @@ class LoginFormController extends Controller
         $credentials = $request->only('username', 'password');
         if (Auth::attempt($credentials)) {
 
-            return redirect()->intended('/society/dashboard')
+            if(Auth::user()->role == 1){
+                return redirect()->intended('/md/dashboard')
                 ->withSuccess('Signed in');
+            }else if(Auth::user()->role == 2){
+                return redirect()->intended('/superadmin/dashboard')
+                ->withSuccess('Signed in');
+            }else if(Auth::user()->role == 3){
+                return redirect()->intended('/jr/dashboard')
+                ->withSuccess('Signed in');
+            }else if(Auth::user()->role == 4){
+                return redirect()->intended('/dr/dashboard')
+                ->withSuccess('Signed in');
+            }else if(Auth::user()->role > 4){
+                return redirect()->intended('/society/dashboard')
+                ->withSuccess('Signed in');
+            }
            
         }
   
@@ -101,6 +115,39 @@ class LoginFormController extends Controller
        }
        
        
+    }
+
+    public function importcircleusers(Request $request){
+
+        $mtr_circle = Mtr_circle::all();
+        foreach($mtr_circle as $circle){
+            
+            $User = new User;
+            $User->username = $circle->circle_name.$circle->circle_code;
+            $User->name = $circle->circle_name;
+            $User->password = Hash::make(123456);
+            $User->region_id = $circle->region_id;
+            $User->circle_id = $circle->id;
+            $User->role = 4;
+            $User->save();
+
+        }
+    }
+
+    public function importregionusers(Request $request){
+
+        $mtr_region = Mtr_region::all();
+        foreach($mtr_region as $region){
+            
+            $User = new User;
+            $User->username = $region->region_code;
+            $User->name = $region->region_name;
+            $User->password = Hash::make(123456);
+            $User->region_id = $region->id;
+            $User->role = 3;
+            $User->save();
+
+        }
     }
 
 }

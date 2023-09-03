@@ -2,7 +2,7 @@
 @section('content')
 <main id="main" class="main">
   <div class="pagetitle">
-    <h1>Target & outstanding (onetime)</h1>
+    <h1>Target & outstanding</h1>
     <nav>
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="/society/dashboard">Dashboard</a></li>
@@ -18,7 +18,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
-                  <h5 class="card-title">Annual Target and Outstanding </h5>
+                  {{-- <h5 class="card-title">Annual Target and Outstanding </h5> --}}
                   <div class="row">
                     <div class="col-sm-4 col-md-4 mb-4">
 

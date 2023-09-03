@@ -2,7 +2,7 @@
 @section('content')
 <main id="main" class="main">
   <div class="pagetitle">
-    <h1>Loan Disbursal and collecton</h1>
+    <h1>Loan Disbursal and collection</h1>
     <nav>
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="/society/dashboard">Dashboard</a></li>
@@ -37,7 +37,7 @@
                         @endif
                     </div>
                 </div>
-                  <h5 class="card-title">Issue of Loan and Collection</h5>
+                  {{-- <h5 class="card-title">Issue of Loan and Collection</h5> --}}
                   <form action="{{url('/society/loan/store')}}" method="post" id="loanform" class="row g-3">
                     @csrf
                       <div class="row margindiv">
@@ -97,7 +97,7 @@
                         <div class="col-md-2">
                             <div class="text-center">
                                 <input type="hidden" value="1" id="rowadded">
-                                <a  class="btn btn-warning" id="addrow" >Add row</a>
+                                <a  class="btn btn-warning" id="addrow" >Add new</a>
                             </div>
                         </div>
                         <div class="col-md-4">
@@ -140,7 +140,7 @@
 
 </main><!-- End #main -->
 <script>
-    //Loan add row
+    //Loan Add new
     $('#addrow').on('click', function() {
         console.log("Add new clicked");
         var rowadded = $("#rowadded").val();

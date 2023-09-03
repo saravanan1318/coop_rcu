@@ -2,7 +2,7 @@
 @section('content')
 <main id="main" class="main">
   <div class="pagetitle">
-    <h1>ANNUAL TARGET</h1>
+    <h1>Annual Target and Outstanding</h1>
     <nav>
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="/society/dashboard">Dashboard</a></li>
@@ -18,7 +18,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
-                  <h5 class="card-title">Annual Target and Outstanding </h5>
+                  {{-- <h5 class="card-title">Annual Target and Outstanding </h5> --}}
                   <div class="row">
                     <div class="col-sm-12 col-md-12 mb-4">
                         @if(session('status'))

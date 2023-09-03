@@ -17,18 +17,6 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Purchase List</h5>
-                        <div class="row">
-                            <div class="col-sm-4 col-md-4 mb-4">
-                            </div>
-                            <div class="col-sm-4 col-md-4 mb-4">
-                            </div>
-                            <div class="col-sm-4 col-md-4 mb-4">
-                                <div class="text-center">
-                                    <a href="/society/purchase/add" class="btn btn-primary">Add</a>
-                                </div>
-                            </div>
-                        </div>
                         <div class="row">
                             <div class="col-sm-12 col-md-12 mb-4">
                                 @if (count($errors) > 0)

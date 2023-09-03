@@ -5,6 +5,9 @@ use App\Http\Controllers\WebsiteController;
 use App\Http\Controllers\SocietyController;
 use App\Http\Controllers\LoginFormController;
 use App\Http\Controllers\SuperAdminController;
+use App\Http\Controllers\DRController;
+use App\Http\Controllers\JRController;
+use App\Http\Controllers\MDController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,7 +28,8 @@ Route::get('logout', [LoginFormController::class, 'logout']);
 
 
 Route::get('import-societyusers', [LoginFormController::class, 'importsocietyusers']);
-
+Route::get('import-circleusers', [LoginFormController::class, 'importcircleusers']);
+Route::get('import-regionusers', [LoginFormController::class, 'importregionusers']);
 
 /**SocietyController */
 Route::group(['middleware' => 'auth'], function () {
@@ -79,7 +83,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/society/croploan/loanissued/add', [SocietyController::class, 'croploanloanissuedadd']);
     Route::post('/society/croploan/loanissued/store', [SocietyController::class, 'croploanloanissuedstore']);
 
-    Route::get('/superadmin/dashboard', [SuperAdminController::class, 'dashboard']);
     Route::get('/superadmin/loanreport', [SuperAdminController::class, 'loanreport']);
     Route::get('/superadmin/depositreport', [SuperAdminController::class, 'depositreport']);
     Route::get('/superadmin/purchasereport', [SuperAdminController::class, 'purchasereport']);
@@ -100,6 +103,38 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('export/depositreport',[SuperAdminController::class, 'export_depositreport'])->name('export.depositreport');
     Route::get('export/purchasereport',[SuperAdminController::class, 'export_purchasereport'])->name('export.purchasereport');
     Route::get('export/salereport',[SuperAdminController::class, 'export_salereport'])->name('export.salereport');
+
+    Route::get('/dr/dashboard', [DRController::class, 'dashboard']);
+    Route::get('/dr/loanlist', [DRController::class, 'loanlist']);
+    Route::get('/dr/depositlist', [DRController::class, 'depositlist']);
+    Route::get('/dr/purchaselist', [DRController::class, 'purchaselist']);
+    Route::get('/dr/saleslist', [DRController::class, 'saleslist']);
+    Route::get('/dr/godownlist', [DRController::class, 'godownlist']);
+    Route::get('/dr/servicelist', [DRController::class, 'serviceslist']);
+
+    Route::get('/jr/dashboard', [JRController::class, 'dashboard']);
+    Route::get('/jr/loanlist', [JRController::class, 'loanlist']);
+    Route::get('/jr/depositlist', [JRController::class, 'depositlist']);
+    Route::get('/jr/purchaselist', [JRController::class, 'purchaselist']);
+    Route::get('/jr/saleslist', [JRController::class, 'saleslist']);
+    Route::get('/jr/godownlist', [JRController::class, 'godownlist']);
+    Route::get('/jr/servicelist', [JRController::class, 'serviceslist']);
+    
+    Route::get('/superadmin/dashboard', [SuperAdminController::class, 'dashboard']);
+    Route::get('/superadmin/loanlist', [SuperAdminController::class, 'loanlist']);
+    Route::get('/superadmin/depositlist', [SuperAdminController::class, 'depositlist']);
+    Route::get('/superadmin/purchaselist', [SuperAdminController::class, 'purchaselist']);
+    Route::get('/superadmin/saleslist', [SuperAdminController::class, 'saleslist']);
+    Route::get('/superadmin/godownlist', [SuperAdminController::class, 'godownlist']);
+    Route::get('/superadmin/servicelist', [SuperAdminController::class, 'serviceslist']);
+
+    Route::get('/md/dashboard', [MDController::class, 'dashboard']);
+    Route::get('/md/loanlist', [MDController::class, 'loanlist']);
+    Route::get('/md/depositlist', [MDController::class, 'depositlist']);
+    Route::get('/md/purchaselist', [MDController::class, 'purchaselist']);
+    Route::get('/md/saleslist', [MDController::class, 'saleslist']);
+    Route::get('/md/godownlist', [MDController::class, 'godownlist']);
+    Route::get('/md/servicelist', [MDController::class, 'serviceslist']);
 
 });
 

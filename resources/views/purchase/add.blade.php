@@ -130,7 +130,7 @@
                             <div class="col-md-2">
                                 <div class="text-center">
                                     <input type="hidden" value="1" id="rowadded">
-                                    <a  class="btn btn-warning" id="addrow" >Add row</a>
+                                    <a  class="btn btn-warning" id="addrow" >Add new</a>
                                 </div>
                             </div>
                             <div class="col-md-4">
@@ -173,7 +173,7 @@
 
 </main><!-- End #main -->
 <script>
-    //Loan add row
+    //Loan Add new
     $('#addrow').on('click', function() {
         console.log("Add new clicked");
         var rowadded = $("#rowadded").val();

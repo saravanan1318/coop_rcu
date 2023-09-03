@@ -70,7 +70,7 @@
                                     <tbody id="tbody">
                                         <tr data-id="1" id="row1">
                                             <td>
-                                                <select class="form-control sale_id" style=" width: 150px; " id="sale_id1" name="sale_id[]" value="{{ old('sale_id') }}" required>
+                                                <select class="form-control sale_id" data-rowid="1" style=" width: 150px; " id="sale_id1" name="sale_id[]" value="{{ old('sale_id') }}" required>
                                                     <option value="">SELECT</option>
                                                     @foreach($mtr_sales as $sales)
                                                       <option value="{{ $sales->id }}">{{ $sales->sale_name }}</option>
@@ -111,7 +111,7 @@
                             <div class="col-md-2">
                                 <div class="text-center">
                                     <input type="hidden" value="1" id="rowadded">
-                                    <a  class="btn btn-warning" id="addrow" >Add row</a>
+                                    <a  class="btn btn-warning" id="addrow" >Add new</a>
                                 </div>
                             </div>
                             <div class="col-md-4">
@@ -154,7 +154,7 @@
 
 </main><!-- End #main -->
 <script>
-    //Loan add row
+    //Loan Add new
     $('#addrow').on('click', function() {
         console.log("Add new clicked");
         var rowadded = $("#rowadded").val();
