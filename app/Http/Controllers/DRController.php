@@ -55,6 +55,15 @@ use DB;
 
 class DRController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(function ($request, $next) {
+            if (Auth::check() && Auth::user()->role == 4) {
+                return $next($request);
+            }
+            abort(403);
+        });
+    }
 
     function dashboard()
     {

@@ -30,6 +30,16 @@ class SuperAdminController extends Controller
 {
     //
 
+    public function __construct()
+    {
+        $this->middleware(function ($request, $next) {
+            if (Auth::check() && Auth::user()->role == 2) {
+                return $next($request);
+            }
+            abort(403);
+        });
+    }
+
     function dashboard()
     {
         return view("superadmin.dashboard");

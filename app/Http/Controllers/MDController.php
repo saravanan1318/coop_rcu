@@ -56,6 +56,16 @@ use DB;
 class MDController extends Controller
 {
 
+    public function __construct()
+    {
+        $this->middleware(function ($request, $next) {
+            if (Auth::check() && Auth::user()->role == 1) {
+                return $next($request);
+            }
+            abort(403);
+        });
+    }
+
     function dashboard()
     {
         return view("dashboard");

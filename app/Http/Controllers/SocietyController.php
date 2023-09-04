@@ -50,10 +50,15 @@ use App\Models\Services;
 
 class SocietyController extends Controller
 {
-    // public function __construct()
-    // {
-    //     $this->middleware('auth');
-    // }
+    public function __construct()
+    {
+        $this->middleware(function ($request, $next) {
+            if (Auth::check() && Auth::user()->role > 4) {
+                return $next($request);
+            }
+            abort(403);
+        });
+    }
 
     //
     function index()

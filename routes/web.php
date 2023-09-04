@@ -25,6 +25,7 @@ Route::get('/', [LoginFormController::class, 'index']);
 Route::get('login', [LoginFormController::class, 'index']);
 Route::post('checklogin', [LoginFormController::class, 'checklogin']);
 Route::get('logout', [LoginFormController::class, 'logout']);
+//Route::get('login', [ 'as' => 'login', 'uses' => 'LoginFormController@index']);
 
 
 Route::get('import-societyusers', [LoginFormController::class, 'importsocietyusers']);
