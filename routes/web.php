@@ -76,9 +76,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/society/croploan/target/add', [SocietyController::class, 'croploantargetadd']);
     Route::post('/society/croploan/target/store', [SocietyController::class, 'croploantargetstore']);
 
-    Route::get('/society/croploan/entry', [SocietyController::class, 'croploanentrylist']);
-    Route::get('/society/croploan/entry/add', [SocietyController::class, 'croploanentryadd']);
-    Route::post('/society/croploan/entry/store', [SocietyController::class, 'croploanentrystore']);
+    Route::get('/society/croploan', [SocietyController::class, 'croploanentrylist']);
+    Route::get('/society/croploan/entry', [SocietyController::class, 'croploanentryadd']);
+    Route::post('/society/croploan/store', [SocietyController::class, 'croploanentrystore']);
+    Route::get('/society/croploan/cropwise/{croploan_id}', [SocietyController::class, 'croploanentrycropwiselist']);
 
     Route::get('/society/croploan/loanissued', [SocietyController::class, 'croploanloanissuedlist']);
     Route::get('/society/croploan/loanissued/add', [SocietyController::class, 'croploanloanissuedadd']);
@@ -112,6 +113,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/dr/saleslist', [DRController::class, 'saleslist']);
     Route::get('/dr/godownlist', [DRController::class, 'godownlist']);
     Route::get('/dr/servicelist', [DRController::class, 'serviceslist']);
+    Route::get('/dr/croploanlist', [DRController::class, 'croploanlist']);
 
     Route::get('/jr/dashboard', [JRController::class, 'dashboard']);
     Route::get('/jr/loanlist', [JRController::class, 'loanlist']);
@@ -120,6 +122,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/jr/saleslist', [JRController::class, 'saleslist']);
     Route::get('/jr/godownlist', [JRController::class, 'godownlist']);
     Route::get('/jr/servicelist', [JRController::class, 'serviceslist']);
+    Route::get('/jr/croploanlist', [JRController::class, 'croploanlist']);
     
     Route::get('/superadmin/dashboard', [SuperAdminController::class, 'dashboard']);
     Route::get('/superadmin/loanlist', [SuperAdminController::class, 'loanlist']);
@@ -128,6 +131,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/superadmin/saleslist', [SuperAdminController::class, 'saleslist']);
     Route::get('/superadmin/godownlist', [SuperAdminController::class, 'godownlist']);
     Route::get('/superadmin/servicelist', [SuperAdminController::class, 'serviceslist']);
+    Route::get('/superadmin/croploanlist', [SuperAdminController::class, 'croploanlist']);
 
     Route::get('/md/dashboard', [MDController::class, 'dashboard']);
     Route::get('/md/loanlist', [MDController::class, 'loanlist']);
@@ -136,6 +140,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/md/saleslist', [MDController::class, 'saleslist']);
     Route::get('/md/godownlist', [MDController::class, 'godownlist']);
     Route::get('/md/servicelist', [MDController::class, 'serviceslist']);
+    Route::get('/md/croploanlist', [MDController::class, 'croploanlist']);
 
 });
 

@@ -138,4 +138,26 @@ class JRController extends Controller
         return view("services.list", compact('services'));
     }
 
+    function croploanentrycropwiselist(Request $request)
+    {
+
+        $croploan_cropwise = Croploan_cropwise::where('croploan_id', $request->route('croploan_id'))->paginate(5);
+
+        return view("croploan.entry.cropwiselist", compact('croploan_cropwise'));
+    }
+
+    function croploanlist()
+    {
+
+      //  $croploan_entry = Croploan_entry::where('user_id', Auth::user()->id)->paginate(5);
+
+        $croploan_entry = Croploan_entry::select('*')
+        ->whereIn('user_id',function($query){
+           $query->select('id')->from('users')->where('region_id', Auth::user()->region_id);
+        })
+        ->paginate(5);
+
+        return view("croploan.entry.list", compact('croploan_entry'));
+    }
+
 }

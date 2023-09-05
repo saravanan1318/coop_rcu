@@ -9,6 +9,12 @@
       </a>
     </li><!-- End Dashboard Nav -->
     <li class="nav-item">
+      <a class="nav-link " href="/md/croploanlist">
+        <i class="bi bi-grid"></i>
+        <span>Crop Loan</span>
+      </a>
+    </li><!-- End Dashboard Nav -->
+    <li class="nav-item">
       <a class="nav-link " href="/md/depositlist">
         <i class="bi bi-grid"></i>
         <span>Deposit</span>
@@ -46,6 +52,12 @@
       <a class="nav-link " href="/superadmin/loanlist">
         <i class="bi bi-grid"></i>
         <span>Loan</span>
+      </a>
+    </li><!-- End Dashboard Nav -->
+    <li class="nav-item">
+      <a class="nav-link " href="/superadmin/croploanlist">
+        <i class="bi bi-grid"></i>
+        <span>Crop Loan</span>
       </a>
     </li><!-- End Dashboard Nav -->
     <li class="nav-item">
@@ -89,6 +101,12 @@
       </a>
     </li><!-- End Dashboard Nav -->
     <li class="nav-item">
+      <a class="nav-link " href="/jr/croploanlist">
+        <i class="bi bi-grid"></i>
+        <span>Crop Loan</span>
+      </a>
+    </li><!-- End Dashboard Nav -->
+    <li class="nav-item">
       <a class="nav-link " href="/jr/depositlist">
         <i class="bi bi-grid"></i>
         <span>Deposit</span>
@@ -126,6 +144,12 @@
       <a class="nav-link " href="/dr/loanlist">
         <i class="bi bi-grid"></i>
         <span>Loan</span>
+      </a>
+    </li><!-- End Dashboard Nav -->
+    <li class="nav-item">
+      <a class="nav-link " href="/dr/croploanlist">
+        <i class="bi bi-grid"></i>
+        <span>Crop Loan</span>
       </a>
     </li><!-- End Dashboard Nav -->
     <li class="nav-item">
@@ -202,7 +226,28 @@
           </li> --}}
         </ul>
       </li><!-- End Forms Nav -->
-
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#croploan-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-journal-text"></i><span>Crop Loan</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="croploan-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="/society/croploan/target">
+              <i class="bi bi-circle"></i><span>Target</span>
+            </a>
+          </li>
+          <li>
+            <a href="/society/croploan/entry">
+              <i class="bi bi-circle"></i><span>Entry</span>
+            </a>
+          </li>
+          <li>
+            <a href="/society/croploan">
+              <i class="bi bi-circle"></i><span>view</span>
+            </a>
+          </li>
+        </ul>
+      </li>
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#deposit-nav" data-bs-toggle="collapse" href="#">
           <i class="bi bi-journal-text"></i><span>Deposit</span><i class="bi bi-chevron-down ms-auto"></i>
@@ -311,28 +356,7 @@
           </li>
         </ul>
       </li>
-      <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#croploan-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-journal-text"></i><span>Crop Loan</span><i class="bi bi-chevron-down ms-auto"></i>
-        </a>
-        <ul id="croploan-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-          <li>
-            <a href="/society/croploan/target">
-              <i class="bi bi-circle"></i><span>Target</span>
-            </a>
-          </li>
-          <li>
-            <a href="/society/croploan/add">
-              <i class="bi bi-circle"></i><span>Entry</span>
-            </a>
-          </li>
-          <li>
-            <a href="/society/croploan/list">
-              <i class="bi bi-circle"></i><span>view</span>
-            </a>
-          </li>
-        </ul>
-      </li>
+      
       <!-- End Forms Nav -->
       {{-- <li class="nav-heading">Pages</li>
 
