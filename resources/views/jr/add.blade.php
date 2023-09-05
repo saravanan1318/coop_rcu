@@ -2,11 +2,11 @@
 @section('content')
 <main id="main" class="main">
   <div class="pagetitle">
-    <h1>DR Details</h1>
+    <h1>JR Details</h1>
     <nav>
       <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="/dr/add">Dashboard</a></li>
-        <li class="breadcrumb-item">DR</li>
+        <li class="breadcrumb-item"><a href="/jr/add">Dashboard</a></li>
+        <li class="breadcrumb-item">JR</li>
         <li class="breadcrumb-item active">Add</li>
       </ol>
     </nav>
@@ -39,7 +39,7 @@
                 </div>
 
                   {{-- Your DR Details Form Goes Here --}}
-                  {{-- <form action="{{url("/dr/store")}}" method="post" id="drform" class="row g-3"> --}}
+                  <form action="{{url('your_action_url')}}" method="post" id="jrform" class="row g-3">
                     @csrf
                       <div class="row margindiv">
                         <!-- Your other form fields go here -->
@@ -136,7 +136,7 @@
                                     </tr>
                                 </tbody>
                             </table>
-                                      <table class="table table-bordered">
+                            <table class="table table-bordered">
                                 <thead>
                                     <tr>
                                         <th>Disqualification - 36</th>
@@ -206,25 +206,4 @@
      </div>
   </section>
 </main><!-- End #main -->
-<script>
-    // DR Add new row
-    $('#addrow').on('click', function() {
-        console.log("Add new clicked");
-        var rowadded = $("#rowadded").val();
-        var updatedrowadded = parseInt(rowadded) + 1;
-        var html = '<tr data-id="'+updatedrowadded+'" id="row'+updatedrowadded+'"> <td> <!-- Add your input fields here --> </td> <td> <!-- Add your input fields here --> </td> <td> <!-- Add your input fields here --> </td> <td> <!-- Add your input fields here --> </td> <td> <!-- Add your input fields here --> </td> <td> <!-- Add your input fields here --> </td> <td> <!-- Add your input fields here --> </td> <td> <!-- Add your input fields here --> </td> <td> <!-- Add your input fields here --> </td> <td> <a class="btn btn-danger deleterow" data-delete-id="'+updatedrowadded+'" onclick="deletethisrow('+updatedrowadded+')" >Delete</a> </td> </tr>';
-        console.log(html);
-        $("#tbody").append(html);
-        $("#rowadded").val(updatedrowadded);
-    });
-
-    function deletethisrow(deletethisrow){
-        console.log(deletethisrow);
-        var rowtodelete = $(this).attr("data-delete-id");
-        $("#row"+deletethisrow).remove();
-    }
-
-    // Other JavaScript logic goes here
-
-</script>
 @endsection

@@ -45,6 +45,7 @@ use App\Models\Croploan_target;
 use App\Models\Croploan_entry;
 use App\Models\Croploan_categorywise;
 use App\Models\Croploan_cropwise;
+use App\Models\Dr;
 use App\Models\Mtr_services;
 use App\Models\Mtr_crop;
 use App\Models\Services;

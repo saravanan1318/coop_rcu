@@ -7,7 +7,8 @@
         <i class="bi bi-grid"></i>
         <span>Loan</span>
       </a>
-    </li><!-- End Dashboard Nav -->
+    </li>
+    <!-- End Dashboard Nav -->
     <li class="nav-item">
       <a class="nav-link " href="/md/croploanlist">
         <i class="bi bi-grid"></i>
@@ -105,7 +106,13 @@
         <i class="bi bi-grid"></i>
         <span>Crop Loan</span>
       </a>
-    </li><!-- End Dashboard Nav -->
+    </li>
+    <li class="nav-item">
+        <a class="nav-link " href="/jr/add">
+          <i class="bi bi-grid"></i>
+          <span>JR Details</span>
+        </a>
+      </li><!-- End Dashboard Nav -->
     <li class="nav-item">
       <a class="nav-link " href="/jr/depositlist">
         <i class="bi bi-grid"></i>
@@ -248,6 +255,11 @@
           </li>
         </ul>
       </li>
+      <li>
+        <a href="/dr/add">
+          <i class="bi bi-circle"></i><span>DR</span>
+        </a>
+      </li>
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#deposit-nav" data-bs-toggle="collapse" href="#">
           <i class="bi bi-journal-text"></i><span>Deposit</span><i class="bi bi-chevron-down ms-auto"></i>
@@ -270,7 +282,6 @@
           </li>
         </ul>
       </li><!-- End Forms Nav -->
-
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#purchase-nav" data-bs-toggle="collapse" href="#">
           <i class="bi bi-journal-text"></i><span>Purchase</span><i class="bi bi-chevron-down ms-auto"></i>
@@ -356,7 +367,7 @@
           </li>
         </ul>
       </li>
-      
+
       <!-- End Forms Nav -->
       {{-- <li class="nav-heading">Pages</li>
 

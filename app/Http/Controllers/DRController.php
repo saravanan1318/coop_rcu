@@ -47,6 +47,7 @@ use App\Models\Croploan_target;
 use App\Models\Croploan_entry;
 use App\Models\Croploan_categorywise;
 use App\Models\Croploan_cropwise;
+use App\Models\Dr;
 use App\Models\Mtr_services;
 use App\Models\Services;
 
@@ -69,13 +70,13 @@ class DRController extends Controller
     {
         return view("dashboard");
     }
-    
+
     function loanlist()
     {
 
         $loans = Loan::select('*')->with('loantype')
-            ->whereIn('user_id',function($query){
-               $query->select('id')->from('users')->where('circle_id', Auth::user()->circle_id);
+            ->whereIn('user_id', function ($query) {
+                $query->select('id')->from('users')->where('circle_id', Auth::user()->circle_id);
             })
             ->paginate(5);
         return view("loan.list", compact('loans'));
@@ -85,30 +86,30 @@ class DRController extends Controller
     function depositlist()
     {
         $deposits = Deposits::select('*')->with('deposittype')
-            ->whereIn('user_id',function($query){
-               $query->select('id')->from('users')->where('circle_id', Auth::user()->circle_id);
+            ->whereIn('user_id', function ($query) {
+                $query->select('id')->from('users')->where('circle_id', Auth::user()->circle_id);
             })
             ->paginate(5);
 
-         return view("deposit.list", compact('deposits'));
+        return view("deposit.list", compact('deposits'));
     }
 
     function purchaselist()
     {
         $purchases = Purchases::select('*')->with('purchasetype')
-            ->whereIn('user_id',function($query){
-               $query->select('id')->from('users')->where('circle_id', Auth::user()->circle_id);
+            ->whereIn('user_id', function ($query) {
+                $query->select('id')->from('users')->where('circle_id', Auth::user()->circle_id);
             })
             ->paginate(5);
 
         return view("purchase.list", compact('purchases'));
     }
-    
+
     function saleslist()
     {
         $sales = Sales::select('*')->with('saletype')
-            ->whereIn('user_id',function($query){
-               $query->select('id')->from('users')->where('circle_id', Auth::user()->circle_id);
+            ->whereIn('user_id', function ($query) {
+                $query->select('id')->from('users')->where('circle_id', Auth::user()->circle_id);
             })
             ->paginate(5);
 
@@ -119,8 +120,8 @@ class DRController extends Controller
     {
 
         $godowns = Godowns::select('*')
-            ->whereIn('user_id',function($query){
-               $query->select('id')->from('users')->where('circle_id', Auth::user()->circle_id);
+            ->whereIn('user_id', function ($query) {
+                $query->select('id')->from('users')->where('circle_id', Auth::user()->circle_id);
             })
             ->paginate(5);
         return view("godown.list", compact('godowns'));
@@ -130,10 +131,10 @@ class DRController extends Controller
     {
 
         $services = Services::select('*')
-        ->whereIn('user_id',function($query){
-           $query->select('id')->from('users')->where('circle_id', Auth::user()->circle_id);
-        })
-        ->paginate(5);
+            ->whereIn('user_id', function ($query) {
+                $query->select('id')->from('users')->where('circle_id', Auth::user()->circle_id);
+            })
+            ->paginate(5);
         return view("services.list", compact('services'));
     }
 
@@ -149,15 +150,20 @@ class DRController extends Controller
     function croploanlist()
     {
 
-      //  $croploan_entry = Croploan_entry::where('user_id', Auth::user()->id)->paginate(5);
+        //  $croploan_entry = Croploan_entry::where('user_id', Auth::user()->id)->paginate(5);
 
         $croploan_entry = Croploan_entry::select('*')
-        ->whereIn('user_id',function($query){
-           $query->select('id')->from('users')->where('circle_id', Auth::user()->circle_id);
-        })
-        ->paginate(5);
+            ->whereIn('user_id', function ($query) {
+                $query->select('id')->from('users')->where('circle_id', Auth::user()->circle_id);
+            })
+            ->paginate(5);
 
         return view("croploan.entry.list", compact('croploan_entry'));
     }
+    function add()
+    {
 
+        $dr = Dr::select('*')->paginate(5);
+        return view("dr.add", compact('dr'));
+    }
 }
