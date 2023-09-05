@@ -77,12 +77,12 @@
                                                 <select class="form-control service_id" data-rowid="1" style=" width: 150px; " id="service_id1" name="service_id[]" required>
                                                     <option value="">SELECT</option>
                                                     @foreach($mtr_services as $services)
-                                                      <option value="{{ $services->id }}">{{ $services->service_name }}</option>
+                                                      <option value="{{ $services->id }}">{{ $services->services_name }}</option>
                                                     @endforeach
                                                 </select>
                                             </td>
                                             <td>
-                                                <input type="text" class="form-control" style=" width: 150px; " id="count1" name="count[]" required>
+                                                <input type="text" class="form-control" style=" width: 150px;" id="count1" name="count[]" required>
                                             </td>
                                             <td>
                                                 <input type="text" class="form-control" style=" width: 150px; " id="noofcentres1" name="noofcentres[]" required>
@@ -246,7 +246,7 @@
 
         }else if(this.value == "4"){
 
-            
+
             $("#count"+rowid).attr("readonly",true);
             $("#noofcentres"+rowid).attr("readonly",true);
             $("#noofvarieties"+rowid).attr("readonly",false);
@@ -368,7 +368,7 @@
 
     }else if(this.value == "4"){
 
-        
+
         $("#count"+rowid).attr("readonly",true);
         $("#noofcentres"+rowid).attr("readonly",true);
         $("#noofvarieties"+rowid).attr("readonly",false);

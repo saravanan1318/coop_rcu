@@ -395,10 +395,9 @@ class SocietyController extends Controller
             $godowns->percentageutilized = isset($request->percentageutilized[$i]) ? $request->percentageutilized[$i] : NULL;
             $godowns->income = isset($request->income[$i]) ? $request->income[$i] : NULL;
             $godowns->save();
-
         }
 
-       
+
 
         return redirect('/society/godown/add')->with('status', 'Godown added successfully');
     }
@@ -444,7 +443,6 @@ class SocietyController extends Controller
             $services->profit = isset($request->profit[$i]) ? $request->profit[$i] : NULL;
 
             $services->save();
-
         }
 
         return redirect('/society/services/add')->with('status', 'Services added successfully');
@@ -594,7 +592,6 @@ class SocietyController extends Controller
             $croploan_cropwise->ofnoofloan = isset($request->ofnoofloan[$i]) ? $request->ofnoofloan[$i] : NULL;
             $croploan_cropwise->ofnoofamount = isset($request->ofnoofamount[$i]) ? $request->ofnoofamount[$i] : NULL;
             $croploan_cropwise->save();
-
         }
 
         return redirect('/society/croploan/entry')->with('status', 'Crop entry added successfully');
