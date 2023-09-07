@@ -106,19 +106,7 @@
         <i class="bi bi-grid"></i>
         <span>Crop Loan</span>
       </a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link " href="/jr/add">
-          <i class="bi bi-grid"></i>
-          <span>JR Details</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link " href="/jr/list">
-          <i class="bi bi-grid"></i>
-          <span>JR List</span>
-        </a>
-      </li><!-- End Dashboard Nav -->
+    </li><!-- End Dashboard Nav -->
     <li class="nav-item">
       <a class="nav-link " href="/jr/depositlist">
         <i class="bi bi-grid"></i>
@@ -148,7 +136,117 @@
         <i class="bi bi-grid"></i>
         <span>Services</span>
       </a>
-    </li><!-- End Dashboard Nav -->
+    </li>
+    <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#issue-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-journal-text"></i><span>Establishment</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="issue-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
+          <li class="nav-item">
+            <a class="nav-link collapsed" data-bs-toggle="collapse" href="#department-nav">
+              <i class="bi bi-grid"></i>
+              <span>Department</span><i class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul id="department-nav" class="collapse">
+              <li class="nav-item">
+                <a class="nav-link collapsed" data-bs-toggle="collapse" href="#17a-nav">
+                  <i class="bi bi-grid"></i>
+                  <span>17a</span><i class="bi bi-chevron-down ms-auto"></i>
+                </a>
+                <ul id="17a-nav" class="collapse">
+                  <li><a href="/dr/eight/add/entry"><i class="bi bi-file-earmark-plus"></i> Entry</a></li>
+                  <li><a href="/dr/eight/add/view"><i class="bi bi-file-earmark-text"></i> View</a></li>
+                </ul>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link collapsed" data-bs-toggle="collapse" href="#17b-nav">
+                  <i class="bi bi-grid"></i>
+                  <span>17b</span><i class="bi bi-chevron-down ms-auto"></i>
+                </a>
+                <ul id="17b-nav" class="collapse">
+                  <li><a href="/dr/eight/add/entry"><i class="bi bi-file-earmark-plus"></i> Entry</a></li>
+                  <li><a href="/dr/eight/add/view"><i class="bi bi-file-earmark-text"></i> View</a></li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link collapsed" data-bs-toggle="collapse" href="#society-nav">
+              <i class="bi bi-grid"></i>
+              <span>Society</span><i class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul id="society-nav" class="collapse">
+              <li class="nav-item">
+                <a class="nav-link collapsed" data-bs-toggle="collapse" href="#dai-nav">
+                  <i class="bi bi-grid"></i>
+                  <span>DAI</span><i class="bi bi-chevron-down ms-auto"></i>
+                </a>
+                <ul id="dai-nav" class="collapse">
+                  <li><a href="/dr/eight/add/entry"><i class="bi bi-file-earmark-plus"></i> Entry</a></li>
+                  <li><a href="/dr/eight/add/view"><i class="bi bi-file-earmark-text"></i> View</a></li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-toggle="collapse" href="#issue-nav">
+          <i class="bi bi-journal-text"></i><span>Statutory</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="issue-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
+          <li class="nav-item">
+            <a class="nav-link collapsed" data-bs-toggle="collapse" href="#inquiry-nav">
+              <i class="bi bi-grid"></i>
+              <span>81-Inquiry</span><i class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul id="inquiry-nav" class="collapse">
+              <li><a href="/dr/eightyone/add"><i class="bi bi-file-earmark-plus"></i> Entry</a></li>
+              <li><a href="/dr/eightyone/list"><i class="bi bi-file-earmark-text"></i> View</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link collapsed" data-bs-toggle="collapse" href="#inspection-nav">
+              <i class="bi bi-grid"></i>
+              <span>82-Inspection</span><i class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul id="inspection-nav" class="collapse">
+              <li><a href="/dr/eight/add/entry"><i class="bi bi-file-earmark-plus"></i> Entry</a></li>
+              <li><a href="/dr/eight/add/view"><i class="bi bi-file-earmark-text"></i> View</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link collapsed" data-bs-toggle="collapse" href="#disqualification-nav">
+              <i class="bi bi-grid"></i>
+              <span>36-Disqualification</span><i class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul id="disqualification-nav" class="collapse">
+              <li><a href="/dr/eight/add/entry"><i class="bi bi-file-earmark-plus"></i> Entry</a></li>
+              <li><a href="/dr/eight/add/view"><i class="bi bi-file-earmark-text"></i> View</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link collapsed" data-bs-toggle="collapse" href="#surcharge-nav">
+              <i class="bi bi-grid"></i>
+              <span>87-Surcharge</span><i class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul id="surcharge-nav" class="collapse">
+              <li><a href="/dr/eight/add/entry"><i class="bi bi-file-earmark-plus"></i> Entry</a></li>
+              <li><a href="/dr/eight/add/view"><i class="bi bi-file-earmark-text"></i> View</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+
+
+      <script>
+        // Add jQuery or JavaScript code to toggle the collapse/expand behavior
+        $(".nav-link.collapsed").on("click", function() {
+          $(this).find(".bi-chevron-down").toggleClass("rotate-180");
+        });
+      </script><!-- End Dashboard Nav -->
   </ul>
   @endif
   @if(Auth::user()->role == 4)
@@ -164,19 +262,7 @@
         <i class="bi bi-grid"></i>
         <span>Crop Loan</span>
       </a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link " href="/dr/add">
-          <i class="bi bi-grid"></i>
-          <span>DR Details</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link " href="/dr/list">
-          <i class="bi bi-grid"></i>
-          <span>DR List</span>
-        </a>
-      </li><!-- End Dashboard Nav -->
+    <!-- End Dashboard Nav -->
     <li class="nav-item">
       <a class="nav-link " href="/dr/depositlist">
         <i class="bi bi-grid"></i>
@@ -206,7 +292,112 @@
         <i class="bi bi-grid"></i>
         <span>Services</span>
       </a>
-    </li><!-- End Dashboard Nav -->
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#issue-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-journal-text"></i><span>Establishment</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="issue-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
+          <li class="nav-item">
+            <a class="nav-link collapsed" data-bs-toggle="collapse" href="#department-nav">
+              <i class="bi bi-grid"></i>
+              <span>Department</span><i class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul id="department-nav" class="collapse">
+              <li class="nav-item">
+                <a class="nav-link collapsed" data-bs-toggle="collapse" href="#17a-nav">
+                  <i class="bi bi-grid"></i>
+                  <span>Disciplinary Action-17(A) & 17(B)</span><i class="bi bi-chevron-down ms-auto"></i>
+                </a>
+                <ul id="17a-nav" class="collapse">
+                  <li><a href="/dr/seventeena/add"><i class="bi bi-file-earmark-plus"></i> Entry</a></li>
+                  <li><a href="/dr/seventeena/list"><i class="bi bi-file-earmark-text"></i> View</a></li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link collapsed" data-bs-toggle="collapse" href="#society-nav">
+              <i class="bi bi-grid"></i>
+              <span>Society</span><i class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul id="society-nav" class="collapse">
+              <li class="nav-item">
+                <a class="nav-link collapsed" data-bs-toggle="collapse" href="#dai-nav">
+                  <i class="bi bi-grid"></i>
+                  <span>Disciplinary Action-Institution</span><i class="bi bi-chevron-down ms-auto"></i>
+                </a>
+                <ul id="dai-nav" class="collapse">
+                  <li><a href="/dr/dai/add"><i class="bi bi-file-earmark-plus"></i> Entry</a></li>
+                  <li><a href="/dr/dai/list"><i class="bi bi-file-earmark-text"></i> View</a></li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-toggle="collapse" href="#issue-nav">
+          <i class="bi bi-journal-text"></i><span>Statutory</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="issue-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
+          <li class="nav-item">
+            <a class="nav-link collapsed" data-bs-toggle="collapse" href="#inquiry-nav">
+              <i class="bi bi-grid"></i>
+              <span>81-Inquiry</span><i class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul id="inquiry-nav" class="collapse">
+              <li><a href="/dr/eightyone/add"><i class="bi bi-file-earmark-plus"></i> Entry</a></li>
+              <li><a href="/dr/eightyone/list"><i class="bi bi-file-earmark-text"></i> View</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link collapsed" data-bs-toggle="collapse" href="#inspection-nav">
+              <i class="bi bi-grid"></i>
+              <span>82-Inspection</span><i class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul id="inspection-nav" class="collapse">
+              <li><a href="/dr/eightytwo/add"><i class="bi bi-file-earmark-plus"></i> Entry</a></li>
+              <li><a href="/dr/eightytwo/list"><i class="bi bi-file-earmark-text"></i> View</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link collapsed" data-bs-toggle="collapse" href="#disqualification-nav">
+              <i class="bi bi-grid"></i>
+              <span>36-Disqualification</span><i class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul id="disqualification-nav" class="collapse">
+              <li><a href="/dr/disqualify/add"><i class="bi bi-file-earmark-plus"></i> Entry</a></li>
+              <li><a href="/dr/disqualify/list"><i class="bi bi-file-earmark-text"></i> View</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link collapsed" data-bs-toggle="collapse" href="#surcharge-nav">
+              <i class="bi bi-grid"></i>
+              <span>87-Surcharge</span><i class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul id="surcharge-nav" class="collapse">
+              <li><a href="/dr/surcharge/add"><i class="bi bi-file-earmark-plus"></i> Entry</a></li>
+              <li><a href="/dr/surcharge/list"><i class="bi bi-file-earmark-text"></i> View</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+
+
+      <script>
+        // Add jQuery or JavaScript code to toggle the collapse/expand behavior
+        $(".nav-link.collapsed").on("click", function() {
+          $(this).find(".bi-chevron-down").toggleClass("rotate-180");
+        });
+      </script>
+
+
+
+      <!-- End Dashboard Nav -->
   </ul>
   @endif
   @if(Auth::user()->role > 4)

@@ -107,8 +107,32 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('export/salereport', [SuperAdminController::class, 'export_salereport'])->name('export.salereport');
 
 
-    Route::get('/dr/list', [DRController::class, 'list']);
-    Route::get('/dr/add', [DRController::class, 'add']);
+    Route::get('/dr/eightyone/list', [DRController::class, 'eightyonelist']);
+    Route::get('/dr/eightyone/add', [DRController::class, 'eightyoneadd']);
+    Route::post('/dr/eightyone/store', [DRController::class, 'eightyonestore']);
+
+
+    Route::get('/dr/eightytwo/list', [DRController::class, 'eightytwolist']);
+    Route::get('/dr/eightytwo/add', [DRController::class, 'eightytwoadd']);
+    Route::post('/dr/eightytwo/store', [DRController::class, 'eightytwostore']);
+
+    Route::get('/dr/seventeena/list', [DRController::class, 'seventeenalist']);
+    Route::get('/dr/seventeena/add', [DRController::class, 'seventeenaadd']);
+    Route::post('/dr/seventeena/store', [DRController::class, 'seventeenastore']);
+
+
+    Route::get('/dr/disqualify/list', [DRController::class, 'disqualifylist']);
+    Route::get('/dr/disqualify/add', [DRController::class, 'disqualifyadd']);
+    Route::post('/dr/disqualify/store', [DRController::class, 'disqualifystore']);
+
+    Route::get('/dr/dai/list', [DRController::class, 'dailist']);
+    Route::get('/dr/dai/add', [DRController::class, 'daiadd']);
+    Route::post('/dr/dai/store', [DRController::class, 'daistore']);
+
+    Route::get('/dr/surcharge/list', [DRController::class, 'surchargelist']);
+    Route::get('/dr/surcharge/add', [DRController::class, 'surchargeadd']);
+    Route::post('/dr/surcharge/store', [DRController::class, 'surchargestore']);
+
     Route::get('/dr/dashboard', [DRController::class, 'dashboard']);
     Route::get('/dr/loanlist', [DRController::class, 'loanlist']);
     Route::get('/dr/depositlist', [DRController::class, 'depositlist']);
@@ -128,6 +152,38 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/jr/godownlist', [JRController::class, 'godownlist']);
     Route::get('/jr/servicelist', [JRController::class, 'serviceslist']);
     Route::get('/jr/croploanlist', [JRController::class, 'croploanlist']);
+
+
+
+    Route::get('/jr/eightyone/list', [DRController::class, 'eightyonelist']);
+    Route::get('/jr/eightyone/add', [DRController::class, 'eightyoneadd']);
+    Route::get('/jr/eightyone/store', [DRController::class, 'eightyonestore']);
+
+
+    Route::get('/jr/eightytwo/list', [DRController::class, 'eightyonelist']);
+    Route::get('/jr/eighytwo/add', [DRController::class, 'eightytwoadd']);
+    Route::get('/jr/eighytwo/store', [DRController::class, 'eightytwostore']);
+
+    Route::get('/jr/seventeena/list', [DRController::class, 'seventeenalist']);
+    Route::get('/jr/seventeena/add', [DRController::class, 'seventeenaadd']);
+    Route::get('/jr/seventeena/store', [DRController::class, 'seventeenastore']);
+
+
+    Route::get('/jr/seventeenb/list', [DRController::class, 'seventeenblist']);
+    Route::get('/jr/seventeenb/add', [DRController::class, 'seventeenbadd']);
+    Route::get('/jr/seventeenb/store', [DRController::class, 'seventeenbstore']);
+
+    Route::get('/jr/disqualify/list', [DRController::class, 'disqualifylist']);
+    Route::get('/jr/disqualify/add', [DRController::class, 'disqualifyadd']);
+    Route::get('/jr/disqualify/store', [DRController::class, 'disqualifystore']);
+
+    Route::get('/jr/dai/list', [DRController::class, 'dailist']);
+    Route::get('/jr/dai/add', [DRController::class, 'daiadd']);
+    Route::get('/jr/dai/store', [DRController::class, 'daistore']);
+
+    Route::get('/jr/surcharge/list', [DRController::class, 'surchargelist']);
+    Route::get('/jr/surcharge/add', [DRController::class, 'surchargeadd']);
+    Route::get('/jr/surcharge/store', [DRController::class, 'surchargestore']);
 
     Route::get('/superadmin/dashboard', [SuperAdminController::class, 'dashboard']);
     Route::get('/superadmin/loanlist', [SuperAdminController::class, 'loanlist']);
