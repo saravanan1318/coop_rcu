@@ -166,4 +166,10 @@ class DRController extends Controller
         $dr = Dr::select('*')->paginate(5);
         return view("dr.add", compact('dr'));
     }
+    function list()
+    {
+
+        $dr = dr::select('*')->paginate(5);
+        return view("dr.list", compact('dr'));
+    }
 }

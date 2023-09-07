@@ -44,6 +44,7 @@
                       <div class="row margindiv">
                         <!-- Your other form fields go here -->
                         <div class="col-md-12" style="margin-top: 10px">
+                            <h2>81 & 82</h2>
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
@@ -80,7 +81,7 @@
                                         <th>Total</th>
                                         <th>Disposed this month</th>
                                         <th>Pending</th>
-                                        <th>Pending percentage (Col.5/3*100)</th>
+                                        <th>Pending percentage</th>
                                     </tr>
                                 </thead>
                                 <tbody>

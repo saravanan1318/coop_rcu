@@ -166,4 +166,10 @@ class JRController extends Controller
         $jr = Jr::select('*')->paginate(5);
         return view("jr.add", compact('jr'));
     }
+    function list()
+    {
+
+        $jr = Jr::select('*')->paginate(5);
+        return view("jr.list", compact('jr'));
+    }
 }

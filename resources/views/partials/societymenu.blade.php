@@ -112,6 +112,12 @@
           <i class="bi bi-grid"></i>
           <span>JR Details</span>
         </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link " href="/jr/list">
+          <i class="bi bi-grid"></i>
+          <span>JR List</span>
+        </a>
       </li><!-- End Dashboard Nav -->
     <li class="nav-item">
       <a class="nav-link " href="/jr/depositlist">
@@ -254,11 +260,6 @@
             </a>
           </li>
         </ul>
-      </li>
-      <li>
-        <a href="/dr/add">
-          <i class="bi bi-circle"></i><span>DR</span>
-        </a>
       </li>
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#deposit-nav" data-bs-toggle="collapse" href="#">
