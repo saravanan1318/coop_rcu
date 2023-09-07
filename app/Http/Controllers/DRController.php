@@ -326,6 +326,7 @@ class DRController extends Controller
     function daistore(Request $request)
     {
         $request->validate([
+            'ob' => 'required|integer',
             'recommended_action' => 'required|string|max:255',
             'action_taken' => 'required|string|max:255',
             'disposal' => 'required|string|max:255',
@@ -334,6 +335,7 @@ class DRController extends Controller
 
 
         $seventeena = new Dr_dai();
+        $seventeena->ob = $request->input('ob');
         $seventeena->recommended_action = $request->input('recommended_action');
         $seventeena->action_taken = $request->input('action_taken');
         $seventeena->disposal = $request->input('disposal');

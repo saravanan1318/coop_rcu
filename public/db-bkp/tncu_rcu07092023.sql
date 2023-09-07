@@ -22,6 +22,7 @@ USE `tncu_rcu`;
 -- Dumping structure for table tncu_rcu.dr_dai
 CREATE TABLE IF NOT EXISTS `dr_dai` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  'ob' INT(11) NOT NULL ,
   `recommended_action` varchar(255) NOT NULL,
   `action_taken` varchar(255) NOT NULL,
   `disposal` varchar(255) NOT NULL,

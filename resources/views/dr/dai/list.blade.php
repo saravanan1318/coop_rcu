@@ -39,7 +39,8 @@
                 <table class="table table-responsive table-bordered datatable">
                 <thead style="text-align: center">
                     <tr>
-                        <th scope="col">Recommended</th>
+                        <th scope="col">OB</th>
+                        <th scope="col">Recommended this week</th>
                         <th scope="col">Action taken</th>
                         <th scope="col">Disposal</th>
                         <th scope="col">Percentage of Disposal</th>
@@ -48,6 +49,7 @@
                 <tbody>
                     @foreach($dr as $data)
                         <tr>
+                            <td>{{ $data->ob }}</td>
                             <td>{{ $data->recommended_action }}</td>
                             <td>{{ $data->action_taken }}</td>
                             <td>{{ $data->disposal }}</td>

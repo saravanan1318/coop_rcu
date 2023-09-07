@@ -39,7 +39,7 @@
              <table class="table table-responsive table-bordered datatable">
              <thead style="text-align: center">
                 <tr>
-                    <th>Surcharge Order issued number</th>
+                    <th>Surcharge Order to be collected</th>
                     <th>Surcharge issued Amount</th>
                     <th>Numbers Collected during the month</th>
                     <th>Collected Amount</th>

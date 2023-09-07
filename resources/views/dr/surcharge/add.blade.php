@@ -45,7 +45,7 @@
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
-                                        <th>Surcharge Order issued number</th>
+                                        <th>Surcharge Order to be collected</th>
                                         <th>Surcharge issued Amount</th>
                                         <th>Numbers Collected during the month</th>
                                         <th>Collected Amount</th>

@@ -143,8 +143,6 @@
       const percentage = (pendingValue / totalValue) * 100;
       percentageInput.value = percentage.toFixed(2) + '%';
     }
-
-    // Initial calculation
     updateTotalAndPending();
   </script><!-- End #main -->
 @endsection

@@ -47,7 +47,8 @@
                                 <thead>
                                     <h6>Disciplinary Action-Institution</h6>
                                     <tr>
-                                        <th>Recommended</th>
+                                        <th>OB</th>
+                                        <th>Recommended this Week</th>
                                         <th>Action taken</th>
                                         <th>Disposal</th>
                                         <th>Percentage of Disposal</th>
@@ -55,6 +56,7 @@
                                 </thead>
                                 <tbody>
                                     <tr>
+                                        <td><input type="text" name="ob" class="form-control" required></td>
                                         <td><input type="text" name="recommended_action" class="form-control" required></td>
                                         <td><input type="text" name="action_taken" class="form-control" required></td>
                                         <td><input type="text" name="disposal" class="form-control" required></td>
