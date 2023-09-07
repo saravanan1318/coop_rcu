@@ -44,7 +44,7 @@
                       <div class="row margindiv">
                         <!-- Your other form fields go here -->
                         <div class="col-md-12" style="margin-top: 10px">
-                            <h2>81 & 82</h2>
+                            <h6>81 & 82</h6>
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
@@ -73,6 +73,7 @@
                                     </tr>
                                 </tbody>
                             </table>
+                            <h6>Disciplinary Action - 17(A)</h6>
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
@@ -95,6 +96,7 @@
                                     </tr>
                                 </tbody>
                             </table>
+                            <h6>Disciplinary Action - 17(b)</h6>
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>

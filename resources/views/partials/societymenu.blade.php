@@ -164,7 +164,19 @@
         <i class="bi bi-grid"></i>
         <span>Crop Loan</span>
       </a>
-    </li><!-- End Dashboard Nav -->
+    </li>
+    <li class="nav-item">
+        <a class="nav-link " href="/dr/add">
+          <i class="bi bi-grid"></i>
+          <span>DR Details</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link " href="/dr/list">
+          <i class="bi bi-grid"></i>
+          <span>DR List</span>
+        </a>
+      </li><!-- End Dashboard Nav -->
     <li class="nav-item">
       <a class="nav-link " href="/dr/depositlist">
         <i class="bi bi-grid"></i>
