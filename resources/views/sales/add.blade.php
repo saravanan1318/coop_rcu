@@ -78,28 +78,28 @@
                                                 </select>
                                             </td>
                                             <td>
-                                                <input type="text" class="form-control" style=" width: 150px; " id="noofvarieties1" name="noofvarieties[]" value="{{ old('noofvarieties') }}" placeholder="Your No of Varieties." required>
+                                                <input type="text" class="form-control" style=" width: 150px; " id="noofvarieties1" name="noofvarieties[]" value="{{ old('noofvarieties') }}" placeholder="" required>
                                             </td>
                                             <td>
-                                                <input type="text" class="form-control" style=" width: 150px; " id="noofoutlets1" name="noofoutlets[]" value="{{ old('noofoutlets') }}" placeholder="Your No of Outlets." required>
+                                                <input type="text" class="form-control" style=" width: 150px; " id="noofoutlets1" name="noofoutlets[]" value="{{ old('noofoutlets') }}" placeholder="" required>
                                             </td>
                                             <td>
-                                                <input type="text" class="form-control" style=" width: 150px; " id="noofcustomers1" name="noofcustomers[]" value="{{ old('noofcustomers') }}" placeholder="Your No of Customers" required>
+                                                <input type="text" class="form-control" style=" width: 150px; " id="noofcustomers1" name="noofcustomers[]" value="{{ old('noofcustomers') }}" placeholder="" required>
                                             </td>
                                             <td>
-                                                <input type="text" class="form-control" style=" width: 150px; " id="nooffarmers1" name="nooffarmers[]" value="{{ old('nooffarmers') }}" placeholder="Your No of farmers" required>
+                                                <input type="text" class="form-control" style=" width: 150px; " id="nooffarmers1" name="nooffarmers[]" value="{{ old('nooffarmers') }}" placeholder="" required>
                                             </td>
                                             <td>
-                                                <input type="text" class="form-control" style=" width: 150px; " id="quantitykilo1" name="quantitykilo[]" value="{{ old('quantitykilo') }}" placeholder="Your Quantity in Kilo." required>
+                                                <input type="text" class="form-control" style=" width: 150px; " id="quantitykilo1" name="quantitykilo[]" value="{{ old('quantitykilo') }}" placeholder="" required>
                                             </td>
                                             <td>
-                                                <input type="text" class="form-control" style=" width: 150px; " id="quantitylitres1" name="quantitylitres[]" value="{{ old('quantitylitres') }}" placeholder="Your Quantity in Litres." required>
+                                                <input type="text" class="form-control" style=" width: 150px; " id="quantitylitres1" name="quantitylitres[]" value="{{ old('quantitylitres') }}" placeholder="" required>
                                             </td>
                                             <td>
-                                                <input type="text" class="form-control" style=" width: 150px; " id="salesamountphysical1" name="salesamountphysical[]" value="{{ old('salesamountphysical') }}" placeholder="Your Physical." required>
+                                                <input type="text" class="form-control" style=" width: 150px; " id="salesamountphysical1" name="salesamountphysical[]" value="{{ old('salesamountphysical') }}" placeholder="" required>
                                             </td>
                                             <td>
-                                                <input type="text" class="form-control" style=" width: 150px; " id="salesamountcoopbazaar1" name="salesamountcoopbazaar[]" value="{{ old('salesamountcoopbazaar') }}" placeholder="Your Coop Bazaar." required>
+                                                <input type="text" class="form-control" style=" width: 150px; " id="salesamountcoopbazaar1" name="salesamountcoopbazaar[]" value="{{ old('salesamountcoopbazaar') }}" placeholder="" required>
                                             </td>
                                         </tr>
                                     </tbody>
