@@ -3,7 +3,7 @@
 @section('content')
 <main id="main" class="main">
   <div class="pagetitle">
-    <h1>Jr List</h1>
+    <h1>JR List</h1>
     <nav>
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="/jr/eightyone/list">Dashboard</a></li>
@@ -41,6 +41,7 @@
                         <table class="table table-responsive table-bordered datatable">
                             <thead style="text-align: center">
                                 <tr>
+                                    <th scope="col">Date</th>
                                     <th scope="col">OB</th>
                                     <th scope="col">Ordered this month</th>
                                     <th scope="col">Total (OB+Ordered)</th>
@@ -55,7 +56,7 @@
                             <tbody>
                                 @foreach($jr as $data)
                                     <tr>
-
+                                        <td>{{ $data->eightyonedate}}</td>
                                         <td>{{ $data->ob_eighty_one }}</td>
                                         <td>{{ $data->ordered_this_month_eighty_one }}</td>
                                         <td>{{ $data->total_ob_ordered_eighty_one}}</td>

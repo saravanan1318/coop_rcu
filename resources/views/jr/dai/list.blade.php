@@ -3,7 +3,7 @@
 @section('content')
 <main id="main" class="main">
   <div class="pagetitle">
-    <h1>Jr List</h1>
+    <h1>JR List</h1>
     <nav>
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="/jr/dai/list">Dashboard</a></li>
@@ -39,6 +39,7 @@
                 <table class="table table-responsive table-bordered datatable">
                 <thead style="text-align: center">
                     <tr>
+                        <th scope="col">Date</th>
                         <th scope="col">OB</th>
                         <th scope="col">Recommended this month</th>
                         <th scope="col">Action taken</th>
@@ -49,6 +50,7 @@
                 <tbody>
                     @foreach($jr as $data)
                         <tr>
+                            <td> {{ $data->daidate }}</td>
                             <td>{{ $data->ob }}</td>
                             <td>{{ $data->recommended_action }}</td>
                             <td>{{ $data->action_taken }}</td>

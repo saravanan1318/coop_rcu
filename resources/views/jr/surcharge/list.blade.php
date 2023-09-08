@@ -3,7 +3,7 @@
 @section('content')
 <main id="main" class="main">
   <div class="pagetitle">
-    <h1>Jr List</h1>
+    <h1>JR List</h1>
     <nav>
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="/jr/surcharge/list">Dashboard</a></li>
@@ -39,6 +39,7 @@
              <table class="table table-responsive table-bordered datatable">
              <thead style="text-align: center">
                 <tr>
+                    <th>Date</th>
                     <th>Surcharge Order to be collected</th>
                     <th>Surcharge issued Amount</th>
                     <th>Numbers Collected during the month</th>
@@ -51,6 +52,7 @@
             <tbody>
                 @foreach($jr as $data)
                     <tr>
+                        <td>{{ $data->surchargedate }}</td>
                         <td>{{ $data->surcharge_order_issued_number }}</td>
                         <td>{{ $data->surcharge_issued_amount }}</td>
                         <td>{{ $data->numbers_collected_during_month }}</td>

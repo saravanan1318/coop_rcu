@@ -2,7 +2,7 @@
 @section('content')
 <main id="main" class="main">
   <div class="pagetitle">
-    <h1>Jr Details</h1>
+    <h1>JR Details</h1>
     <nav>
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="/jr/eightyone/add">Dashboard</a></li>
@@ -41,13 +41,19 @@
                   <form action="{{url("/jr/eightyone/store")}}" method="post" id="eightyoneform" class="row g-3">
                     @csrf
                       <div class="row margindiv">
+                        <div class="col-md-4">
+                            <div class="form-floating">
+                            <input type="date" class="form-control" id="floatingName" name="eightyonedate" placeholder="date" value="{{ date("Y-m-d") }}" required>
+                            <label for="floatingName">Date</label>
+                            </div>
+                        </div>
 
                         <div class="col-md-12" style="margin-top: 10px">
                             <table class="table table-bordered">
                                 <thead>
                                     <h6>81- Inquiry</h6>
                                     <tr>
-
+                                       
                                         <th>OB</th>
                                         <th>Ordered this month</th>
                                         <th>Total (OB+Ordered)</th>
@@ -145,6 +151,7 @@
         // Set the calculated percentage to the input field
         pendingPercentageInput.value = pendingPercentage.toFixed(2);
     }
+
     calculateTotal();
     calculateTotalPending();
 </script>

@@ -3,7 +3,7 @@
 @section('content')
 <main id="main" class="main">
   <div class="pagetitle">
-    <h1>Jr List</h1>
+    <h1>JR List</h1>
     <nav>
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="/jr/seventeena/list">Dashboard</a></li>
@@ -39,6 +39,7 @@
                             <thead style="text-align: center">
                                 <h6>Disciplinary Action-17(A)</h6>
                                 <tr>
+                                    <th scope="col">Date</th>
                                     <th scope="col">OB</th>
                                     <th scope="col">Initiated during the month</th>
                                     <th scope="col">Total</th>
@@ -50,6 +51,7 @@
                             <tbody>
                                 @foreach($jr as $data)
                                     <tr>
+                                    <td>{{ $data->seventeenadate}}</td>
                                     <td>{{ $data->disciplinary_ob_seventeena }}</td>
                                     <td>{{ $data->initiated_during_month_seventeena }}</td>
                                     <td>{{ $data->disciplinary_total_seventeena}}</td>
@@ -67,6 +69,7 @@
                         <thead style="text-align: center">
                             <h6>Disciplinary Action-17(B)</h6>
                             <tr>
+                                <th scope="col">Date</th>
                                 <th scope="col">OB</th>
                                 <th scope="col">Initiated during the month</th>
                                 <th scope="col">Total</th>
@@ -78,6 +81,7 @@
                         <tbody>
                             @foreach($jr as $data)
                                 <tr>
+                                    <td>{{ $data->seventeenadate}}</td>
                                     <td>{{ $data->disciplinary_ob_seventeenb }}</td>
                                     <td>{{ $data->initiated_during_month_seventeenb }}</td>
                                     <td>{{ $data->disciplinary_total_seventeenb}}</td>

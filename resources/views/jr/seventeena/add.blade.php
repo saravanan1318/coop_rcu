@@ -2,7 +2,7 @@
 @section('content')
 <main id="main" class="main">
   <div class="pagetitle">
-    <h1>Jr Details</h1>
+    <h1>JR Details</h1>
     <nav>
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="/jr/seventeena/add">Dashboard</a></li>
@@ -41,8 +41,13 @@
                   {{-- Your jr Details Form Goes Here --}}
                   <form action="{{url("/jr/seventeena/store")}}" method="post" id="seventeenaform" class="row g-3">
                     @csrf
-                      <div class="row margindiv">
-                        <!-- Your other form fields go here -->
+                    <div class="row margindiv">
+                        <div class="col-md-4">
+                            <div class="form-floating">
+                            <input type="date" class="form-control" id="floatingName" name="seventeenadate" placeholder="date" value="{{ date("Y-m-d") }}" required>
+                            <label for="floatingName">Date</label>
+                            </div>
+                        </div>
                         <div class="col-md-12" style="margin-top: 10px">
                             <table class="table table-bordered">
                                 <thead>

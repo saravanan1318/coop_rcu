@@ -3,7 +3,7 @@
 @section('content')
 <main id="main" class="main">
   <div class="pagetitle">
-    <h1>Jr List</h1>
+    <h1>JR List</h1>
     <nav>
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="/jr/disqualify/list">Dashboard</a></li>
@@ -42,6 +42,7 @@
                 <table class="table table-responsive table-bordered ">
                     <thead>
                         <tr>
+                            <th> Date</th>
                             <th colspan="2">OB</th>
                             <th colspan="2">Initiated during the month</th>
                             <th colspan="2">Total</th>
@@ -68,6 +69,7 @@
             <tbody>
                 @foreach($jr as $row)
                 <tr>
+                    <td>{{ $row->disqualifydate}}</td>
                     <td>{{ $row->societies_ob }}</td>
                     <td>{{ $row->board_of_directors_ob }}</td>
                     <td>{{ $row->societies_im }}</td>
