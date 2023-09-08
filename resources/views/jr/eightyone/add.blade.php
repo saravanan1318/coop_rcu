@@ -51,7 +51,7 @@
                                         <th>OB</th>
                                         <th>Ordered this month</th>
                                         <th>Total (OB+Ordered)</th>
-                                        <th>Completed this month</th>
+                                        <th>Disposed this month</th>
                                         <th>Pending within 3 months</th>
                                         <th>Pending in 3 - 6 months</th>
                                         <th>Pending Above 6 months</th>
@@ -140,13 +140,11 @@
         const totalPendingValue = parseFloat(totalPendingInput.value) || 0;
 
         // Calculate the pending percentage
-        const pendingPercentage = ((totalValue - completedThisMonthValue - totalPendingValue) / totalValue) * 100;
+        const pendingPercentage = ( totalPendingValue / totalValue) * 100;
 
         // Set the calculated percentage to the input field
         pendingPercentageInput.value = pendingPercentage.toFixed(2);
     }
-
-    // Initialize the calculations
     calculateTotal();
     calculateTotalPending();
 </script>

@@ -17,7 +17,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title"> Purchase Add</h5>
+                        <h5 class="card-title"></h5>
                         <div class="row">
                             <div class="col-sm-12 col-md-12 mb-4">
                                 @if(session('status'))
@@ -210,12 +210,12 @@
                 $("#coopnoofvarieties"+rowid).attr("readonly",false);
                 $("#coopquantity"+rowid).attr("readonly",false);
                 $("#coopvalues"+rowid).attr("readonly",false);
-                $("#privatenoofvarieties"+rowid).attr("readonly",false);
-                $("#privatequantity"+rowid).attr("readonly",false);
-                $("#privatevalues"+rowid).attr("readonly",false);
-                $("#jpcnoofvarieties"+rowid).attr("readonly",true);
-                $("#jpcquantity"+rowid).attr("readonly",true);
-                $("#jpcvalues"+rowid).attr("readonly",true);
+                $("#privatenoofvarieties"+rowid).attr("readonly",true);
+                $("#privatequantity"+rowid).attr("readonly",true);
+                $("#privatevalues"+rowid).attr("readonly",true);
+                $("#jpcnoofvarieties"+rowid).attr("readonly",false);
+                $("#jpcquantity"+rowid).attr("readonly",false);
+                $("#jpcvalues"+rowid).attr("readonly",false);
 
             }else if(this.value == "2"){
 

@@ -30,7 +30,7 @@
                                 @endif
                             </div>
                         </div>
-                        <h5 class="card-title">Purchases</h5>
+                        <h5 class="card-title"></h5>
                         <div class="col-md-12 table-responsive">
                             <table class="table table-responsive table-bordered datatable" style="text-align: center">
                                 <thead>

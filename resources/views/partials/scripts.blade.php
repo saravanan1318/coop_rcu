@@ -35,12 +35,12 @@
             $("#coopnoofvarieties").attr("readonly",false);
             $("#coopquantity").attr("readonly",false);
             $("#coopvalues").attr("readonly",false);
-            $("#privatenoofvarieties").attr("readonly",false);
-            $("#privatequantity").attr("readonly",false);
-            $("#privatevalues").attr("readonly",false);
-            $("#jpcnoofvarieties").attr("readonly",true);
-            $("#jpcquantity").attr("readonly",true);
-            $("#jpcvalues").attr("readonly",true);
+            $("#privatenoofvarieties").attr("readonly",true);
+            $("#privatequantity").attr("readonly",true);
+            $("#privatevalues").attr("readonly",true);
+            $("#jpcnoofvarieties").attr("readonly",false);
+            $("#jpcquantity").attr("readonly",false);
+            $("#jpcvalues").attr("readonly",false);
 
         }else if(this.value == "2"){
 

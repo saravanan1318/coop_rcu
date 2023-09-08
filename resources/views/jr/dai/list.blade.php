@@ -40,7 +40,7 @@
                 <thead style="text-align: center">
                     <tr>
                         <th scope="col">OB</th>
-                        <th scope="col">Recommended this week</th>
+                        <th scope="col">Recommended this month</th>
                         <th scope="col">Action taken</th>
                         <th scope="col">Disposal</th>
                         <th scope="col">Percentage of Disposal</th>

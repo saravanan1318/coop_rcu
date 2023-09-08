@@ -44,7 +44,7 @@
                                     <th scope="col">OB</th>
                                     <th scope="col">Ordered this month</th>
                                     <th scope="col">Total (OB+Ordered)</th>
-                                    <th scope="col">Completed this month</th>
+                                    <th scope="col">Disposed this month</th>
                                     <th scope="col">Pending within 3 months</th>
                                     <th scope="col">Pending in 3 - 6 months</th>
                                     <th scope="col">Pending Above 6 months</th>

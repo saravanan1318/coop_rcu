@@ -48,7 +48,7 @@
                                     <h6>Disciplinary Action-Institution</h6>
                                     <tr>
                                         <th>OB</th>
-                                        <th>Recommended this Week</th>
+                                        <th>Recommended this month</th>
                                         <th>Action taken</th>
                                         <th>Disposal</th>
                                         <th>Percentage of Disposal</th>

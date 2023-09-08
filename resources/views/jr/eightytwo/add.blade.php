@@ -50,7 +50,7 @@
                                         <th>OB</th>
                                         <th>Ordered this month</th>
                                         <th>Total (OB+Ordered)</th>
-                                        <th>Completed this month</th>
+                                        <th>Disposed this month</th>
                                         <th>Pending within 3 months</th>
                                         <th>Pending in 3 - 6 months</th>
                                         <th>Pending Above 6 months</th>
@@ -92,15 +92,15 @@
 </main>
 <script>
     // Get the input fields
-    const obInput = document.querySelector('input[name="ob_eighty_one"]');
-    const orderedThisWeekInput = document.querySelector('input[name="ordered_this_month_eighty_one"]');
-    const totalInput = document.querySelector('input[name="total_ob_ordered_eighty_one"]');
-    const completedThisMonthInput = document.querySelector('input[name="completed_this_month_eighty_one"]');
-    const pendingWithin3MonthsInput = document.querySelector('input[name="pending_within_3_months_eighty_one"]');
-    const pendingIn3To6MonthsInput = document.querySelector('input[name="pending_in_3_to_6_months_eighty_one"]');
-    const pendingAbove6MonthsInput = document.querySelector('input[name="pending_above_6_months_eighty_one"]');
-    const totalPendingInput = document.querySelector('input[name="total_pending_eighty_one"]');
-    const pendingPercentageInput = document.querySelector('input[name="pending_percentage_eighty_one"]');
+    const obInput = document.querySelector('input[name="ob_eighty_two"]');
+    const orderedThisWeekInput = document.querySelector('input[name="ordered_this_month_eighty_two"]');
+    const totalInput = document.querySelector('input[name="total_ob_ordered_eighty_two"]');
+    const completedThisMonthInput = document.querySelector('input[name="completed_this_month_eighty_two"]');
+    const pendingWithin3MonthsInput = document.querySelector('input[name="pending_within_3_months_eighty_two"]');
+    const pendingIn3To6MonthsInput = document.querySelector('input[name="pending_in_3_to_6_months_eighty_two"]');
+    const pendingAbove6MonthsInput = document.querySelector('input[name="pending_above_6_months_eighty_two"]');
+    const totalPendingInput = document.querySelector('input[name="total_pending_eighty_two"]');
+    const pendingPercentageInput = document.querySelector('input[name="pending_percentage_eighty_two"]');
 
     // Attach event listeners to the relevant input fields
     obInput.addEventListener('input', calculateTotal);
@@ -139,7 +139,7 @@
         const totalPendingValue = parseFloat(totalPendingInput.value) || 0;
 
         // Calculate the pending percentage
-        const pendingPercentage = ((totalValue - completedThisMonthValue - totalPendingValue) / totalValue) * 100;
+        const pendingPercentage = (totalPendingValue / totalValue) * 100;
 
         // Set the calculated percentage to the input field
         pendingPercentageInput.value = pendingPercentage.toFixed(2);

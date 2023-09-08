@@ -160,9 +160,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/jr/eightyone/store', [JRController::class, 'eightyonestore']);
 
 
-    Route::get('/jr/eightytwo/list', [DRController::class, 'eightytwolist']);
-    Route::get('/jr/eightytwo/add', [DRController::class, 'eightytwoadd']);
-    Route::post('/jr/eightytwo/store', [DRController::class, 'eightytwostore']);
+    Route::get('/jr/eightytwo/list', [JRController::class, 'eightytwolist']);
+    Route::get('/jr/eightytwo/add', [JRController::class, 'eightytwoadd']);
+    Route::post('/jr/eightytwo/store', [JRController::class, 'eightytwostore']);
 
 
     Route::get('/jr/seventeena/list', [JRController::class, 'seventeenalist']);
