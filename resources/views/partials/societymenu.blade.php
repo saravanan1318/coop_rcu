@@ -151,21 +151,11 @@
               <li class="nav-item">
                 <a class="nav-link collapsed" data-bs-toggle="collapse" href="#17a-nav">
                   <i class="bi bi-grid"></i>
-                  <span>17a</span><i class="bi bi-chevron-down ms-auto"></i>
+                  <span>Disciplinary Action-17(A) & 17(B)</span><i class="bi bi-chevron-down ms-auto"></i>
                 </a>
                 <ul id="17a-nav" class="collapse">
-                  <li><a href="/dr/eight/add/entry"><i class="bi bi-file-earmark-plus"></i> Entry</a></li>
-                  <li><a href="/dr/eight/add/view"><i class="bi bi-file-earmark-text"></i> View</a></li>
-                </ul>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link collapsed" data-bs-toggle="collapse" href="#17b-nav">
-                  <i class="bi bi-grid"></i>
-                  <span>17b</span><i class="bi bi-chevron-down ms-auto"></i>
-                </a>
-                <ul id="17b-nav" class="collapse">
-                  <li><a href="/dr/eight/add/entry"><i class="bi bi-file-earmark-plus"></i> Entry</a></li>
-                  <li><a href="/dr/eight/add/view"><i class="bi bi-file-earmark-text"></i> View</a></li>
+                  <li><a href="/jr/seventeena/add"><i class="bi bi-file-earmark-plus"></i> Entry</a></li>
+                  <li><a href="/jr/seventeena/list"><i class="bi bi-file-earmark-text"></i> View</a></li>
                 </ul>
               </li>
             </ul>
@@ -179,11 +169,11 @@
               <li class="nav-item">
                 <a class="nav-link collapsed" data-bs-toggle="collapse" href="#dai-nav">
                   <i class="bi bi-grid"></i>
-                  <span>DAI</span><i class="bi bi-chevron-down ms-auto"></i>
+                  <span>Disciplinary Action-Institution</span><i class="bi bi-chevron-down ms-auto"></i>
                 </a>
                 <ul id="dai-nav" class="collapse">
-                  <li><a href="/dr/eight/add/entry"><i class="bi bi-file-earmark-plus"></i> Entry</a></li>
-                  <li><a href="/dr/eight/add/view"><i class="bi bi-file-earmark-text"></i> View</a></li>
+                  <li><a href="/jr/dai/add"><i class="bi bi-file-earmark-plus"></i> Entry</a></li>
+                  <li><a href="/jr/dai/list"><i class="bi bi-file-earmark-text"></i> View</a></li>
                 </ul>
               </li>
             </ul>
@@ -203,8 +193,8 @@
               <span>81-Inquiry</span><i class="bi bi-chevron-down ms-auto"></i>
             </a>
             <ul id="inquiry-nav" class="collapse">
-              <li><a href="/dr/eightyone/add"><i class="bi bi-file-earmark-plus"></i> Entry</a></li>
-              <li><a href="/dr/eightyone/list"><i class="bi bi-file-earmark-text"></i> View</a></li>
+              <li><a href="/jr/eightyone/add"><i class="bi bi-file-earmark-plus"></i> Entry</a></li>
+              <li><a href="/jr/eightyone/list"><i class="bi bi-file-earmark-text"></i> View</a></li>
             </ul>
           </li>
           <li class="nav-item">
@@ -213,8 +203,8 @@
               <span>82-Inspection</span><i class="bi bi-chevron-down ms-auto"></i>
             </a>
             <ul id="inspection-nav" class="collapse">
-              <li><a href="/dr/eight/add/entry"><i class="bi bi-file-earmark-plus"></i> Entry</a></li>
-              <li><a href="/dr/eight/add/view"><i class="bi bi-file-earmark-text"></i> View</a></li>
+              <li><a href="/jr/eightytwo/add"><i class="bi bi-file-earmark-plus"></i> Entry</a></li>
+              <li><a href="/jr/eightytwo/list"><i class="bi bi-file-earmark-text"></i> View</a></li>
             </ul>
           </li>
           <li class="nav-item">
@@ -223,8 +213,8 @@
               <span>36-Disqualification</span><i class="bi bi-chevron-down ms-auto"></i>
             </a>
             <ul id="disqualification-nav" class="collapse">
-              <li><a href="/dr/eight/add/entry"><i class="bi bi-file-earmark-plus"></i> Entry</a></li>
-              <li><a href="/dr/eight/add/view"><i class="bi bi-file-earmark-text"></i> View</a></li>
+              <li><a href="/jr/disqualify/add"><i class="bi bi-file-earmark-plus"></i> Entry</a></li>
+              <li><a href="/jr/disqualify/list"><i class="bi bi-file-earmark-text"></i> View</a></li>
             </ul>
           </li>
           <li class="nav-item">
@@ -233,13 +223,12 @@
               <span>87-Surcharge</span><i class="bi bi-chevron-down ms-auto"></i>
             </a>
             <ul id="surcharge-nav" class="collapse">
-              <li><a href="/dr/eight/add/entry"><i class="bi bi-file-earmark-plus"></i> Entry</a></li>
-              <li><a href="/dr/eight/add/view"><i class="bi bi-file-earmark-text"></i> View</a></li>
+              <li><a href="/jr/surcharge/add"><i class="bi bi-file-earmark-plus"></i> Entry</a></li>
+              <li><a href="/jr/surcharge/list"><i class="bi bi-file-earmark-text"></i> View</a></li>
             </ul>
           </li>
         </ul>
       </li>
-
 
       <script>
         // Add jQuery or JavaScript code to toggle the collapse/expand behavior

@@ -285,9 +285,9 @@ class DRController extends Controller
             'disciplinary_pending_percentage_seventeena' => 'required|numeric',
             'disciplinary_ob_seventeenb' => 'required|integer',
             'initiated_during_month_seventeenb' => 'required|integer',
-            'disciplinary_total_seventeenb' => 'required|integer',
+            'disciplinary_total_seventeenb' => 'required|numeric',
             'disposed_this_month_seventeenb' => 'required|integer',
-            'disciplinary_pending_seventeenb' => 'required|integer',
+            'disciplinary_pending_seventeenb' => 'required|numeric',
             'disciplinary_pending_percentage_seventeenb' => 'required|numeric',
         ]);
 
@@ -421,7 +421,7 @@ class DRController extends Controller
 
         // Create a new instance of the model and populate it with the form data
         $societiesBoardDirectors = new Dr_disqualify();
-        $societiesBoardDirectors->societies_ob = $request->input('societies_0b');
+        $societiesBoardDirectors->societies_ob = $request->input('societies_ob');
         $societiesBoardDirectors->board_of_directors_ob = $request->input('board_of_directors_ob');
         $societiesBoardDirectors->societies_im = $request->input('societies_im');
         $societiesBoardDirectors->board_of_directors_im = $request->input('board_of_directors_im');

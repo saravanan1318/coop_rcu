@@ -58,9 +58,9 @@
                                     <tr>
                                         <td><input type="text" name="ob" class="form-control" required></td>
                                         <td><input type="text" name="recommended_action" class="form-control" required></td>
-                                        <td><input type="text" name="action_taken" class="form-control" required></td>
-                                        <td><input type="text" name="disposal" class="form-control" required></td>
-                                        <td><input type="text" name="percentage_of_disposal" class="form-control" required></td>
+                                        <td><input type="text" name="action_taken" id="action_taken" class="form-control" required></td>
+                                        <td><input type="text" name="disposal" id="disposal" class="form-control" required></td>
+                                        <td><input type="text" name="percentage_of_disposal" id="percentage_of_disposal" class="form-control" required readonly></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -81,5 +81,16 @@
         </div>
      </div>
   </section>
-</main><!-- End #main -->
-@endsection
+</main>
+<script>
+    document.getElementById('action_taken').addEventListener('input', calculatePercentage);
+    document.getElementById('disposal').addEventListener('input', calculatePercentage);
+    function calculatePercentage() {
+      const actionTaken = parseFloat(document.getElementById('action_taken').value) || 0;
+      const disposal = parseFloat(document.getElementById('disposal').value) || 0;
+
+      const percentage = (disposal / actionTaken) * 100;
+      document.getElementById('percentage_of_disposal').value = isNaN(percentage) ? '' : percentage.toFixed(2);
+    }
+  </script>
+  @endsection<!-- End #main -->

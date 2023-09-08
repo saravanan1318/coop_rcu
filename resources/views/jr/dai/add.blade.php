@@ -2,15 +2,15 @@
 @section('content')
 <main id="main" class="main">
   <div class="pagetitle">
-    <h1>DR Details</h1>
+    <h1>Jr Details</h1>
     <nav>
       <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="/dr/eightyone/add">Dashboard</a></li>
-        <li class="breadcrumb-item">81-Inquiry</li>
+        <li class="breadcrumb-item"><a href="/jr/dai/add">Dashboard</a></li>
+        <li class="breadcrumb-item">Disciplinary Action-Institution</li>
         <li class="breadcrumb-item active">Add</li>
       </ol>
     </nav>
-  </div>
+  </div><!-- End Page Title -->
 
   <section class="section dashboard">
     <div class="row">
@@ -38,38 +38,29 @@
                     </div>
                 </div>
 
-                  <form action="{{url("/dr/eightyone/store")}}" method="post" id="eightyoneform" class="row g-3">
+                <form action="{{url("/jr/dai/store")}}" method="post" id="daiform" class="row g-3">
                     @csrf
                       <div class="row margindiv">
-
                         <div class="col-md-12" style="margin-top: 10px">
+
                             <table class="table table-bordered">
                                 <thead>
-                                    <h6>81- Inquiry</h6>
+                                    <h6>Disciplinary Action-Institution</h6>
                                     <tr>
-
                                         <th>OB</th>
-                                        <th>Ordered this month</th>
-                                        <th>Total (OB+Ordered)</th>
-                                        <th>Completed this month</th>
-                                        <th>Pending within 3 months</th>
-                                        <th>Pending in 3 - 6 months</th>
-                                        <th>Pending Above 6 months</th>
-                                        <th>Total Pending</th>
-                                        <th>Pending percentage</th>
+                                        <th>Recommended this Week</th>
+                                        <th>Action taken</th>
+                                        <th>Disposal</th>
+                                        <th>Percentage of Disposal</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td><input type="text" name="ob_eighty_one" class="form-control" required></td>
-                                        <td><input type="text" name="ordered_this_month_eighty_one" class="form-control" required></td>
-                                        <td><input type="text" name="total_ob_ordered_eighty_one" class="form-control" required></td>
-                                        <td><input type="text" name="completed_this_month_eighty_one" class="form-control" required></td>
-                                        <td><input type="text" name="pending_within_3_months_eighty_one" class="form-control" required></td>
-                                        <td><input type="text" name="pending_in_3_to_6_months_eighty_one" class="form-control" required></td>
-                                        <td><input type="text" name="pending_above_6_months_eighty_one" class="form-control" required></td>
-                                        <td><input type="text" name="total_pending_eighty_one" class="form-control" required></td>
-                                        <td><input type="text" name="pending_percentage_eighty_one" class="form-control" required></td>
+                                        <td><input type="text" name="ob" class="form-control" required></td>
+                                        <td><input type="text" name="recommended_action" class="form-control" required></td>
+                                        <td><input type="text" name="action_taken" id="action_taken" class="form-control" required></td>
+                                        <td><input type="text" name="disposal" id="disposal" class="form-control" required></td>
+                                        <td><input type="text" name="percentage_of_disposal" id="percentage_of_disposal" class="form-control" required readonly></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -84,11 +75,22 @@
                             </div>
                         </div>
                         <!-- Rest of your form goes here -->
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
         </div>
      </div>
   </section>
-</main><!-- End #main -->
-@endsection
+</main>
+<script>
+    document.getElementById('action_taken').addEventListener('input', calculatePercentage);
+    document.getElementById('disposal').addEventListener('input', calculatePercentage);
+    function calculatePercentage() {
+      const actionTaken = parseFloat(document.getElementById('action_taken').value) || 0;
+      const disposal = parseFloat(document.getElementById('disposal').value) || 0;
+
+      const percentage = (disposal / actionTaken) * 100;
+      document.getElementById('percentage_of_disposal').value = isNaN(percentage) ? '' : percentage.toFixed(2);
+    }
+  </script>
+  @endsection<!-- End #main -->

@@ -155,35 +155,36 @@ Route::group(['middleware' => 'auth'], function () {
 
 
 
-    Route::get('/jr/eightyone/list', [DRController::class, 'eightyonelist']);
-    Route::get('/jr/eightyone/add', [DRController::class, 'eightyoneadd']);
-    Route::get('/jr/eightyone/store', [DRController::class, 'eightyonestore']);
+    Route::get('/jr/eightyone/list', [JRController::class, 'eightyonelist']);
+    Route::get('/jr/eightyone/add', [JRController::class, 'eightyoneadd']);
+    Route::post('/jr/eightyone/store', [JRController::class, 'eightyonestore']);
 
 
-    Route::get('/jr/eightytwo/list', [DRController::class, 'eightyonelist']);
-    Route::get('/jr/eighytwo/add', [DRController::class, 'eightytwoadd']);
-    Route::get('/jr/eighytwo/store', [DRController::class, 'eightytwostore']);
-
-    Route::get('/jr/seventeena/list', [DRController::class, 'seventeenalist']);
-    Route::get('/jr/seventeena/add', [DRController::class, 'seventeenaadd']);
-    Route::get('/jr/seventeena/store', [DRController::class, 'seventeenastore']);
+    Route::get('/jr/eightytwo/list', [DRController::class, 'eightytwolist']);
+    Route::get('/jr/eightytwo/add', [DRController::class, 'eightytwoadd']);
+    Route::post('/jr/eightytwo/store', [DRController::class, 'eightytwostore']);
 
 
-    Route::get('/jr/seventeenb/list', [DRController::class, 'seventeenblist']);
-    Route::get('/jr/seventeenb/add', [DRController::class, 'seventeenbadd']);
-    Route::get('/jr/seventeenb/store', [DRController::class, 'seventeenbstore']);
+    Route::get('/jr/seventeena/list', [JRController::class, 'seventeenalist']);
+    Route::get('/jr/seventeena/add', [JRController::class, 'seventeenaadd']);
+    Route::post('/jr/seventeena/store', [JRController::class, 'seventeenastore']);
 
-    Route::get('/jr/disqualify/list', [DRController::class, 'disqualifylist']);
-    Route::get('/jr/disqualify/add', [DRController::class, 'disqualifyadd']);
-    Route::get('/jr/disqualify/store', [DRController::class, 'disqualifystore']);
 
-    Route::get('/jr/dai/list', [DRController::class, 'dailist']);
-    Route::get('/jr/dai/add', [DRController::class, 'daiadd']);
-    Route::get('/jr/dai/store', [DRController::class, 'daistore']);
+    Route::get('/jr/seventeenb/list', [JRController::class, 'seventeenblist']);
+    Route::get('/jr/seventeenb/add', [JRController::class, 'seventeenbadd']);
+    Route::post('/jr/seventeenb/store', [JRController::class, 'seventeenbstore']);
 
-    Route::get('/jr/surcharge/list', [DRController::class, 'surchargelist']);
-    Route::get('/jr/surcharge/add', [DRController::class, 'surchargeadd']);
-    Route::get('/jr/surcharge/store', [DRController::class, 'surchargestore']);
+    Route::get('/jr/disqualify/list', [JRController::class, 'disqualifylist']);
+    Route::get('/jr/disqualify/add', [JRController::class, 'disqualifyadd']);
+    Route::post('/jr/disqualify/store', [JRController::class, 'disqualifystore']);
+
+    Route::get('/jr/dai/list', [JRController::class, 'dailist']);
+    Route::get('/jr/dai/add', [JRController::class, 'daiadd']);
+    Route::post('/jr/dai/store', [JRController::class, 'daistore']);
+
+    Route::get('/jr/surcharge/list', [JRController::class, 'surchargelist']);
+    Route::get('/jr/surcharge/add', [JRController::class, 'surchargeadd']);
+    Route::post('/jr/surcharge/store', [JRController::class, 'surchargestore']);
 
     Route::get('/superadmin/dashboard', [SuperAdminController::class, 'dashboard']);
     Route::get('/superadmin/loanlist', [SuperAdminController::class, 'loanlist']);
