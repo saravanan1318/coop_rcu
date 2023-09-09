@@ -530,14 +530,7 @@ class SocietyController extends Controller
     }
 
 
-    //Crop target
-    function croploanentrylist()
-    {
 
-        $croploan_entry = Croploan_entry::where('user_id', Auth::user()->id)->paginate(5);
-
-        return view("croploan.entry.list", compact('croploan_entry'));
-    }
 
     //Crop target
     function croploanentrycropwiselist(Request $request)
@@ -554,47 +547,57 @@ class SocietyController extends Controller
         return view("croploan.entry.add", compact('mtr_crop'));
     }
 
+    function croploanentrylist()
+    {
+        $croploan_entry = Croploan_entry::all();
+        return view("croploan.entry.list", compact('croploan_entry'));
+    }
+
     function croploanentrystore(Request $request)
     {
-        $croploan_entry = new Croploan_entry;
-        $croploan_entry->user_id = Auth::user()->id;
-        $croploan_entry->croploandate = $request->croploandate;
-        $croploan_entry->noofappreceived = $request->noofappreceived;
-        $croploan_entry->noofappsanctioned = $request->noofappsanctioned;
-        $croploan_entry->noofapppending = $request->noofapppending;
-        $croploan_entry->totalcultivatedarea = $request->totalcultivatedarea;
-        $croploan_entry->cultivatedarealoanissuedto = $request->cultivatedarealoanissuedto;
-        $croploan_entry->outstandingno = $request->outstandingno;
-        $croploan_entry->outstandingamount = $request->outstandingamount;
-        $croploan_entry->overdueno = $request->overdueno;
-        $croploan_entry->overdueamount = $request->overdueamount;
-        $croploan_entry->save();
 
-        $arraycount = count($request->crop_id);
+        $validatedData = $request->validate([
+            'croploandate' => 'required',
+            'annualTarget' => 'required',
+            'proportionateTarget' => 'required',
+            'cultivableLand' => 'required',
+            'openingBalanceNo' => 'required',
+            'openingBalanceAmount' => 'required',
+            'receivedNo' => 'required',
+            'receivedAmount' => 'required',
+            'totalNo' => 'required',
+            'totalAmount' => 'required',
+            'sanctionedNo' => 'required',
+            'sanctionedAmount' => 'required',
+            'sanctionedLand' => 'required',
+            'achievementAnnual' => 'required',
+            'achievementProportionate' => 'required',
+            'rejectedno' => 'required',
+            'applicationpendingno' => 'required',
+            'applicationpendingamount' => 'required',
+        ]);
 
-        for ($i = 0; $i < $arraycount; $i++) {
 
-            $croploan_cropwise = new Croploan_cropwise;
-            $croploan_cropwise->user_id = Auth::user()->id;
-            $croploan_cropwise->croploandate = $request->croploandate;
-            $croploan_cropwise->croploan_id = $croploan_entry->id;
-            $croploan_cropwise->crop_id = isset($request->crop_id[$i]) ? $request->crop_id[$i] : NULL;
-            $croploan_cropwise->noofloan = isset($request->noofloan[$i]) ? $request->noofloan[$i] : NULL;
-            $croploan_cropwise->noofamount = isset($request->noofamount[$i]) ? $request->noofamount[$i] : NULL;
-            $croploan_cropwise->areacovered = isset($request->areacovered[$i]) ? $request->areacovered[$i] : NULL;
-            $croploan_cropwise->newmembernoofloan = isset($request->newmembernoofloan[$i]) ? $request->newmembernoofloan[$i] : NULL;
-            $croploan_cropwise->newmembernoofamount = isset($request->newmembernoofamount[$i]) ? $request->newmembernoofamount[$i] : NULL;
-            $croploan_cropwise->scstnoofloan = isset($request->scstnoofloan[$i]) ? $request->scstnoofloan[$i] : NULL;
-            $croploan_cropwise->scstnoofamount = isset($request->scstnoofamount[$i]) ? $request->scstnoofamount[$i] : NULL;
-            $croploan_cropwise->womennoofloan = isset($request->womennoofloan[$i]) ? $request->womennoofloan[$i] : NULL;
-            $croploan_cropwise->womennoofamount = isset($request->womennoofamount[$i]) ? $request->womennoofamount[$i] : NULL;
-            $croploan_cropwise->sfmfnoofloan = isset($request->sfmfnoofloan[$i]) ? $request->sfmfnoofloan[$i] : NULL;
-            $croploan_cropwise->sfmfnoofamount = isset($request->sfmfnoofamount[$i]) ? $request->sfmfnoofamount[$i] : NULL;
-            $croploan_cropwise->ofnoofloan = isset($request->ofnoofloan[$i]) ? $request->ofnoofloan[$i] : NULL;
-            $croploan_cropwise->ofnoofamount = isset($request->ofnoofamount[$i]) ? $request->ofnoofamount[$i] : NULL;
-            $croploan_cropwise->save();
-        }
-
-        return redirect('/society/croploan/entry')->with('status', 'Crop entry added successfully');
+        $croploan = new Croploan_entry();
+        $croploan->croploandate = $request->input('croploandate');
+        $croploan->annualTarget = $request->input('annualTarget');
+        $croploan->proportionateTarget = $request->input('proportionateTarget');
+        $croploan->cultivableLand = $request->input('cultivableLand');
+        $croploan->openingBalanceNo = $request->input('openingBalanceNo');
+        $croploan->openingBalanceAmount = $request->input('openingBalanceAmount');
+        $croploan->receivedNo = $request->input('receivedNo');
+        $croploan->receivedAmount = $request->input('receivedAmount');
+        $croploan->totalNo = $request->input('totalNo');
+        $croploan->totalAmount = $request->input('totalAmount');
+        $croploan->sanctionedNo = $request->input('sanctionedNo');
+        $croploan->sanctionedAmount = $request->input('sanctionedAmount');
+        $croploan->sanctionedLand = $request->input('sanctionedLand');
+        $croploan->achievementAnnual = $request->input('achievementAnnual');
+        $croploan->achievementProportionate = $request->input('achievementProportionate');
+        $croploan->rejectedno = $request->input('rejectedno');
+        $croploan->applicationpendingno = $request->input('applicationpendingno');
+        $croploan->applicationpendingamount = $request->input('applicationpendingamount');
+        $croploan->save();
+        return redirect('/society/croploan/list')->with('status', 'Crop entry added successfully');
     }
 }

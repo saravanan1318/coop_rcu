@@ -11,4 +11,5 @@ class Croploan_entry extends Model
 
     protected $table = 'croploan_entry';
     protected $primaryKey = 'id';
+    public $timestamps = false;
 }

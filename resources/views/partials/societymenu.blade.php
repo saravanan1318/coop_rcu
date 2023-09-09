@@ -437,11 +437,6 @@
         </a>
         <ul id="croploan-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="/society/croploan/target">
-              <i class="bi bi-circle"></i><span>Target</span>
-            </a>
-          </li>
-          <li>
             <a href="/society/croploan/entry">
               <i class="bi bi-circle"></i><span>Entry</span>
             </a>
