@@ -69,16 +69,16 @@
                             <div class="col-md-12">
                                 <div class="form-floating">
                                   <input type="text" class="form-control" id="floatingName" name="overall_outstanding" placeholder="Your overall outstanding." required>
-                                  <label for="floatingName">Overall outstanding.</label>
+                                  <label for="floatingName">overall outstanding ( upto 31.3.2023).</label>
                                 </div>
-                                <div class="invalid-feedback">Please enter your Overall outstanding.</div>
+                                <div class="invalid-feedback">Please enter your overall outstanding ( upto 31.3.2023).</div>
                             </div>
                         </div>
                         <div class="row margindiv">
                             <div class="col-md-12">
                                 <div class="form-floating">
                                   <input type="text" class="form-control" id="floatingName"  name="current_outstanding" placeholder="Your Current outstanding." required>
-                                  <label for="floatingName"> Current outstanding (from 1st April to current date).</label>
+                                  <label for="floatingName"> Current  Year outstanding (from 1st April to current date).</label>
                                 </div>
                                 <div class="invalid-feedback">Please enter your Current outstanding.</div>
                             </div>

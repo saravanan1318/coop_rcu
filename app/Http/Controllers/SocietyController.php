@@ -93,7 +93,7 @@ class SocietyController extends Controller
             $mtr_loan =  Mtr_loan::whereIn('id', [1, 11, 22])->get();
         } else if (Auth::user()->role == 10) {
 
-            $mtr_loan = Mtr_loan::whereNotIn('id', [22])->get();
+            $mtr_loan = Mtr_loan::all();
         } else if (Auth::user()->role == 11) {
 
             $mtr_loan =  Mtr_loan::whereIn('id', [11, 16])->get();
