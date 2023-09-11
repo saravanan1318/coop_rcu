@@ -25,6 +25,7 @@ use App\Models\User;
 use App\Models\Godowns;
 
 use App\Exports\LoanExport;
+use App\Models\Croploan_entry;
 
 class SuperAdminController extends Controller
 {
@@ -269,6 +270,23 @@ class SuperAdminController extends Controller
         return view("superadmin.salereport", compact('sales', 'salereportdate'));
     }
 
+    function croploanreport(Request $request)
+    {
+
+        $croploanreportdate = $request->croploanreportdate;
+
+        if (!empty($croploanreportdate)) {
+            $croploanreportdate = $request->croploanreportdate;
+        } else {
+            $croploanreportdate = date("Y-m-d");
+        }
+
+        $croploan_entry = Croploan_entry::where('saledate', $croploanreportdate)->paginate(5);
+
+        return view("superadmin.croploanreport", compact('croploan_entry', 'croploanreportdate'));
+    }
+
+
     function userslist()
     {
 
@@ -350,15 +368,17 @@ class SuperAdminController extends Controller
     }
 
 
-    public function export_loanreport(Request $request){
+    public function export_loanreport(Request $request)
+    {
 
-        $filename = "loan_export_".$request->loanreportdate.".xlsx";
+        $filename = "loan_export_" . $request->loanreportdate . ".xlsx";
         return Excel::download(new LoanExport($request->loanreportdate), $filename);
     }
 
-    public function tableaudashboard(Request $request){
+    public function tableaudashboard(Request $request)
+    {
 
-       
+
         return view("superadmin.tableaudashboard");
     }
 
@@ -400,7 +420,7 @@ class SuperAdminController extends Controller
     {
         $deposits = Deposits::select('*')->with('deposittype')->paginate(5);
 
-         return view("deposit.list", compact('deposits'));
+        return view("deposit.list", compact('deposits'));
     }
 
     function purchaselist()
@@ -409,7 +429,7 @@ class SuperAdminController extends Controller
 
         return view("purchase.list", compact('purchases'));
     }
-    
+
     function saleslist()
     {
         $sales = Sales::select('*')->with('saletype')->paginate(5);
@@ -442,11 +462,10 @@ class SuperAdminController extends Controller
     function croploanlist()
     {
 
-      //  $croploan_entry = Croploan_entry::where('user_id', Auth::user()->id)->paginate(5);
+        //  $croploan_entry = Croploan_entry::where('user_id', Auth::user()->id)->paginate(5);
 
         $croploan_entry = Croploan_entry::select('*')->paginate(5);
 
         return view("croploan.entry.list", compact('croploan_entry'));
     }
-    
 }

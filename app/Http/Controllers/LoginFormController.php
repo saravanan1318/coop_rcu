@@ -28,7 +28,6 @@ class LoginFormController extends Controller
 
     function checklogin(Request $request)
     {
-
         $validated = $request->validate([
             'username' => 'required',
             'password' => 'required',
@@ -36,11 +35,10 @@ class LoginFormController extends Controller
 
         $credentials = $request->only('username', 'password');
         if (Auth::attempt($credentials)) {
-
             if (Auth::user()->role == 1) {
                 return redirect()->intended('/md/dashboard')
                     ->withSuccess('Signed in');
-            } else if (Auth::user()->role == 2) {
+            } else if (Auth::user()->role > 2) {
                 return redirect()->intended('/superadmin/dashboard')
                     ->withSuccess('Signed in');
             } else if (Auth::user()->role == 3) {
@@ -54,7 +52,6 @@ class LoginFormController extends Controller
                     ->withSuccess('Signed in');
             }
         }
-
         return redirect('login')->with('error', 'Login details are not valid');
     }
 

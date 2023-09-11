@@ -45,7 +45,6 @@
 
                             <form action="{{ url("/society/croploan/store") }}" method="post" id="croploanform" class="row g-3">
                                 @csrf
-
                                 <div class="row margindiv">
                                     <div class="col-md-4">
                                         <div class="form-floating">
@@ -120,7 +119,6 @@
                                     </div>
                                   </div>
                                     <div class="col-md-10">
-                                        <!-- Other form fields go here -->
                                     </div>
                                     <div class="col-md-2">
                                         <div class="text-center">

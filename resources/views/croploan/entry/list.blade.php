@@ -15,7 +15,7 @@
                 <li class="breadcrumb-item active">List</li>
             </ol>
         </nav>
-    </div><!-- End Page Title -->
+    </div>
 
     <section class="section dashboard">
         <div class="row">
