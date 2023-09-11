@@ -62,7 +62,7 @@
                                 <tr>
                                   <th scope="row">{{ $service->id }}</th>
                                   <td>{{ $service->servicesdate }}</td>
-                                  <td>{{ $service->services_id }}</td>
+                                  <td>{{ $service->services_id}}</td>
                                   <td>{{ $service->count }}</td>
                                   <td>{{ $service->noofcenters }}</td>
                                   <td>{{ $service->noofvarieties }}</td>
@@ -73,7 +73,7 @@
                                   <td>{{ $service->purchase }}</td>
                                   <td>{{ $service->servicesamountetrading }}</td>
                                   <td>{{ $service->servicesamountphysical }}</td>
-                                  <td>{{ $service->income }}</td>
+                                  <td>{{ $service->incomegenerated }}</td>
                                   <td>{{ $service->profit }}</td>
                                   </tr>
                                   @endforeach
@@ -84,6 +84,5 @@
                 </div>
             </div>
     </section>
-
-</main><!-- End #main -->
+</main>
 @endsection

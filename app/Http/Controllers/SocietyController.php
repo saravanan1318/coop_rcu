@@ -440,7 +440,7 @@ class SocietyController extends Controller
             $services->purchase = isset($request->purchase[$i]) ? $request->purchase[$i] : NULL;
             $services->salesamountetrading = isset($request->salesamountetrading[$i]) ? $request->salesamountetrading[$i] : NULL;
             $services->salesamountphysical = isset($request->salesamountphysical[$i]) ? $request->salesamountphysical[$i] : NULL;
-            $services->incomegenerated = isset($request->salesamountphysical[$i]) ? $request->salesamountphysical[$i] : NULL;
+            $services->incomegenerated = isset($request->incomegenerated[$i]) ? $request->incomegenerated[$i] : NULL;
             $services->profit = isset($request->profit[$i]) ? $request->profit[$i] : NULL;
 
             $services->save();

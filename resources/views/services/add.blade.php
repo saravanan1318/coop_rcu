@@ -427,7 +427,7 @@
 
     for (var i = 1; i < arraycount; i++) {
 
-        var service_id = $("#service_id" + i + " option:selected").text();
+        var servicestype= $("#services_id" + i + " option:selected").text();
         var count = $("#count" + i).val();
         var noofcentres = $("#noofcentres" + i).val();
         var noofvarieties = $("#noofvarieties" + i).val();
