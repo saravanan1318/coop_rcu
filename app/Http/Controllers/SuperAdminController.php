@@ -27,6 +27,8 @@ use App\Models\Godowns;
 use App\Exports\LoanExport;
 use App\Models\Croploan_entry;
 
+use Illuminate\Support\Facades\Auth;
+
 class SuperAdminController extends Controller
 {
     //

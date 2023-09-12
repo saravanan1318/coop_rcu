@@ -76,35 +76,36 @@ class SocietyController extends Controller
     function loanadd()
     {
 
-        if (Auth::user()->role == 5) {
+        // if (Auth::user()->role == 5) {
 
-            $mtr_loan = Mtr_loan::all();
-        } else if (Auth::user()->role == 6) {
+           
+        // } else if (Auth::user()->role == 6) {
 
-            $mtr_loan = Mtr_loan::whereNotIn('id', [22])->get();
-        } else if (Auth::user()->role == 7) {
+        //     $mtr_loan = Mtr_loan::whereNotIn('id', [22])->get();
+        // } else if (Auth::user()->role == 7) {
 
-            $mtr_loan =  Mtr_loan::whereIn('id', [11, 24, 25])->get();
-        } else if (Auth::user()->role == 8) {
+        //     $mtr_loan =  Mtr_loan::whereIn('id', [11, 24, 25])->get();
+        // } else if (Auth::user()->role == 8) {
 
-            $mtr_loan =  Mtr_loan::whereIn('id', [11, 24, 25])->get();
-        } else if (Auth::user()->role == 9) {
+        //     $mtr_loan =  Mtr_loan::whereIn('id', [11, 24, 25])->get();
+        // } else if (Auth::user()->role == 9) {
 
-            $mtr_loan =  Mtr_loan::whereIn('id', [1, 11, 22])->get();
-        } else if (Auth::user()->role == 10) {
+        //     $mtr_loan =  Mtr_loan::whereIn('id', [1, 11, 22])->get();
+        // } else if (Auth::user()->role == 10) {
 
-            $mtr_loan = Mtr_loan::all();
-        } else if (Auth::user()->role == 11) {
+        //     $mtr_loan = Mtr_loan::all();
+        // } else if (Auth::user()->role == 11) {
 
-            $mtr_loan =  Mtr_loan::whereIn('id', [11, 16])->get();
-        } else if (Auth::user()->role == 12) {
+        //     $mtr_loan =  Mtr_loan::whereIn('id', [11, 16])->get();
+        // } else if (Auth::user()->role == 12) {
 
-            $mtr_loan =  Mtr_loan::whereNotIn('id', [22, 23])->get();
-        } else if (Auth::user()->role == 13) {
+        //     $mtr_loan =  Mtr_loan::whereNotIn('id', [22, 23])->get();
+        // } else if (Auth::user()->role == 13) {
 
-            $mtr_loan =  Mtr_loan::whereNotIn('id', [22, 23])->get();
-        }
+        //     $mtr_loan =  Mtr_loan::whereNotIn('id', [22, 23])->get();
+        // }
 
+        $mtr_loan = Mtr_loan::all();
         return view("loan.add", compact('mtr_loan'));
     }
 
