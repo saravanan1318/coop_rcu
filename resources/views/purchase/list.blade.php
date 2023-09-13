@@ -35,9 +35,13 @@
                             <table class="table table-responsive table-bordered datatable" style="text-align: center">
                                 <thead>
                                     <tr>
+                                        <th scope="col" colspan="3"></th>
+                                        <th scope="col" colspan="12">Purchase Form</th>
+                                    </tr>
+                                    <tr>
                                         <th scope="col">#</th>
-                                        <th scope="col">Purchase Name</th>
-                                        <th scope="col">Purchase Date</th>
+                                        <th scope="col">Date</th>
+                                        <th scope="col">Categories</th>
                                         <th scope="col" colspan="3" >Govt. Institutions</th>
                                         <th scope="col" colspan="3" >Coop Institutions</th>
                                         <th scope="col" colspan="3" >Private Traders</th>
@@ -63,8 +67,8 @@
                                     @foreach($purchases as $purchase)
                                     <tr>
                                         <th scope="row">{{ $purchase->id }}</th>
-                                        <td>{{ $purchase->purchasetype->purchase_name }}</td>
                                         <td>{{ $purchase->purchasedate }}</td>
+                                        <td>{{ $purchase->purchasetype->purchase_name }}</td>
                                         <td>{{ $purchase->govtnoofvarieties }}</td>
                                         <td>{{ $purchase->govtquantity }}</td>
                                         <td>{{ $purchase->govtvalues }}</td>
