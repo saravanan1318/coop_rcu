@@ -77,7 +77,7 @@
                                     <tbody id="tbody">
                                         <tr data-id="1" id="row1">
                                             <td>
-                                                <select class="form-control purchase_id" data-rowid="1" id="purchase_id1" name="purchase_id[]" style=" width: 150px; " value="{{ old('purchase_id') }}">
+                                                <select class="form-control purchase_id" data-rowid="1" id="purchase_id1" name="purchase_id[]" style=" width: 150px; " value="{{ old('purchase_id') }}"  required>
                                                     <option value="">--SELECT--</option>
                                                     @foreach($mtr_purchases as $purchases)
                                                     <option value="{{ $purchases->id }}">{{ $purchases->purchase_name }}</option>

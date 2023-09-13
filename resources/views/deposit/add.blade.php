@@ -66,7 +66,7 @@
                                 <tbody id="tbody">
                                     <tr data-id="1" id="row1">
                                         <td>
-                                            <select class="form-control" id="floatingName" name="deposittype_id[]" value="{{ old('deposittype_id') }}">
+                                            <select class="form-control" id="floatingName" name="deposittype_id[]" value="{{ old('deposittype_id') }}" required>
                                                 <option value="">--SELECT--</option>
                                                 @foreach($mtr_deposits as $deposits)
                                                     <option value="{{ $deposits->id }}">{{ $deposits->deposit_name }}</option>

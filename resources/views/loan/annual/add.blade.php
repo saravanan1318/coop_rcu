@@ -48,7 +48,7 @@
                         <div class="row margindiv">
                           <div class="col-md-12">
                               <div class="form-floating">
-                              <select class="form-control" id="floatingName" name="loan_id" value="{{ old('loan_id') }}">
+                              <select class="form-control" id="floatingName" name="loan_id" value="{{ old('loan_id') }}"  required>
                                 @foreach($mtr_loan as $loan)
                                   <option value="{{ $loan->id }}">{{ $loan->loantype }}</option>
                                 @endforeach
