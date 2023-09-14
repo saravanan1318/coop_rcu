@@ -211,7 +211,8 @@ class JRController extends Controller
 
         // Create a new instance of the model and populate it with the form data
         $eightyone = new Jr_eightyone();
-        $eightyone->eightyonedate=$request->input('eightyonedate');
+        $eightyone->region_name = Auth::user()->name;
+        $eightyone->eightyonedate = $request->input('eightyonedate');
         $eightyone->ob_eighty_one = $request->input('ob_eighty_one');
         $eightyone->ordered_this_month_eighty_one = $request->input('ordered_this_month_eighty_one');
         $eightyone->total_ob_ordered_eighty_one = $request->input('total_ob_ordered_eighty_one');
@@ -244,7 +245,7 @@ class JRController extends Controller
     {
         // Validate the form data
         $request->validate([
-            'eightytwodate'=> 'required',
+            'eightytwodate' => 'required',
             'ob_eighty_two' => 'required|integer',
             'ordered_this_month_eighty_two' => 'required|integer',
             'total_ob_ordered_eighty_two' => 'required|integer',
@@ -258,6 +259,7 @@ class JRController extends Controller
 
         // Create a new instance of the model and populate it with the form data
         $eightytwo = new Jr_eightytwo();
+        $eightytwo->region_name = Auth::user()->name;
         $eightytwo->eightytwodate = $request->input('eightytwodate');
         $eightytwo->ob_eighty_two = $request->input('ob_eighty_two');
         $eightytwo->ordered_this_month_eighty_two = $request->input('ordered_this_month_eighty_two');
@@ -290,7 +292,7 @@ class JRController extends Controller
     function seventeenastore(Request $request)
     {
         $request->validate([
-            'seventeenadate'=> 'required',
+            'seventeenadate' => 'required',
             'disciplinary_ob_seventeena' => 'required|integer',
             'initiated_during_month_seventeena' => 'required|integer',
             'disciplinary_total_seventeena' => 'required|integer',
@@ -306,6 +308,7 @@ class JRController extends Controller
         ]);
 
         $seventeena = new Jr_seventeena();
+        $seventeena->region_name = Auth::user()->name;
         $seventeena->seventeenadate = $request->input('seventeenadate');
         $seventeena->disciplinary_ob_seventeena = $request->input('disciplinary_ob_seventeena');
         $seventeena->initiated_during_month_seventeena = $request->input('initiated_during_month_seventeena');
@@ -351,6 +354,7 @@ class JRController extends Controller
 
 
         $seventeena = new Jr_dai();
+        $seventeena->region_name = Auth::user()->name;
         $seventeena->daidate = $request->input('daidate');
         $seventeena->ob = $request->input('ob');
         $seventeena->recommended_action = $request->input('recommended_action');
@@ -381,7 +385,7 @@ class JRController extends Controller
     function surchargestore(Request $request)
     {
         $request->validate([
-            'surchargedate'=> 'required',
+            'surchargedate' => 'required',
             'surcharge_order_issued_number' => 'required|string|max:255',
             'surcharge_issued_amount' => 'required|numeric',
             'numbers_collected_during_month' => 'required|integer',
@@ -393,6 +397,7 @@ class JRController extends Controller
 
         // Create a new instance of the SurchargeData model and populate it with the form data
         $surchargeData = new Jr_surcharge();
+        $surchargeData->region_name = Auth::user()->name;
         $surchargeData->surchargedate = $request->input('surchargedate');
         $surchargeData->surcharge_order_issued_number = $request->input('surcharge_order_issued_number');
         $surchargeData->surcharge_issued_amount = $request->input('surcharge_issued_amount');
@@ -441,6 +446,7 @@ class JRController extends Controller
 
         // Create a new instance of the model and populate it with the form data
         $societiesBoardDirectors = new Jr_disqualify();
+        $societiesBoardDirectors->region_name = Auth::user()->name;
         $societiesBoardDirectors->disqualifydate = $request->input('disqualifydate');
         $societiesBoardDirectors->societies_ob = $request->input('societies_ob');
         $societiesBoardDirectors->board_of_directors_ob = $request->input('board_of_directors_ob');
