@@ -66,13 +66,14 @@
                                 <tbody id="tbody">
                                     <tr data-id="1" id="row1">
                                         <td>
-                                            <select class="form-control" id="loantype_id1" name="loantype_id[]" value="{{ old('loantype_id') }}" required>
+                                            <select class="form-control" id="loantype_id1" name="loantype_id[]" required>
                                                 <option value="">--SELECT--</option>
                                                 @foreach($mtr_loan as $loan)
                                                     <option value="{{ $loan->id }}">{{ $loan->loantype }}</option>
                                                 @endforeach
                                             </select>
                                         </td>
+
                                         <td>
                                             <input type="text" class="form-control" id="disbursedno1"  name="disbursedno[]" value="{{ old('disbursedno[]') }}"  required>
                                         </td>
