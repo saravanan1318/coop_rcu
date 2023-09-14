@@ -65,7 +65,6 @@
                                 </thead>
                                 <tbody id="tbody">
                                     <tr data-id="1" id="row1">
-                                        
                                         <td>
                                             <select class="form-control" id="loantype_id1" name="loantype_id[]" required>
                                                 <option value="">--SELECT--</option>
