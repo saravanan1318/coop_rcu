@@ -78,7 +78,7 @@ class SocietyController extends Controller
 
         // if (Auth::user()->role == 5) {
 
-           
+
         // } else if (Auth::user()->role == 6) {
 
         //     $mtr_loan = Mtr_loan::whereNotIn('id', [22])->get();
@@ -599,6 +599,6 @@ class SocietyController extends Controller
         $croploan->applicationpendingno = $request->input('applicationpendingno');
         $croploan->applicationpendingamount = $request->input('applicationpendingamount');
         $croploan->save();
-        return redirect('/society/croploan/list')->with('status', 'Crop entry added successfully');
+        return redirect('/society/croploan')->with('status', 'Crop entry added successfully');
     }
 }
