@@ -560,44 +560,44 @@
   @if(Auth::user()->role == 14)
   <ul class="sidebar-nav" id="sidebar-nav">
     <li class="nav-item">
-      <a class="nav-link " href="/md/loanlist">
+      <a class="nav-link " href="/admin/loanlist">
         <i class="bi bi-grid"></i>
         <span>Loan</span>
       </a>
     </li>
     <!-- End Dashboard Nav -->
     <li class="nav-item">
-      <a class="nav-link " href="/md/croploanlist">
+      <a class="nav-link " href="/admin/croploanlist">
         <i class="bi bi-grid"></i>
         <span>Crop Loan</span>
       </a>
     </li><!-- End Dashboard Nav -->
     <li class="nav-item">
-      <a class="nav-link " href="/md/depositlist">
+      <a class="nav-link " href="/admin/depositlist">
         <i class="bi bi-grid"></i>
         <span>Deposit</span>
       </a>
     </li><!-- End Dashboard Nav -->
     <li class="nav-item">
-      <a class="nav-link " href="/md/purchaselist">
+      <a class="nav-link " href="/admin/purchaselist">
         <i class="bi bi-grid"></i>
         <span>Purchase</span>
       </a>
     </li><!-- End Dashboard Nav -->
     <li class="nav-item">
-      <a class="nav-link " href="/md/saleslist">
+      <a class="nav-link " href="/admin/saleslist">
         <i class="bi bi-grid"></i>
         <span>Sales</span>
       </a>
     </li><!-- End Dashboard Nav -->
     <li class="nav-item">
-      <a class="nav-link " href="/md/godownlist">
+      <a class="nav-link " href="/admin/godownlist">
         <i class="bi bi-grid"></i>
         <span>Godown</span>
       </a>
     </li><!-- End Dashboard Nav -->
     <li class="nav-item">
-      <a class="nav-link " href="/md/servicelist">
+      <a class="nav-link " href="/admin/servicelist">
         <i class="bi bi-grid"></i>
         <span>Services</span>
       </a>

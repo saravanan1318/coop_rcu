@@ -54,7 +54,8 @@
             $("#privatequantity").attr("readonly",true);
             $("#privatevalues").attr("readonly",false);
             $("#jpcnoofvarieties").attr("readonly",false);
-            $("#jpcquantity").attr("readonly",true);
+            $("#jpcquantity").attr("readonly",true
+            );
             $("#jpcvalues").attr("readonly",false);
 
         }else if(this.value == "3"){
