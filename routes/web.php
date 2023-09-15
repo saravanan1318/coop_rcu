@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WebsiteController;
 use App\Http\Controllers\SocietyController;
@@ -34,6 +35,8 @@ Route::get('import-regionusers', [LoginFormController::class, 'importregionusers
 
 /**SocietyController */
 Route::group(['middleware' => 'auth'], function () {
+
+    Route::get('/admin/dashboard', [AdminController::class, 'dashboard']);
 
     Route::get('/society/dashboard', [SocietyController::class, 'dashboard']);
 

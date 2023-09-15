@@ -65,15 +65,15 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td><input type="text" name="ob_eighty_two" class="form-control" required></td>
-                                        <td><input type="text" name="ordered_this_month_eighty_two" class="form-control" required></td>
-                                        <td><input type="text" name="total_ob_ordered_eighty_two" class="form-control" required></td>
-                                        <td><input type="text" name="completed_this_month_eighty_two" class="form-control" required></td>
-                                        <td><input type="text" name="pending_within_3_months_eighty_two" class="form-control" required></td>
-                                        <td><input type="text" name="pending_in_3_to_6_months_eighty_two" class="form-control" required></td>
-                                        <td><input type="text" name="pending_above_6_months_eighty_two" class="form-control" required></td>
-                                        <td><input type="text" name="total_pending_eighty_two" class="form-control" required></td>
-                                        <td><input type="text" name="pending_percentage_eighty_two" class="form-control" required></td>
+                                        <td><input type="number" name="ob_eighty_two" class="form-control" required></td>
+                                        <td><input type="number" name="ordered_this_month_eighty_two" class="form-control" required></td>
+                                        <td><input type="number" name="total_ob_ordered_eighty_two" class="form-control" required></td>
+                                        <td><input type="number" name="completed_this_month_eighty_two" class="form-control" required></td>
+                                        <td><input type="number" name="pending_within_3_months_eighty_two" class="form-control" required></td>
+                                        <td><input type="number" name="pending_in_3_to_6_months_eighty_two" class="form-control" required></td>
+                                        <td><input type="number" name="pending_above_6_months_eighty_two" class="form-control" required></td>
+                                        <td><input type="number" name="total_pending_eighty_two" class="form-control" required></td>
+                                        <td><input type="number" name="pending_percentage_eighty_two" class="form-control" required></td>
                                     </tr>
                                 </tbody>
                             </table>

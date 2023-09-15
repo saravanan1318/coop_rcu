@@ -82,40 +82,40 @@
                                                 </select>
                                             </td>
                                             <td>
-                                                <input type="text" class="form-control" style=" width: 150px;" id="count1" name="count[]" required>
+                                                <input type="number" class="form-control" style=" width: 150px;" id="count1" name="count[]" required>
                                             </td>
                                             <td>
-                                                <input type="text" class="form-control" style=" width: 150px; " id="noofcentres1" name="noofcentres[]" required>
+                                                <input type="number" class="form-control" style=" width: 150px; " id="noofcentres1" name="noofcentres[]" required>
                                             </td>
                                             <td>
-                                                <input type="text" class="form-control" style=" width: 150px; " id="noofvarieties1" name="noofvarieties[]" required>
+                                                <input type="number" class="form-control" style=" width: 150px; " id="noofvarieties1" name="noofvarieties[]" required>
                                             </td>
                                             <td>
-                                                <input type="text" class="form-control" style=" width: 150px; " id="noofcustomers1" name="noofcustomers[]" required>
+                                                <input type="number" class="form-control" style=" width: 150px; " id="noofcustomers1" name="noofcustomers[]" required>
                                             </td>
                                             <td>
-                                                <input type="text" class="form-control" style=" width: 150px; " id="nooffarmers1" name="nooffarmers[]" required>
+                                                <input type="number" class="form-control" style=" width: 150px; " id="nooffarmers1" name="nooffarmers[]" required>
                                             </td>
                                             <td>
-                                                <input type="text" class="form-control" style=" width: 150px; " id="quantitykilos1" name="quantitykilos[]" required>
+                                                <input type="number" class="form-control" style=" width: 150px; " id="quantitykilos1" name="quantitykilos[]" required>
                                             </td>
                                             <td>
-                                                <input type="text" class="form-control" style=" width: 150px; " id="quantitylitres1" name="quantitylitres[]" required>
+                                                <input type="number" class="form-control" style=" width: 150px; " id="quantitylitres1" name="quantitylitres[]" required>
                                             </td>
                                             <td>
-                                                <input type="text" class="form-control" style=" width: 150px; " id="purchase1" name="purchase[]" required>
+                                                <input type="number" class="form-control" style=" width: 150px; " id="purchase1" name="purchase[]" required>
                                             </td>
                                             <td>
-                                                <input type="text" class="form-control" style=" width: 150px; " id="salesamountetrading1" name="salesamountetrading[]" required>
+                                                <input type="number" class="form-control" style=" width: 150px; " id="salesamountetrading1" name="salesamountetrading[]" required>
                                             </td>
                                             <td>
-                                                <input type="text" class="form-control" style=" width: 150px; " id="salesamountphysical1" name="salesamountphysical[]" required>
+                                                <input type="number" class="form-control" style=" width: 150px; " id="salesamountphysical1" name="salesamountphysical[]" required>
                                             </td>
                                             <td>
-                                                <input type="text" class="form-control" style=" width: 150px; " id="incomegenerated1" name="incomegenerated[]" required>
+                                                <input type="number" class="form-control" style=" width: 150px; " id="incomegenerated1" name="incomegenerated[]" required>
                                             </td>
                                             <td>
-                                                <input type="text" class="form-control" style=" width: 150px; " id="profit1" name="profit[]" required>
+                                                <input type="number" class="form-control" style=" width: 150px; " id="profit1" name="profit[]" required>
                                             </td>
                                         </tr>
                                     </tbody>

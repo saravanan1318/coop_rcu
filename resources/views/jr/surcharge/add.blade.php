@@ -62,13 +62,13 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td><input type="text" name="surcharge_order_issued_number" class="form-control" required></td>
-                                        <td><input type="text" name="surcharge_issued_amount" class="form-control" required></td>
-                                        <td><input type="text" name="numbers_collected_during_month" class="form-control" required></td>
-                                        <td><input type="text" name="collected_amount" class="form-control" required></td>
-                                        <td><input type="text" name="balance_numbers" class="form-control" required></td>
-                                        <td><input type="text" name="balance_amount" class="form-control" required></td>
-                                        <td><input type="text" name="percentage_of_collection" class="form-control" required></td>
+                                        <td><input type="number" name="surcharge_order_issued_number" class="form-control" required></td>
+                                        <td><input type="number" name="surcharge_issued_amount" class="form-control" required></td>
+                                        <td><input type="number" name="numbers_collected_during_month" class="form-control" required></td>
+                                        <td><input type="number" name="collected_amount" class="form-control" required></td>
+                                        <td><input type="number" name="balance_numbers" class="form-control" required></td>
+                                        <td><input type="number" name="balance_amount" class="form-control" required></td>
+                                        <td><input type="number" name="percentage_of_collection" class="form-control" required></td>
                                     </tr>
                                 </tbody>
                             </table>
