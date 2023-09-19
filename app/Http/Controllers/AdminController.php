@@ -22,7 +22,9 @@ class AdminController extends Controller
         $this->middleware(function ($request, $next) {
             if (Auth::check() && Auth::user()->role == 14) {
                 return $next($request);
+
             }
+
             abort(403);
         });
     }

@@ -103,15 +103,6 @@
                                                 <input type="number" class="form-control" name="coopvalues[]" id="coopvalues1" style=" width: 150px; " value="{{ old('coopvalues') }}" required>
                                             </td>
                                             <td>
-                                                <input type="number" class="form-control" name="jpcnoofvarieties[]" id="jpcnoofvarieties1" style=" width: 150px; " value="{{ old('jpcnoofvarieties') }}" required>
-                                            </td>
-                                            <td>
-                                                <input type="number" class="form-control" name="jpcquantity[]" id="jpcquantity1" style=" width: 150px; " value="{{ old('jpcquantity') }}" required>
-                                            </td>
-                                            <td>
-                                                <input type="number" class="form-control" name="jpcvalues[]" id="jpcvalues1" style=" width: 150px; " value="{{ old('jpcvalues') }}" required>
-                                            </td>
-                                            <td>
                                                 <input type="number" class="form-control" name="privatenoofvarieties[]" id="privatenoofvarieties1" style=" width: 150px; " value="{{ old('privatenoofvarieties') }}" required>
                                             </td>
                                             <td>
@@ -119,6 +110,15 @@
                                             </td>
                                             <td>
                                                 <input type="number" class="form-control" name="privatevalues[]" id="privatevalues1" style=" width: 150px; " value="{{ old('privatevalues') }}" required>
+                                            </td>
+                                            <td>
+                                                <input type="number" class="form-control" name="jpcnoofvarieties[]" id="jpcnoofvarieties1" style=" width: 150px; " value="{{ old('jpcnoofvarieties') }}" required>
+                                            </td>
+                                            <td>
+                                                <input type="number" class="form-control" name="jpcquantity[]" id="jpcquantity1" style=" width: 150px; " value="{{ old('jpcquantity') }}" required>
+                                            </td>
+                                            <td>
+                                                <input type="number" class="form-control" name="jpcvalues[]" id="jpcvalues1" style=" width: 150px; " value="{{ old('jpcvalues') }}" required>
                                             </td>
                                         </tr>
                                     </tbody>
