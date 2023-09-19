@@ -256,6 +256,16 @@
             $("#salesamountphysical"+rowid).attr("readonly",false);
             $("#salesamountcoopbazaar"+rowid).attr("readonly",true);
 
+        }else if(this.value == "8"){
+
+           $("#noofvarieties"+rowid).attr("readonly",false);
+           $("#noofoutlets"+rowid).attr("readonly",true);
+           $("#noofcustomers"+rowid).attr("readonly",false);
+           $("#nooffarmers"+rowid).attr("readonly",true);
+           $("#quantitykilo"+rowid).attr("readonly",true);
+           $("#quantitylitres"+rowid).attr("readonly",true);
+           $("#salesamountphysical"+rowid).attr("readonly",false);
+           $("#salesamountcoopbazaar"+rowid).attr("readonly",false);
         }
         });
 
