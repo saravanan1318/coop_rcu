@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WebsiteController;
 use App\Http\Controllers\SocietyController;
@@ -34,6 +35,15 @@ Route::get('import-regionusers', [LoginFormController::class, 'importregionusers
 
 /**SocietyController */
 Route::group(['middleware' => 'auth'], function () {
+
+    Route::get('/admin/dashboard', [AdminController::class, 'dashboard']);
+    Route::get('/admin/loanlist', [JRController::class, 'loanslist']);
+    Route::get('/admin/depositlist', [JRController::class, 'depositlist']);
+    Route::get('/admin/purchaselist', [JRController::class, 'purchaselist']);
+    Route::get('/admin/saleslist', [JRController::class, 'saleslist']);
+    Route::get('/admin/godownlist', [JRController::class, 'godownlist']);
+    Route::get('/admin/servicelist', [JRController::class, 'serviceslist']);
+    Route::get('/admin/croploanlist', [JRController::class, 'croploanlist']);
 
     Route::get('/society/dashboard', [SocietyController::class, 'dashboard']);
 

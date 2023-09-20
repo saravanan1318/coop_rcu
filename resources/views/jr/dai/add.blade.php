@@ -62,11 +62,11 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td><input type="text" name="ob" class="form-control" required></td>
-                                        <td><input type="text" name="recommended_action" class="form-control" required></td>
-                                        <td><input type="text" name="action_taken" id="action_taken" class="form-control" required></td>
-                                        <td><input type="text" name="disposal" id="disposal" class="form-control" required></td>
-                                        <td><input type="text" name="percentage_of_disposal" id="percentage_of_disposal" class="form-control" required readonly></td>
+                                        <td><input type="number" name="ob" class="form-control" required></td>
+                                        <td><input type="number" name="recommended_action" class="form-control" required></td>
+                                        <td><input type="number" name="action_taken" id="action_taken" class="form-control" required></td>
+                                        <td><input type="number" name="disposal" id="disposal" class="form-control" required></td>
+                                        <td><input type="number" name="percentage_of_disposal" id="percentage_of_disposal" class="form-control" required readonly></td>
                                     </tr>
                                 </tbody>
                             </table>

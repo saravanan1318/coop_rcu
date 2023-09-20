@@ -313,12 +313,12 @@ class SocietyController extends Controller
             $purchases->coopnoofvarieties = isset($request->coopnoofvarieties[$i]) ? $request->coopnoofvarieties[$i] : NULL;
             $purchases->coopquantity = isset($request->coopquantity[$i]) ? $request->coopquantity[$i] : NULL;
             $purchases->coopvalues = isset($request->coopvalues[$i]) ? $request->coopvalues[$i] : NULL;
-            $purchases->jpcnoofvarieties = isset($request->jpcnoofvarieties[$i]) ? $request->jpcnoofvarieties[$i] : NULL;
-            $purchases->jpcquantity = isset($request->jpcquantity[$i]) ? $request->jpcquantity[$i] : NULL;
-            $purchases->jpcvalues = isset($request->jpcvalues[$i]) ? $request->jpcvalues[$i] : NULL;
             $purchases->privatenoofvarieties = isset($request->privatenoofvarieties[$i]) ? $request->privatenoofvarieties[$i] : NULL;
             $purchases->privatequantity = isset($request->privatequantity[$i]) ? $request->privatequantity[$i] : NULL;
             $purchases->privatevalues = isset($request->privatevalues[$i]) ? $request->privatevalues[$i] : NULL;
+            $purchases->jpcnoofvarieties = isset($request->jpcnoofvarieties[$i]) ? $request->jpcnoofvarieties[$i] : NULL;
+            $purchases->jpcquantity = isset($request->jpcquantity[$i]) ? $request->jpcquantity[$i] : NULL;
+            $purchases->jpcvalues = isset($request->jpcvalues[$i]) ? $request->jpcvalues[$i] : NULL;
             $purchases->save();
         }
 

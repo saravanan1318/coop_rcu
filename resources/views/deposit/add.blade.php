@@ -74,16 +74,16 @@
                                             </select>
                                         </td>
                                         <td>
-                                            <input type="text" class="form-control" id="floatingName"  name="recievedno[]" value="{{ old('recievedno[]') }}" required>
+                                            <input type="number" class="form-control" id="floatingName"  name="recievedno[]" value="{{ old('recievedno[]') }}" required>
                                         </td>
                                         <td>
-                                            <input type="text" class="form-control" id="floatingName"  name="recievedamount[]" value="{{ old('recievedamount[]') }}" required>
+                                            <input type="number" class="form-control" id="floatingName"  name="recievedamount[]" value="{{ old('recievedamount[]') }}" required>
                                         </td>
                                         <td>
-                                            <input type="text" class="form-control" id="floatingName"  name="closedno[]" value="{{ old('closedno[]') }}" required>
+                                            <input type="number" class="form-control" id="floatingName"  name="closedno[]" value="{{ old('closedno[]') }}" required>
                                         </td>
                                         <td>
-                                            <input type="text" class="form-control" id="floatingName"  name="closedamount[]" value="{{ old('closedamount[]') }}" required>
+                                            <input type="number" class="form-control" id="floatingName"  name="closedamount[]" value="{{ old('closedamount[]') }}" required>
                                         </td>
                                         <td>
                                         </td>

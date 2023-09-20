@@ -389,7 +389,7 @@
       <!-- End Dashboard Nav -->
   </ul>
   @endif
-  @if(Auth::user()->role > 4)
+  @if(Auth::user()->role > 4 && Auth::user()->role <= 13 )
     <ul class="sidebar-nav" id="sidebar-nav">
 
       <li class="nav-item">
@@ -555,16 +555,53 @@
           </li>
         </ul>
       </li>
-
-      <!-- End Forms Nav -->
-      {{-- <li class="nav-heading">Pages</li>
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="users-profile.html">
-          <i class="bi bi-person"></i>
-          <span>Profile</span>
-        </a>
-      </li><!-- End Profile Page Nav --> --}}
     </ul>
+  @endif
+  @if(Auth::user()->role == 14)
+  <ul class="sidebar-nav" id="sidebar-nav">
+    <li class="nav-item">
+      <a class="nav-link " href="/admin/loanlist">
+        <i class="bi bi-grid"></i>
+        <span>Loan</span>
+      </a>
+    </li>
+    <!-- End Dashboard Nav -->
+    <li class="nav-item">
+      <a class="nav-link " href="/admin/croploanlist">
+        <i class="bi bi-grid"></i>
+        <span>Crop Loan</span>
+      </a>
+    </li><!-- End Dashboard Nav -->
+    <li class="nav-item">
+      <a class="nav-link " href="/admin/depositlist">
+        <i class="bi bi-grid"></i>
+        <span>Deposit</span>
+      </a>
+    </li><!-- End Dashboard Nav -->
+    <li class="nav-item">
+      <a class="nav-link " href="/admin/purchaselist">
+        <i class="bi bi-grid"></i>
+        <span>Purchase</span>
+      </a>
+    </li><!-- End Dashboard Nav -->
+    <li class="nav-item">
+      <a class="nav-link " href="/admin/saleslist">
+        <i class="bi bi-grid"></i>
+        <span>Sales</span>
+      </a>
+    </li><!-- End Dashboard Nav -->
+    <li class="nav-item">
+      <a class="nav-link " href="/admin/godownlist">
+        <i class="bi bi-grid"></i>
+        <span>Godown</span>
+      </a>
+    </li><!-- End Dashboard Nav -->
+    <li class="nav-item">
+      <a class="nav-link " href="/admin/servicelist">
+        <i class="bi bi-grid"></i>
+        <span>Services</span>
+      </a>
+    </li><!-- End Dashboard Nav -->
+  </ul>
   @endif
   </aside><!-- End Sidebar-->

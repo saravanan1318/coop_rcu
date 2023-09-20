@@ -5,7 +5,7 @@
     <h1>List</h1>
     <nav>
       <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="/society/dashboard">Dashboard</a></li>
+        <li class="breadcrumb-item"><a href="/admin/dashboard">Dashboard</a></li>
         <li class="breadcrumb-item">Loan</li>
         <li class="breadcrumb-item">List</li>
       </ol>
@@ -49,6 +49,7 @@
                             <th scope="col" colspan="2" rowspan="1">Disbursed</th>
                             <th scope="col" colspan="2" rowspan="1">Collected</th>
                         </tr>
+
                       </thead>
                       <tr style="text-align: center">
                         <th scope="col" ></th>
@@ -58,18 +59,6 @@
                         <th scope="col" >No. of Loan</th>
                         <th scope="col" >Amount of Loan</th>
                       </tr>
-                      <tbody>
-                        @foreach($loans as $loan)
-                          <tr>
-                            <td>{{ $loan->loandate }}</td>
-                            <td>{{ $loan->loantype->loantype }}</td>
-                            <td>{{ $loan->disbursedno }}</td>
-                            <td>{{ $loan->disbursedamount }}</td>
-                            <td>{{ $loan->collectedno }}</td>
-                            <td>{{ $loan->collectedamount }}</td>
-                          </tr>
-                        @endforeach
-                      </tbody>
                   </table>
                   <div class="d-flex">
                     {!! $loans->links() !!}
@@ -79,6 +68,5 @@
         </div>
     </div>
   </section>
-
 </main><!-- End #main -->
 @endsection

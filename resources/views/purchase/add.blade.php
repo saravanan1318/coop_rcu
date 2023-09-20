@@ -85,40 +85,40 @@
                                                 </select>
                                             </td>
                                             <td>
-                                                <input type="text" class="form-control" name="govtnoofvarieties[]" id="govtnoofvarieties1" style=" width: 150px; " value="{{ old('govtnoofvarieties') }}" required>
+                                                <input type="number" class="form-control" name="govtnoofvarieties[]" id="govtnoofvarieties1" style=" width: 150px; " value="{{ old('govtnoofvarieties') }}" required>
                                             </td>
                                             <td>
-                                                <input type="text" class="form-control" name="govtquantity[]" id="govtquantity1" style=" width: 150px; " value="{{ old('govtquantity') }}" required>
+                                                <input type="number" class="form-control" name="govtquantity[]" id="govtquantity1" style=" width: 150px; " value="{{ old('govtquantity') }}" required>
                                             </td>
                                             <td>
-                                                <input type="text" class="form-control" name="govtvalues[]" id="govtvalues1" style=" width: 150px; " value="{{ old('govtvalues') }}" required>
+                                                <input type="number" class="form-control" name="govtvalues[]" id="govtvalues1" style=" width: 150px; " value="{{ old('govtvalues') }}" required>
                                             </td>
                                             <td>
-                                                <input type="text" class="form-control" name="coopnoofvarieties[]" id="coopnoofvarieties1" style=" width: 150px; " value="{{ old('coopnoofvarieties') }}" required>
+                                                <input type="number" class="form-control" name="coopnoofvarieties[]" id="coopnoofvarieties1" style=" width: 150px; " value="{{ old('coopnoofvarieties') }}" required>
                                             </td>
                                             <td>
-                                                <input type="text" class="form-control" name="coopquantity[]" id="coopquantity1" style=" width: 150px; " value="{{ old('coopquantity') }}" required>
+                                                <input type="number" class="form-control" name="coopquantity[]" id="coopquantity1" style=" width: 150px; " value="{{ old('coopquantity') }}" required>
                                             </td>
                                             <td>
-                                                <input type="text" class="form-control" name="coopvalues[]" id="coopvalues1" style=" width: 150px; " value="{{ old('coopvalues') }}" required>
+                                                <input type="number" class="form-control" name="coopvalues[]" id="coopvalues1" style=" width: 150px; " value="{{ old('coopvalues') }}" required>
                                             </td>
                                             <td>
-                                                <input type="text" class="form-control" name="jpcnoofvarieties[]" id="jpcnoofvarieties1" style=" width: 150px; " value="{{ old('jpcnoofvarieties') }}" required>
+                                                <input type="number" class="form-control" name="privatenoofvarieties[]" id="privatenoofvarieties1" style=" width: 150px; " value="{{ old('privatenoofvarieties') }}" required>
                                             </td>
                                             <td>
-                                                <input type="text" class="form-control" name="jpcquantity[]" id="jpcquantity1" style=" width: 150px; " value="{{ old('jpcquantity') }}" required>
+                                                <input type="number" class="form-control" name="privatequantity[]" id="privatequantity1" style=" width: 150px; " value="{{ old('privatequantity') }}" required>
                                             </td>
                                             <td>
-                                                <input type="text" class="form-control" name="jpcvalues[]" id="jpcvalues1" style=" width: 150px; " value="{{ old('jpcvalues') }}" required>
+                                                <input type="number" class="form-control" name="privatevalues[]" id="privatevalues1" style=" width: 150px; " value="{{ old('privatevalues') }}" required>
                                             </td>
                                             <td>
-                                                <input type="text" class="form-control" name="privatenoofvarieties[]" id="privatenoofvarieties1" style=" width: 150px; " value="{{ old('privatenoofvarieties') }}" required>
+                                                <input type="number" class="form-control" name="jpcnoofvarieties[]" id="jpcnoofvarieties1" style=" width: 150px; " value="{{ old('jpcnoofvarieties') }}" required>
                                             </td>
                                             <td>
-                                                <input type="text" class="form-control" name="privatequantity[]" id="privatequantity1" style=" width: 150px; " value="{{ old('privatequantity') }}" required>
+                                                <input type="number" class="form-control" name="jpcquantity[]" id="jpcquantity1" style=" width: 150px; " value="{{ old('jpcquantity') }}" required>
                                             </td>
                                             <td>
-                                                <input type="text" class="form-control" name="privatevalues[]" id="privatevalues1" style=" width: 150px; " value="{{ old('privatevalues') }}" required>
+                                                <input type="number" class="form-control" name="jpcvalues[]" id="jpcvalues1" style=" width: 150px; " value="{{ old('jpcvalues') }}" required>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -225,11 +225,11 @@
                 $("#coopnoofvarieties"+rowid).attr("readonly",true);
                 $("#coopquantity"+rowid).attr("readonly",true);
                 $("#coopvalues"+rowid).attr("readonly",true);
-                $("#privatenoofvarieties"+rowid).attr("readonly",true);
-                $("#privatequantity"+rowid).attr("readonly",false);
+                $("#privatenoofvarieties"+rowid).attr("readonly",false);
+                $("#privatequantity"+rowid).attr("readonly",true);
                 $("#privatevalues"+rowid).attr("readonly",false);
-                $("#jpcnoofvarieties"+rowid).attr("readonly",true);
-                $("#jpcquantity"+rowid).attr("readonly",false);
+                $("#jpcnoofvarieties"+rowid).attr("readonly",false);
+                $("#jpcquantity"+rowid).attr("readonly",true);
                 $("#jpcvalues"+rowid).attr("readonly",false);
 
             }else if(this.value == "3"){

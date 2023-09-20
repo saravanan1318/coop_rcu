@@ -95,23 +95,23 @@
                                             </thead>
                                             <tbody>
                                                 <tr>
-                                                    <td><input type="text" class="form-control" style="width: 100px;" name="annualTarget" value="{{ old('annualTarget') }}" required></td>
-                                                    <td><input type="text" class="form-control" style="width: 100px;" name="proportionateTarget" value="{{ old('proportionateTarget') }}" required></td>
-                                                    <td><input type="text" class="form-control" style="width: 100px;" name="cultivableLand" value="{{ old('cultivableLand') }}" required></td>
-                                                    <td><input type="text" class="form-control" style="width: 100px;" name="openingBalanceNo" value="{{ old('openingBalanceNo') }}" required></td>
-                                                    <td><input type="text" class="form-control" style="width: 100px;" name="openingBalanceAmount" value="{{ old('openingBalanceAmount') }}" required></td>
-                                                    <td><input type="text" class="form-control" style="width: 100px;" name="receivedNo" value="{{ old('receivedNo') }}" required></td>
-                                                    <td><input type="text" class="form-control" style="width: 100px;" name="receivedAmount" value="{{ old('receivedAmount') }}" required></td>
-                                                    <td><input type="text" class="form-control" style="width: 100px;" name="totalNo" value="{{ old('totalNo') }}" required></td>
-                                                    <td><input type="text" class="form-control" style="width: 100px;" name="totalAmount" value="{{ old('totalAmount') }}" required></td>
-                                                    <td><input type="text" class="form-control" style="width: 100px;" name="sanctionedNo" value="{{ old('sanctionedNo') }}" required></td>
-                                                    <td><input type="text" class="form-control" style="width: 100px;" name="sanctionedAmount" value="{{ old('sanctionedAmount') }}" required></td>
-                                                    <td><input type="text" class="form-control" style="width: 100px;" name="sanctionedLand" value="{{ old('sanctionedLand') }}" required></td>
-                                                    <td><input type="text" class="form-control" style="width: 100px;" name="achievementAnnual" value="{{ old('achievementAnnual') }}" required></td>
-                                                    <td><input type="text" class="form-control" style="width: 100px;" name="achievementProportionate" value="{{ old('achievementProportionate') }}" required></td>
-                                                    <td><input type="text" class="form-control" style="width: 100px;" name="rejectedno" value="{{ old('rejectedno') }}" required></td>
-                                                    <td><input type="text" class="form-control" style="width: 100px;" name="applicationpendingno" value="{{ old('applicationpendingno') }}"></td>
-                                                    <td><input type="text" class="form-control" style="width: 100px;" name="applicationpendingamount" value="{{ old('applicationpendingamount') }}"></td>
+                                                    <td><input type="number" class="form-control" style="width: 100px;" name="annualTarget" value="{{ old('annualTarget') }}" required></td>
+                                                    <td><input type="number" class="form-control" style="width: 100px;" name="proportionateTarget" value="{{ old('proportionateTarget') }}" required></td>
+                                                    <td><input type="number" class="form-control" style="width: 100px;" name="cultivableLand" value="{{ old('cultivableLand') }}" required></td>
+                                                    <td><input type="number" class="form-control" style="width: 100px;" name="openingBalanceNo" value="{{ old('openingBalanceNo') }}" required></td>
+                                                    <td><input type="number" class="form-control" style="width: 100px;" name="openingBalanceAmount" value="{{ old('openingBalanceAmount') }}" required></td>
+                                                    <td><input type="number" class="form-control" style="width: 100px;" name="receivedNo" value="{{ old('receivedNo') }}" required></td>
+                                                    <td><input type="number" class="form-control" style="width: 100px;" name="receivedAmount" value="{{ old('receivedAmount') }}" required></td>
+                                                    <td><input type="number" class="form-control" style="width: 100px;" name="totalNo" value="{{ old('totalNo') }}" required></td>
+                                                    <td><input type="number" class="form-control" style="width: 100px;" name="totalAmount" value="{{ old('totalAmount') }}" required></td>
+                                                    <td><input type="number" class="form-control" style="width: 100px;" name="sanctionedNo" value="{{ old('sanctionedNo') }}" required></td>
+                                                    <td><input type="number" class="form-control" style="width: 100px;" name="sanctionedAmount" value="{{ old('sanctionedAmount') }}" required></td>
+                                                    <td><input type="number" class="form-control" style="width: 100px;" name="sanctionedLand" value="{{ old('sanctionedLand') }}" required></td>
+                                                    <td><input type="number" class="form-control" style="width: 100px;" name="achievementAnnual" value="{{ old('achievementAnnual') }}" required></td>
+                                                    <td><input type="number" class="form-control" style="width: 100px;" name="achievementProportionate" value="{{ old('achievementProportionate') }}" required></td>
+                                                    <td><input type="number" class="form-control" style="width: 100px;" name="rejectedno" value="{{ old('rejectedno') }}" required></td>
+                                                    <td><input type="number" class="form-control" style="width: 100px;" name="applicationpendingno" value="{{ old('applicationpendingno') }}"></td>
+                                                    <td><input type="number" class="form-control" style="width: 100px;" name="applicationpendingamount" value="{{ old('applicationpendingamount') }}"></td>
                                                 </tr>
 
                                         </table>
