@@ -17,51 +17,72 @@
       <div class="col-md-12">
         <div class="card">
           <div class="card-body">
-            <h5 class="card-title">Godown Report</h5>
-            <form action="{{url('/superadmin/godownreport')}}" method="get" id="godownform" class="row g-3">
-              @csrf
-              <div class="row margindiv">
-                <div class="col-md-4">
-                  <div class="form-floating">
-                    <input type="date" class="form-control" id="floatingName" name="godownreportdate" placeholder="date" value="{{$godownreportdate}}" required>
-                    <label for="floatingName">Date</label>
-                  </div>
-                </div>
-                <div class="col-md-4">
-                  <div class="text-center">
-                    <button type="submit" class="btn btn-primary" id="godownsubmit">Submit</button>
-                  </div>
-                </div>
-            </form </div>
+
             <div class="col-md-12" style="margin-top: 10px">
-              <table class="table table-responsive table-bordered datatable">
-                <thead style="text-align: center">
-                  <tr>
-                    <th scope="col" rowspan="2">Date</th>
-                    <th scope="col" colspan="1" rowspan="2">Count</th>
-                    <th scope="col" colspan="1" rowspan="2">Capacity</th>
-                    <th scope="col" colspan="1" rowspan="2">Utilized</th>
-                    <th scope="col" colspan="1" rowspan="2">Utilized (%)</th>
-                    <th scope="col" rowspan="1">Income</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  @foreach($godownreportdata as $godownData)
-                  <tr>
-                    <td>{{ $godownData['godowndate'] }}</td>
-                    <td>{{ $godownData['count'] }}</td>
-                    <td>{{ $godownData['capacity'] }}</td>
-                    <td>{{ $godownData['utilized'] }}</td>
-                    <td>{{ $godownData['percentageutilized'] }}</td>
-                    <td>{{ $godownData['income'] }}</td>
-                  </tr>
-                  @endforeach
-                </tbody>
-              </table>
+                <form method="GET" action="{{ URL::current() }}">
+                    <h3>Filters:</h3>
+                    <div class="row filterpaddings">
+                        @if(isset($societiestypes))
+                            <div class="col-3 ">
+                                <label for="society">Types:</label>
+                                <select name="societyTypes" id="societyTypes" class="form-control">
+                                    <option value="">All</option>
+                                    {{$showCase="ALL"}}
+                                    @foreach($societiestypes as $societytype)
+                                        {{$societyTypesFilter == $societytype->role_id? $showCase=$societytype->societytype:""}}
+                                        {{--                                                        @if($societytype->id == $societyTypesFilter)--}}
+                                        <option
+                                            value="{{ $societytype->role_id }}" {{$societyTypesFilter == $societytype->role_id ? "selected" : "" }}>{{ $societytype->societytype }}</option>
+                                        {{--                                                        @endif--}}
+                                    @endforeach
+                                </select>
+                            </div>
+                        @endif
+
+                        <div class="col-3 mt-3" `>
+                            <button type="submit" class="btn btn-primary m-1">Apply Filters</button>
+                            <a href="{{ URL::current() }}" type="submit"
+                               class=" m-1 btn btn-primary">Clear</a>
+                        </div>
+                    </div>
+
+
+                </form>
+                <table class="stripe table-bordered table-info " id="data-table">
+                    <thead style="text-align: center">
+                    <tr>
+                        <th colspan="6">
+                            <center>Godown Report - ({{$showCase}})</center>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th scope="col" >Region</th>
+                        <th scope="col" >Count</th>
+                        <th scope="col" >Capacity</th>
+                        <th scope="col" >Utilized</th>
+                        <th scope="col" >Utilized (%)</th>
+                        <th scope="col" >Income</th>
+                    </tr>
+
+                    </thead>
+                    <tbody >
+                    @foreach($results as $result)
+                        <tr>
+                            <td>{{$result->Region_Name}}</td>
+                            <td>{{$result->count}}</td>
+                            <td>{{$result->capacity}}</td>
+                            <td>{{$result->utilized??"-"}}</td>
+                            <td>{{$result->Percentage??"-"}}</td>
+                            <td>{{$result->income??"-"}}</td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
             </div>
           </div>
         </div>
       </div>
+    </div>
   </section>
 
 </main><!-- End #main -->

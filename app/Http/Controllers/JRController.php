@@ -2,13 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\LoanQueryService;
 use App\Models\Deposit_outstandings;
+use App\Models\Mtr_societytype;
 use Validator;
 
 use App\Models\User;
 
 //loan
 use App\Models\Loan;
+use App\Models\Mtr_circle;
+use App\Models\Mtr_region;
+use App\Models\Mtr_society;
 use App\Models\Loan_trans;
 use App\Models\Loan_annual;
 use App\Models\Loan_overallot;
@@ -56,6 +61,8 @@ use App\Models\Jr_seventeena;
 use App\Models\Jr_surcharge;
 use App\Models\Mtr_services;
 use App\Models\Services;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\URL;
 
 
 use DB;
@@ -77,72 +84,270 @@ class JRController extends Controller
     {
         return view("dashboard");
     }
-
-    function loanlist()
+    function loanlist(Request $request)
     {
+        $regions = Mtr_region::where('id',Auth::user()->region_id)->get();
+        $circles = Mtr_circle::all();
+        $societiestypes = Mtr_societytype::all();
+        $societies = Mtr_society::all();
+        $loantypes=Mtr_loan::all();
+        $currentUrl = URL::current();
 
-        $loans = Loan::select('*')->with('loantype')
-            ->whereIn('user_id', function ($query) {
-                $query->select('id')->from('users')->where('region_id', Auth::user()->region_id);
-            })
-            ->paginate(5);
-        return view("loan.list", compact('loans'));
+        $regionFilter = $request->input('region');
+        $circleFilter = $request->input('circle');
+        $societyFilter = $request->input('society');
+        $endDate = $request->input('endDate');
+        $startDate = $request->input('startDate');
+        $societyTypesFilter = $request->input('societyTypes');
+        $loantypeFilter = $request->input('loantype');
+
+        $soctietyvalue = DB::table('mtr_societytype')
+            ->whereIn('role_id', function ($query) use ($circleFilter, $regionFilter) {
+                $query->select('role')
+                    ->from('users');
+                if($regionFilter) {
+                    $query->where('region_id', $regionFilter);
+                }
+                if($circleFilter) {
+                    $query->where('circle_id', $circleFilter);
+                }
+            });
+
+        $societiestypes=$soctietyvalue->get();
+/*
+        // Build the Loan query with additional conditions
+        $query = Loan::select('*')->with('loantype');
+
+        if ($regionFilter || $circleFilter || $societyFilter ) {
+            $query->whereIn('user_id', function ($subquery) use ($societyTypesFilter, $circleFilter, $regionFilter, $societyFilter) {
+                $subquery->select('id')->from('users');
+                    if (!empty($regionFilter)) {
+                        // Apply condition for region filter
+                        $subquery->where('region_id', $regionFilter);
+                    }
+                if (!empty($societyFilter)) {
+                    // Apply condition for society filter
+                    $subquery->where('society_id', $societyFilter);
+                }
+                if ($circleFilter) {
+                    // Apply condition for circle filter
+                    $subquery->where('circle_id', $circleFilter);
+                }
+                if ($societyTypesFilter) {
+                    // Apply condition for socitytype filter
+                    $subquery->where('role', Mtr_societytype::where('id', $societyTypesFilter)->value('role_id'));
+                }
+            });
+        } else {
+            $query->whereIn('user_id', function ($subquery) use ($societyFilter, $regionFilter) {
+                $subquery->select('id')->from('users')->where('region_id', Auth::user()->region_id);
+            });
+        }
+
+        if ($startDate && $endDate) {
+            // Apply condition for circle filter
+            $query->wherebetween('loandate', ["$startDate","$endDate"]);
+        }
+        else{
+            if ($startDate) {
+                // Apply condition for 'loandate' greater than '$startDate'
+                $query->whereDate('loandate', '>=', $startDate);
+            }
+            if ($endDate) {
+                // Apply condition for 'loandate' greater than '$startDate'
+                $query->whereDate('loandate', '<=', $endDate);
+            }
+
+        }
+
+        if($loantypeFilter)
+        {
+            $query->where('loantype_id', $loantypeFilter);
+        }*/
+        $filteredLoans = LoanQueryService::getJRFilteredLoans($request);
+        $loans = $filteredLoans;
+
+
+        return view("loan.list", compact('loans', 'regions', 'circles', 'societies','societiestypes','loantypes','regionFilter','circleFilter','societyFilter','startDate','endDate','societyTypesFilter','loantypeFilter'));
     }
 
 
-    function depositlist()
+    function depositlist(Request $request)
     {
-        $deposits = Deposits::select('*')->with('deposittype')
-            ->whereIn('user_id', function ($query) {
-                $query->select('id')->from('users')->where('region_id', Auth::user()->region_id);
-            })
-            ->paginate(5);
+        $regions = Mtr_region::where('id',Auth::user()->region_id)->get();
+        $circles = Mtr_circle::all();
+        $societiestypes = Mtr_societytype::all();
+        $societies = Mtr_society::all();
+        $loantypes=Mtr_loan::all();
+        $currentUrl = URL::current();
 
-        return view("deposit.list", compact('deposits'));
+        $regionFilter = $request->input('region');
+        $circleFilter = $request->input('circle');
+        $societyFilter = $request->input('society');
+        $endDate = $request->input('endDate');
+        $startDate = $request->input('startDate');
+        $societyTypesFilter = $request->input('societyTypes');
+        $loantypeFilter = $request->input('loantype');
+
+        $soctietyvalue = DB::table('mtr_societytype')
+            ->whereIn('role_id', function ($query) use ($circleFilter, $regionFilter) {
+                $query->select('role')
+                    ->from('users');
+                if($regionFilter) {
+                    $query->where('region_id', $regionFilter);
+                }
+                if($circleFilter) {
+                    $query->where('circle_id', $circleFilter);
+                }
+            });
+
+//        $societiestypes=$soctietyvalue->get();
+//
+//        $deposits = Deposits::select('*')->with('deposittype')
+//            ->whereIn('user_id', function ($query) {
+//                $query->select('id')->from('users')->where('region_id', Auth::user()->region_id);
+//            })
+//            ->paginate(5);
+
+        $filteredLoans = LoanQueryService::getJRFilteredDeposits($request);
+        $deposits = $filteredLoans;
+        return view("deposit.list", compact('deposits', 'regions', 'circles', 'societies','societiestypes','regionFilter','circleFilter','societyFilter','startDate','endDate','societyTypesFilter','loantypeFilter'));
     }
 
-    function purchaselist()
+    function purchaselist(Request $request)
     {
-        $purchases = Purchases::select('*')->with('purchasetype')
-            ->whereIn('user_id', function ($query) {
-                $query->select('id')->from('users')->where('region_id', Auth::user()->region_id);
-            })
-            ->paginate(5);
+        $regions = Mtr_region::where('id',Auth::user()->region_id)->get();
+        $circles = Mtr_circle::all();
+        $societiestypes = Mtr_societytype::all();
+        $societies = Mtr_society::all();
+        $loantypes=Mtr_loan::all();
+        $currentUrl = URL::current();
 
-        return view("purchase.list", compact('purchases'));
+        $regionFilter = $request->input('region');
+        $circleFilter = $request->input('circle');
+        $societyFilter = $request->input('society');
+        $endDate = $request->input('endDate');
+        $startDate = $request->input('startDate');
+        $societyTypesFilter = $request->input('societyTypes');
+        $loantypeFilter = $request->input('loantype');
+
+        $soctietyvalue = DB::table('mtr_societytype')
+            ->whereIn('role_id', function ($query) use ($circleFilter, $regionFilter) {
+                $query->select('role')
+                    ->from('users');
+                if($regionFilter) {
+                    $query->where('region_id', $regionFilter);
+                }
+                if($circleFilter) {
+                    $query->where('circle_id', $circleFilter);
+                }
+            });
+        $filteredLoans = LoanQueryService::getJRFilteredPurchase($request);
+        $purchases = $filteredLoans;
+        return view("purchase.list", compact('purchases', 'regions', 'circles', 'societies','societiestypes','regionFilter','circleFilter','societyFilter','startDate','endDate','societyTypesFilter','loantypeFilter'));
     }
 
-    function saleslist()
+    function saleslist(Request $request)
     {
-        $sales = Sales::select('*')->with('saletype')
-            ->whereIn('user_id', function ($query) {
-                $query->select('id')->from('users')->where('region_id', Auth::user()->region_id);
-            })
-            ->paginate(5);
+        $regions = Mtr_region::where('id',Auth::user()->region_id)->get();
+        $circles = Mtr_circle::all();
+        $societiestypes = Mtr_societytype::all();
+        $societies = Mtr_society::all();
+        $loantypes=Mtr_loan::all();
+        $currentUrl = URL::current();
 
-        return view("sales.list", compact('sales'));
+        $regionFilter = $request->input('region');
+        $circleFilter = $request->input('circle');
+        $societyFilter = $request->input('society');
+        $endDate = $request->input('endDate');
+        $startDate = $request->input('startDate');
+        $societyTypesFilter = $request->input('societyTypes');
+        $loantypeFilter = $request->input('loantype');
+
+        $soctietyvalue = DB::table('mtr_societytype')
+            ->whereIn('role_id', function ($query) use ($circleFilter, $regionFilter) {
+                $query->select('role')
+                    ->from('users');
+                if($regionFilter) {
+                    $query->where('region_id', $regionFilter);
+                }
+                if($circleFilter) {
+                    $query->where('circle_id', $circleFilter);
+                }
+            });
+        $filteredLoans = LoanQueryService::getJRFilteredSales($request);
+        $sales = $filteredLoans;
+        return view("sales.list", compact('sales', 'regions', 'circles', 'societies','societiestypes','regionFilter','circleFilter','societyFilter','startDate','endDate','societyTypesFilter','loantypeFilter'));
     }
 
-    function godownlist()
+    function godownlist(Request $request)
     {
 
-        $godowns = Godowns::select('*')
-            ->whereIn('user_id', function ($query) {
-                $query->select('id')->from('users')->where('region_id', Auth::user()->region_id);
-            })
-            ->paginate(5);
-        return view("godown.list", compact('godowns'));
+        $regions = Mtr_region::where('id',Auth::user()->region_id)->get();
+        $circles = Mtr_circle::all();
+        $societiestypes = Mtr_societytype::all();
+        $societies = Mtr_society::all();
+        $loantypes=Mtr_loan::all();
+        $currentUrl = URL::current();
+
+        $regionFilter = $request->input('region');
+        $circleFilter = $request->input('circle');
+        $societyFilter = $request->input('society');
+        $endDate = $request->input('endDate');
+        $startDate = $request->input('startDate');
+        $societyTypesFilter = $request->input('societyTypes');
+        $loantypeFilter = $request->input('loantype');
+
+        $soctietyvalue = DB::table('mtr_societytype')
+            ->whereIn('role_id', function ($query) use ($circleFilter, $regionFilter) {
+                $query->select('role')
+                    ->from('users');
+                if($regionFilter) {
+                    $query->where('region_id', $regionFilter);
+                }
+                if($circleFilter) {
+                    $query->where('circle_id', $circleFilter);
+                }
+            });
+        $filteredLoans = LoanQueryService::getJRFilteredGodown($request);
+        $godowns = $filteredLoans;
+        return view("godown.list", compact('godowns', 'regions', 'circles', 'societies','societiestypes','regionFilter','circleFilter','societyFilter','startDate','endDate','societyTypesFilter','loantypeFilter'));
+
+
     }
 
-    function serviceslist()
+    function serviceslist(Request $request)
     {
+        $regions = Mtr_region::where('id',Auth::user()->region_id)->get();
+        $circles = Mtr_circle::all();
+        $societiestypes = Mtr_societytype::all();
+        $societies = Mtr_society::all();
+        $loantypes=Mtr_loan::all();
+        $currentUrl = URL::current();
 
-        $services = Services::select('*')
-            ->whereIn('user_id', function ($query) {
-                $query->select('id')->from('users')->where('region_id', Auth::user()->region_id);
-            })
-            ->paginate(5);
-        return view("services.list", compact('services'));
+        $regionFilter = $request->input('region');
+        $circleFilter = $request->input('circle');
+        $societyFilter = $request->input('society');
+        $endDate = $request->input('endDate');
+        $startDate = $request->input('startDate');
+        $societyTypesFilter = $request->input('societyTypes');
+        $loantypeFilter = $request->input('loantype');
+
+        $soctietyvalue = DB::table('mtr_societytype')
+            ->whereIn('role_id', function ($query) use ($circleFilter, $regionFilter) {
+                $query->select('role')
+                    ->from('users');
+                if($regionFilter) {
+                    $query->where('region_id', $regionFilter);
+                }
+                if($circleFilter) {
+                    $query->where('circle_id', $circleFilter);
+                }
+            });
+        $filteredLoans = LoanQueryService::getJRFilteredService($request);
+        $services = $filteredLoans;
+        return view("services.list", compact('services', 'regions', 'circles', 'societies','societiestypes','regionFilter','circleFilter','societyFilter','startDate','endDate','societyTypesFilter','loantypeFilter'));
+
     }
 
     function croploanentrycropwiselist(Request $request)
@@ -153,25 +358,55 @@ class JRController extends Controller
         return view("croploan.entry.cropwiselist", compact('croploan_cropwise'));
     }
 
-    function croploanlist()
+    function croploanlist(Request $request)
     {
 
         //  $croploan_entry = Croploan_entry::where('user_id', Auth::user()->id)->paginate(5);
+        $regions = Mtr_region::where('id',Auth::user()->region_id)->get();
+        $circles = Mtr_circle::all();
+        $societiestypes = Mtr_societytype::all();
+        $societies = Mtr_society::all();
+        $loantypes=Mtr_loan::all();
+        $currentUrl = URL::current();
 
-        $croploan_entry = Croploan_entry::select('*')
-            ->whereIn('user_id', function ($query) {
-                $query->select('id')->from('users')->where('region_id', Auth::user()->region_id);
-            })
-            ->paginate(5);
+        $regionFilter = $request->input('region');
+        $circleFilter = $request->input('circle');
+        $societyFilter = $request->input('society');
+        $endDate = $request->input('endDate');
+        $startDate = $request->input('startDate');
+        $societyTypesFilter = $request->input('societyTypes');
+        $loantypeFilter = $request->input('loantype');
 
-        return view("croploan.entry.list", compact('croploan_entry'));
+        $soctietyvalue = DB::table('mtr_societytype')
+            ->whereIn('role_id', function ($query) use ($circleFilter, $regionFilter) {
+                $query->select('role')
+                    ->from('users');
+                if($regionFilter) {
+                    $query->where('region_id', $regionFilter);
+                }
+                if($circleFilter) {
+                    $query->where('circle_id', $circleFilter);
+                }
+            });
+        $filteredLoans = LoanQueryService::getJRFilteredCropLoan($request);
+        $croploan_entry = $filteredLoans;
+        return view("croploan.entry.list", compact('croploan_entry', 'regions', 'circles', 'societies','societiestypes','regionFilter','circleFilter','societyFilter','startDate','endDate','societyTypesFilter','loantypeFilter'));
+//        $croploan_entry = Croploan_entry::select('*')
+//            ->whereIn('user_id', function ($query) {
+//                $query->select('id')->from('users')->where('region_id', Auth::user()->region_id);
+//            })
+//            ->paginate(5);
+//
+//        return view("croploan.entry.list", compact('croploan_entry'));
     }
+
     function add()
     {
 
         $jr = Jr::select('*')->paginate(5);
         return view("jr.add", compact('jr'));
     }
+
     function list()
     {
 
@@ -185,6 +420,7 @@ class JRController extends Controller
         $jr = Jr_eightyone::select('*')->paginate(5);
         return view("jr.eightyone.add", compact('jr'));
     }
+
     function eightyonelist()
     {
 
@@ -234,6 +470,7 @@ class JRController extends Controller
         $jr = Jr_eightytwo::select('*')->paginate(5);
         return view("jr.eightytwo.add", compact('jr'));
     }
+
     function eightytwolist()
     {
 
@@ -282,6 +519,7 @@ class JRController extends Controller
         $jr = Jr_seventeena::select('*')->paginate(5);
         return view("jr.seventeena.add", compact('jr'));
     }
+
     function seventeenalist()
     {
 
@@ -334,6 +572,7 @@ class JRController extends Controller
         $jr = Jr_dai::select('*')->paginate(5);
         return view("jr.dai.add", compact('jr'));
     }
+
     function dailist()
     {
 
@@ -364,7 +603,6 @@ class JRController extends Controller
         $seventeena->save();
 
 
-
         return redirect('/jr/dai/list')->with('status', 'Disciplinary Action Institution added successfully');
     }
 
@@ -375,6 +613,7 @@ class JRController extends Controller
         $jr = Jr_surcharge::select('*')->paginate(5);
         return view("jr.surcharge.add", compact('jr'));
     }
+
     function surchargelist()
     {
 
@@ -418,6 +657,7 @@ class JRController extends Controller
         $jr = Jr_disqualify::select('*')->paginate(5);
         return view("jr.disqualify.add", compact('jr'));
     }
+
     function disqualifylist()
     {
 

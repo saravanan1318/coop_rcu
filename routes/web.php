@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\GeneralController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WebsiteController;
 use App\Http\Controllers\SocietyController;
@@ -20,6 +21,7 @@ use App\Http\Controllers\MDController;
 |
 */
 
+
 /**AUTH */
 Route::get('/', [LoginFormController::class, 'index']);
 Route::get('login', [LoginFormController::class, 'index']);
@@ -31,6 +33,13 @@ Route::get('logout', [LoginFormController::class, 'logout']);
 Route::get('import-societyusers', [LoginFormController::class, 'importsocietyusers']);
 Route::get('import-circleusers', [LoginFormController::class, 'importcircleusers']);
 Route::get('import-regionusers', [LoginFormController::class, 'importregionusers']);
+
+
+Route::get('/fetch-circles/{regionId}', [GeneralController::class, 'fetchCircles']);
+Route::get('/fetch-societies/{circleId}', [GeneralController::class, 'fetchSocieties']);
+//    Route::get('/fetch-societies-fromtype', [GeneralController::class, 'fetchSocietiesfromtype']);
+Route::get('/fetch-societies-fromtype', [GeneralController::class, 'fetchSocietiesfromtype']);
+Route::get('//fetch-societiestype-fromregions', [GeneralController::class, 'fetchSocietiestypefromregions']);
 
 /**SocietyController */
 Route::group(['middleware' => 'auth'], function () {
@@ -146,14 +155,20 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/jr/list', [JRController::class, 'list']);
     Route::get('/jr/add', [JRController::class, 'add']);
     Route::get('/jr/dashboard', [JRController::class, 'dashboard']);
-    Route::get('/jr/loanlist', [JRController::class, 'loanlist']);
+    // Route::get('/jr/loanlist', [JRController::class, 'loanlist']);
+    Route::get('/jr/loanlist', [JRController::class, 'loanlist'])->name('loanlist.index');
+//    Route::get('/fetch-circles/{regionId}', [JRController::class, 'fetchCircles']);
+//    Route::get('/fetch-societies/{circleId}', [JRController::class, 'fetchSocieties']);
+
+
+    // Route::get('/jr/loanlist', [JRController::class, 'loanlist'])->name('jr_loanlist');
+
     Route::get('/jr/depositlist', [JRController::class, 'depositlist']);
     Route::get('/jr/purchaselist', [JRController::class, 'purchaselist']);
     Route::get('/jr/saleslist', [JRController::class, 'saleslist']);
     Route::get('/jr/godownlist', [JRController::class, 'godownlist']);
     Route::get('/jr/servicelist', [JRController::class, 'serviceslist']);
     Route::get('/jr/croploanlist', [JRController::class, 'croploanlist']);
-
 
 
     Route::get('/jr/eightyone/list', [JRController::class, 'eightyonelist']);
@@ -206,9 +221,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/md/servicelist', [MDController::class, 'serviceslist']);
     Route::get('/md/croploanlist', [MDController::class, 'croploanlist']);
 });
-
-
-
 
 
 Route::get('/clear-cache', function () {

@@ -90,7 +90,45 @@
         <i class="bi bi-grid"></i>
         <span>Services</span>
       </a>
-    </li><!-- End Dashboard Nav -->
+    </li>
+      <li class="nav-item">
+          <a class="nav-link collapsed" data-bs-target="#Report-nav" data-bs-toggle="collapse" href="#">
+              <i class="bi bi-journal-text"></i><span>Reports</span><i class="bi bi-chevron-down ms-auto"></i>
+          </a>
+          <ul id="Report-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+              <li>
+                  <a href="/superadmin/loanreport">
+                      <i class="bi bi-circle"></i><span>Loan</span>
+                  </a>
+              </li>
+              <li>
+                  <a href="/superadmin/croploanreport">
+                      <i class="bi bi-circle"></i><span>Crop Loan</span>
+                  </a>
+              </li>
+              <li>
+                  <a href="/superadmin/depositreport">
+                      <i class="bi bi-circle"></i><span>Deposit</span>
+                  </a>
+              </li>
+              <li>
+                  <a href="/superadmin/purchasereport">
+                      <i class="bi bi-circle"></i><span>Purchase</span>
+                  </a>
+              </li>
+              <li>
+                  <a href="/superadmin/salereport">
+                      <i class="bi bi-circle"></i><span>Sale</span>
+                  </a>
+              </li>
+              <li>
+                  <a href="/superadmin/godownreport">
+                      <i class="bi bi-circle"></i><span>Godown</span>
+                  </a>
+              </li>
+          </ul>
+      </li>
+      <!-- End Dashboard Nav -->
   </ul>
   @endif
   @if(Auth::user()->role == 3)
