@@ -7,6 +7,7 @@
             <img src="{{ asset('/assets/img/rcslogo.jpg') }}" alt="Image" class="img-fluid align-self-center">
         </div>
     </div>
+
     <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-2">
         <div class="container">
             <div class="row justify-content-center">

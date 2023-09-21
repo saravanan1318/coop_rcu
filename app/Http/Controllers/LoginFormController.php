@@ -47,11 +47,8 @@ class LoginFormController extends Controller
             } else if (Auth::user()->role == 4) {
                 return redirect()->intended('/dr/dashboard')
                     ->withSuccess('Signed in');
-            } else if (Auth::user()->role > 4 && Auth::user()->role <= 13) {
+            } else if (Auth::user()->role > 4) {
                 return redirect()->intended('/society/dashboard')
-                    ->withSuccess('Signed in');
-            } else if (Auth::user()->role == 14) {
-                return redirect()->intended('/admin/dashboard')
                     ->withSuccess('Signed in');
             }
         }

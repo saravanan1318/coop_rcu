@@ -77,18 +77,18 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td><input type="number" name="societies_ob" class="form-control" required></td>
-                                        <td><input type="number" name="board_of_directors_ob" class="form-control" required></td>
-                                        <td><input type="number" name="societies_im" class="form-control" required></td>
-                                        <td><input type="number" name="board_of_directors_im" class="form-control" required></td>
-                                        <td><input type="number" name="societies_total" class="form-control" required></td>
-                                        <td><input type="number" name="board_of_directors_total" class="form-control" required></td>
-                                        <td><input type="number" name="societies_dam" class="form-control" required></td>
-                                        <td><input type="number" name="board_of_directors_dam" class="form-control" required></td>
-                                        <td><input type="number" name="societies_pam" class="form-control" required></td>
-                                        <td><input type="number" name="board_of_directors_pam" class="form-control" required></td>
-                                        <td><input type="number" name="societies_pp" class="form-control" required></td>
-                                        <td><input type="number" name="board_of_directors_pp" class="form-control" required></td>
+                                        <td><input type="text" name="societies_ob" class="form-control" required></td>
+                                        <td><input type="text" name="board_of_directors_ob" class="form-control" required></td>
+                                        <td><input type="text" name="societies_im" class="form-control" required></td>
+                                        <td><input type="text" name="board_of_directors_im" class="form-control" required></td>
+                                        <td><input type="text" name="societies_total" class="form-control" required></td>
+                                        <td><input type="text" name="board_of_directors_total" class="form-control" required></td>
+                                        <td><input type="text" name="societies_dam" class="form-control" required></td>
+                                        <td><input type="text" name="board_of_directors_dam" class="form-control" required></td>
+                                        <td><input type="text" name="societies_pam" class="form-control" required></td>
+                                        <td><input type="text" name="board_of_directors_pam" class="form-control" required></td>
+                                        <td><input type="text" name="societies_pp" class="form-control" required></td>
+                                        <td><input type="text" name="board_of_directors_pp" class="form-control" required></td>
                                     </tr>
                                 </tbody>
                             </table>

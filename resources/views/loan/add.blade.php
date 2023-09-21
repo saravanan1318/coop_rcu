@@ -65,6 +65,7 @@
                                 </thead>
                                 <tbody id="tbody">
                                     <tr data-id="1" id="row1">
+                                        
                                         <td>
                                             <select class="form-control" id="loantype_id1" name="loantype_id[]" required>
                                                 <option value="">--SELECT--</option>
@@ -73,19 +74,19 @@
                                                 @endforeach
                                             </select>
                                         </td>
-                                        <td>
-                                            <input type="number" class="form-control" id="disbursedno1" name="disbursedno[]" value="{{ old('disbursedno[]') }}" required oninput="this.value = this.value.replace(/[^0-9]/g, '');">
-                                        </td>
-                                        <td>
-                                            <input type="number" class="form-control" id="disbursedamount1" name="disbursedamount[]" value="{{ old('disbursedamount[]') }}" required oninput="this.value = this.value.replace(/[^0-9]/g, '');">
-                                        </td>
-                                        <td>
-                                            <input type="number" class="form-control" id="collectedno1" name="collectedno[]" value="{{ old('collectedno[]') }}" required oninput="this.value = this.value.replace(/[^0-9]/g, '');">
-                                        </td>
-                                        <td>
-                                            <input type="number" class="form-control" id="collectedamount1" name="collectedamount[]" value="{{ old('collectedamount[]') }}" required oninput="this.value = this.value.replace(/[^0-9]/g, '');">
-                                        </td>
 
+                                        <td>
+                                            <input type="text" class="form-control" id="disbursedno1"  name="disbursedno[]" value="{{ old('disbursedno[]') }}"  required>
+                                        </td>
+                                        <td>
+                                            <input type="text" class="form-control" id="disbursedamount1"  name="disbursedamount[]" value="{{ old('disbursedamount[]') }}"  required>
+                                        </td>
+                                        <td>
+                                            <input type="text" class="form-control" id="collectedno1"  name="collectedno[]" value="{{ old('collectedno[]') }}"  required>
+                                        </td>
+                                        <td>
+                                            <input type="text" class="form-control" id="collectedamount1"  name="collectedamount[]" value="{{ old('collectedamount[]') }}" required>
+                                        </td>
                                         <td>
                                         </td>
                                     </tr>

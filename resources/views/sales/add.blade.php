@@ -78,28 +78,28 @@
                                                 </select>
                                             </td>
                                             <td>
-                                                <input type="number" class="form-control" style=" width: 150px; " id="noofvarieties1" name="noofvarieties[]" value="{{ old('noofvarieties') }}" placeholder="" required>
+                                                <input type="text" class="form-control" style=" width: 150px; " id="noofvarieties1" name="noofvarieties[]" value="{{ old('noofvarieties') }}" placeholder="" required>
                                             </td>
                                             <td>
-                                                <input type="number" class="form-control" style=" width: 150px; " id="noofoutlets1" name="noofoutlets[]" value="{{ old('noofoutlets') }}" placeholder="" required>
+                                                <input type="text" class="form-control" style=" width: 150px; " id="noofoutlets1" name="noofoutlets[]" value="{{ old('noofoutlets') }}" placeholder="" required>
                                             </td>
                                             <td>
-                                                <input type="number" class="form-control" style=" width: 150px; " id="noofcustomers1" name="noofcustomers[]" value="{{ old('noofcustomers') }}" placeholder="" required>
+                                                <input type="text" class="form-control" style=" width: 150px; " id="noofcustomers1" name="noofcustomers[]" value="{{ old('noofcustomers') }}" placeholder="" required>
                                             </td>
                                             <td>
-                                                <input type="number" class="form-control" style=" width: 150px; " id="nooffarmers1" name="nooffarmers[]" value="{{ old('nooffarmers') }}" placeholder="" required>
+                                                <input type="text" class="form-control" style=" width: 150px; " id="nooffarmers1" name="nooffarmers[]" value="{{ old('nooffarmers') }}" placeholder="" required>
                                             </td>
                                             <td>
-                                                <input type="number" class="form-control" style=" width: 150px; " id="quantitykilo1" name="quantitykilo[]" value="{{ old('quantitykilo') }}" placeholder="" required>
+                                                <input type="text" class="form-control" style=" width: 150px; " id="quantitykilo1" name="quantitykilo[]" value="{{ old('quantitykilo') }}" placeholder="" required>
                                             </td>
                                             <td>
-                                                <input type="number" class="form-control" style=" width: 150px; " id="quantitylitres1" name="quantitylitres[]" value="{{ old('quantitylitres') }}" placeholder="" required>
+                                                <input type="text" class="form-control" style=" width: 150px; " id="quantitylitres1" name="quantitylitres[]" value="{{ old('quantitylitres') }}" placeholder="" required>
                                             </td>
                                             <td>
-                                                <input type="number" class="form-control" style=" width: 150px; " id="salesamountphysical1" name="salesamountphysical[]" value="{{ old('salesamountphysical') }}" placeholder="" required>
+                                                <input type="text" class="form-control" style=" width: 150px; " id="salesamountphysical1" name="salesamountphysical[]" value="{{ old('salesamountphysical') }}" placeholder="" required>
                                             </td>
                                             <td>
-                                                <input type="number" class="form-control" style=" width: 150px; " id="salesamountcoopbazaar1" name="salesamountcoopbazaar[]" value="{{ old('salesamountcoopbazaar') }}" placeholder="" required>
+                                                <input type="text" class="form-control" style=" width: 150px; " id="salesamountcoopbazaar1" name="salesamountcoopbazaar[]" value="{{ old('salesamountcoopbazaar') }}" placeholder="" required>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -256,16 +256,6 @@
             $("#salesamountphysical"+rowid).attr("readonly",false);
             $("#salesamountcoopbazaar"+rowid).attr("readonly",true);
 
-        }else if(this.value == "8"){
-
-           $("#noofvarieties"+rowid).attr("readonly",false);
-           $("#noofoutlets"+rowid).attr("readonly",true);
-           $("#noofcustomers"+rowid).attr("readonly",false);
-           $("#nooffarmers"+rowid).attr("readonly",true);
-           $("#quantitykilo"+rowid).attr("readonly",true);
-           $("#quantitylitres"+rowid).attr("readonly",true);
-           $("#salesamountphysical"+rowid).attr("readonly",false);
-           $("#salesamountcoopbazaar"+rowid).attr("readonly",false);
         }
         });
 

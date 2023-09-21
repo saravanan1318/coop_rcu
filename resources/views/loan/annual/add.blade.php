@@ -77,8 +77,8 @@
                         <div class="row margindiv">
                             <div class="col-md-12">
                                 <div class="form-floating">
-                                  <input type="number" class="form-control" id="floatingName"  name="current_outstanding" placeholder="Your Current outstanding." required>
-                                  <label for="floatingName"> Current  Year outstanding (Loan Issued from 1st April to current date).</label>
+                                  <input type="text" class="form-control" id="floatingName"  name="current_outstanding" placeholder="Your Current outstanding." required>
+                                  <label for="floatingName"> Current  Year outstanding (from 1st April to current date).</label>
                                 </div>
                                 <div class="invalid-feedback">Please enter your Current outstanding.</div>
                             </div>
@@ -86,7 +86,7 @@
                         <div class="row margindiv">
                             <div class="col-md-12">
                                 <div class="form-floating">
-                                  <input type="number" class="form-control" id="floatingName" name="annual_target" placeholder="Your Annual target." required>
+                                  <input type="text" class="form-control" id="floatingName" name="annual_target" placeholder="Your Annual target." required>
                                   <label for="floatingName">Annual target.</label>
                                 </div>
                                 <div class="invalid-feedback">Please enter your Annual target.</div>

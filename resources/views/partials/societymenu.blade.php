@@ -90,7 +90,45 @@
         <i class="bi bi-grid"></i>
         <span>Services</span>
       </a>
-    </li><!-- End Dashboard Nav -->
+    </li>
+      <li class="nav-item">
+          <a class="nav-link collapsed" data-bs-target="#Report-nav" data-bs-toggle="collapse" href="#">
+              <i class="bi bi-journal-text"></i><span>Reports</span><i class="bi bi-chevron-down ms-auto"></i>
+          </a>
+          <ul id="Report-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+              <li>
+                  <a href="/superadmin/loanreport">
+                      <i class="bi bi-circle"></i><span>Loan</span>
+                  </a>
+              </li>
+              <li>
+                  <a href="/superadmin/croploanreport">
+                      <i class="bi bi-circle"></i><span>Crop Loan</span>
+                  </a>
+              </li>
+              <li>
+                  <a href="/superadmin/depositreport">
+                      <i class="bi bi-circle"></i><span>Deposit</span>
+                  </a>
+              </li>
+              <li>
+                  <a href="/superadmin/purchasereport">
+                      <i class="bi bi-circle"></i><span>Purchase</span>
+                  </a>
+              </li>
+              <li>
+                  <a href="/superadmin/salereport">
+                      <i class="bi bi-circle"></i><span>Sale</span>
+                  </a>
+              </li>
+              <li>
+                  <a href="/superadmin/godownreport">
+                      <i class="bi bi-circle"></i><span>Godown</span>
+                  </a>
+              </li>
+          </ul>
+      </li>
+      <!-- End Dashboard Nav -->
   </ul>
   @endif
   @if(Auth::user()->role == 3)
@@ -389,7 +427,7 @@
       <!-- End Dashboard Nav -->
   </ul>
   @endif
-  @if(Auth::user()->role > 4 && Auth::user()->role <= 13 )
+  @if(Auth::user()->role > 4)
     <ul class="sidebar-nav" id="sidebar-nav">
 
       <li class="nav-item">
@@ -555,53 +593,16 @@
           </li>
         </ul>
       </li>
+
+      <!-- End Forms Nav -->
+      {{-- <li class="nav-heading">Pages</li>
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="users-profile.html">
+          <i class="bi bi-person"></i>
+          <span>Profile</span>
+        </a>
+      </li><!-- End Profile Page Nav --> --}}
     </ul>
-  @endif
-  @if(Auth::user()->role == 14)
-  <ul class="sidebar-nav" id="sidebar-nav">
-    <li class="nav-item">
-      <a class="nav-link " href="/admin/loanlist">
-        <i class="bi bi-grid"></i>
-        <span>Loan</span>
-      </a>
-    </li>
-    <!-- End Dashboard Nav -->
-    <li class="nav-item">
-      <a class="nav-link " href="/admin/croploanlist">
-        <i class="bi bi-grid"></i>
-        <span>Crop Loan</span>
-      </a>
-    </li><!-- End Dashboard Nav -->
-    <li class="nav-item">
-      <a class="nav-link " href="/admin/depositlist">
-        <i class="bi bi-grid"></i>
-        <span>Deposit</span>
-      </a>
-    </li><!-- End Dashboard Nav -->
-    <li class="nav-item">
-      <a class="nav-link " href="/admin/purchaselist">
-        <i class="bi bi-grid"></i>
-        <span>Purchase</span>
-      </a>
-    </li><!-- End Dashboard Nav -->
-    <li class="nav-item">
-      <a class="nav-link " href="/admin/saleslist">
-        <i class="bi bi-grid"></i>
-        <span>Sales</span>
-      </a>
-    </li><!-- End Dashboard Nav -->
-    <li class="nav-item">
-      <a class="nav-link " href="/admin/godownlist">
-        <i class="bi bi-grid"></i>
-        <span>Godown</span>
-      </a>
-    </li><!-- End Dashboard Nav -->
-    <li class="nav-item">
-      <a class="nav-link " href="/admin/servicelist">
-        <i class="bi bi-grid"></i>
-        <span>Services</span>
-      </a>
-    </li><!-- End Dashboard Nav -->
-  </ul>
   @endif
   </aside><!-- End Sidebar-->

@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Deposit_outstandings;
+use App\Models\Mtr_circle;
+use App\Models\Mtr_region;
+use App\Models\Mtr_society;
+use Illuminate\Support\Facades\URL;
 use Validator;
 
 //loan
@@ -131,12 +135,40 @@ class SocietyController extends Controller
         // return view("issue");
     }
 
-    function loanlist()
+    function loanlist(Request $request)
     {
 
-        $loans = Loan::where('user_id', Auth::user()->id)->paginate(5);
+        $loans = Loan::where('user_id', Auth::user()->id)->get();
+        $currentUrl = URL::current();
+        $regionFilter = $request->input('region');
+        $circleFilter = $request->input('circle');
+        $societyFilter = $request->input('society');
+        $endDate = $request->input('endDate');
+        $startDate = $request->input('startDate');
 
-        return view("loan.list", compact('loans'));
+        // Build the Loan query with additional conditions
+        $query = Loan::select('*')->with('loantype');
+
+        if ($regionFilter || $circleFilter || $societyFilter) {
+            $query->whereIn('user_id', function ($subquery) use ($circleFilter, $regionFilter, $societyFilter) {
+                $subquery->select('id')->from('users');
+                $subquery->where('user_id', Auth::user()->id);
+            });
+        } else {
+            $query->whereIn('user_id', function ($subquery) use ($societyFilter, $regionFilter) {
+                $subquery->select('id')->from('users')->where('user_id', Auth::user()->id);
+            });
+        }
+
+        if ($startDate && $endDate) {
+            $query->wherebetween('loandate', ["$startDate","$endDate"]);
+        }
+
+        $loans = $query->get();
+
+        return view("loan.list", compact('loans',  'regionFilter','circleFilter','societyFilter','startDate','endDate'));
+
+//        return view("loan.list", compact('loans'));
     }
 
     //Annual targer Form
@@ -192,12 +224,56 @@ class SocietyController extends Controller
 
     //deposit
 
-    function depositlist()
+    function depositlist(Request $request)
     {
 
-        $deposits = Deposits::where('user_id', Auth::user()->id)->paginate(5);
+//        $deposits = Deposits::where('user_id', Auth::user()->id)->paginate(5);
 
-        return view("deposit.list", compact('deposits'));
+
+        $deposits = Deposits::where('user_id', Auth::user()->id)->get();
+        $currentUrl = URL::current();
+        $regionFilter = $request->input('region');
+        $circleFilter = $request->input('circle');
+        $societyFilter = $request->input('society');
+        $endDate = $request->input('endDate');
+        $startDate = $request->input('startDate');
+
+        // Build the Loan query with additional conditions
+        $query = Deposits::select('*')->with('deposittype');
+
+        if ($regionFilter || $circleFilter || $societyFilter) {
+            $query->whereIn('user_id', function ($subquery) use ($circleFilter, $regionFilter, $societyFilter) {
+                $subquery->select('id')->from('users');
+                $subquery->where('user_id', Auth::user()->id);
+            });
+        } else {
+            $query->whereIn('user_id', function ($subquery) use ($societyFilter, $regionFilter) {
+                $subquery->select('id')->from('users')->where('user_id', Auth::user()->id);
+            });
+        }
+
+        if ($startDate && $endDate) {
+            // Apply condition for circle filter
+            $query->wherebetween('depositdate', ["$startDate","$endDate"]);
+        }
+        else{
+            if ($startDate) {
+                // Apply condition for 'loandate' greater than '$startDate'
+                $query->whereDate('depositdate', '>=', $startDate);
+            }
+            if ($endDate) {
+                // Apply condition for 'loandate' greater than '$startDate'
+                $query->whereDate('depositdate', '<=', $endDate);
+            }
+
+        }
+
+        $deposits = $query->get();
+
+        return view("deposit.list", compact('deposits',  'regionFilter','circleFilter','societyFilter','startDate','endDate'));
+
+
+//        return view("deposit.list", compact('deposits'));
     }
 
     function depositadd()
@@ -280,12 +356,48 @@ class SocietyController extends Controller
     }
 
 
-    function purchaselist()
+    function purchaselist(Request $request)
     {
 
-        $purchases = Purchases::where('user_id', Auth::user()->id)->paginate(5);
+        $currentUrl = URL::current();
+        $regionFilter = $request->input('region');
+        $circleFilter = $request->input('circle');
+        $societyFilter = $request->input('society');
+        $endDate = $request->input('endDate');
+        $startDate = $request->input('startDate');
 
-        return view("purchase.list", compact('purchases'));
+        $query = Purchases::select('*')->with('purchasetype');
+
+        if ($regionFilter || $circleFilter || $societyFilter) {
+            $query->whereIn('user_id', function ($subquery) use ($circleFilter, $regionFilter, $societyFilter) {
+                $subquery->select('id')->from('users');
+                $subquery->where('user_id', Auth::user()->id);
+            });
+        } else {
+            $query->whereIn('user_id', function ($subquery) use ($societyFilter, $regionFilter) {
+                $subquery->select('id')->from('users')->where('user_id', Auth::user()->id);
+            });
+        }
+
+        if ($startDate && $endDate) {
+            // Apply condition for circle filter
+            $query->wherebetween('purchasedate', ["$startDate","$endDate"]);
+        }
+        else{
+            if ($startDate) {
+                // Apply condition for 'loandate' greater than '$startDate'
+                $query->whereDate('purchasedate', '>=', $startDate);
+            }
+            if ($endDate) {
+                // Apply condition for 'loandate' greater than '$startDate'
+                $query->whereDate('purchasedate', '<=', $endDate);
+            }
+
+        }
+
+        $purchases = $query->get();
+
+        return view("purchase.list", compact('purchases',  'regionFilter','circleFilter','societyFilter','startDate','endDate'));
     }
 
     function purchaseadd()
@@ -313,12 +425,12 @@ class SocietyController extends Controller
             $purchases->coopnoofvarieties = isset($request->coopnoofvarieties[$i]) ? $request->coopnoofvarieties[$i] : NULL;
             $purchases->coopquantity = isset($request->coopquantity[$i]) ? $request->coopquantity[$i] : NULL;
             $purchases->coopvalues = isset($request->coopvalues[$i]) ? $request->coopvalues[$i] : NULL;
-            $purchases->privatenoofvarieties = isset($request->privatenoofvarieties[$i]) ? $request->privatenoofvarieties[$i] : NULL;
-            $purchases->privatequantity = isset($request->privatequantity[$i]) ? $request->privatequantity[$i] : NULL;
-            $purchases->privatevalues = isset($request->privatevalues[$i]) ? $request->privatevalues[$i] : NULL;
             $purchases->jpcnoofvarieties = isset($request->jpcnoofvarieties[$i]) ? $request->jpcnoofvarieties[$i] : NULL;
             $purchases->jpcquantity = isset($request->jpcquantity[$i]) ? $request->jpcquantity[$i] : NULL;
             $purchases->jpcvalues = isset($request->jpcvalues[$i]) ? $request->jpcvalues[$i] : NULL;
+            $purchases->privatenoofvarieties = isset($request->privatenoofvarieties[$i]) ? $request->privatenoofvarieties[$i] : NULL;
+            $purchases->privatequantity = isset($request->privatequantity[$i]) ? $request->privatequantity[$i] : NULL;
+            $purchases->privatevalues = isset($request->privatevalues[$i]) ? $request->privatevalues[$i] : NULL;
             $purchases->save();
         }
 
@@ -328,12 +440,49 @@ class SocietyController extends Controller
     }
 
 
-    function saleslist()
+    function saleslist(Request $request)
     {
 
-        $sales = Sales::where('user_id', Auth::user()->id)->paginate(5);
+        $currentUrl = URL::current();
+        $regionFilter = $request->input('region');
+        $circleFilter = $request->input('circle');
+        $societyFilter = $request->input('society');
+        $endDate = $request->input('endDate');
+        $startDate = $request->input('startDate');
 
-        return view("sales.list", compact('sales'));
+        $query = Sales::select('*')->with('saletype');
+
+        if ($regionFilter || $circleFilter || $societyFilter) {
+            $query->whereIn('user_id', function ($subquery) use ($circleFilter, $regionFilter, $societyFilter) {
+                $subquery->select('id')->from('users');
+                $subquery->where('user_id', Auth::user()->id);
+            });
+        } else {
+            $query->whereIn('user_id', function ($subquery) use ($societyFilter, $regionFilter) {
+                $subquery->select('id')->from('users')->where('user_id', Auth::user()->id);
+            });
+        }
+
+        if ($startDate && $endDate) {
+            // Apply condition for circle filter
+            $query->wherebetween('saledate', ["$startDate","$endDate"]);
+        }
+        else{
+            if ($startDate) {
+                // Apply condition for 'loandate' greater than '$startDate'
+                $query->whereDate('saledate', '>=', $startDate);
+            }
+            if ($endDate) {
+                // Apply condition for 'loandate' greater than '$startDate'
+                $query->whereDate('saledate', '<=', $endDate);
+            }
+
+        }
+
+        $sales = $query->get();
+
+        return view("sales.list", compact('sales',  'regionFilter','circleFilter','societyFilter','startDate','endDate'));
+
     }
 
     function salesadd()
@@ -368,11 +517,49 @@ class SocietyController extends Controller
         return redirect('/society/sale/add')->with('status', 'Sale added successfully');
     }
 
-    function godownlist()
+    function godownlist(Request $request)
     {
 
-        $godowns = Godowns::where('user_id', Auth::user()->id)->paginate(5);
-        return view("godown.list", compact('godowns'));
+        $currentUrl = URL::current();
+        $regionFilter = $request->input('region');
+        $circleFilter = $request->input('circle');
+        $societyFilter = $request->input('society');
+        $endDate = $request->input('endDate');
+        $startDate = $request->input('startDate');
+
+        $query = Godowns::select('*');
+
+        if ($regionFilter || $circleFilter || $societyFilter) {
+            $query->whereIn('user_id', function ($subquery) use ($circleFilter, $regionFilter, $societyFilter) {
+                $subquery->select('id')->from('users');
+                $subquery->where('user_id', Auth::user()->id);
+            });
+        } else {
+            $query->whereIn('user_id', function ($subquery) use ($societyFilter, $regionFilter) {
+                $subquery->select('id')->from('users')->where('user_id', Auth::user()->id);
+            });
+        }
+
+        if ($startDate && $endDate) {
+            // Apply condition for circle filter
+            $query->wherebetween('godowndate', ["$startDate","$endDate"]);
+        }
+        else{
+            if ($startDate) {
+                // Apply condition for 'loandate' greater than '$startDate'
+                $query->whereDate('godowndate', '>=', $startDate);
+            }
+            if ($endDate) {
+                // Apply condition for 'loandate' greater than '$startDate'
+                $query->whereDate('godowndate', '<=', $endDate);
+            }
+
+        }
+
+        $godowns = $query->get();
+
+        return view("godown.list", compact('godowns',  'regionFilter','circleFilter','societyFilter','startDate','endDate'));
+
     }
 
     function godownadd()
@@ -405,12 +592,52 @@ class SocietyController extends Controller
     }
 
 
-    function serviceslist()
+    function serviceslist(Request $request)
     {
 
-        $services = Services::where('user_id', Auth::user()->id)->get();
+        $currentUrl = URL::current();
+        $regionFilter = $request->input('region');
+        $circleFilter = $request->input('circle');
+        $societyFilter = $request->input('society');
+        $endDate = $request->input('endDate');
+        $startDate = $request->input('startDate');
 
-        return view("services.list", compact('services'));
+        $query = Services::select('*');
+
+        if ($regionFilter || $circleFilter || $societyFilter) {
+            $query->whereIn('user_id', function ($subquery) use ($circleFilter, $regionFilter, $societyFilter) {
+                $subquery->select('id')->from('users');
+                $subquery->where('user_id', Auth::user()->id);
+            });
+        } else {
+            $query->whereIn('user_id', function ($subquery) use ($societyFilter, $regionFilter) {
+                $subquery->select('id')->from('users')->where('user_id', Auth::user()->id);
+            });
+        }
+
+        if ($startDate && $endDate) {
+            // Apply condition for circle filter
+            $query->wherebetween('servicesdate', ["$startDate","$endDate"]);
+        }
+        else{
+            if ($startDate) {
+                // Apply condition for 'loandate' greater than '$startDate'
+                $query->whereDate('servicesdate', '>=', $startDate);
+            }
+            if ($endDate) {
+                // Apply condition for 'loandate' greater than '$startDate'
+                $query->whereDate('servicesdate', '<=', $endDate);
+            }
+
+        }
+
+        $services = $query->get();
+
+        return view("services.list", compact('services',  'regionFilter','circleFilter','societyFilter','startDate','endDate'));
+
+//        $services = Services::where('user_id', Auth::user()->id)->get();
+//
+//        return view("services.list", compact('services'));
     }
 
     function servicesadd()
@@ -548,10 +775,49 @@ class SocietyController extends Controller
         return view("croploan.entry.add", compact('mtr_crop'));
     }
 
-    function croploanentrylist()
+    function croploanentrylist(Request $request)
     {
-        $croploan_entry = Croploan_entry::all();
-        return view("croploan.entry.list", compact('croploan_entry'));
+        $currentUrl = URL::current();
+        $regionFilter = $request->input('region');
+        $circleFilter = $request->input('circle');
+        $societyFilter = $request->input('society');
+        $endDate = $request->input('endDate');
+        $startDate = $request->input('startDate');
+
+        $query = Croploan_entry::select('*');
+
+        if ($regionFilter || $circleFilter || $societyFilter) {
+            $query->whereIn('user_id', function ($subquery) use ($circleFilter, $regionFilter, $societyFilter) {
+                $subquery->select('id')->from('users');
+                $subquery->where('user_id', Auth::user()->id);
+            });
+        } else {
+            $query->whereIn('user_id', function ($subquery) use ($societyFilter, $regionFilter) {
+                $subquery->select('id')->from('users')->where('user_id', Auth::user()->id);
+            });
+        }
+
+        if ($startDate && $endDate) {
+            // Apply condition for circle filter
+            $query->wherebetween('croploandate', ["$startDate","$endDate"]);
+        }
+        else{
+            if ($startDate) {
+                // Apply condition for 'loandate' greater than '$startDate'
+                $query->whereDate('croploandate', '>=', $startDate);
+            }
+            if ($endDate) {
+                // Apply condition for 'loandate' greater than '$startDate'
+                $query->whereDate('croploandate', '<=', $endDate);
+            }
+
+        }
+
+        $croploan_entry = $query->get();
+
+        return view("croploan.entry.list", compact('croploan_entry',  'regionFilter','circleFilter','societyFilter','startDate','endDate'));
+//        $croploan_entry = Croploan_entry::all();
+//        return view("croploan.entry.list", compact('croploan_entry'));
     }
 
     function croploanentrystore(Request $request)

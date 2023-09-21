@@ -60,7 +60,7 @@
                         <div class="row margindiv">
                             <div class="col-md-12">
                                 <div class="form-floating">
-                                  <input type="number" class="form-control" id="floatingName" name="current_year" value="{{date("Y-04-01")}}" placeholder="date" readonly required>
+                                  <input type="text" class="form-control" id="floatingName" name="current_year" value="{{date("Y-04-01")}}" placeholder="date" readonly required>
                                   <label for="floatingName">Current year</label>
                                 </div>
                             </div>
@@ -68,8 +68,8 @@
                         <div class="row margindiv">
                             <div class="col-md-12">
                                 <div class="form-floating">
-                                  <input type="number" class="form-control" id="floatingName" name="overall_outstanding" placeholder="Your overall outstanding." required>
-                                  <label for="floatingName">Overall outstanding(upto 31.3.2023).</label>
+                                  <input type="text" class="form-control" id="floatingName" name="overall_outstanding" placeholder="Your overall outstanding." required>
+                                  <label for="floatingName">Overall outstanding().</label>
                                 </div>
                                 <div class="invalid-feedback">Please enter your overall outstanding ( upto 31.3.2023).</div>
                             </div>
@@ -77,8 +77,8 @@
                         <div class="row margindiv">
                             <div class="col-md-12">
                                 <div class="form-floating">
-                                  <input type="number" class="form-control" id="floatingName"  name="current_outstanding" placeholder="Your Current outstanding." required>
-                                  <label for="floatingName"> Current Year outstanding (Recieved from 1.4.2023).</label>
+                                  <input type="text" class="form-control" id="floatingName"  name="current_outstanding" placeholder="Your Current outstanding." required>
+                                  <label for="floatingName"> Current Year outstanding.</label>
                                 </div>
                                 <div class="invalid-feedback">Please enter your Current outstanding.</div>
                             </div>
@@ -86,7 +86,7 @@
                         <div class="row margindiv">
                             <div class="col-md-12">
                                 <div class="form-floating">
-                                  <input type="number" class="form-control" id="floatingName" name="annual_target" placeholder="Your Annual target." required>
+                                  <input type="text" class="form-control" id="floatingName" name="annual_target" placeholder="Your Annual target." required>
                                   <label for="floatingName">Annual target.</label>
                                 </div>
                                 <div class="invalid-feedback">Please enter your Annual target.</div>

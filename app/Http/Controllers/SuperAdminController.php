@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\LoanQueryService;
+use App\Models\Mtr_societytype;
 use Illuminate\Http\Request;
-use DB;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Excel;
 
@@ -29,6 +31,7 @@ use App\Models\Croploan_entry;
 use App\Models\Services;
 
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class SuperAdminController extends Controller
 {
@@ -143,9 +146,101 @@ class SuperAdminController extends Controller
             $loanreportdate = date("Y-m-d");
         }
 
-        $loans = Loan::where('loandate', $loanreportdate)->paginate(5);
+//        $loans = Loan::where('loandate', $loanreportdate)->paginate(5);
+        $societiestypes = Mtr_societytype::all();
+        $societyTypesFilter=$request->input('societyTypes');
+        if(!empty($societyTypesFilter)) {
+            $results = DB::table('mtr_region AS a')
+                ->select(
+                    'a.region_name AS Region_Name',
+                    DB::raw('(SELECT IFNULL(SUM(loan_onetimeentry.annual_target), 0)
+                FROM loan_onetimeentry
+                WHERE loan_onetimeentry.user_id IN (
+                    SELECT users.id FROM users
+                    WHERE users.region_id = a.id AND users.role = '.$societyTypesFilter.'
+                )) AS Loan_Target_2023_24'),
+                    DB::raw('(SELECT IFNULL(SUM(loan.disbursedamount), 0)
+                FROM loan
+                WHERE loan.user_id IN (
+                    SELECT users.id FROM users
+                    WHERE users.region_id = a.id AND users.role = '.$societyTypesFilter.'
+                )) AS Disbursed_Amount'),
+                    DB::raw('CONCAT(
+                    ROUND(
+                        IFNULL(
+                            (SELECT SUM(loan.disbursedamount)
+                             FROM loan
+                             WHERE loan.user_id IN (
+                                 SELECT users.id
+                                 FROM users
+                                 WHERE users.region_id = a.id AND users.role = '.$societyTypesFilter.'
+                             )), 0
+                        ) /
+                        IFNULL(
+                            (SELECT SUM(loan_onetimeentry.annual_target)
+                             FROM loan_onetimeentry
+                             WHERE loan_onetimeentry.user_id IN (
+                                 SELECT users.id
+                                 FROM users
+                                 WHERE users.region_id = a.id AND users.role = '.$societyTypesFilter.'
+                             )), 0
+                        ) * 100, 2
+                    ),
+                    "%"
+                ) AS Percent_of_Loan')
+                )
+                ->get();
+        }
+        else{
+            $results = DB::table('mtr_region AS a')
+                ->select(
+                    'a.region_name AS Region_Name',
+                    DB::raw('(SELECT IFNULL(SUM(loan_onetimeentry.annual_target), 0)
+                FROM loan_onetimeentry
+                WHERE loan_onetimeentry.user_id IN (
+                    SELECT users.id FROM users
+                    WHERE users.region_id = a.id
+                )) AS Loan_Target_2023_24'),
+                    DB::raw('(SELECT IFNULL(SUM(loan.disbursedamount), 0)
+                FROM loan
+                WHERE loan.user_id IN (
+                    SELECT users.id FROM users
+                    WHERE users.region_id = a.id
+                )) AS Disbursed_Amount'),
+                    DB::raw('CONCAT(
+                    ROUND(
+                        IFNULL(
+                            (SELECT SUM(loan.disbursedamount)
+                             FROM loan
+                             WHERE loan.user_id IN (
+                                 SELECT users.id
+                                 FROM users
+                                 WHERE users.region_id = a.id
+                             )), 0
+                        ) /
+                        IFNULL(
+                            (SELECT SUM(loan_onetimeentry.annual_target)
+                             FROM loan_onetimeentry
+                             WHERE loan_onetimeentry.user_id IN (
+                                 SELECT users.id
+                                 FROM users
+                                 WHERE users.region_id = a.id
+                             )), 0
+                        ) * 100, 2
+                    ),
+                    "%"
+                ) AS Percent_of_Loan')
+                )
+                ->get();
+        }
 
-        return view("superadmin.loanreport", compact('loans', 'loanreportdate'));
+        $loans = Loan::select("*")->get();
+
+
+
+//        $results = DB::select('SELECT * FROM view_regionwise_credit_and_deopsit');
+
+        return view("superadmin.loanreport", compact('loans', 'loanreportdate','results','societiestypes','societyTypesFilter'));
     }
 
     function depositreportold(Request $request)
@@ -228,39 +323,153 @@ class SuperAdminController extends Controller
     function depositreport(Request $request)
     {
 
-        $depositreportdate = $request->depositreportdate;
 
-        if (!empty($depositreportdate)) {
-            $depositreportdate = $request->depositreportdate;
-        } else {
-            $depositreportdate = date("Y-m-d");
+        $societiestypes = Mtr_societytype::all();
+        $societyTypesFilter=$request->input('societyTypes');
+        if(!empty($societyTypesFilter)) {
+            $results = DB::table('mtr_region AS a')
+                ->select(
+                    'a.region_name AS Region_Name',
+                    DB::raw('(SELECT IFNULL(SUM(deposit_onetimeentry.annual_target), 0)
+                FROM deposit_onetimeentry
+                WHERE deposit_onetimeentry.user_id IN (
+                    SELECT users.id FROM users
+                    WHERE users.region_id = a.id AND users.role = '.$societyTypesFilter.'
+                )) AS Deposit_Target_2023_24'),
+                    DB::raw('(SELECT ROUND(IFNULL(SUM(deposits.recievedamount), 0))
+                FROM deposits
+                WHERE deposits.user_id IN (
+                    SELECT users.id FROM users
+                    WHERE users.region_id = a.id AND users.role = '.$societyTypesFilter.'
+                )) AS Recieved_Amount'),
+                    DB::raw('CONCAT(
+                    ROUND(
+                        (SELECT ROUND(IFNULL(SUM(deposits.recievedamount), 0))
+                        FROM deposits
+                        WHERE deposits.user_id IN (
+                            SELECT users.id FROM users
+                            WHERE users.region_id = a.id AND users.role = '.$societyTypesFilter.'
+                        )) / (SELECT IFNULL(SUM(deposit_onetimeentry.annual_target), 0)
+                        FROM deposit_onetimeentry
+                        WHERE deposit_onetimeentry.user_id IN (
+                            SELECT users.id FROM users
+                            WHERE users.region_id = a.id AND users.role = '.$societyTypesFilter.'
+                        )) * 100, 2),
+                    "%") AS Percent_of_Deopsits_Achievements')
+                )
+                ->get();
+        }
+        else{
+            $results = DB::table('mtr_region AS a')
+                ->select(
+                    'a.region_name AS Region_Name',
+                    DB::raw('(SELECT IFNULL(SUM(deposit_onetimeentry.annual_target), 0)
+                FROM deposit_onetimeentry
+                WHERE deposit_onetimeentry.user_id IN (
+                    SELECT users.id FROM users
+                    WHERE users.region_id = a.id
+                )) AS Deposit_Target_2023_24'),
+                    DB::raw('(SELECT ROUND(IFNULL(SUM(deposits.recievedamount), 0))
+                FROM deposits
+                WHERE deposits.user_id IN (
+                    SELECT users.id FROM users
+                    WHERE users.region_id = a.id
+                )) AS Recieved_Amount'),
+                    DB::raw('CONCAT(
+                    ROUND(
+                        (SELECT ROUND(IFNULL(SUM(deposits.recievedamount), 0))
+                        FROM deposits
+                        WHERE deposits.user_id IN (
+                            SELECT users.id FROM users
+                            WHERE users.region_id = a.id
+                        )) / (SELECT IFNULL(SUM(deposit_onetimeentry.annual_target), 0)
+                        FROM deposit_onetimeentry
+                        WHERE deposit_onetimeentry.user_id IN (
+                            SELECT users.id FROM users
+                            WHERE users.region_id = a.id
+                        )) * 100, 2),
+                    "%") AS Percent_of_Deopsits_Achievements')
+                )
+                ->get();
         }
 
-        $deposits = Deposits::where('depositdate', $depositreportdate)->paginate(5);
-
-        return view("superadmin.depositreport", compact('deposits', 'depositreportdate'));
+        return view("superadmin.depositreport", compact('results','societiestypes','societyTypesFilter'));
     }
 
     function purchasereport(Request $request)
     {
 
-        $purchasereportdate = $request->purchasereportdate;
-
-        if (!empty($purchasereportdate)) {
-            $purchasereportdate = $request->purchasereportdate;
-        } else {
-            $purchasereportdate = date("Y-m-d");
+//        $purchasereportdate = $request->purchasereportdate;
+//
+//        if (!empty($purchasereportdate)) {
+//            $purchasereportdate = $request->purchasereportdate;
+//        } else {
+//            $purchasereportdate = date("Y-m-d");
+//        }
+//
+//        $purchases = Purchases::where('purchasedate', $purchasereportdate)->paginate(5);
+        $societiestypes = Mtr_societytype::all();
+        $societyTypesFilter=$request->input('societyTypes');
+        if(!empty($societyTypesFilter)) {
+            $results = DB::table('mtr_region AS a')
+                ->select(
+                    'a.region_name AS Region_Name',
+                    DB::raw('(SELECT IFNULL(SUM(purchases.govtvalues), 0)
+                FROM purchases
+                WHERE purchases.user_id IN (
+                    SELECT users.id FROM users
+                    WHERE users.region_id = a.id AND users.role = '.$societyTypesFilter.'
+                )) AS Govt_institution'),
+                    DB::raw('(SELECT IFNULL(SUM(purchases.coopvalues), 0)
+                FROM purchases
+                WHERE purchases.user_id IN (
+                    SELECT users.id FROM users
+                    WHERE users.region_id = a.id AND users.role = '.$societyTypesFilter.'
+                )) AS Coop'),
+                    DB::raw('(SELECT IFNULL(SUM(purchases.jpcvalues), 0)
+                FROM purchases
+                WHERE purchases.user_id IN (
+                    SELECT users.id FROM users
+                    WHERE users.region_id = a.id AND users.role = '.$societyTypesFilter.'
+                )) AS jpc')
+                )
+                ->get();
         }
+        else{
+            $results = DB::table('mtr_region AS a')
+                ->select(
+                    'a.region_name AS Region_Name',
+                    DB::raw('(SELECT IFNULL(SUM(purchases.govtvalues), 0)
+                FROM purchases
+                WHERE purchases.user_id IN (
+                    SELECT users.id FROM users
+                    WHERE users.region_id = a.id
+                )) AS Govt_institution'),
+                    DB::raw('(SELECT IFNULL(SUM(purchases.coopvalues), 0)
+                FROM purchases
+                WHERE purchases.user_id IN (
+                    SELECT users.id FROM users
+                    WHERE users.region_id = a.id
+                )) AS Coop'),
+                    DB::raw('(SELECT IFNULL(SUM(purchases.jpcvalues), 0)
+                FROM purchases
+                WHERE purchases.user_id IN (
+                    SELECT users.id FROM users
+                    WHERE users.region_id = a.id
+                )) AS jpc')
+                )
+                ->get();
 
-        $purchases = Purchases::where('purchasedate', $purchasereportdate)->paginate(5);
+        }
+        return view("superadmin.purchasereport", compact('results','societiestypes','societyTypesFilter'));
 
-        return view("superadmin.purchasereport", compact('purchases', 'purchasereportdate'));
+//        return view("superadmin.purchasereport", compact('purchases', 'purchasereportdate'));
     }
 
     function salereport(Request $request)
     {
 
-        $salereportdate = $request->salereportdate;
+        /*$salereportdate = $request->salereportdate;
 
         if (!empty($salereportdate)) {
             $salereportdate = $request->salereportdate;
@@ -268,15 +477,128 @@ class SuperAdminController extends Controller
             $salereportdate = date("Y-m-d");
         }
 
-        $sales = Sales::where('saledate', $salereportdate)->paginate(5);
+        $sales = Sales::where('saledate', $salereportdate)->paginate(5);*/
+        $societiestypes = Mtr_societytype::all();
+        $societyTypesFilter=$request->input('societyTypes');
+        if(!empty($societyTypesFilter)) {
+            $results = DB::table('mtr_region AS a')
+                ->select(
+                    'a.region_name AS Region_Name',
+                    DB::raw('(SELECT IFNULL(SUM(sales.noofvarieties), 0)
+                FROM sales
+                WHERE sales.user_id IN (
+                    SELECT users.id FROM users
+                    WHERE users.region_id = a.id AND users.role = '.$societyTypesFilter.'
+                )) AS varieties'),
+                    DB::raw('(SELECT IFNULL(SUM(sales.noofoutlets), 0)
+                FROM sales
+                WHERE sales.user_id IN (
+                    SELECT users.id FROM users
+                    WHERE users.region_id = a.id AND users.role = '.$societyTypesFilter.'
+                )) AS outlets'),
+                    DB::raw('(SELECT IFNULL(SUM(sales.noofcustomers), 0)
+                FROM sales
+                WHERE sales.user_id IN (
+                    SELECT users.id FROM users
+                    WHERE users.region_id = a.id AND users.role = '.$societyTypesFilter.'
+                )) AS customers'),
+                    DB::raw('(SELECT IFNULL(SUM(sales.nooffarmers), 0)
+                FROM sales
+                WHERE sales.user_id IN (
+                    SELECT users.id FROM users
+                    WHERE users.region_id = a.id AND users.role = '.$societyTypesFilter.'
+                )) AS farmers'),
+                    DB::raw('(SELECT IFNULL(SUM(sales.quantitykilo), 0)
+                FROM sales
+                WHERE sales.user_id IN (
+                    SELECT users.id FROM users
+                    WHERE users.region_id = a.id AND users.role = '.$societyTypesFilter.'
+                )) AS quantitykilo'),
+                    DB::raw('(SELECT IFNULL(SUM(sales.quantitylitres), 0)
+                FROM sales
+                WHERE sales.user_id IN (
+                    SELECT users.id FROM users
+                    WHERE users.region_id = a.id AND users.role = '.$societyTypesFilter.'
+                )) AS quantitylitres'),
+                    DB::raw('(SELECT IFNULL(SUM(sales.salesamountphysical), 0)
+                FROM sales
+                WHERE sales.user_id IN (
+                    SELECT users.id FROM users
+                    WHERE users.region_id = a.id AND users.role = '.$societyTypesFilter.'
+                )) AS salesamountphysical'),
+                    DB::raw('(SELECT IFNULL(SUM(sales.salesamountcoopbazaar), 0)
+                FROM sales
+                WHERE sales.user_id IN (
+                    SELECT users.id FROM users
+                    WHERE users.region_id = a.id AND users.role = '.$societyTypesFilter.'
+                )) AS salesamountcoopbazaar')
+                )
+                ->get();
+        }
+        else{
+            $results = DB::table('mtr_region AS a')
+                ->select(
+                    'a.region_name AS Region_Name',
+                    DB::raw('(SELECT IFNULL(SUM(sales.noofvarieties), 0)
+                FROM sales
+                WHERE sales.user_id IN (
+                    SELECT users.id FROM users
+                    WHERE users.region_id = a.id
+                )) AS varieties'),
+                    DB::raw('(SELECT IFNULL(SUM(sales.noofoutlets), 0)
+                FROM sales
+                WHERE sales.user_id IN (
+                    SELECT users.id FROM users
+                    WHERE users.region_id = a.id
+                )) AS outlets'),
+                    DB::raw('(SELECT IFNULL(SUM(sales.noofcustomers), 0)
+                FROM sales
+                WHERE sales.user_id IN (
+                    SELECT users.id FROM users
+                    WHERE users.region_id = a.id
+                )) AS customers'),
+                    DB::raw('(SELECT IFNULL(SUM(sales.nooffarmers), 0)
+                FROM sales
+                WHERE sales.user_id IN (
+                    SELECT users.id FROM users
+                    WHERE users.region_id = a.id
+                )) AS farmers'),
+                    DB::raw('(SELECT IFNULL(SUM(sales.quantitykilo), 0)
+                FROM sales
+                WHERE sales.user_id IN (
+                    SELECT users.id FROM users
+                    WHERE users.region_id = a.id
+                )) AS quantitykilo'),
+                    DB::raw('(SELECT IFNULL(SUM(sales.quantitylitres), 0)
+                FROM sales
+                WHERE sales.user_id IN (
+                    SELECT users.id FROM users
+                    WHERE users.region_id = a.id
+                )) AS quantitylitres'),
+                    DB::raw('(SELECT IFNULL(SUM(sales.salesamountphysical), 0)
+                FROM sales
+                WHERE sales.user_id IN (
+                    SELECT users.id FROM users
+                    WHERE users.region_id = a.id
+                )) AS salesamountphysical'),
+                    DB::raw('(SELECT IFNULL(SUM(sales.salesamountcoopbazaar), 0)
+                FROM sales
+                WHERE sales.user_id IN (
+                    SELECT users.id FROM users
+                    WHERE users.region_id = a.id
+                )) AS salesamountcoopbazaar')
+                )
+                ->get();
 
-        return view("superadmin.salereport", compact('sales', 'salereportdate'));
+        }
+        return view("superadmin.salereport", compact('results','societiestypes','societyTypesFilter'));
+//        return view("superadmin.salereport", compact('sales', 'salereportdate'));
     }
 
     function croploanreport(Request $request)
     {
 
-        $croploanreportdate = $request->croploanreportdate;
+       /* $croploanreportdate = $request->croploanreportdate;
 
         if (!empty($croploanreportdate)) {
             $croploanreportdate = $request->croploanreportdate;
@@ -286,7 +608,137 @@ class SuperAdminController extends Controller
 
         $croploan_entry = Croploan_entry::where('saledate', $croploanreportdate)->paginate(5);
 
-        return view("superadmin.croploanreport", compact('croploan_entry', 'croploanreportdate'));
+        return view("superadmin.croploanreport", compact('croploan_entry', 'croploanreportdate'));*/
+        $societiestypes = Mtr_societytype::all();
+        $societyTypesFilter=$request->input('societyTypes');
+        if(!empty($societyTypesFilter)) {
+            $results = DB::table('mtr_region AS a')
+                ->select(
+                    'a.region_name AS Region_Name',
+                    DB::raw('(SELECT IFNULL(SUM(croploan_entry.noofappreceived), 0)
+                FROM croploan_entry
+                WHERE croploan_entry.user_id IN (
+                    SELECT users.id FROM users
+                    WHERE users.region_id = a.id AND users.role = '.$societyTypesFilter.'
+                )) AS noofappreceived'),
+                    DB::raw('(SELECT IFNULL(SUM(croploan_entry.noofappsanctioned), 0)
+                FROM croploan_entry
+                WHERE croploan_entry.user_id IN (
+                    SELECT users.id FROM users
+                    WHERE users.region_id = a.id AND users.role = '.$societyTypesFilter.'
+                )) AS noofappsanctioned'),
+                    DB::raw('(SELECT IFNULL(SUM(croploan_entry.noofapppending), 0)
+                FROM croploan_entry
+                WHERE croploan_entry.user_id IN (
+                    SELECT users.id FROM users
+                    WHERE users.region_id = a.id AND users.role = '.$societyTypesFilter.'
+                )) AS noofapppending'),
+                    DB::raw('(SELECT IFNULL(SUM(croploan_entry.totalcultivatedarea), 0)
+                FROM croploan_entry
+                WHERE croploan_entry.user_id IN (
+                    SELECT users.id FROM users
+                    WHERE users.region_id = a.id AND users.role = '.$societyTypesFilter.'
+                )) AS totalcultivatedarea'),
+                    DB::raw('(SELECT IFNULL(SUM(croploan_entry.cultivatedarealoanissuedto), 0)
+                FROM croploan_entry
+                WHERE croploan_entry.user_id IN (
+                    SELECT users.id FROM users
+                    WHERE users.region_id = a.id AND users.role = '.$societyTypesFilter.'
+                )) AS cultivatedarealoanissuedto'),
+                    DB::raw('(SELECT IFNULL(SUM(croploan_entry.outstandingno), 0)
+                FROM croploan_entry
+                WHERE croploan_entry.user_id IN (
+                    SELECT users.id FROM users
+                    WHERE users.region_id = a.id AND users.role = '.$societyTypesFilter.'
+                )) AS outstandingno'),
+                    DB::raw('(SELECT IFNULL(SUM(croploan_entry.outstandingamount), 0)
+                FROM croploan_entry
+                WHERE croploan_entry.user_id IN (
+                    SELECT users.id FROM users
+                    WHERE users.region_id = a.id AND users.role = '.$societyTypesFilter.'
+                )) AS outstandingamount'),
+                    DB::raw('(SELECT IFNULL(SUM(croploan_entry.overdueno), 0)
+                FROM croploan_entry
+                WHERE croploan_entry.user_id IN (
+                    SELECT users.id FROM users
+                    WHERE users.region_id = a.id AND users.role = '.$societyTypesFilter.'
+                )) AS overdueno'),
+                    DB::raw('(SELECT IFNULL(SUM(croploan_entry.overdueamount), 0)
+                FROM croploan_entry
+                WHERE croploan_entry.user_id IN (
+                    SELECT users.id FROM users
+                    WHERE users.region_id = a.id AND users.role = '.$societyTypesFilter.'
+                )) AS overdueamount')
+                )
+                ->get();
+        }
+        else{
+
+
+            $results = DB::table('mtr_region AS a')
+                ->select(
+                    'a.region_name AS Region_Name',
+                    DB::raw('(SELECT IFNULL(SUM(croploan_entry.noofappreceived), 0)
+                FROM croploan_entry
+                WHERE croploan_entry.user_id IN (
+                    SELECT users.id FROM users
+                    WHERE users.region_id = a.id
+                )) AS noofappreceived'),
+                    DB::raw('(SELECT IFNULL(SUM(croploan_entry.noofappsanctioned), 0)
+                FROM croploan_entry
+                WHERE croploan_entry.user_id IN (
+                    SELECT users.id FROM users
+                    WHERE users.region_id = a.id
+                )) AS noofappsanctioned'),
+                    DB::raw('(SELECT IFNULL(SUM(croploan_entry.noofapppending), 0)
+                FROM croploan_entry
+                WHERE croploan_entry.user_id IN (
+                    SELECT users.id FROM users
+                    WHERE users.region_id = a.id
+                )) AS noofapppending'),
+                    DB::raw('(SELECT IFNULL(SUM(croploan_entry.totalcultivatedarea), 0)
+                FROM croploan_entry
+                WHERE croploan_entry.user_id IN (
+                    SELECT users.id FROM users
+                    WHERE users.region_id = a.id
+                )) AS totalcultivatedarea'),
+                    DB::raw('(SELECT IFNULL(SUM(croploan_entry.cultivatedarealoanissuedto), 0)
+                FROM croploan_entry
+                WHERE croploan_entry.user_id IN (
+                    SELECT users.id FROM users
+                    WHERE users.region_id = a.id
+                )) AS cultivatedarealoanissuedto'),
+                    DB::raw('(SELECT IFNULL(SUM(croploan_entry.outstandingno), 0)
+                FROM croploan_entry
+                WHERE croploan_entry.user_id IN (
+                    SELECT users.id FROM users
+                    WHERE users.region_id = a.id
+                )) AS outstandingno'),
+                    DB::raw('(SELECT IFNULL(SUM(croploan_entry.outstandingamount), 0)
+                FROM croploan_entry
+                WHERE croploan_entry.user_id IN (
+                    SELECT users.id FROM users
+                    WHERE users.region_id = a.id
+                )) AS outstandingamount'),
+                    DB::raw('(SELECT IFNULL(SUM(croploan_entry.overdueno), 0)
+                FROM croploan_entry
+                WHERE croploan_entry.user_id IN (
+                    SELECT users.id FROM users
+                    WHERE users.region_id = a.id
+                )) AS overdueno'),
+                    DB::raw('(SELECT IFNULL(SUM(croploan_entry.overdueamount), 0)
+                FROM croploan_entry
+                WHERE croploan_entry.user_id IN (
+                    SELECT users.id FROM users
+                    WHERE users.region_id = a.id
+                )) AS overdueamount')
+                )
+                ->get();
+
+
+
+        }
+        return view("superadmin.croploanreport", compact('results','societiestypes','societyTypesFilter'));
     }
 
 
@@ -342,7 +794,7 @@ class SuperAdminController extends Controller
 
     public function godownreport(Request $request)
     {
-        $godownreportdate = $request->input('godownreportdate', date("Y-m-d"));
+        /*$godownreportdate = $request->input('godownreportdate', date("Y-m-d"));
 
         $godowns = Godowns::all();
 
@@ -365,9 +817,145 @@ class SuperAdminController extends Controller
             $godownData['income'] = $income;
 
             array_push($godownreportdata, $godownData);
-        }
+        }*/
 
-        return view("superadmin.godownreport", compact('godownreportdata', 'godownreportdate'));
+        $societiestypes = Mtr_societytype::all();
+        $societyTypesFilter=$request->input('societyTypes');
+        if(!empty($societyTypesFilter)) {
+            $results = DB::table('mtr_region AS a')
+                ->select(
+                    'a.region_name AS Region_Name',
+                    DB::raw('(SELECT IFNULL(SUM(purchases.govtvalues), 0)
+                FROM purchases
+                WHERE purchases.user_id IN (
+                    SELECT users.id FROM users
+                    WHERE users.region_id = a.id AND users.role = '.$societyTypesFilter.'
+                )) AS Govt_institution'),
+                    DB::raw('(SELECT IFNULL(SUM(purchases.coopvalues), 0)
+                FROM purchases
+                WHERE purchases.user_id IN (
+                    SELECT users.id FROM users
+                    WHERE users.region_id = a.id AND users.role = '.$societyTypesFilter.'
+                )) AS Coop'),
+                    DB::raw('(SELECT IFNULL(SUM(purchases.jpcvalues), 0)
+                FROM purchases
+                WHERE purchases.user_id IN (
+                    SELECT users.id FROM users
+                    WHERE users.region_id = a.id AND users.role = '.$societyTypesFilter.'
+                )) AS jpc')
+                )
+                ->select(
+                    'a.region_name AS Region_Name',
+                    DB::raw('(SELECT IFNULL(SUM(godowns.count), 0)
+                FROM godowns
+                WHERE godowns.user_id IN (
+                    SELECT users.id FROM users
+                    WHERE users.region_id = a.id AND users.role = '.$societyTypesFilter.'
+                )) AS count'),
+                    DB::raw('(SELECT IFNULL(SUM(godowns.capacity), 0)
+                FROM godowns
+                WHERE godowns.user_id IN (
+                    SELECT users.id FROM users
+                    WHERE users.region_id = a.id AND users.role = '.$societyTypesFilter.'
+                )) AS capacity'),
+                    DB::raw('(SELECT IFNULL(SUM(godowns.utilized), 0)
+                FROM godowns
+                WHERE godowns.user_id IN (
+                    SELECT users.id FROM users
+                    WHERE users.region_id = a.id AND users.role = '.$societyTypesFilter.'
+                )) AS utilized'),
+                    DB::raw('CONCAT(
+                    ROUND(
+                            IFNULL(
+                                (SELECT SUM(godowns.utilized)
+                                 FROM godowns
+                                 WHERE godowns.user_id IN (
+                                     SELECT users.id
+                                     FROM users
+                                     WHERE users.region_id = a.id AND users.role = '.$societyTypesFilter.'
+                                 )), 0
+                            ) /
+                            IFNULL(
+                                (SELECT SUM(godowns.capacity)
+                                 FROM godowns
+                                 WHERE godowns.user_id IN (
+                                     SELECT users.id
+                                     FROM users
+                                     WHERE users.region_id = a.id AND users.role = '.$societyTypesFilter.'
+                                 )), 0
+                            ) * 100, 2
+                        ),
+                    "(%)"
+                ) AS Percentage'),
+                    DB::raw('(SELECT IFNULL(SUM(godowns.income), 0)
+                FROM godowns
+                WHERE godowns.user_id IN (
+                    SELECT users.id FROM users
+                    WHERE users.region_id = a.id AND users.role = '.$societyTypesFilter.'
+                )) AS income')
+                )
+                ->get();
+        }
+        else{
+
+            $results = DB::table('mtr_region AS a')
+                ->select(
+                    'a.region_name AS Region_Name',
+                    DB::raw('(SELECT IFNULL(SUM(godowns.count), 0)
+                FROM godowns
+                WHERE godowns.user_id IN (
+                    SELECT users.id FROM users
+                    WHERE users.region_id = a.id
+                )) AS count'),
+                    DB::raw('(SELECT IFNULL(SUM(godowns.capacity), 0)
+                FROM godowns
+                WHERE godowns.user_id IN (
+                    SELECT users.id FROM users
+                    WHERE users.region_id = a.id
+                )) AS capacity'),
+                    DB::raw('(SELECT IFNULL(SUM(godowns.utilized), 0)
+                FROM godowns
+                WHERE godowns.user_id IN (
+                    SELECT users.id FROM users
+                    WHERE users.region_id = a.id
+                )) AS utilized'),
+                    DB::raw('CONCAT(
+                    ROUND(
+                            IFNULL(
+                                (SELECT SUM(godowns.utilized)
+                                 FROM godowns
+                                 WHERE godowns.user_id IN (
+                                     SELECT users.id
+                                     FROM users
+                                     WHERE users.region_id = a.id
+                                 )), 0
+                            ) /
+                            IFNULL(
+                                (SELECT SUM(godowns.capacity)
+                                 FROM godowns
+                                 WHERE godowns.user_id IN (
+                                     SELECT users.id
+                                     FROM users
+                                     WHERE users.region_id = a.id
+                                 )), 0
+                            ) * 100, 2
+                        ),
+                    "(%)"
+                ) AS Percentage'),
+                    DB::raw('(SELECT IFNULL(SUM(godowns.income), 0)
+                FROM godowns
+                WHERE godowns.user_id IN (
+                    SELECT users.id FROM users
+                    WHERE users.region_id = a.id
+                )) AS income')
+                )
+                ->get();
+
+
+        }
+        return view("superadmin.godownreport", compact('results','societiestypes','societyTypesFilter'));
+
+//        return view("superadmin.godownreport", compact('godownreportdata', 'godownreportdate'));
     }
 
 
@@ -411,47 +999,299 @@ class SuperAdminController extends Controller
         return $result;
     }
 
-    function loanlist()
+    function loanlist(Request $request)
     {
+        /*$regions = Mtr_region::all();
+        $circles = Mtr_circle::all();
+        $societies = Mtr_society::all();
+        $societiestypes = Mtr_societytype::all();
+        $loantypes=Mtr_loan::all();
 
-        $loans = Loan::select('*')->with('loantype')->paginate(5);
-        return view("loan.list", compact('loans'));
+
+        $regionFilter = $request->input('region');
+        $circleFilter = $request->input('circle');
+        $societyFilter = $request->input('society');
+        $endDate = $request->input('endDate');
+        $startDate = $request->input('startDate');
+        $societyTypesFilter = $request->input('societyTypes');
+        $loantypeFilter = $request->input('loantype');
+
+        $soctietyvalue = DB::table('mtr_societytype')
+            ->whereIn('role_id', function ($query) use ($circleFilter, $regionFilter) {
+                $query->select('role')
+                    ->from('users');
+                if($regionFilter) {
+                    $query->where('region_id', $regionFilter);
+                }
+                if($circleFilter) {
+                    $query->where('circle_id', $circleFilter);
+                }
+            });
+
+        $societiestypes=$soctietyvalue->get();
+        $loans = Loan::select('*')->with('loantype')->get();
+
+        $regionFilter = $request->input('region');
+        $circleFilter = $request->input('circle');
+        $societyFilter = $request->input('society');
+        $endDate = $request->input('endDate');
+        $startDate = $request->input('startDate');
+
+        // Build the Loan query with additional conditions
+        $query = Loan::select('*')->with('loantype');
+
+        if ($regionFilter || $circleFilter || $societyFilter) {
+            $query->whereIn('user_id', function ($subquery) use ($societyTypesFilter, $circleFilter, $regionFilter, $societyFilter) {
+                $subquery->select('id')->from('users');
+                if (!empty($regionFilter)) {
+                    // Apply condition for region filter
+                    $subquery->where('region_id', $regionFilter);
+                }
+                if (!empty($societyFilter)) {
+                    // Apply condition for society filter
+                    $subquery->where('society_id', $societyFilter);
+                }
+                if ($circleFilter) {
+                    // Apply condition for circle filter
+                    $subquery->where('circle_id', $circleFilter);
+                }
+                if ($societyTypesFilter) {
+                    // Apply condition for socitytype filter
+                    $subquery->where('role', Mtr_societytype::where('id', $societyTypesFilter)->value('role_id'));
+                }
+            });
+        } else {
+        }
+
+
+        if ($startDate && $endDate) {
+            // Apply condition for circle filter
+            $query->wherebetween('loandate', ["$startDate","$endDate"]);
+        }
+        else{
+            if ($startDate) {
+                // Apply condition for 'loandate' greater than '$startDate'
+                $query->whereDate('loandate', '>=', $startDate);
+            }
+            if ($endDate) {
+                // Apply condition for 'loandate' greater than '$startDate'
+                $query->whereDate('loandate', '<=', $endDate);
+            }
+
+        }
+        if($loantypeFilter)
+        {
+            $query->where('loantype_id', $loantypeFilter);
+        }*/
+        $regions = Mtr_region::all();
+        $circles = Mtr_circle::all();
+        $societies = Mtr_society::all();
+        $societiestypes = Mtr_societytype::all();
+        $loantypes=Mtr_loan::all();
+        $regionFilter = $request->input('region');
+        $circleFilter = $request->input('circle');
+        $societyFilter = $request->input('society');
+        $endDate = $request->input('endDate');
+        $startDate = $request->input('startDate');
+        $societyTypesFilter = $request->input('societyTypes');
+        $loantypeFilter = $request->input('loantype');
+        $soctietyvalue = DB::table('mtr_societytype')
+            ->whereIn('role_id', function ($query) use ($circleFilter, $regionFilter) {
+                $query->select('role')
+                    ->from('users');
+                if($regionFilter) {
+                    $query->where('region_id', $regionFilter);
+                }
+                if($circleFilter) {
+                    $query->where('circle_id', $circleFilter);
+                }
+            });
+
+        $societiestypes=$soctietyvalue->get();
+
+        $filteredLoans = LoanQueryService::getFilteredLoans($request);
+        $loans = $filteredLoans;
+        return view("loan.list", compact('loans', 'regions', 'circles', 'societies','societiestypes','loantypes','regionFilter','circleFilter','societyFilter','startDate','endDate','societyTypesFilter','loantypeFilter'));
     }
 
 
-    function depositlist()
+    function depositlist(Request $request)
     {
-        $deposits = Deposits::select('*')->with('deposittype')->paginate(5);
 
-        return view("deposit.list", compact('deposits'));
+        $regions = Mtr_region::all();
+        $circles = Mtr_circle::all();
+        $societies = Mtr_society::all();
+        $societiestypes = Mtr_societytype::all();
+        $loantypes=Mtr_loan::all();
+        $regionFilter = $request->input('region');
+        $circleFilter = $request->input('circle');
+        $societyFilter = $request->input('society');
+        $endDate = $request->input('endDate');
+        $startDate = $request->input('startDate');
+        $societyTypesFilter = $request->input('societyTypes');
+        $loantypeFilter = $request->input('loantype');
+        $soctietyvalue = DB::table('mtr_societytype')
+            ->whereIn('role_id', function ($query) use ($circleFilter, $regionFilter) {
+                $query->select('role')
+                    ->from('users');
+                if($regionFilter) {
+                    $query->where('region_id', $regionFilter);
+                }
+                if($circleFilter) {
+                    $query->where('circle_id', $circleFilter);
+                }
+            });
+
+        $societiestypes=$soctietyvalue->get();
+
+        $filteredDeposit = LoanQueryService::getFilteredDeposits($request);
+//        $loans = $filteredLoans;
+        $deposits = $filteredDeposit;
+        return view("deposit.list", compact('deposits', 'regions', 'circles', 'societies','societiestypes','regionFilter','circleFilter','societyFilter','startDate','endDate','societyTypesFilter','loantypeFilter'));
+//        return view("deposit.list", compact('deposits'));
     }
 
-    function purchaselist()
+    function purchaselist(Request $request)
     {
-        $purchases = Purchases::select('*')->with('purchasetype')->paginate(5);
 
-        return view("purchase.list", compact('purchases'));
+
+        $regions = Mtr_region::all();
+        $circles = Mtr_circle::all();
+        $societies = Mtr_society::all();
+        $societiestypes = Mtr_societytype::all();
+        $loantypes=Mtr_loan::all();
+        $regionFilter = $request->input('region');
+        $circleFilter = $request->input('circle');
+        $societyFilter = $request->input('society');
+        $endDate = $request->input('endDate');
+        $startDate = $request->input('startDate');
+        $societyTypesFilter = $request->input('societyTypes');
+        $loantypeFilter = $request->input('loantype');
+        $soctietyvalue = DB::table('mtr_societytype')
+            ->whereIn('role_id', function ($query) use ($circleFilter, $regionFilter) {
+                $query->select('role')
+                    ->from('users');
+                if($regionFilter) {
+                    $query->where('region_id', $regionFilter);
+                }
+                if($circleFilter) {
+                    $query->where('circle_id', $circleFilter);
+                }
+            });
+
+        $societiestypes=$soctietyvalue->get();
+
+        $filteredpurchase = LoanQueryService::getFilteredPurchase($request);
+//        $loans = $filteredLoans;
+        $purchases = $filteredpurchase;
+        return view("purchase.list", compact('purchases', 'regions', 'circles', 'societies','societiestypes','regionFilter','circleFilter','societyFilter','startDate','endDate','societyTypesFilter','loantypeFilter'));
     }
 
-    function saleslist()
+    function saleslist(Request $request)
     {
-        $sales = Sales::select('*')->with('saletype')->paginate(5);
 
-        return view("sales.list", compact('sales'));
+        $regions = Mtr_region::all();
+        $circles = Mtr_circle::all();
+        $societies = Mtr_society::all();
+        $societiestypes = Mtr_societytype::all();
+        $loantypes=Mtr_loan::all();
+        $regionFilter = $request->input('region');
+        $circleFilter = $request->input('circle');
+        $societyFilter = $request->input('society');
+        $endDate = $request->input('endDate');
+        $startDate = $request->input('startDate');
+        $societyTypesFilter = $request->input('societyTypes');
+        $loantypeFilter = $request->input('loantype');
+        $soctietyvalue = DB::table('mtr_societytype')
+            ->whereIn('role_id', function ($query) use ($circleFilter, $regionFilter) {
+                $query->select('role')
+                    ->from('users');
+                if($regionFilter) {
+                    $query->where('region_id', $regionFilter);
+                }
+                if($circleFilter) {
+                    $query->where('circle_id', $circleFilter);
+                }
+            });
+
+        $societiestypes=$soctietyvalue->get();
+
+        $filteredpurchase = LoanQueryService::getFilteredSales($request);
+//        $loans = $filteredLoans;
+        $sales = $filteredpurchase;
+        return view("sales.list", compact('sales', 'regions', 'circles', 'societies','societiestypes','regionFilter','circleFilter','societyFilter','startDate','endDate','societyTypesFilter','loantypeFilter'));
     }
 
-    function godownlist()
+    function godownlist(Request $request)
     {
 
-        $godowns = Godowns::select('*')->paginate(5);
-        return view("godown.list", compact('godowns'));
+        $regions = Mtr_region::all();
+        $circles = Mtr_circle::all();
+        $societies = Mtr_society::all();
+        $societiestypes = Mtr_societytype::all();
+        $loantypes=Mtr_loan::all();
+        $regionFilter = $request->input('region');
+        $circleFilter = $request->input('circle');
+        $societyFilter = $request->input('society');
+        $endDate = $request->input('endDate');
+        $startDate = $request->input('startDate');
+        $societyTypesFilter = $request->input('societyTypes');
+        $loantypeFilter = $request->input('loantype');
+        $soctietyvalue = DB::table('mtr_societytype')
+            ->whereIn('role_id', function ($query) use ($circleFilter, $regionFilter) {
+                $query->select('role')
+                    ->from('users');
+                if($regionFilter) {
+                    $query->where('region_id', $regionFilter);
+                }
+                if($circleFilter) {
+                    $query->where('circle_id', $circleFilter);
+                }
+            });
+
+        $societiestypes=$soctietyvalue->get();
+
+        $filteredpurchase = LoanQueryService::getFilteredGodown($request);
+//        $loans = $filteredLoans;
+        $godowns = $filteredpurchase;
+        return view("godown.list", compact('godowns', 'regions', 'circles', 'societies','societiestypes','regionFilter','circleFilter','societyFilter','startDate','endDate','societyTypesFilter','loantypeFilter'));
     }
 
-    function serviceslist()
+    function serviceslist(Request $request)
     {
 
-        $services = Services::select('*')->paginate(5);
-        return view("services.list", compact('services'));
+        $regions = Mtr_region::all();
+        $circles = Mtr_circle::all();
+        $societies = Mtr_society::all();
+        $societiestypes = Mtr_societytype::all();
+        $loantypes=Mtr_loan::all();
+        $regionFilter = $request->input('region');
+        $circleFilter = $request->input('circle');
+        $societyFilter = $request->input('society');
+        $endDate = $request->input('endDate');
+        $startDate = $request->input('startDate');
+        $societyTypesFilter = $request->input('societyTypes');
+        $loantypeFilter = $request->input('loantype');
+        $soctietyvalue = DB::table('mtr_societytype')
+            ->whereIn('role_id', function ($query) use ($circleFilter, $regionFilter) {
+                $query->select('role')
+                    ->from('users');
+                if($regionFilter) {
+                    $query->where('region_id', $regionFilter);
+                }
+                if($circleFilter) {
+                    $query->where('circle_id', $circleFilter);
+                }
+            });
+
+        $societiestypes=$soctietyvalue->get();
+
+        $filteredpurchase = LoanQueryService::getFilteredService($request);
+//        $loans = $filteredLoans;
+        $services = $filteredpurchase;
+        return view("services.list", compact('services', 'regions', 'circles', 'societies','societiestypes','regionFilter','circleFilter','societyFilter','startDate','endDate','societyTypesFilter','loantypeFilter'));
+//        $services = Services::select('*')->paginate(5);
+//        return view("services.list", compact('services'));
     }
 
     function croploanentrycropwiselist(Request $request)
@@ -462,11 +1302,39 @@ class SuperAdminController extends Controller
         return view("croploan.entry.cropwiselist", compact('croploan_cropwise'));
     }
 
-    function croploanlist()
+    function croploanlist(Request $request)
     {
 
-        //  $croploan_entry = Croploan_entry::where('user_id', Auth::user()->id)->paginate(5);
+        $regions = Mtr_region::all();
+        $circles = Mtr_circle::all();
+        $societies = Mtr_society::all();
+        $societiestypes = Mtr_societytype::all();
+        $loantypes=Mtr_loan::all();
+        $regionFilter = $request->input('region');
+        $circleFilter = $request->input('circle');
+        $societyFilter = $request->input('society');
+        $endDate = $request->input('endDate');
+        $startDate = $request->input('startDate');
+        $societyTypesFilter = $request->input('societyTypes');
+        $loantypeFilter = $request->input('loantype');
+        $soctietyvalue = DB::table('mtr_societytype')
+            ->whereIn('role_id', function ($query) use ($circleFilter, $regionFilter) {
+                $query->select('role')
+                    ->from('users');
+                if($regionFilter) {
+                    $query->where('region_id', $regionFilter);
+                }
+                if($circleFilter) {
+                    $query->where('circle_id', $circleFilter);
+                }
+            });
 
+        $societiestypes=$soctietyvalue->get();
+
+        $filteredpurchase = LoanQueryService::getFilteredCropLoan($request);
+//        $loans = $filteredLoans;
+        $croploan_entry = $filteredpurchase;
+        return view("croploan.entry.list", compact('croploan_entry', 'regions', 'circles', 'societies','societiestypes','regionFilter','circleFilter','societyFilter','startDate','endDate','societyTypesFilter','loantypeFilter'));
         $croploan_entry = Croploan_entry::select('*')->paginate(5);
 
         return view("croploan.entry.list", compact('croploan_entry'));
