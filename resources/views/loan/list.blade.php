@@ -47,16 +47,16 @@
                                     <h3>Filters:</h3>
                                     <div class="row filterpaddings">
                                         @if(isset($regions))
-                                            <div class="col-3">
-                                                <label for="region">Region:</label>
-                                                <select name="region" id="region" class="form-control">
-                                                    <option value="">All</option>
-                                                    @foreach($regions as $region)
-                                                        <option
-                                                            value="{{ $region->id }}" {{$regionFilter == $region->id? "selected":""}}>{{ $region->region_name}}{{count($circles)}}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
+                                        <div class="col-3">
+                                            <label for="region">Region:</label>
+                                            <select name="region" id="region" class="form-control">
+                                                <option value="">All</option>
+                                                @foreach($regions as $region)
+                                                    <option
+                                                        value="{{ $region->id }}" {{$regionFilter == $region->id? "selected":""}}>{{ $region->region_name}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
                                         @endif
                                         @if(isset($circles))
                                             <div class="col-3">
@@ -154,11 +154,29 @@
                                     @endphp
                                 @endforeach
                                 <div class="row p-4">
-                                    <div class="col-3"><h5><b>Distributed Loan No:<?= $totalDisbursedNo ?></b></h5></div>
-                                    <div class="col-3"><h5><b>Distributed Amount :<?= $totaldisbursedamount ?></b></h5></div>
-                                    <div class="col-3"><h5><b>Collected Loan No:<?= $totalcollectedamount ?></b></h5></div>
-                                    <div class="col-3"><h5><b>Collected Amount:<?= $totalcollectedamount ?></b></h5></div>
-                                    <div>
+                                    <div class="row p-4">
+                                        <table class="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th>Total</th>
+                                                    <th>Distributed Loan No</th>
+                                                    <th>Distributed Amount</th>
+                                                    <th>Collected Loan No</th>
+                                                    <th>Collected Amount</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td><b>Total</b></td>
+                                                    <td><?= $totalDisbursedNo ?></td>
+                                                    <td><?= $totaldisbursedamount ?></td>
+                                                    <td><?= $totalcollectedno ?></td>
+                                                    <td><?= $totalcollectedamount ?></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
 
 
                                         {{--                  <table class="table table-responsive table-bordered datatable" id="data-table">--}}
@@ -178,6 +196,9 @@
                                             </tr>
                                             </thead>
                                             <tbody>
+                                            @php
+                                               $loans = collect($loans)->sortByDesc('loandate')->values()->all();
+                                            @endphp
                                             @foreach($loans as $loan)
 
                                                 <tr>
