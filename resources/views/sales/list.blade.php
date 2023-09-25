@@ -152,16 +152,16 @@
                                 <tbody>
                                     @foreach($sales as $sale)
                                     <tr>
-                                        <td>{{ $sale->saledate }}</td>
+                                        <td>{{ \Carbon\Carbon::parse($sale->saledate)->format('d-m-Y') }}</td>
                                         <td>{{ $sale->saletype->sale_name?? "" }}</td>
-                                        <td>{{ $sale->noofvarieties }}</td>
-                                        <td>{{ $sale->noofoutlets }}</td>
-                                        <td>{{ $sale->noofcustomers }}</td>
-                                        <td>{{ $sale->nooffarmers }}</td>
-                                        <td>{{ $sale->quantitykilo }}</td>
-                                        <td>{{ $sale->quantitylitres }}</td>
-                                        <td>{{ $sale->salesamountphysical }}</td>
-                                        <td>{{ $sale->salesamountcoopbazaar }}</td>
+                                        <td style="text-align: right;">{{ $sale->noofvarieties }}</td>
+                                        <td style="text-align: right;">{{ $sale->noofoutlets }}</td>
+                                        <td style="text-align: right;">{{ $sale->noofcustomers }}</td>
+                                        <td style="text-align: right;">{{ $sale->nooffarmers }}</td>
+                                        <td style="text-align: right;">{{ $sale->quantitykilo }}</td>
+                                        <td style="text-align: right;">{{ $sale->quantitylitres }}</td>
+                                        <td style="text-align: right;">{{ $sale->salesamountphysical }}</td>
+                                        <td style="text-align: right;">{{ $sale->salesamountcoopbazaar }}</td>
                                     </tr>
                                     @endforeach
                                 </tbody>

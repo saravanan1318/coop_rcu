@@ -50,10 +50,10 @@
                     @foreach($dr as $data)
                         <tr>
                             <td>{{ $data->ob }}</td>
-                            <td>{{ $data->recommended_action }}</td>
-                            <td>{{ $data->action_taken }}</td>
-                            <td>{{ $data->disposal }}</td>
-                            <td>{{ $data->percentage_of_disposal }}</td>
+                            <td style="text-align: right;">{{ $data->recommended_action }}</td>
+                            <td style="text-align: right;">{{ $data->action_taken }}</td>
+                            <td style="text-align: right;">{{ $data->disposal }}</td>
+                            <td style="text-align: right;">{{ $data->percentage_of_disposal }}</td>
                         </tr>
                     @endforeach
                 </tbody>

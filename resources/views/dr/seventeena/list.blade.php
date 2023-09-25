@@ -50,12 +50,12 @@
                             <tbody>
                                 @foreach($dr as $data)
                                     <tr>
-                                    <td>{{ $data->disciplinary_ob_seventeena }}</td>
-                                    <td>{{ $data->initiated_during_month_seventeena }}</td>
-                                    <td>{{ $data->disciplinary_total_seventeena}}</td>
-                                    <td>{{ $data->disposed_this_month_seventeena }}</td>
-                                    <td>{{ $data->disciplinary_pending_seventeena }}</td>
-                                    <td>{{ $data->disciplinary_pending_percentage_seventeena }}</td>
+                                    <td style="text-align: right;">{{ $data->disciplinary_ob_seventeena }}</td>
+                                    <td style="text-align: right;">{{ $data->initiated_during_month_seventeena }}</td>
+                                    <td style="text-align: right;">{{ $data->disciplinary_total_seventeena}}</td>
+                                    <td style="text-align: right;">{{ $data->disposed_this_month_seventeena }}</td>
+                                    <td style="text-align: right;">{{ $data->disciplinary_pending_seventeena }}</td>
+                                    <td style="text-align: right;">{{ $data->disciplinary_pending_percentage_seventeena }}</td>
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -78,12 +78,12 @@
                         <tbody>
                             @foreach($dr as $data)
                                 <tr>
-                                    <td>{{ $data->disciplinary_ob_seventeenb }}</td>
-                                    <td>{{ $data->initiated_during_month_seventeenb }}</td>
-                                    <td>{{ $data->disciplinary_total_seventeenb}}</td>
-                                    <td>{{ $data->disposed_this_month_seventeenb }}</td>
-                                    <td>{{ $data->disciplinary_pending_seventeenb }}</td>
-                                    <td>{{ $data->disciplinary_pending_percentage_seventeenb }}</td>
+                                    <td style="text-align: right;">{{ $data->disciplinary_ob_seventeenb }}</td>
+                                    <td style="text-align: right;">{{ $data->initiated_during_month_seventeenb }}</td>
+                                    <td style="text-align: right;">{{ $data->disciplinary_total_seventeenb}}</td>
+                                    <td style="text-align: right;">{{ $data->disposed_this_month_seventeenb }}</td>
+                                    <td style="text-align: right;">{{ $data->disciplinary_pending_seventeenb }}</td>
+                                    <td style="text-align: right;">{{ $data->disciplinary_pending_percentage_seventeenb }}</td>
                                 </tr>
                             @endforeach
                         </tbody>

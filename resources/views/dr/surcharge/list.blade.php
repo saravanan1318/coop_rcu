@@ -51,13 +51,13 @@
             <tbody>
                 @foreach($dr as $data)
                     <tr>
-                        <td>{{ $data->surcharge_order_issued_number }}</td>
-                        <td>{{ $data->surcharge_issued_amount }}</td>
-                        <td>{{ $data->numbers_collected_during_month }}</td>
-                        <td>{{ $data->collected_amount }}</td>
-                        <td>{{ $data->balance_numbers }}</td>
-                        <td>{{ $data->balance_amount }}</td>
-                        <td>{{ $data->percentage_of_collection }}</td>
+                        <td style="text-align: right;">{{ $data->surcharge_order_issued_number }}</td>
+                        <td style="text-align: right;">{{ $data->surcharge_issued_amount }}</td>
+                        <td style="text-align: right;">{{ $data->numbers_collected_during_month }}</td>
+                        <td style="text-align: right;">{{ $data->collected_amount }}</td>
+                        <td style="text-align: right;">{{ $data->balance_numbers }}</td>
+                        <td style="text-align: right;">{{ $data->balance_amount }}</td>
+                        <td style="text-align: right;">{{ $data->percentage_of_collection }}</td>
                     </tr>
                 @endforeach
                 </tbody>

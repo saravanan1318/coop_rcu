@@ -62,10 +62,10 @@
                                 <tr>
                                     <th scope="row">{{ $loan_onetime->id }}</th>
                                     <td>{{ $loan_onetime->loan_id}}</td>
-                                    <td>{{ $loan_onetime->overall_outstanding }}</td>
-                                    <td>{{ $loan_onetime->current_outstanding }}</td>
-                                    <td>{{ $loan_onetime->current_year }}</td>
-                                    <td>{{ $loan_onetime->annual_target }}</td>
+                                    <td style="text-align: right;">{{ $loan_onetime->overall_outstanding }}</td>
+                                    <td style="text-align: right;">{{ $loan_onetime->current_outstanding }}</td>
+                                    <td style="text-align: right;">{{ $loan_onetime->current_year }}</td>
+                                    <td style="text-align: right;">{{ $loan_onetime->annual_target }}</td>
                                 </tr>
                             @endforeach
                         </tbody>

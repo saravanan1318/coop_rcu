@@ -163,20 +163,20 @@
                                     @foreach($purchases as $purchase)
                                     <tr>
                                         <th scope="row">{{ $purchase->id }}</th>
-                                        <td>{{ $purchase->purchasedate }}</td>
+                                        <td>{{ \Carbon\Carbon::parse($purchase->purchasedate)->format('d-m-Y') }}</td>
                                         <td>{{ $purchase->purchasetype->purchase_name??"" }}</td>
-                                        <td>{{ $purchase->govtnoofvarieties }}</td>
-                                        <td>{{ $purchase->govtquantity }}</td>
-                                        <td>{{ $purchase->govtvalues }}</td>
-                                        <td>{{ $purchase->coopnoofvarieties }}</td>
-                                        <td>{{ $purchase->coopquantity }}</td>
-                                        <td>{{ $purchase->coopvalues }}</td>
-                                        <td>{{ $purchase->privatenoofvarieties }}</td>
-                                        <td>{{ $purchase->privatequantity }}</td>
-                                        <td>{{ $purchase->privatevalues }}</td>
-                                        <td>{{ $purchase->jpcnoofvarieties }}</td>
-                                        <td>{{ $purchase->jpcquantity }}</td>
-                                        <td>{{ $purchase->jpcvalues }}</td>
+                                        <td style="text-align: right;">{{ $purchase->govtnoofvarieties }}</td>
+                                        <td style="text-align: right;">{{ $purchase->govtquantity }}</td>
+                                        <td style="text-align: right;">{{ $purchase->govtvalues }}</td>
+                                        <td style="text-align: right;">{{ $purchase->coopnoofvarieties }}</td>
+                                        <td style="text-align: right;">{{ $purchase->coopquantity }}</td>
+                                        <td style="text-align: right;">{{ $purchase->coopvalues }}</td>
+                                        <td style="text-align: right;">{{ $purchase->privatenoofvarieties }}</td>
+                                        <td style="text-align: right;">{{ $purchase->privatequantity }}</td>
+                                        <td style="text-align: right;">{{ $purchase->privatevalues }}</td>
+                                        <td style="text-align: right;">{{ $purchase->jpcnoofvarieties }}</td>
+                                        <td style="text-align: right;">{{ $purchase->jpcquantity }}</td>
+                                        <td style="text-align: right;">{{ $purchase->jpcvalues }}</td>
                                     </tr>
                                     @endforeach
                                 </tbody>

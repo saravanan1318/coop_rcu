@@ -147,11 +147,11 @@
                                     <tr>
                                         <th scope="row">{{ $godown->id }}</th>
                                         <td>{{ $godown->godowndate }}</td>
-                                        <td>{{ $godown->count }}</td>
-                                        <td>{{ $godown->capacity }}</td>
-                                        <td>{{ $godown->utilized }}</td>
-                                        <td>{{ $godown->percentageutilized }}</td>
-                                        <td>{{ $godown->income }}</td>
+                                        <td style="text-align: right;">{{ $godown->count }}</td>
+                                        <td style="text-align: right;">{{ $godown->capacity }}</td>
+                                        <td style="text-align: right;">{{ $godown->utilized }}</td>
+                                        <td style="text-align: right;">{{ $godown->percentageutilized }}</td>
+                                        <td style="text-align: right;">{{ $godown->income }}</td>
                                         {{-- <td><a href='/society/godown/edit/{{$godown->id}}'>view</a></td> --}}
                                     </tr>
                                     @endforeach

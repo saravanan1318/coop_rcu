@@ -195,19 +195,20 @@
                                                 <th scope="col">Amount of Loan</th>
                                             </tr>
                                             </thead>
-                                            <tbody>
+                                            <tbody >
+
                                             @php
                                                $loans = collect($loans)->sortByDesc('loandate')->values()->all();
                                             @endphp
                                             @foreach($loans as $loan)
 
                                                 <tr>
-                                                    <td>{{ $loan->loandate }}</td>
+                                                    <td>{{ \Carbon\Carbon::parse($loan->loandate)->format('d-m-Y') }}</td>
                                                     <td>{{ $loan->loantype->loantype??"" }}</td>
-                                                    <td>{{ $loan->disbursedno }}</td>
-                                                    <td>{{ $loan->disbursedamount }}</td>
-                                                    <td>{{ $loan->collectedno }}</td>
-                                                    <td>{{ $loan->collectedamount }}</td>
+                                                    <td style="text-align: right;">{{ $loan->disbursedno }}</td>
+                                                    <td style="text-align: right;">{{ $loan->disbursedamount }}</td>
+                                                    <td style="text-align: right;">{{ $loan->collectedno }}</td>
+                                                    <td style="text-align: right;">{{ $loan->collectedamount }}</td>
                                                 </tr>
                                             @endforeach
 {{--                                            <tr style="display: none">--}}

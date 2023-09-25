@@ -158,20 +158,20 @@
                                     @foreach($services as $service)
                                 <tr>
                                   <th scope="row">{{ $service->id }}</th>
-                                  <td>{{ $service->servicesdate }}</td>
+                                  <td>{{ \Carbon\Carbon::parse($service->servicedate)->format('d-m-Y') }}</td>
                                   <td>{{ $service->services_id}}</td>
-                                  <td>{{ $service->count }}</td>
-                                  <td>{{ $service->noofcenters }}</td>
-                                  <td>{{ $service->noofvarieties }}</td>
-                                  <td>{{ $service->noofcustomers }}</td>
-                                  <td>{{ $service->nooffarmers }}</td>
-                                  <td>{{ $service->quantitykilo }}</td>
-                                  <td>{{ $service->quantitylitres }}</td>
-                                  <td>{{ $service->purchase }}</td>
-                                  <td>{{ $service->servicesamountetrading }}</td>
-                                  <td>{{ $service->servicesamountphysical }}</td>
-                                  <td>{{ $service->incomegenerated }}</td>
-                                  <td>{{ $service->profit }}</td>
+                                  <td style="text-align: right;">{{ $service->count }}</td>
+                                  <td style="text-align: right;">{{ $service->noofcenters }}</td>
+                                  <td style="text-align: right;">{{ $service->noofvarieties }}</td>
+                                  <td style="text-align: right;">{{ $service->noofcustomers }}</td>
+                                  <td style="text-align: right;">{{ $service->nooffarmers }}</td>
+                                  <td style="text-align: right;">{{ $service->quantitykilo }}</td>
+                                  <td style="text-align: right;">{{ $service->quantitylitres }}</td>
+                                  <td style="text-align: right;">{{ $service->purchase }}</td>
+                                  <td style="text-align: right;">{{ $service->servicesamountetrading }}</td>
+                                  <td style="text-align: right;">{{ $service->servicesamountphysical }}</td>
+                                  <td style="text-align: right;">{{ $service->incomegenerated }}</td>
+                                  <td style="text-align: right;">{{ $service->profit }}</td>
                                   </tr>
                                   @endforeach
                                 </tbody>

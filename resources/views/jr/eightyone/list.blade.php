@@ -56,16 +56,16 @@
                             <tbody>
                                 @foreach($jr as $data)
                                     <tr>
-                                        <td>{{ $data->eightyonedate}}</td>
+                                        <td>{{ \Carbon\Carbon::parse($data->eightyonedate)->format('d-m-Y') }}</td>
                                         <td>{{ $data->ob_eighty_one }}</td>
-                                        <td>{{ $data->ordered_this_month_eighty_one }}</td>
-                                        <td>{{ $data->total_ob_ordered_eighty_one}}</td>
-                                        <td>{{ $data->completed_this_month_eighty_one }}</td>
-                                        <td>{{ $data->pending_within_3_months_eighty_one }}</td>
-                                        <td>{{ $data->pending_in_3_to_6_months_eighty_one }}</td>
-                                        <td>{{ $data->pending_above_6_months_eighty_one }}</td>
-                                        <td>{{ $data->total_pending_eighty_one }}</td>
-                                        <td>{{ $data->pending_percentage_eighty_one }}</td>
+                                        <td style="text-align: right;">{{ $data->ordered_this_month_eighty_one }}</td>
+                                        <td style="text-align: right;">{{ $data->total_ob_ordered_eighty_one}}</td>
+                                        <td style="text-align: right;">{{ $data->completed_this_month_eighty_one }}</td>
+                                        <td style="text-align: right;">{{ $data->pending_within_3_months_eighty_one }}</td>
+                                        <td style="text-align: right;">{{ $data->pending_in_3_to_6_months_eighty_one }}</td>
+                                        <td style="text-align: right;">{{ $data->pending_above_6_months_eighty_one }}</td>
+                                        <td style="text-align: right;">{{ $data->total_pending_eighty_one }}</td>
+                                        <td style="text-align: right;">{{ $data->pending_percentage_eighty_one }}</td>
                                     </tr>
                                 @endforeach
                             </tbody>
