@@ -182,23 +182,13 @@
 
                                                 <tr>
                                                     <td>{{ $loan->loandate }}</td>
-                                                    <td>{{ $loan->loantype->loantype }}</td>
+                                                    <td>{{ $loan->loantype->loantype??"" }}</td>
                                                     <td>{{ $loan->disbursedno }}</td>
                                                     <td>{{ $loan->disbursedamount }}</td>
                                                     <td>{{ $loan->collectedno }}</td>
                                                     <td>{{ $loan->collectedamount }}</td>
                                                 </tr>
                                             @endforeach
-{{--                                            <tr style="display: none">--}}
-{{--                                                <td colspan="2"><b>Total</b></td>--}}
-{{--                                                <td colspan="" style="display: none"><b></b></td>--}}
-{{--                                                <td colspan="" ><b><?=$totalDisbursedNo?></b></td>--}}
-{{--                                                <td colspan="" ><b><?=$totaldisbursedamount?></b></td>--}}
-{{--                                                <td colspan="" ><b><?=$totalcollectedno?></b></td>--}}
-{{--                                                <td colspan="" ><b><?=$totalcollectedamount?></b></td>--}}
-
-
-{{--                                            </tr>--}}
                       </tbody>
                   </table>
 
