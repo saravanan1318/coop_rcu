@@ -159,7 +159,7 @@
                                 <tr>
                                   <th scope="row">{{ $service->id }}</th>
                                   <td>{{ \Carbon\Carbon::parse($service->servicedate)->format('d-m-Y') }}</td>
-                                  <td>{{ $service->services_id}}</td>
+                                  <td>{{ $mtrservices->where('id', $service->services_id)->first()->services_name}}</td>
                                   <td style="text-align: right;">{{ $service->count }}</td>
                                   <td style="text-align: right;">{{ $service->noofcenters }}</td>
                                   <td style="text-align: right;">{{ $service->noofvarieties }}</td>

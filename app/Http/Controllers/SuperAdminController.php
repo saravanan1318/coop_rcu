@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\LoanQueryService;
+use App\Models\Mtr_services;
 use App\Models\Mtr_societytype;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -1109,9 +1110,15 @@ class SuperAdminController extends Controller
 
         $societiestypes=$soctietyvalue->get();
 
-        $filteredLoans = LoanQueryService::getFilteredLoans($request);
+        $filteredLoans = LoanQueryService::getFilteredLoans($request, true);
         $loans = $filteredLoans;
-        return view("loan.list", compact('loans', 'regions', 'circles', 'societies','societiestypes','loantypes','regionFilter','circleFilter','societyFilter','startDate','endDate','societyTypesFilter','loantypeFilter'));
+        $secTableRecords = LoanQueryService::getFilteredLoans($request);
+        $secTableRecords->groupBy('loandate', 'loantype_id');
+        $secTableRecords = $secTableRecords->filter(function ($group) {
+            return $group->count() > 1;
+        });
+        $subloans = $secTableRecords;
+        return view("loan.list", compact('loans', 'regions', 'circles', 'societies','societiestypes','loantypes','regionFilter','circleFilter','societyFilter','startDate','endDate','societyTypesFilter','loantypeFilter', 'subloans'));
     }
 
 
@@ -1285,11 +1292,11 @@ class SuperAdminController extends Controller
             });
 
         $societiestypes=$soctietyvalue->get();
-
+        $mtrservices = Mtr_services::all();
         $filteredpurchase = LoanQueryService::getFilteredService($request);
 //        $loans = $filteredLoans;
         $services = $filteredpurchase;
-        return view("services.list", compact('services', 'regions', 'circles', 'societies','societiestypes','regionFilter','circleFilter','societyFilter','startDate','endDate','societyTypesFilter','loantypeFilter'));
+        return view("services.list", compact('services', 'regions', 'circles', 'societies','societiestypes','regionFilter','circleFilter','societyFilter','startDate','endDate','societyTypesFilter','loantypeFilter', 'mtrservices'));
 //        $services = Services::select('*')->paginate(5);
 //        return view("services.list", compact('services'));
     }

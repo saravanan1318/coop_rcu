@@ -632,8 +632,9 @@ class SocietyController extends Controller
         }
 
         $services = $query->get();
+        $mtrservices = Mtr_services::all();
 
-        return view("services.list", compact('services',  'regionFilter','circleFilter','societyFilter','startDate','endDate'));
+        return view("services.list", compact('services',  'regionFilter','circleFilter','societyFilter','startDate','endDate', 'mtrservices'));
 
 //        $services = Services::where('user_id', Auth::user()->id)->get();
 //

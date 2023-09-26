@@ -205,10 +205,18 @@
                                                 <tr>
                                                     <td>{{ \Carbon\Carbon::parse($loan->loandate)->format('d-m-Y') }}</td>
                                                     <td>{{ $loan->loantype->loantype??"" }}</td>
-                                                    <td style="text-align: right;">{{ $loan->disbursedno }}</td>
-                                                    <td style="text-align: right;">{{ $loan->disbursedamount }}</td>
-                                                    <td style="text-align: right;">{{ $loan->collectedno }}</td>
-                                                    <td style="text-align: right;">{{ $loan->collectedamount }}</td>
+                                                    @if(isset($subloans))
+                                                        <td style="text-align: right;">{{ $loan->disbursed_count }}</td>
+                                                        <td style="text-align: right;">{{ $loan->disbursed_total }}</td>
+                                                        <td style="text-align: right;">{{ $loan->collected_count }}</td>
+                                                        <td style="text-align: right;">{{ $loan->collect_total }}</td>
+                                                    @else
+                                                        <td style="text-align: right;">{{ $loan->disbursedno }}</td>
+                                                        <td style="text-align: right;">{{ $loan->disbursedamount }}</td>
+                                                        <td style="text-align: right;">{{ $loan->collectedno }}</td>
+                                                        <td style="text-align: right;">{{ $loan->collectedamount }}</td>
+                                                    @endif
+
                                                 </tr>
                                             @endforeach
 {{--                                            <tr style="display: none">--}}
@@ -223,12 +231,71 @@
 {{--                                            </tr>--}}
                       </tbody>
                   </table>
+                                    <br />
+                                    <br />
+                                    @if(isset($subloans))
+                                        <h3>Detailed Loans</h3>
+                                        <br />
+                                        <table class="stripe table-bordered table-info " id="sub-data-table">
+                                            <thead style="text-align: center">
+                                            <tr>
+                                                <th scope="col" rowspan="2">Date</th>
+                                                <th scope="col" rowspan="2">Loan Types</th>
+                                                <th scope="col" colspan="2" rowspan="1">Disbursed</th>
+                                                <th scope="col" colspan="2" rowspan="1">Collected</th>
+                                            </tr>
+                                            <tr style="text-align: center">
+                                                <th scope="col">No. of Loan</th>
+                                                <th scope="col">Amount of Loan</th>
+                                                <th scope="col">No. of Loan</th>
+                                                <th scope="col">Amount of Loan</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            @foreach($subloans as $loan)
 
+                                                <tr>
+                                                    <td>{{ \Carbon\Carbon::parse($loan->loandate)->format('d-m-Y') }}</td>
+                                                    <td>{{ $loan->loantype->loantype??"" }}</td>
+                                                    <td style="text-align: right;">{{ $loan->disbursedno }}</td>
+                                                    <td style="text-align: right;">{{ $loan->disbursedamount }}</td>
+                                                    <td style="text-align: right;">{{ $loan->collectedno }}</td>
+                                                    <td style="text-align: right;">{{ $loan->collectedamount }}</td>
+                                                </tr>
+                                            @endforeach
+                                            </tbody>
+                                        </table>
+                                    @endif
               </div>
             </div>
         </div>
     </div>
   </section>
 
-</main><!-- End #main -->
+</main><!-- End #main -->''
+    <style>
+        #sub-data-table {
+            border: 1px solid #000; /* Add a 1px solid black border to the table */
+        }
+    </style>
+    <script>
+        $(document).ready(function () {
+            var subTable = $('#sub-data-table').DataTable( {
+                dom: 'Bfrtip',
+                pageLength: 15,
+                lengthChange: false,
+                buttons: []
+            } );
+
+            // Handle click event on the first table
+            $('#data-table tbody').on('click', 'td', function() {
+                if(this._DT_CellIndex.column === 2){
+                    var loan_date = this.parentElement.children[0].textContent;
+                    var loan_type = this.parentElement.children[1].textContent;
+                    subTable.column(0).search(loan_date).column(1).search(loan_type).draw();
+                }
+            });
+
+        });
+    </script>
 @endsection

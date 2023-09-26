@@ -20,6 +20,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
 <script src="https://cdn.datatables.net/buttons/2.0.1/js/dataTables.buttons.min.js"></script>
 <script src="https://cdn.datatables.net/buttons/2.0.1/js/buttons.html5.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css" rel="stylesheet">
 
 <script>
@@ -34,14 +36,15 @@
                     className: 'btn btn-outline btn-success m-2', // Add a custom class for the Excel button
                 },
                 {
-                    extend: 'csvHtml5',
-                    text: '<i class="fas fa-file-csv"></i> Export CSV',
-                    className: 'btn btn-outline btn-success m-2', // Add a custom class for the CSV button
+                    extend: 'pdf',
+                    text: '<i class="fas fa-file-pdf"></i> Export PDF',
+                    className: 'btn btn-outline btn-success m-2',
                 },
             ],
             pageLength: 15,
             lengthChange: false,
             search: false,
+            order: [[0, 'desc']]
             // columnDefs: [
             //     { targets: [0, 2], orderable: false } // Disable sorting for columns 0 and 1
             // ]
@@ -191,5 +194,4 @@
         });
     });
 </script>
-
 </html>
