@@ -2,11 +2,11 @@
 @section('content')
 <main id="main" class="main">
   <div class="pagetitle">
-    <h1>DR Details</h1>
+    <h1> DR PDS</h1>
     <nav>
       <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="/dr/dai/add">Dashboard</a></li>
-        <li class="breadcrumb-item">Disciplinary Action-Institution</li>
+        <li class="breadcrumb-item"><a href="/drpds/build_yet_identified/add">Dashboard</a></li>
+        <li class="breadcrumb-item">Build Yet To Be Identified</li>
         <li class="breadcrumb-item active">Add</li>
       </ol>
     </nav>
@@ -38,29 +38,30 @@
                     </div>
                 </div>
 
-                <form action="{{url("/dr/dai/store")}}" method="post" id="daiform" class="row g-3">
+                <form action="{{url("/drpds/build_yet_identified/store")}}" method="post" id="identifiedform" class="row g-3">
                     @csrf
-                      <div class="row margindiv">
+                    <div class="row margindiv">
+                        <div class="col-md-4">
+                            <div class="form-floating">
+                            <input type="date" class="form-control" id="floatingName" name="identifieddate" placeholder="date" value="{{ date("Y-m-d") }}" required>
+                            <label for="floatingName">Date</label>
+                            </div>
+                        </div>
                         <div class="col-md-12" style="margin-top: 10px">
 
                             <table class="table table-bordered">
                                 <thead>
-                                    <h6>Disciplinary Action-Institution</h6>
                                     <tr>
-                                        <th>OB</th>
-                                        <th>Recommended this Week</th>
-                                        <th>Action taken</th>
-                                        <th>Disposal</th>
-                                        <th>Percentage of Disposal</th>
+                                        <th>No of FPS functioning in Private rental buildings</th>
+                                        <th>No.of places identified for Fair price shop construction</th>
+                                        <th>No of Places yet to be identified for Fair Price Shop construction</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td><input type="text" name="ob" class="form-control" required></td>
-                                        <td><input type="text" name="recommended_action" id='recommended_action' class="form-control" required></td>
-                                        <td><input type="text" name="action_taken" id="action_taken" class="form-control" required></td>
-                                        <td><input type="text" name="disposal" id="disposal" class="form-control" required></td>
-                                        <td><input type="text" name="percentage_of_disposal" id="percentage_of_disposal" class="form-control" required readonly></td>
+                                        <td><input type="text" name="prb" class="form-control" required></td>
+                                        <td><input type="text" name="fps" id="action_taken" class="form-control" required></td>
+                                        <td><input type="text" name="fpsc" id="disposal" class="form-control" required></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -82,15 +83,3 @@
      </div>
   </section>
 </main>
-<script>
-    document.getElementById('recommended_action').addEventListener('input', calculatePercentage);
-    document.getElementById('disposal').addEventListener('input', calculatePercentage);
-    function calculatePercentage() {
-      const recommended_action = parseFloat(document.getElementById('recommended_action').value) || 0;
-      const disposal = parseFloat(document.getElementById('disposal').value) || 0;
-
-      const percentage = (disposal / recommended_action) * 100;
-      document.getElementById('percentage_of_disposal').value = isNaN(percentage) ? '' : percentage.toFixed(2);
-    }
-  </script>
-@endsection

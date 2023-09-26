@@ -9,6 +9,7 @@ use App\Http\Controllers\SuperAdminController;
 use App\Http\Controllers\DRController;
 use App\Http\Controllers\JRController;
 use App\Http\Controllers\MDController;
+use App\Http\Controllers\DRPDSController;
 
 /*
 |--------------------------------------------------------------------------
@@ -157,8 +158,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/jr/dashboard', [JRController::class, 'dashboard']);
     // Route::get('/jr/loanlist', [JRController::class, 'loanlist']);
     Route::get('/jr/loanlist', [JRController::class, 'loanlist'])->name('loanlist.index');
-//    Route::get('/fetch-circles/{regionId}', [JRController::class, 'fetchCircles']);
-//    Route::get('/fetch-societies/{circleId}', [JRController::class, 'fetchSocieties']);
+    //    Route::get('/fetch-circles/{regionId}', [JRController::class, 'fetchCircles']);
+    //    Route::get('/fetch-societies/{circleId}', [JRController::class, 'fetchSocieties']);
 
 
     // Route::get('/jr/loanlist', [JRController::class, 'loanlist'])->name('jr_loanlist');
@@ -179,11 +180,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/jr/eightytwo/list', [JRController::class, 'eightytwolist']);
     Route::get('/jr/eightytwo/add', [JRController::class, 'eightytwoadd']);
     Route::post('/jr/eightytwo/store', [JRController::class, 'eightytwostore']);
-
-
-    Route::get('/jr/seventeena/list', [JRController::class, 'seventeenalist']);
-    Route::get('/jr/seventeena/add', [JRController::class, 'seventeenaadd']);
-    Route::post('/jr/seventeena/store', [JRController::class, 'seventeenastore']);
 
 
     Route::get('/jr/seventeenb/list', [JRController::class, 'seventeenblist']);
@@ -211,6 +207,18 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/superadmin/servicelist', [SuperAdminController::class, 'serviceslist']);
     Route::get('/superadmin/croploanlist', [SuperAdminController::class, 'croploanlist']);
 
+    Route::get('/drpds/dashboard', [DRPDSController::class, 'dashboard']);
+    Route::get('/drpds/build_yet_identified/list', [DRPDSController::class, 'identifiedlist']);
+    Route::get('/drpds/build_yet_identified/add', [DRPDSController::class, 'identifiedadd']);
+    Route::post('/drpds/build_yet_identified/store', [DRPDSController::class, 'identifiedstore']);
+
+    Route::get('/drpds/build_yet_started/list', [DRPDSController::class, 'startedlist']);
+    Route::get('/drpds/build_yet_started/add', [DRPDSController::class, 'startedadd']);
+    Route::post('/drpds/build_yet_started/store', [DRPDSController::class, 'startedstore']);
+
+    Route::get('/drpds/facelifting/list', [DRPDSController::class, 'faceliftinglist']);
+    Route::get('/drpds/facelifting/add', [DRPDSController::class, 'faceliftingadd']);
+    Route::post('/drpds/facelifting/store', [DRPDSController::class, 'faceliftingstore']);
 
     Route::get('/md/dashboard', [MDController::class, 'dashboard']);
     Route::get('/md/loanlist', [MDController::class, 'loanlist']);

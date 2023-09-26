@@ -427,7 +427,7 @@
       <!-- End Dashboard Nav -->
   </ul>
   @endif
-  @if(Auth::user()->role > 4)
+  @if(Auth::user()->role > 4 && Auth::user()->role <= 13)
     <ul class="sidebar-nav" id="sidebar-nav">
 
       <li class="nav-item">
@@ -605,4 +605,32 @@
       </li><!-- End Profile Page Nav --> --}}
     </ul>
   @endif
-  </aside><!-- End Sidebar-->
+  @if(Auth::user()->role == 14)
+   <ul class="sidebar-nav" id="sidebar-nav">
+    <li class="nav-item">
+      <a class="nav-link " href="#">
+        <i class="bi bi-grid"></i>
+        <span>Dashboard</span>
+      </a>
+    </li><!-- End Dashboard Nav -->
+
+    <li class="nav-item">
+      <a class="nav-link collapsed" data-bs-target="#build-nav" data-bs-toggle="collapse" href="#">
+        <i class="bi bi-journal-text"></i><span>Build</span><i class="bi bi-chevron-down ms-auto"></i>
+      </a>
+      <ul id="build-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+        <li>
+          <a href="/drpds/build_yet_identified/add">
+            <i class="bi bi-circle"></i><span>Build Add</span>
+          </a>
+        </li>
+        <li>
+          <a href="/drpds/build_yet_identified/list">
+            <i class="bi bi-circle"></i><span>Build List</span>
+          </a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+@endif
+</aside><!-- End Sidebar-->
