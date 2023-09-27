@@ -40,7 +40,7 @@ class PDSController extends Controller
 
     function palmJaggeryList(Request $request)
     {
-        $alldata = Pds_palm_jaggery::select('*')->with('region')->get();
+        $alldata = Pds_palm_jaggery::select('*')->where('region_id',Auth::user()->region_id)->with('region')->get();
         return view("pds.palmjaggery.list", compact('alldata'));
     }
 
@@ -73,7 +73,8 @@ class PDSController extends Controller
 
     function minoMilletList(Request $request)
     {
-        $alldata = Pds_mino_millet::select('*')->with('region')->get();
+
+        $alldata = Pds_mino_millet::select('*')->where('region_id',Auth::user()->region_id)->with('region')->get();
         return view("pds.minomillet.list", compact('alldata'));
     }
 
@@ -103,7 +104,7 @@ class PDSController extends Controller
 
     function upiFbsList(Request $request)
     {
-        $alldata = Pds_upi_fps::select('*')->with('region')->get();
+        $alldata = Pds_upi_fps::select('*')->where('region_id',Auth::user()->region_id)->with('region')->get();
         return view("pds.upifps.list", compact('alldata'));
     }
 
@@ -135,7 +136,7 @@ class PDSController extends Controller
 
     function marginMoneyList(Request $request)
     {
-        $alldata = Pds_margin_money::select('*')->with('region')->get();
+        $alldata = Pds_margin_money::select('*')->where('region_id',Auth::user()->region_id)->with('region')->get();
         return view("pds.marginmoney.list", compact('alldata'));
     }
 
@@ -163,7 +164,7 @@ class PDSController extends Controller
 
     function gunnyDuesList(Request $request)
     {
-        $alldata = Pds_gunny_dues::select('*')->with('region')->get();
+        $alldata = Pds_gunny_dues::select('*')->where('region_id',Auth::user()->region_id)->with('region')->get();
         return view("pds.gunnydues.list", compact('alldata'));
     }
 
@@ -196,7 +197,7 @@ class PDSController extends Controller
 
     function gunnySalesList(Request $request)
     {
-        $alldata = Pds_gunny_sales::select('*')->with('region')->get();
+        $alldata = Pds_gunny_sales::select('*')->where('region_id',Auth::user()->region_id)->with('region')->get();
         return view("pds.gunnysales.list", compact('alldata'));
     }
 
@@ -222,7 +223,7 @@ class PDSController extends Controller
 
     function remittanceToGovtAcList(Request $request)
     {
-        $alldata = Pds_remittance_to_govt_ac::select('*')->with('region')->get();
+        $alldata = Pds_remittance_to_govt_ac::select('*')->where('region_id',Auth::user()->region_id)->with('region')->get();
         return view("pds.remittancetogovtac.list", compact('alldata'));
     }
 }
