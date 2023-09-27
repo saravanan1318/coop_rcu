@@ -179,23 +179,23 @@
                                     @foreach($croploan_entry as $croploan)
                                         <tr>
                                             <td>{{ $croploan->croploandate}}</td>
-                                            <td>{{ $croploan->annualTarget }}</td>
-                                            <td>{{ $croploan->proportionateTarget }}</td>
-                                            <td>{{ $croploan->cultivableLand }}</td>
-                                            <td>{{ $croploan->openingBalanceNo }}</td>
-                                            <td>{{ $croploan->openingBalanceAmount }}</td>
-                                            <td>{{ $croploan->receivedNo }}</td>
-                                            <td>{{ $croploan->receivedAmount }}</td>
-                                            <td>{{ $croploan->totalNo }}</td>
-                                            <td>{{ $croploan->totalAmount }}</td>
-                                            <td>{{ $croploan->sanctionedNo }}</td>
-                                            <td>{{ $croploan->sanctionedAmount }}</td>
-                                            <td>{{ $croploan->sanctionedLand }}</td>
-                                            <td>{{ $croploan->achievementAnnual }}</td>
-                                            <td>{{ $croploan->achievementProportionate }}</td>
-                                            <td>{{ $croploan->rejectedno }}</td>
-                                            <td>{{ $croploan->applicationpendingno }}</td>
-                                            <td>{{ $croploan->applicationpendingamount }}</td>
+                                            <td style="text-align: right;">{{ $croploan->annualTarget }}</td>
+                                            <td style="text-align: right;">{{ $croploan->proportionateTarget }}</td>
+                                            <td style="text-align: right;">{{ $croploan->cultivableLand }}</td>
+                                            <td style="text-align: right;">{{ $croploan->openingBalanceNo }}</td>
+                                            <td style="text-align: right;">{{ $croploan->openingBalanceAmount }}</td>
+                                            <td style="text-align: right;">{{ $croploan->receivedNo }}</td>
+                                            <td style="text-align: right;">{{ $croploan->receivedAmount }}</td>
+                                            <td style="text-align: right;">{{ $croploan->totalNo }}</td>
+                                            <td style="text-align: right;">{{ $croploan->totalAmount }}</td>
+                                            <td style="text-align: right;">{{ $croploan->sanctionedNo }}</td>
+                                            <td style="text-align: right;">{{ $croploan->sanctionedAmount }}</td>
+                                            <td style="text-align: right;">{{ $croploan->sanctionedLand }}</td>
+                                            <td style="text-align: right;">{{ $croploan->achievementAnnual }}</td>
+                                            <td style="text-align: right;">{{ $croploan->achievementProportionate }}</td>
+                                            <td style="text-align: right;">{{ $croploan->rejectedno }}</td>
+                                            <td style="text-align: right;">{{ $croploan->applicationpendingno }}</td>
+                                            <td style="text-align: right;">{{ $croploan->applicationpendingamount }}</td>
                                         </tr>
 
                                     @endforeach

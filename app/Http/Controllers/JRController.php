@@ -164,11 +164,17 @@ class JRController extends Controller
         {
             $query->where('loantype_id', $loantypeFilter);
         }*/
-        $filteredLoans = LoanQueryService::getJRFilteredLoans($request);
+        $filteredLoans = LoanQueryService::getJRFilteredLoans($request, true);
         $loans = $filteredLoans;
+        $secTableRecords = LoanQueryService::getJRFilteredLoans($request);;
+        $secTableRecords->groupBy('loandate', 'loantype_id');
+        $secTableRecords = $secTableRecords->filter(function ($group) {
+            return $group->count() > 1;
+        });
+        $subloans = $secTableRecords;
 
 
-        return view("loan.list", compact('loans', 'regions', 'circles', 'societies','societiestypes','loantypes','regionFilter','circleFilter','societyFilter','startDate','endDate','societyTypesFilter','loantypeFilter'));
+        return view("loan.list", compact('loans', 'regions', 'circles', 'societies','societiestypes','loantypes','regionFilter','circleFilter','societyFilter','startDate','endDate','societyTypesFilter','loantypeFilter', 'subloans'));
     }
 
 
@@ -345,8 +351,9 @@ class JRController extends Controller
                 }
             });
         $filteredLoans = LoanQueryService::getJRFilteredService($request);
+        $mtrservices = Mtr_services::all();
         $services = $filteredLoans;
-        return view("services.list", compact('services', 'regions', 'circles', 'societies','societiestypes','regionFilter','circleFilter','societyFilter','startDate','endDate','societyTypesFilter','loantypeFilter'));
+        return view("services.list", compact('services', 'regions', 'circles', 'societies','societiestypes','regionFilter','circleFilter','societyFilter','startDate','endDate','societyTypesFilter','loantypeFilter', 'mtrservices'));
 
     }
 

@@ -9,6 +9,8 @@ use App\Http\Controllers\SuperAdminController;
 use App\Http\Controllers\DRController;
 use App\Http\Controllers\JRController;
 use App\Http\Controllers\MDController;
+use App\Http\Controllers\PDSController;
+use App\Http\Controllers\DRPDSController;
 
 /*
 |--------------------------------------------------------------------------
@@ -211,6 +213,19 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/superadmin/servicelist', [SuperAdminController::class, 'serviceslist']);
     Route::get('/superadmin/croploanlist', [SuperAdminController::class, 'croploanlist']);
 
+    Route::get('/drpds/dashboard', [DRPDSController::class, 'dashboard']);
+    Route::get('/drpds/build_yet_identified/list', [DRPDSController::class, 'identifiedlist']);
+    Route::get('/drpds/build_yet_identified/add', [DRPDSController::class, 'identifiedadd']);
+    Route::post('/drpds/build_yet_identified/store', [DRPDSController::class, 'identifiedstore']);
+
+    Route::get('/drpds/build_yet_started/list', [DRPDSController::class, 'startedlist']);
+    Route::get('/drpds/build_yet_started/add', [DRPDSController::class, 'startedadd']);
+    Route::post('/drpds/build_yet_started/store', [DRPDSController::class, 'startedstore']);
+
+    Route::get('/drpds/facelifting/list', [DRPDSController::class, 'faceliftinglist']);
+    Route::get('/drpds/facelifting/add', [DRPDSController::class, 'faceliftingadd']);
+    Route::post('/drpds/facelifting/store', [DRPDSController::class, 'faceliftingstore']);
+
 
     Route::get('/md/dashboard', [MDController::class, 'dashboard']);
     Route::get('/md/loanlist', [MDController::class, 'loanlist']);
@@ -220,6 +235,36 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/md/godownlist', [MDController::class, 'godownlist']);
     Route::get('/md/servicelist', [MDController::class, 'serviceslist']);
     Route::get('/md/croploanlist', [MDController::class, 'croploanlist']);
+
+    //PDS Controller
+    //palmjaggery
+    Route::get('/drpds/palm-jaggery/add', [PDSController::class, 'palmJaggeryAdd']);
+    Route::post('/drpds/palm-jaggery/store', [PDSController::class, 'palmJaggeryStore']);
+    Route::get('/drpds/palm-jaggery', [PDSController::class, 'palmJaggeryList']);
+    //minoMillet
+    Route::get('/drpds/mino-millet/add', [PDSController::class, 'minoMilletAdd']);
+    Route::post('/drpds/mino-millet/store', [PDSController::class, 'minoMilletStore']);
+    Route::get('/drpds/mino-millet', [PDSController::class, 'minoMilletList']);
+    //upiFbs
+    Route::get('/drpds/upi-fps/add', [PDSController::class, 'upiFbsAdd']);
+    Route::post('/drpds/upi-fps/store', [PDSController::class, 'upiFbsStore']);
+    Route::get('/drpds/upi-fps', [PDSController::class, 'upiFbsList']);
+    //marginMoney
+    Route::get('/drpds/margin-money/add', [PDSController::class, 'marginMoneyAdd']);
+    Route::post('/drpds/margin-money/store', [PDSController::class, 'marginMoneyStore']);
+    Route::get('/drpds/margin-money', [PDSController::class, 'marginMoneyList']);
+    //gunnyDues
+    Route::get('/drpds/gunny-dues/add', [PDSController::class, 'gunnyDuesAdd']);
+    Route::post('/drpds/gunny-dues/store', [PDSController::class, 'gunnyDuesStore']);
+    Route::get('/drpds/gunny-dues', [PDSController::class, 'gunnyDuesList']);
+    //GunnySales
+    Route::get('/drpds/gunny-sales/add', [PDSController::class, 'gunnySalesAdd']);
+    Route::post('/drpds/gunny-sales/store', [PDSController::class, 'gunnySalesStore']);
+    Route::get('/drpds/gunny-sales', [PDSController::class, 'gunnySalesList']);
+    //RemittanceToGovtAc
+    Route::get('/drpds/remittance-to-govt-ac/add', [PDSController::class, 'remittanceToGovtAcAdd']);
+    Route::post('/drpds/remittance-to-govt-ac/store', [PDSController::class, 'remittanceToGovtAcStore']);
+    Route::get('/drpds/remittance-to-govt-ac', [PDSController::class, 'remittanceToGovtAcList']);
 });
 
 

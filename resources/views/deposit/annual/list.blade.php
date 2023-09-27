@@ -62,10 +62,10 @@
                                 <tr>
                                     <th scope="row">{{ $deposit_onetime->id }}</th>
                                     <td>{{ $deposit_onetime->deposit_id}}</td>
-                                    <td>{{ $deposit_onetime->overall_outstanding }}</td>
-                                    <td>{{ $deposit_onetime->current_outstanding }}</td>
-                                    <td>{{ $deposit_onetime->current_year }}</td>
-                                    <td>{{ $deposit_onetime->annual_target }}</td>
+                                    <td style="text-align: right;">{{ $deposit_onetime->overall_outstanding }}</td>
+                                    <td style="text-align: right;">{{ $deposit_onetime->current_outstanding }}</td>
+                                    <td >{{ $deposit_onetime->current_year }}</td>
+                                    <td style="text-align: right;">{{ $deposit_onetime->annual_target }}</td>
                                 </tr>
                             @endforeach
                         </tbody>

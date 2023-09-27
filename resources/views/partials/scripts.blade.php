@@ -48,11 +48,11 @@
             $("#govtquantity").attr("readonly",true);
             $("#govtvalues").attr("readonly",true);
             $("#coopnoofvarieties").attr("readonly",true);
-            $("#coopquantity").attr("readonly",true);
-            $("#coopvalues").attr("readonly",true);
+            $("#coopquantity").attr("readonly",false);
+            $("#coopvalues").attr("readonly",false);
             $("#privatenoofvarieties").attr("readonly",true);
-            $("#privatequantity").attr("readonly",false);
-            $("#privatevalues").attr("readonly",false);
+            $("#privatequantity").attr("readonly",true);
+            $("#privatevalues").attr("readonly",true);
             $("#jpcnoofvarieties").attr("readonly",true);
             $("#jpcquantity").attr("readonly",false);
             $("#jpcvalues").attr("readonly",false);

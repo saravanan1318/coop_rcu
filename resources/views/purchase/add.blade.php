@@ -223,14 +223,14 @@
                 $("#govtquantity"+rowid).attr("readonly",true);
                 $("#govtvalues"+rowid).attr("readonly",true);
                 $("#coopnoofvarieties"+rowid).attr("readonly",true);
-                $("#coopquantity"+rowid).attr("readonly",true);
-                $("#coopvalues"+rowid).attr("readonly",true);
+                $("#coopquantity"+rowid).attr("readonly",false);
+                $("#coopvalues"+rowid).attr("readonly",false);
                 $("#privatenoofvarieties"+rowid).attr("readonly",true);
                 $("#privatequantity"+rowid).attr("readonly",false);
                 $("#privatevalues"+rowid).attr("readonly",false);
                 $("#jpcnoofvarieties"+rowid).attr("readonly",true);
-                $("#jpcquantity"+rowid).attr("readonly",false);
-                $("#jpcvalues"+rowid).attr("readonly",false);
+                $("#jpcquantity"+rowid).attr("readonly",true);
+                $("#jpcvalues"+rowid).attr("readonly",true);
 
             }else if(this.value == "3"){
                 $("#govtnoofvarieties"+rowid).attr("readonly",true);
@@ -312,12 +312,12 @@
             $("#coopnoofvarieties"+rowid).attr("readonly",false);
             $("#coopquantity"+rowid).attr("readonly",false);
             $("#coopvalues"+rowid).attr("readonly",false);
-            $("#privatenoofvarieties"+rowid).attr("readonly",false);
-            $("#privatequantity"+rowid).attr("readonly",false);
-            $("#privatevalues"+rowid).attr("readonly",false);
-            $("#jpcnoofvarieties"+rowid).attr("readonly",true);
-            $("#jpcquantity"+rowid).attr("readonly",true);
-            $("#jpcvalues"+rowid).attr("readonly",true);
+            $("#privatenoofvarieties"+rowid).attr("readonly",true);
+            $("#privatequantity"+rowid).attr("readonly",true);
+            $("#privatevalues"+rowid).attr("readonly",true);
+            $("#jpcnoofvarieties"+rowid).attr("readonly",false);
+            $("#jpcquantity"+rowid).attr("readonly",false);
+            $("#jpcvalues"+rowid).attr("readonly",false);
 
         }else if(this.value == "2"){
 
@@ -331,8 +331,8 @@
             $("#privatequantity"+rowid).attr("readonly",false);
             $("#privatevalues"+rowid).attr("readonly",false);
             $("#jpcnoofvarieties"+rowid).attr("readonly",true);
-            $("#jpcquantity"+rowid).attr("readonly",false);
-            $("#jpcvalues"+rowid).attr("readonly",false);
+            $("#jpcquantity"+rowid).attr("readonly",true);
+            $("#jpcvalues"+rowid).attr("readonly",true);
 
         }else if(this.value == "3"){
             $("#govtnoofvarieties"+rowid).attr("readonly",true);

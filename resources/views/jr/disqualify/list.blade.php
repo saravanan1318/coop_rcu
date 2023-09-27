@@ -69,19 +69,19 @@
             <tbody>
                 @foreach($jr as $row)
                 <tr>
-                    <td>{{ $row->disqualifydate}}</td>
-                    <td>{{ $row->societies_ob }}</td>
-                    <td>{{ $row->board_of_directors_ob }}</td>
-                    <td>{{ $row->societies_im }}</td>
-                    <td>{{ $row->board_of_directors_im }}</td>
-                    <td>{{ $row->societies_total }}</td>
-                    <td>{{ $row->board_of_directors_total }}</td>
-                    <td>{{ $row->societies_dam }}</td>
-                    <td>{{ $row->board_of_directors_dam }}</td>
-                    <td>{{ $row->societies_pam }}</td>
-                    <td>{{ $row->board_of_directors_pam }}</td>
-                    <td>{{ $row->societies_pp }}</td>
-                    <td>{{ $row->board_of_directors_pp }}</td>
+                    <td>{{ \Carbon\Carbon::parse($row->disqualifydate)->format('d-m-Y') }}</td>
+                    <td style="text-align: right;">{{ $row->societies_ob }}</td>
+                    <td style="text-align: right;">{{ $row->board_of_directors_ob }}</td>
+                    <td style="text-align: right;">{{ $row->societies_im }}</td>
+                    <td style="text-align: right;">{{ $row->board_of_directors_im }}</td>
+                    <td style="text-align: right;">{{ $row->societies_total }}</td>
+                    <td style="text-align: right;">{{ $row->board_of_directors_total }}</td>
+                    <td style="text-align: right;">{{ $row->societies_dam }}</td>
+                    <td style="text-align: right;">{{ $row->board_of_directors_dam }}</td>
+                    <td style="text-align: right;">{{ $row->societies_pam }}</td>
+                    <td style="text-align: right;">{{ $row->board_of_directors_pam }}</td>
+                    <td style="text-align: right;">{{ $row->societies_pp }}</td>
+                    <td style="text-align: right;">{{ $row->board_of_directors_pp }}</td>
                 </tr>
                 @endforeach
             </tbody>

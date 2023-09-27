@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\DB;
 
 class LoanQueryService
 {
-    public static function getFilteredLoans($request)
+    public static function getFilteredLoans($request, $distinct = false)
     {
         $regionFilter = $request->input('region');
         $circleFilter = $request->input('circle');
@@ -24,7 +24,13 @@ class LoanQueryService
         $societyTypesFilter = $request->input('societyTypes');
         $loantypeFilter = $request->input('loantype');
 
-        $query = Loan::select('*')->with('loantype');
+        //$query = Loan::select('*')->with('loantype');
+        if($distinct){
+            $query = Loan::select('*',DB::raw('SUM(disbursedamount) as disbursed_total'), DB::raw('SUM(collectedamount) as collect_total'), DB::raw('SUM(collectedno) as collect_count'), DB::raw('SUM(disbursedno) as disbursed_count'))->with('loantype');
+        }
+        else {
+            $query = Loan::select('*')->with('loantype');
+        }
 
         if ($regionFilter || $circleFilter || $societyFilter) {
             $query->whereIn('user_id', function ($subquery) use ($societyTypesFilter, $circleFilter, $regionFilter, $societyFilter) {
@@ -58,7 +64,9 @@ class LoanQueryService
         if ($loantypeFilter) {
             $query->where('loantype_id', $loantypeFilter);
         }
-
+        if($distinct){
+            $query->groupBy('loandate', 'loantype_id');
+        }
         return $query->get();
     }
 
@@ -348,7 +356,7 @@ class LoanQueryService
         return $query->get();
     }
 
-    public  static function getJRFilteredLoans($request)
+    public  static function getJRFilteredLoans($request, $distinct = false)
     {
         $regionFilter = $request->input('region');
         $circleFilter = $request->input('circle');
@@ -373,7 +381,12 @@ class LoanQueryService
         $societiestypes=$soctietyvalue->get();
 
         // Build the Loan query with additional conditions
-        $query = Loan::select('*')->with('loantype');
+        if($distinct){
+            $query = Loan::select('*',DB::raw('SUM(disbursedamount) as disbursed_total'), DB::raw('SUM(collectedamount) as collect_total'), DB::raw('SUM(collectedno) as collect_count'), DB::raw('SUM(disbursedno) as disbursed_count'))->with('loantype');
+        }
+        else {
+            $query = Loan::select('*')->with('loantype');
+        }
 
         if ($regionFilter || $circleFilter || $societyFilter ) {
             $query->whereIn('user_id', function ($subquery) use ($societyTypesFilter, $circleFilter, $regionFilter, $societyFilter) {
@@ -421,7 +434,9 @@ class LoanQueryService
         {
             $query->where('loantype_id', $loantypeFilter);
         }
-
+        if($distinct){
+            $query->groupBy('loandate', 'loantype_id');
+        }
         return $query->get();
 
     }
@@ -891,7 +906,7 @@ class LoanQueryService
 
     }
 
-    public  static function getDRFilteredLoans($request)
+    public  static function getDRFilteredLoans($request, $distinct = false)
     {
         $regionFilter = $request->input('region');
         $circleFilter = $request->input('circle');
@@ -917,7 +932,13 @@ class LoanQueryService
 
 
 
-        $query = Loan::select('*')->with('loantype');
+        //$query = Loan::select('*')->with('loantype');
+        if($distinct){
+            $query = Loan::select('*', DB::raw('SUM(disbursedamount) as disbursed_total'), DB::raw('SUM(collectedamount) as collect_total'), DB::raw('SUM(collectedno) as collect_count'), DB::raw('SUM(disbursedno) as disbursed_count'))->with('loantype');
+        }
+        else {
+            $query = Loan::select('*')->with('loantype');
+        }
 
         if ($regionFilter || $circleFilter || $societyFilter) {
             $query->whereIn('user_id', function ($subquery) use ($societyTypesFilter, $circleFilter, $regionFilter, $societyFilter) {
@@ -966,7 +987,9 @@ class LoanQueryService
         {
             $query->where('loantype_id', $loantypeFilter);
         }
-
+        if($distinct){
+            $query->groupBy('loandate', 'loantype_id');
+        }
         return $query->get();
 
     }

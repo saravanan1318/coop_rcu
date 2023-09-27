@@ -141,15 +141,15 @@
                                         <th scope="col">Closed Amount</th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody >
                                     @foreach($deposits as $deposit)
                                     <tr>
-                                        <td>{{ $deposit->deposittype->deposit_name??"" }}</td>
-                                        <td>{{ $deposit->depositdate }}</td>
-                                        <td>{{ $deposit->recievedno }}</td>
-                                        <td>{{ $deposit->recievedamount }}</td>
-                                        <td>{{ $deposit->closedno }}</td>
-                                        <td>{{ $deposit->closedamount }}</td>
+                                        <td >{{ $deposit->deposittype->deposit_name??"" }}</td>
+                                        <td>{{ \Carbon\Carbon::parse($deposit->depositdate)->format('d-m-Y') }}</td>
+                                        <td style="text-align: right;">{{ $deposit->recievedno }}</td>
+                                        <td style="text-align: right;">{{ $deposit->recievedamount }}</td>
+                                        <td style="text-align: right;">{{ $deposit->closedno }}</td>
+                                        <td style="text-align: right;">{{ $deposit->closedamount }}</td>
                                     </tr>
                                     @endforeach
                                 </tbody>

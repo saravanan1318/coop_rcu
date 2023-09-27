@@ -50,12 +50,12 @@
                 <tbody>
                     @foreach($jr as $data)
                         <tr>
-                            <td> {{ $data->daidate }}</td>
-                            <td>{{ $data->ob }}</td>
-                            <td>{{ $data->recommended_action }}</td>
-                            <td>{{ $data->action_taken }}</td>
-                            <td>{{ $data->disposal }}</td>
-                            <td>{{ $data->percentage_of_disposal }}</td>
+                            <td>{{ \Carbon\Carbon::parse($data->daidate)->format('d-m-Y') }}</td>
+                            <td style="text-align: right;">{{ $data->ob }}</td>
+                            <td style="text-align: right;">{{ $data->recommended_action }}</td>
+                            <td style="text-align: right;">{{ $data->action_taken }}</td>
+                            <td style="text-align: right;">{{ $data->disposal }}</td>
+                            <td style="text-align: right;">{{ $data->percentage_of_disposal }}</td>
                         </tr>
                     @endforeach
                 </tbody>
