@@ -738,7 +738,7 @@
           </li>
         </ul>
       </li><!-- End Forms Nav -->
-      <li class="nav-item">
+      {{--<li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#projects-nav" data-bs-toggle="collapse" href="#">
           <i class="bi bi-journal-text"></i><span>Projects</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
@@ -754,7 +754,7 @@
             </a>
           </li>
         </ul>
-      </li><!-- End Forms Nav -->
+      </li>--}}<!-- End Forms Nav -->
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#services-nav" data-bs-toggle="collapse" href="#">
           <i class="bi bi-journal-text"></i><span>Services</span><i class="bi bi-chevron-down ms-auto"></i>
