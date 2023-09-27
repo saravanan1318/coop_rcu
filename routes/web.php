@@ -220,6 +220,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/drpds/facelifting/add', [DRPDSController::class, 'faceliftingadd']);
     Route::post('/drpds/facelifting/store', [DRPDSController::class, 'faceliftingstore']);
 
+    Route::get('/drpds/iso/list', [DRPDSController::class, 'isolist']);
+    Route::get('/drpds/iso/add', [DRPDSController::class, 'isoadd']);
+    Route::post('/drpds/iso/store', [DRPDSController::class, 'isostore']);
+
     Route::get('/md/dashboard', [MDController::class, 'dashboard']);
     Route::get('/md/loanlist', [MDController::class, 'loanlist']);
     Route::get('/md/depositlist', [MDController::class, 'depositlist']);

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Drpds_byi;
 use App\Models\Drpds_bys;
 use App\Models\Drpds_facelifting;
+use App\Models\Drpds_iso;
 use Illuminate\Support\Facades\Auth;
 
 class DRPDSController extends Controller
@@ -146,5 +147,47 @@ class DRPDSController extends Controller
         $byi->save();
 
         return redirect('/drpds/facelifting/list')->with('status', 'Facelifting added successfully');
+    }
+
+    function isoadd()
+    {
+
+        $drpds = Drpds_iso::select('*')->paginate(5);
+        return view("drpds.iso.add", compact('drpds'));
+    }
+
+    function isolist()
+    {
+
+        $drpds = Drpds_iso::select('*')->paginate(5);
+        return view("drpds.iso.list", compact('drpds'));
+    }
+
+
+    function isostore(Request $request)
+    {
+        // Validate the form data
+        $request->validate([
+            'isodate' => 'required',
+            'ftfps' => 'required|',
+            'ftfpsc' => 'required|',
+            'wc' => 'required|',
+            'twc' => 'required|',
+            'percentage' => 'required|',
+        ]);
+
+        // Create a new instance of the model and populate it with the form data
+        $byi = new Drpds_iso();
+        $byi->region_id = Auth::user()->region_id;
+        $byi->user_id = Auth::user()->id;
+        $byi->isodate = $request->input('isodate');
+        $byi->ftfps = $request->input('ftfps');
+        $byi->ftfpsc = $request->input('ftfpsc');
+        $byi->wc = $request->input('wc');
+        $byi->twc = $request->input('twc');
+        $byi->percentage = $request->input('percentage');
+        $byi->save();
+
+        return redirect('/drpds/iso/list')->with('status', 'ISO added successfully');
     }
 }
