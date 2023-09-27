@@ -42,6 +42,7 @@
                         <th scope="col">Date</th>
                         <th scope="col">No of FPS functioning in Private rental buildings</th>
                         <th scope="col">No.of places identified for Fair price shop construction</th>
+                        <th scope="col">No of Places yet to be identified for Fair Price Shop construction</th>
                         <th scope="col">No of cases Administrative Sanction made by  District Collector (MGNREGA/MLACDS/ MPLADS)</th>
                         <th Scope="col">Construction Commenced but not yet completed (Nos)</th>
                         <th scope="col">Construction fully completed (Nos) </th>
@@ -54,6 +55,7 @@
                             <td>{{ \Carbon\Carbon::parse($data->starteddate)->format('d-m-Y') }}</td>
                             <td style="text-align: right;">{{ $data->prb }}</td>
                             <td style="text-align: right;">{{ $data->fps }}</td>
+                            <td style="text-align: right;">{{ $data->fpsc }}</td>
                             <td style="text-align: right;">{{ $data->cas }}</td>
                             <td style="text-align: right;">{{ $data->cc }}</td>
                             <td style="text-align: right;">{{ $data->cfc }}</td>

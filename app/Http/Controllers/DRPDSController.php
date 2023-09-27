@@ -86,6 +86,7 @@ class DRPDSController extends Controller
             'starteddate' => 'required',
             'prb' => 'required|',
             'fps' => 'required|',
+            'fpsc' => 'required|',
             'cas' => 'required|',
             'cc' => 'required',
             'cfc' => 'required',
@@ -99,6 +100,7 @@ class DRPDSController extends Controller
         $byi->starteddate = $request->input('starteddate');
         $byi->prb = $request->input('prb');
         $byi->fps = $request->input('fps');
+        $byi->fpsc = $request->input('fpsc');
         $byi->cas = $request->input('cas');
         $byi->cc = $request->input('cc');
         $byi->cfc = $request->input('cfc');
