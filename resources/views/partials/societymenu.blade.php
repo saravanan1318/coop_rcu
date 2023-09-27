@@ -487,6 +487,23 @@
              </ul>
          </li>
          <li class="nav-item">
+             <a class="nav-link collapsed" data-bs-target="#build-nav" data-bs-toggle="collapse" href="#">
+                 <i class="bi bi-journal-text"></i><span>ISO</span><i class="bi bi-chevron-down ms-auto"></i>
+             </a>
+             <ul id="build-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                 <li>
+                     <a href="/drpds/iso/add">
+                         <i class="bi bi-circle"></i><span>Entry</span>
+                     </a>
+                 </li>
+                 <li>
+                     <a href="/drpds/iso/list">
+                         <i class="bi bi-circle"></i><span>View</span>
+                     </a>
+                 </li>
+             </ul>
+         </li>
+         <li class="nav-item">
              <a class="nav-link collapsed" data-bs-target="#palm-jaggery-nav" data-bs-toggle="collapse" href="#">
                  <i class="bi bi-journal-text"></i><span>Palm Jaggery</span><i class="bi bi-chevron-down ms-auto"></i>
              </a>

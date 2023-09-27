@@ -94,13 +94,13 @@
                                             <input type="text" class="form-control" id="small_grain_type"  name="small_grain_type[]" value="{{ old('small_grain_type[]') }}" required>
                                         </td>
                                         <td>
-                                            <input type="text" class="form-control" id="quantity_purchased"  name="quantity_purchased[]" value="{{ old('quantity_purchased[]') }}" required>
+                                            <input type="number" min="0" step="any" class="form-control" id="quantity_purchased"  name="quantity_purchased[]" value="{{ old('quantity_purchased[]') }}" required>
                                         </td>
                                         <td>
-                                            <input type="text" class="form-control" id="quantity_sold"  name="quantity_sold[]" value="{{ old('quantity_sold[]') }}" required>
+                                            <input type="number" min="0" step="any" class="form-control" id="quantity_sold"  name="quantity_sold[]" value="{{ old('quantity_sold[]') }}" required>
                                         </td>
                                         <td>
-                                            <input type="text" class="form-control" id="sales_amount"  name="sales_amount[]" value="{{ old('sales_amount[]') }}" required>
+                                            <input type="number" min="0" step="any" class="form-control" id="sales_amount"  name="sales_amount[]" value="{{ old('sales_amount[]') }}" required>
                                         </td>
                                         <td></td>
                                     </tr>
@@ -138,13 +138,13 @@
                                             <input type="text" class="form-control" id="small_grain_type"  name="small_grain_type[]" value="{{ old('small_grain_type[]') }}" required>
                                         </td>
                                         <td>
-                                            <input type="text" class="form-control" id="quantity_purchased"  name="quantity_purchased[]" value="{{ old('quantity_purchased[]') }}" required>
+                                            <input type="number" min="0"  step="any" class="form-control" id="quantity_purchased"  name="quantity_purchased[]" value="{{ old('quantity_purchased[]') }}" required>
                                         </td>
                                         <td>
-                                            <input type="text" class="form-control" id="quantity_sold"  name="quantity_sold[]" value="{{ old('quantity_sold[]') }}" required>
+                                            <input type="number" min="0"  step="any" class="form-control" id="quantity_sold"  name="quantity_sold[]" value="{{ old('quantity_sold[]') }}" required>
                                         </td>
                                         <td>
-                                            <input type="text" class="form-control" id="sales_amount"  name="sales_amount[]" value="{{ old('sales_amount[]') }}" required>
+                                            <input type="number" min="0" step="any" class="form-control" id="sales_amount"  name="sales_amount[]" value="{{ old('sales_amount[]') }}" required>
                                         </td>
                                         <td>
 

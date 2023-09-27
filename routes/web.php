@@ -227,6 +227,15 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/drpds/facelifting/store', [DRPDSController::class, 'faceliftingstore']);
 
 
+    Route::get('/drpds/iso/list', [DRPDSController::class, 'isolist']);
+    Route::get('/drpds/iso/add', [DRPDSController::class, 'isoadd']);
+    Route::post('/drpds/iso/store', [DRPDSController::class, 'isostore']);
+
+    Route::get('/drpds/tea/list', [DRPDSController::class, 'tealist']);
+    Route::get('/drpds/tea/add', [DRPDSController::class, 'teaadd']);
+    Route::post('/drpds/tea/store', [DRPDSController::class, 'teastore']);
+
+
     Route::get('/md/dashboard', [MDController::class, 'dashboard']);
     Route::get('/md/loanlist', [MDController::class, 'loanlist']);
     Route::get('/md/depositlist', [MDController::class, 'depositlist']);

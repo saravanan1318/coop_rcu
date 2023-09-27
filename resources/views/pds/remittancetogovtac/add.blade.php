@@ -68,7 +68,7 @@
 {{--                                            </select>--}}
 {{--                                        </td>--}}
                                         <td>
-                                            <input type="text" class="form-control" id="balance_amt"  name="balance_amt" value="{{ old('balance_amt') }}"  required>
+                                            <input  type="number" min="0" step="any" class="form-control" id="balance_amt"  name="balance_amt" value="{{ old('balance_amt') }}"  required>
                                         </td>
                                     </tr>
                                 </tbody>

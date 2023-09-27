@@ -42,7 +42,7 @@
                         <th scope="col">Date</th>
                         <th scope="col">Number of fair price shops targeted for beautification </th>
                         <th scope="col">No. of Fair Price Shops Polished </th>
-                        <th>Due</th>
+                        <th scope="col">Due</th>
                     </tr>
                 </thead>
                 <tbody>

@@ -71,13 +71,13 @@
 {{--                                            </select>--}}
 {{--                                        </td>--}}
                                         <td>
-                                            <input type="text" class="form-control" id="consumer_goods"  name="consumer_goods" value="{{ old('consumer_goods') }}"  required>
+                                            <input  type="number" min="0" step="any" class="form-control" id="consumer_goods"  name="consumer_goods" value="{{ old('consumer_goods') }}"  required>
                                         </td>
                                         <td>
-                                            <input type="text" class="form-control" id="amount_received"  name="amount_received" value="{{ old('amount_received') }}"  required>
+                                            <input  type="number" min="0" step="any" class="form-control" id="amount_received"  name="amount_received" value="{{ old('amount_received') }}"  required>
                                         </td>
                                         <td>
-                                            <input type="text" class="form-control" id="due_on"  name="due_on" value="{{ old('due_on') }}" required>
+                                            <input  type="number" min="0" step="any" class="form-control" id="due_on"  name="due_on" value="{{ old('due_on') }}" required>
                                         </td>
                                         <td>
                                             <input type="text" class="form-control" id="consumer_goods_sync_date"  name="consumer_goods_sync_date" value="{{ old('consumer_goods_sync_date') }}" required>

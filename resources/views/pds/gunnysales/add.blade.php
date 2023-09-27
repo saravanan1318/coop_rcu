@@ -78,28 +78,28 @@
 {{--                                            </select>--}}
 {{--                                        </td>--}}
                                         <td>
-                                            <input type="text" class="form-control" id="initial_balance"  name="initial_balance" value="{{ old('initial_balance') }}"  required>
+                                            <input  type="number" min="0" step="any" class="form-control" id="initial_balance"  name="initial_balance" value="{{ old('initial_balance') }}"  required>
                                         </td>
                                         <td>
-                                            <input type="text" class="form-control" id="curr_month_income"  name="curr_month_income" value="{{ old('curr_month_income') }}"  required>
+                                            <input  type="number" min="0" step="any" class="form-control" id="curr_month_income"  name="curr_month_income" value="{{ old('curr_month_income') }}"  required>
                                         </td>
                                         <td>
-                                            <input type="text" class="form-control" id="total"  name="total" value="{{ old('total') }}" required>
+                                            <input  type="number" min="0" step="any" class="form-control" id="total"  name="total" value="{{ old('total') }}" required>
                                         </td>
                                         <td>
-                                            <input type="text" class="form-control" id="cms_tncsc"  name="cms_tncsc" value="{{ old('cms_tncsc') }}" required>
+                                            <input  type="number" min="0" step="any" class="form-control" id="cms_tncsc"  name="cms_tncsc" value="{{ old('cms_tncsc') }}" required>
                                         </td>
                                         <td>
-                                            <input type="text" class="form-control" id="cms_mstc"  name="cms_mstc" value="{{ old('cms_mstc') }}" required>
+                                            <input  type="number" min="0" step="any" class="form-control" id="cms_mstc"  name="cms_mstc" value="{{ old('cms_mstc') }}" required>
                                         </td>
                                         <td>
-                                            <input type="text" class="form-control" id="cms_ncdfi"  name="cms_ncdfi" value="{{ old('cms_ncdfi') }}" required>
+                                            <input  type="number" min="0" step="any" class="form-control" id="cms_ncdfi"  name="cms_ncdfi" value="{{ old('cms_ncdfi') }}" required>
                                         </td>
                                         <td>
-                                            <input type="text" class="form-control" id="cms_total"  name="cms_total" value="{{ old('cms_total') }}" required>
+                                            <input  type="number" min="0" step="any" class="form-control" id="cms_total"  name="cms_total" value="{{ old('cms_total') }}" required>
                                         </td>
                                         <td>
-                                            <input type="text" class="form-control" id="final_balance"  name="final_balance" value="{{ old('final_balance') }}" required>
+                                            <input  type="number" min="0" step="any" class="form-control" id="final_balance"  name="final_balance" value="{{ old('final_balance') }}" required>
                                         </td>
                                     </tr>
                                 </tbody>

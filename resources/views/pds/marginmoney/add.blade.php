@@ -78,25 +78,25 @@
 {{--                                            </select>--}}
 {{--                                        </td>--}}
                                         <td>
-                                            <input type="text" class="form-control" id="price_diff_due_amount"  name="price_diff_due_amount" value="{{ old('price_diff_due_amount') }}"  required>
+                                            <input  type="number" min="0" step="any" class="form-control" id="price_diff_due_amount"  name="price_diff_due_amount" value="{{ old('price_diff_due_amount') }}"  required>
                                         </td>
                                         <td>
-                                            <input type="text" class="form-control" id="margin_supp_free_cost"  name="margin_supp_free_cost" value="{{ old('margin_supp_free_cost') }}"  required>
+                                            <input  type="number" min="0" step="any" class="form-control" id="margin_supp_free_cost"  name="margin_supp_free_cost" value="{{ old('margin_supp_free_cost') }}"  required>
                                         </td>
                                         <td>
-                                            <input type="text" class="form-control" id="margin_pmgkay_scheme_a"  name="margin_pmgkay_scheme_a" value="{{ old('margin_pmgkay_scheme_a') }}" required>
+                                            <input  type="number" min="0" step="any" class="form-control" id="margin_pmgkay_scheme_a"  name="margin_pmgkay_scheme_a" value="{{ old('margin_pmgkay_scheme_a') }}" required>
                                         </td>
                                         <td>
-                                            <input type="text" class="form-control" id="margin_amt_due_cashew"  name="margin_amt_due_cashew" value="{{ old('margin_amt_due_cashew') }}" required>
+                                            <input  type="number" min="0" step="any" class="form-control" id="margin_amt_due_cashew"  name="margin_amt_due_cashew" value="{{ old('margin_amt_due_cashew') }}" required>
                                         </td>
                                         <td>
-                                            <input type="text" class="form-control" id="margin_pmgkay_scheme_b"  name="margin_pmgkay_scheme_b" value="{{ old('margin_pmgkay_scheme_b') }}" required>
+                                            <input  type="number" min="0" step="any" class="form-control" id="margin_pmgkay_scheme_b"  name="margin_pmgkay_scheme_b" value="{{ old('margin_pmgkay_scheme_b') }}" required>
                                         </td>
                                         <td>
-                                            <input type="text" class="form-control" id="diff_to_be_paid"  name="diff_to_be_paid" value="{{ old('diff_to_be_paid') }}" required>
+                                            <input  type="number" min="0" step="any" class="form-control" id="diff_to_be_paid"  name="diff_to_be_paid" value="{{ old('diff_to_be_paid') }}" required>
                                         </td>
                                         <td>
-                                            <input type="text" class="form-control" id="additional"  name="additional" value="{{ old('additional') }}" required>
+                                            <input  type="number" min="0" step="any" class="form-control" id="additional"  name="additional" value="{{ old('additional') }}" required>
                                         </td>
                                         <td>
                                             <input type="text" class="form-control" id="consumer_goods_sync_date"  name="consumer_goods_sync_date" value="{{ old('consumer_goods_sync_date') }}" required>

@@ -5,8 +5,8 @@
     <h1> DR PDS</h1>
     <nav>
       <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="/drpds/facelifting/add">Dashboard</a></li>
-        <li class="breadcrumb-item">Facelifting</li>
+        <li class="breadcrumb-item"><a href="/drpds/iso/add">Dashboard</a></li>
+        <li class="breadcrumb-item">ISO</li>
         <li class="breadcrumb-item active">Add</li>
       </ol>
     </nav>
@@ -38,12 +38,12 @@
                     </div>
                 </div>
 
-                <form action="{{url("/drpds/facelifting/store")}}" method="post" id="faceliftingform" class="row g-3">
+                <form action="{{url("/drpds/iso/store")}}" method="post" id="isoform" class="row g-3">
                     @csrf
                     <div class="row margindiv">
                         <div class="col-md-4">
                             <div class="form-floating">
-                            <input type="date" class="form-control" id="floatingName" name="faceliftingdate" placeholder="date" value="{{ date("Y-m-d") }}" required>
+                            <input type="date" class="form-control" id="floatingName" name="isodate" placeholder="date" value="{{ date("Y-m-d") }}" required>
                             <label for="floatingName">Date</label>
                             </div>
                         </div>
@@ -52,16 +52,20 @@
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
-                                        <th>Number of fair price shops targeted for beautification </th>
-                                        <th>No. of Fair Price Shops Polished </th>
-                                        <th>Due</th>
+                                        <th>Number of full-time fair price shops in the Region (as on 31.08.2023) </th>
+                                        <th>Number of full-time fair price shops to be certified with ISO 9001 Certification (Target)</th>
+                                        <th>No. of full time fair price shops certified with ISO 9001 certification </th>
+                                        <th>No. of Fair Price Shops to be certified with ISO 9001 Certification </th>
+                                        <th>Percentage of full-time fair price shops that have been certified as ISO 9001</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td><input type="text" name="fpsb" class="form-control" required></td>
-                                        <td><input type="text" name="fpsp" id="action_taken" class="form-control" required></td>
-                                        <td><input type="text" name="due" id="disposal" class="form-control" required></td>
+                                        <td><input type="text" name="ftfps" class="form-control" required></td>
+                                        <td><input type="text" name="ftfpsc" id="action_taken" class="form-control" required></td>
+                                        <td><input type="text" name="wc" id="disposal" class="form-control" required></td>
+                                        <td><input type="text" name="twc" id="disposal" class="form-control" required></td>
+                                        <td><input type="text" name="percentage" id="disposal" class="form-control" required></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -83,7 +87,3 @@
      </div>
   </section>
 </main>
-<script>
-
-</script>
-@endsection

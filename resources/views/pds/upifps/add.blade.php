@@ -77,22 +77,22 @@
 {{--                                            </select>--}}
 {{--                                        </td>--}}
                                         <td>
-                                            <input type="text" class="form-control" id="fps_fulltime"  name="fps_fulltime" value="{{ old('fps_fulltime') }}"  required>
+                                            <input  type="number" min="0" step="any" class="form-control" id="fps_fulltime"  name="fps_fulltime" value="{{ old('fps_fulltime') }}"  required>
                                         </td>
                                         <td>
-                                            <input type="text" class="form-control" id="fps_parttime"  name="fps_parttime" value="{{ old('fps_parttime') }}"  required>
+                                            <input  type="number" min="0" step="any" class="form-control" id="fps_parttime"  name="fps_parttime" value="{{ old('fps_parttime') }}"  required>
                                         </td>
                                         <td>
-                                            <input type="text" class="form-control" id="fps_total"  name="fps_total" value="{{ old('fps_total') }}" required>
+                                            <input  type="number" min="0" step="any" class="form-control" id="fps_total"  name="fps_total" value="{{ old('fps_total') }}" required>
                                         </td>
                                         <td>
-                                            <input type="text" class="form-control" id="upi_introduced"  name="upi_introduced" value="{{ old('upi_introduced') }}"  required>
+                                            <input  type="number" min="0" step="any" class="form-control" id="upi_introduced"  name="upi_introduced" value="{{ old('upi_introduced') }}"  required>
                                         </td>
                                         <td>
-                                            <input type="text" class="form-control" id="upi_tobe_introduced"  name="upi_tobe_introduced" value="{{ old('upi_tobe_introduced') }}"  required>
+                                            <input  type="number" min="0" step="any" class="form-control" id="upi_tobe_introduced"  name="upi_tobe_introduced" value="{{ old('upi_tobe_introduced') }}"  required>
                                         </td>
                                         <td>
-                                            <input type="text" class="form-control" id="upi_introduced_per"  name="upi_introduced_per" value="{{ old('upi_introduced_per') }}" required>
+                                            <input  type="number" min="0" step="any" class="form-control" id="upi_introduced_per"  name="upi_introduced_per" value="{{ old('upi_introduced_per') }}" required>
                                         </td>
                                     </tr>
                                 </tbody>

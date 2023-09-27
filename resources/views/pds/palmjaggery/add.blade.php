@@ -70,13 +70,13 @@
 {{--                                            </select>--}}
 {{--                                        </td>--}}
                                         <td>
-                                            <input type="text" class="form-control" id="target"  name="target" value="{{ old('target') }}"  required>
+                                            <input  type="number" min="0" step="any" class="form-control" id="target"  name="target" value="{{ old('target') }}"  min="0" required>
                                         </td>
                                         <td>
-                                            <input type="text" class="form-control" id="achievement"  name="achievement" value="{{ old('achievement') }}"  required>
+                                            <input  type="number" min="0" step="any" class="form-control" id="achievement"  name="achievement" value="{{ old('achievement') }}"  required>
                                         </td>
                                         <td>
-                                            <input type="text" class="form-control" id="pending_target"  name="pending_target" value="{{ old('pending_target') }}" required>
+                                            <input  type="number" min="0" step="any" class="form-control" id="pending_target"  name="pending_target" value="{{ old('pending_target') }}" required>
                                         </td>
                                     </tr>
                                 </tbody>
