@@ -10,6 +10,7 @@ use App\Http\Controllers\DRController;
 use App\Http\Controllers\JRController;
 use App\Http\Controllers\MDController;
 use App\Http\Controllers\PDSController;
+use App\Http\Controllers\DRPDSController;
 
 /*
 |--------------------------------------------------------------------------
@@ -211,6 +212,19 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/superadmin/godownlist', [SuperAdminController::class, 'godownlist']);
     Route::get('/superadmin/servicelist', [SuperAdminController::class, 'serviceslist']);
     Route::get('/superadmin/croploanlist', [SuperAdminController::class, 'croploanlist']);
+
+    Route::get('/drpds/dashboard', [DRPDSController::class, 'dashboard']);
+    Route::get('/drpds/build_yet_identified/list', [DRPDSController::class, 'identifiedlist']);
+    Route::get('/drpds/build_yet_identified/add', [DRPDSController::class, 'identifiedadd']);
+    Route::post('/drpds/build_yet_identified/store', [DRPDSController::class, 'identifiedstore']);
+
+    Route::get('/drpds/build_yet_started/list', [DRPDSController::class, 'startedlist']);
+    Route::get('/drpds/build_yet_started/add', [DRPDSController::class, 'startedadd']);
+    Route::post('/drpds/build_yet_started/store', [DRPDSController::class, 'startedstore']);
+
+    Route::get('/drpds/facelifting/list', [DRPDSController::class, 'faceliftinglist']);
+    Route::get('/drpds/facelifting/add', [DRPDSController::class, 'faceliftingadd']);
+    Route::post('/drpds/facelifting/store', [DRPDSController::class, 'faceliftingstore']);
 
 
     Route::get('/md/dashboard', [MDController::class, 'dashboard']);
