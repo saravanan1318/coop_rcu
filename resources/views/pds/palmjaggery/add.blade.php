@@ -39,7 +39,7 @@
                     </div>
                 </div>
                   {{-- <h5 class="card-title">Issue of Loan and Collection</h5> --}}
-                  <form action="{{url('/drpds/palmjaggery/store')}}" method="post" id="palmjaggerform" class="row g-3">
+                  <form action="{{url('/drpds/palm-jaggery/store')}}" method="post" id="palmjaggerform" class="row g-3">
                     @csrf
                       <div class="row margindiv">
                         <div class="col-md-4">
