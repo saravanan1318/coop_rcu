@@ -436,35 +436,18 @@
              </a>
          </li><!-- End Dashboard Nav -->
          <li class="nav-item">
-             <a class="nav-link collapsed" data-bs-target="#build-yet-identified-nav" data-bs-toggle="collapse" href="#">
-                 <i class="bi bi-journal-text"></i><span>Build Initiated</span><i class="bi bi-chevron-down ms-auto"></i>
+             <a class="nav-link collapsed" data-bs-target="#build-nav" data-bs-toggle="collapse" href="#">
+                 <i class="bi bi-journal-text"></i><span> Fair Price Shop Building</span><i class="bi bi-chevron-down ms-auto"></i>
              </a>
-             <ul id="build-yet-identified-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-                 <li>
-                     <a href="/drpds/build_yet_identified/add">
-                         <i class="bi bi-circle"></i><span>Add</span>
-                     </a>
-                 </li>
-                 <li>
-                     <a href="/drpds/build_yet_identified/list">
-                         <i class="bi bi-circle"></i><span>List</span>
-                     </a>
-                 </li>
-             </ul>
-         </li>
-         <li class="nav-item">
-             <a class="nav-link collapsed" data-bs-target="#build-yet-started-nav" data-bs-toggle="collapse" href="#">
-                 <i class="bi bi-journal-text"></i><span>Build Started</span><i class="bi bi-chevron-down ms-auto"></i>
-             </a>
-             <ul id="build-yet-started-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+             <ul id="build-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                  <li>
                      <a href="/drpds/build_yet_started/add">
-                         <i class="bi bi-circle"></i><span>Add</span>
+                         <i class="bi bi-circle"></i><span>Entry</span>
                      </a>
                  </li>
                  <li>
                      <a href="/drpds/build_yet_started/list">
-                         <i class="bi bi-circle"></i><span>List</span>
+                         <i class="bi bi-circle"></i><span>View</span>
                      </a>
                  </li>
              </ul>
