@@ -52,7 +52,7 @@
                             <table class="table table-responsive table-bordered datatable">
                                 <thead style="text-align: center">
                                 <tr>
-                                    <th scope="col" rowspan="2">Region</th>
+{{--                                    <th scope="col" rowspan="2">Region</th>--}}
                                     <th scope="col" rowspan="2">Initial Balance</th>
                                     <th scope="col" rowspan="2">Current Month Income</th>
                                     <th scope="col" rowspan="2">Total</th>
@@ -69,14 +69,14 @@
                                 <tbody id="tbody">
                                     <tr data-id="1" id="row1">
 
-                                        <td>
-                                            <select class="form-control" id="region" name="region" required>
-                                                <option value="">--SELECT--</option>
-                                                @foreach($mtr_regions as $region)
-                                                    <option value="{{ $region->id }}">{{ $region->region_name }}</option>
-                                                @endforeach
-                                            </select>
-                                        </td>
+{{--                                        <td>--}}
+{{--                                            <select class="form-control" id="region" name="region" required>--}}
+{{--                                                <option value="">--SELECT--</option>--}}
+{{--                                                @foreach($mtr_regions as $region)--}}
+{{--                                                    <option value="{{ $region->id }}">{{ $region->region_name }}</option>--}}
+{{--                                                @endforeach--}}
+{{--                                            </select>--}}
+{{--                                        </td>--}}
                                         <td>
                                             <input type="text" class="form-control" id="initial_balance"  name="initial_balance" value="{{ old('initial_balance') }}"  required>
                                         </td>

@@ -52,7 +52,7 @@
                             <table class="table table-responsive table-bordered datatable">
                                 <thead style="text-align: center">
                                 <tr>
-                                  <th scope="col" >Region</th>
+{{--                                  <th scope="col" >Region</th>--}}
                                   <th scope="col" >Consumer Goods</th>
                                   <th scope="col" >Amount Received</th>
                                   <th scope="col" >Due On</th>
@@ -62,14 +62,14 @@
                                 <tbody id="tbody">
                                     <tr data-id="1" id="row1">
 
-                                        <td>
-                                            <select class="form-control" id="region" name="region" required>
-                                                <option value="">--SELECT--</option>
-                                                @foreach($mtr_regions as $region)
-                                                    <option value="{{ $region->id }}">{{ $region->region_name }}</option>
-                                                @endforeach
-                                            </select>
-                                        </td>
+{{--                                        <td>--}}
+{{--                                            <select class="form-control" id="region" name="region" required>--}}
+{{--                                                <option value="">--SELECT--</option>--}}
+{{--                                                @foreach($mtr_regions as $region)--}}
+{{--                                                    <option value="{{ $region->id }}">{{ $region->region_name }}</option>--}}
+{{--                                                @endforeach--}}
+{{--                                            </select>--}}
+{{--                                        </td>--}}
                                         <td>
                                             <input type="text" class="form-control" id="consumer_goods"  name="consumer_goods" value="{{ old('consumer_goods') }}"  required>
                                         </td>

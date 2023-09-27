@@ -56,7 +56,7 @@
                             <table class="table table-responsive table-bordered datatable">
                                 <thead style="text-align: center">
                                 <tr>
-                                  <th scope="col" >Region</th>
+{{--                                  <th scope="col" >Region</th>--}}
                                   <th scope="col" >Price Difference Due Amount</th>
                                   <th scope="col" >Marginal for Supplier Free of Cost</th>
                                   <th scope="col" >Marginal for PMGKAY scheme</th>
@@ -69,14 +69,14 @@
                                 </thead>
                                 <tbody id="tbody">
                                     <tr data-id="1" id="row1">
-                                        <td>
-                                            <select class="form-control" id="region" name="region" required>
-                                                <option value="">--SELECT--</option>
-                                                @foreach($mtr_regions as $region)
-                                                    <option value="{{ $region->id }}">{{ $region->region_name }}</option>
-                                                @endforeach
-                                            </select>
-                                        </td>
+{{--                                        <td>--}}
+{{--                                            <select class="form-control" id="region" name="region" required>--}}
+{{--                                                <option value="">--SELECT--</option>--}}
+{{--                                                @foreach($mtr_regions as $region)--}}
+{{--                                                    <option value="{{ $region->id }}">{{ $region->region_name }}</option>--}}
+{{--                                                @endforeach--}}
+{{--                                            </select>--}}
+{{--                                        </td>--}}
                                         <td>
                                             <input type="text" class="form-control" id="price_diff_due_amount"  name="price_diff_due_amount" value="{{ old('price_diff_due_amount') }}"  required>
                                         </td>

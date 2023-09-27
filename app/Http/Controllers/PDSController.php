@@ -27,7 +27,8 @@ class PDSController extends Controller
 
         $model = new Pds_palm_jaggery();
         $model->user_id = Auth::user()->id;
-        $model->region_id = $request->region;
+//        $model->region_id = $request->region;
+        $model->region_id = Auth::user()->region_id;
         $model->fin_month = $request->fin_month;
         $model->target = $request->target;
         $model->achievement = $request->achievement;
@@ -59,7 +60,8 @@ class PDSController extends Controller
             $model->fps_name = $request->fps_name;
             $model->purchase_company_name = $request->purchase_company_name;
             $model->small_grain_type = $request->small_grain_type[$i];
-            $model->region_id = $request->region[$i];
+//            $model->region_id = $request->region[$i];
+            $model->region_id = Auth::user()->region_id;
             $model->quantity_purchased = $request->quantity_purchased[$i];
             $model->quantity_sold = $request->quantity_sold[$i];
             $model->sales_amount = $request->sales_amount[$i];
@@ -86,7 +88,8 @@ class PDSController extends Controller
 
         $model = new Pds_upi_fps();
         $model->user_id = Auth::user()->id;
-        $model->region_id = $request->region;
+//        $model->region_id = $request->region;
+        $model->region_id = Auth::user()->region_id;
         $model->fps_fulltime = $request->fps_fulltime;
         $model->fps_parttime = $request->fps_parttime;
         $model->fps_total = $request->fps_total;
@@ -115,7 +118,8 @@ class PDSController extends Controller
 
         $model = new Pds_margin_money();
         $model->user_id = Auth::user()->id;
-        $model->region_id = $request->region;
+//        $model->region_id = $request->region;
+        $model->region_id = Auth::user()->region_id;
         $model->price_diff_due_amount = $request->price_diff_due_amount;
         $model->margin_supp_free_cost = $request->margin_supp_free_cost;
         $model->margin_pmgkay_scheme_a = $request->margin_pmgkay_scheme_a;
@@ -146,7 +150,8 @@ class PDSController extends Controller
 
         $model = new Pds_gunny_dues();
         $model->user_id = Auth::user()->id;
-        $model->region_id = $request->region;
+//        $model->region_id = $request->region;
+        $model->region_id = Auth::user()->region_id;
         $model->consumer_goods = $request->consumer_goods;
         $model->amount_received = $request->amount_received;
         $model->due_on = $request->due_on;
@@ -173,7 +178,8 @@ class PDSController extends Controller
 
         $model = new Pds_gunny_sales();
         $model->user_id = Auth::user()->id;
-        $model->region_id = $request->region;
+//        $model->region_id = $request->region;
+        $model->region_id = Auth::user()->region_id;
         $model->fin_month = $request->fin_month;
         $model->initial_balance = $request->initial_balance;
         $model->curr_month_income = $request->curr_month_income;
@@ -205,7 +211,8 @@ class PDSController extends Controller
 
         $model = new Pds_remittance_to_govt_ac();
         $model->user_id = Auth::user()->id;
-        $model->region_id = $request->region;
+//        $model->region_id = $request->region;
+        $model->region_id = Auth::user()->region_id;
         $model->fin_month = $request->fin_month;
         $model->balance_amt = $request->balance_amt;
         $model->save();
