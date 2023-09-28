@@ -228,19 +228,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/drpds/tea/add', [DRPDSController::class, 'teaadd']);
     Route::post('/drpds/tea/store', [DRPDSController::class, 'teastore']);
 
-    Route::get('/drpds/indcoserve/list', [DRPDSController::class, 'indcoservelist']);
-    Route::get('/drpds/indcoserve/add', [DRPDSController::class, 'indcoserveadd']);
-    Route::post('/drpds/indcoserve/store', [DRPDSController::class, 'indcoservestore']);
-
-
-    Route::get('/drpds/salt/list', [DRPDSController::class, 'saltlist']);
-    Route::get('/drpds/salt/add', [DRPDSController::class, 'saltadd']);
-    Route::post('/drpds/salt/store', [DRPDSController::class, 'saltstore']);
-
-    Route::get('/drpds/duesalt/list', [DRPDSController::class, 'duesaltlist']);
-    Route::get('/drpds/duesalt/add', [DRPDSController::class, 'duesaltadd']);
-    Route::post('/drpds/duesalt/store', [DRPDSController::class, 'duesaltstore']);
-
     Route::get('/md/dashboard', [MDController::class, 'dashboard']);
     Route::get('/md/loanlist', [MDController::class, 'loanlist']);
     Route::get('/md/depositlist', [MDController::class, 'depositlist']);

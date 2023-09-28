@@ -84,25 +84,6 @@
   </section>
 </main>
 <script>
-    const fpsbInput = document.querySelector("input[name='fpsb']");
-    const fpspInput = document.querySelector("input[name='fpsp']");
-    const dueInput = document.querySelector("input[name='due']");
 
-    // Add an event listener to fpsb and fpsp inputs
-    fpsbInput.addEventListener("input", updateDue);
-    fpspInput.addEventListener("input", updateDue);
-
-    // Function to update due based on fpsb and fpsp values
-    function updateDue() {
-        const fpsbValue = parseFloat(fpsbInput.value) || 0; // Use 0 if not a valid number
-        const fpspValue = parseFloat(fpspInput.value) || 0;
-        let dueValue = fpsbValue - fpspValue;
-
-        // Ensure dueValue is not negative
-        dueValue = dueValue < 0 ? 0 : dueValue;
-
-        dueInput.value = dueValue;
-    }
 </script>
-
 @endsection

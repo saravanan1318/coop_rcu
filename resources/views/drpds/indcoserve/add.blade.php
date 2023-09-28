@@ -5,8 +5,8 @@
     <h1> DR PDS</h1>
     <nav>
       <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="/drpds/facelifting/add">Dashboard</a></li>
-        <li class="breadcrumb-item">Facelifting</li>
+        <li class="breadcrumb-item"><a href="/drpds/indcoserve/add">Dashboard</a></li>
+        <li class="breadcrumb-item">Indcoserve</li>
         <li class="breadcrumb-item active">Add</li>
       </ol>
     </nav>
@@ -38,12 +38,12 @@
                     </div>
                 </div>
 
-                <form action="{{url("/drpds/facelifting/store")}}" method="post" id="faceliftingform" class="row g-3">
+                <form action="{{url("/drpds/indcoserve/store")}}" method="post" id="indcoserveform" class="row g-3">
                     @csrf
                     <div class="row margindiv">
                         <div class="col-md-4">
                             <div class="form-floating">
-                            <input type="date" class="form-control" id="floatingName" name="faceliftingdate" placeholder="date" value="{{ date("Y-m-d") }}" required>
+                            <input type="date" class="form-control" id="floatingName" name="indcoservedate" placeholder="date" value="{{ date("Y-m-d") }}" required>
                             <label for="floatingName">Date</label>
                             </div>
                         </div>
@@ -52,16 +52,16 @@
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
-                                        <th>Number of fair price shops targeted for beautification </th>
-                                        <th>No. of Fair Price Shops Polished </th>
-                                        <th>Due</th>
+                                        <th>3 months dues (June 2023 to August 2023) </th>
+                                        <th>(3-6) monthly dues (March 2023 to May 2023)  </th>
+                                        <th>Outstanding for more than 6 months (outstanding up to February 2023)</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td><input type="text" name="fpsb" class="form-control" required></td>
-                                        <td><input type="text" name="fpsp" id="action_taken" class="form-control" required></td>
-                                        <td><input type="text" name="due" id="disposal" class="form-control" required></td>
+                                        <td><input type="text" name="three" class="form-control" required></td>
+                                        <td><input type="text" name="six" id="action_taken" class="form-control" required></td>
+                                        <td><input type="text" name="abovesix" id="disposal" class="form-control" required></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -83,26 +83,4 @@
      </div>
   </section>
 </main>
-<script>
-    const fpsbInput = document.querySelector("input[name='fpsb']");
-    const fpspInput = document.querySelector("input[name='fpsp']");
-    const dueInput = document.querySelector("input[name='due']");
-
-    // Add an event listener to fpsb and fpsp inputs
-    fpsbInput.addEventListener("input", updateDue);
-    fpspInput.addEventListener("input", updateDue);
-
-    // Function to update due based on fpsb and fpsp values
-    function updateDue() {
-        const fpsbValue = parseFloat(fpsbInput.value) || 0; // Use 0 if not a valid number
-        const fpspValue = parseFloat(fpspInput.value) || 0;
-        let dueValue = fpsbValue - fpspValue;
-
-        // Ensure dueValue is not negative
-        dueValue = dueValue < 0 ? 0 : dueValue;
-
-        dueInput.value = dueValue;
-    }
-</script>
-
 @endsection

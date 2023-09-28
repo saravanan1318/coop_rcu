@@ -6,8 +6,8 @@
     <h1>DR PDS</h1>
     <nav>
       <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="/drpds/iso/list">Dashboard</a></li>
-        <li class="breadcrumb-item">ISO</li>
+        <li class="breadcrumb-item"><a href="/drpds/indcoserve/list">Dashboard</a></li>
+        <li class="breadcrumb-item">Indcoserve</li>
         <li class="breadcrumb-item">List</li>
       </ol>
     </nav>
@@ -18,7 +18,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">Build Yet To Be Initiated</h5>
+                    <h5 class="card-title">Indcoserve</h5>
                     <div class="row">
                         <div class="col-sm-4 col-md-4 mb-4">
                             <!-- Add button can be placed here -->
@@ -40,22 +40,18 @@
                 <thead style="text-align: center">
                     <tr>
                         <th scope="col">Date</th>
-                        <th scope="col">Number of full-time fair price shops in the Region (as on 31.08.2023) </th>
-                        <th scope="col">Number of full-time fair price shops to be certified with ISO 9001 Certification (Target)</th>
-                        <th scope="col">No. of full time fair price shops certified with ISO 9001 certification </th>
-                        <th scope="col">No. of Fair Price Shops to be certified with ISO 9001 Certification </th>
-                        <th scope="col">Percentage of full-time fair price shops that have been certified as ISO 9001</th>
+                        <th scope="col">3 months dues (June 2023 to August 2023) </th>
+                        <th scope="col">(3-6) monthly dues (March 2023 to May 2023)  </th>
+                        <th scope="col">Outstanding for more than 6 months (outstanding up to February 2023)</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach($drpds as $data)
                         <tr>
-                            <td>{{ \Carbon\Carbon::parse($data->identifieddate)->format('d-m-Y') }}</td>
-                            <td style="text-align: right;">{{ $data->ftfps }}</td>
-                            <td style="text-align: right;">{{ $data->ftfpsc }}</td>
-                            <td style="text-align: right;">{{ $data->wc }}</td>
-                            <td style="text-align: right;">{{ $data->twc }}</td>
-                            <td style="text-align: right;">{{ $data->percentage }}</td>
+                            <td>{{ \Carbon\Carbon::parse($data->indcoservedate)->format('d-m-Y') }}</td>
+                            <td style="text-align: right;">{{ $data->three }}</td>
+                            <td style="text-align: right;">{{ $data->six }}</td>
+                            <td style="text-align: right;">{{ $data->abovesix }}</td>
                         </tr>
                     @endforeach
                 </tbody>
