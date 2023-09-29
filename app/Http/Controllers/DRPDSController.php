@@ -10,6 +10,7 @@ use App\Models\Drpds_facelifting;
 use App\Models\Drpds_indcoserve;
 use App\Models\Drpds_iso;
 use App\Models\Drpds_salt;
+use App\Models\Drpds_special;
 use App\Models\Drpds_tea;
 use Illuminate\Support\Facades\Auth;
 
@@ -350,5 +351,45 @@ class DRPDSController extends Controller
         $byi->save();
 
         return redirect('/drpds/duesalt/list')->with('status', 'Due to TN Salt  added successfully');
+    }
+
+    function specialadd()
+    {
+
+        $drpds = Drpds_special::select('*')->paginate(5);
+        return view("drpds.special.add", compact('drpds'));
+    }
+
+    function speciallist()
+    {
+
+        $drpds = Drpds_special::select('*')->paginate(5);
+        return view("drpds.special.list", compact('drpds'));
+    }
+
+
+    function specialstore(Request $request)
+    {
+        // Validate the form data
+        $request->validate([
+            'specialdate' => 'required',
+            'principal' => 'required|',
+            'intrest' => 'required|',
+            'total' => 'required|',
+            'sync' => 'required|',
+        ]);
+
+        // Create a new instance of the model and populate it with the form data
+        $byi = new Drpds_special();
+        $byi->region_id = Auth::user()->region_id;
+        $byi->user_id = Auth::user()->id;
+        $byi->specialdate = $request->input('specialdate');
+        $byi->principal = $request->input('principal');
+        $byi->intrest = $request->input('intrest');
+        $byi->total = $request->input('total');
+        $byi->sync = $request->input('sync');
+        $byi->save();
+
+        return redirect('/drpds/special/list')->with('status', ' Special Dues  added successfully');
     }
 }

@@ -155,6 +155,15 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/dr/surcharge/add', [DRController::class, 'surchargeadd']);
     Route::post('/dr/surcharge/store', [DRController::class, 'surchargestore']);
 
+    Route::get('/jr/press/list', [JRController::class, 'presslist']);
+    Route::get('/jr/press/add', [JRController::class, 'pressadd']);
+    Route::post('/jr/press/store', [JRController::class, 'pressstore']);
+
+    Route::get('/jr/profit/list', [JRController::class, 'profitlist']);
+    Route::get('/jr/profit/add', [JRController::class, 'profitadd']);
+    Route::post('/jr/profit/store', [JRController::class, 'profitstore']);
+
+
     Route::get('/dr/dashboard', [DRController::class, 'dashboard']);
     Route::get('/dr/loanlist', [DRController::class, 'loanlist']);
     Route::get('/dr/depositlist', [DRController::class, 'depositlist']);
@@ -257,6 +266,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/drpds/duesalt/list', [DRPDSController::class, 'duesaltlist']);
     Route::get('/drpds/duesalt/add', [DRPDSController::class, 'duesaltadd']);
     Route::post('/drpds/duesalt/store', [DRPDSController::class, 'duesaltstore']);
+
+    Route::get('/drpds/special/list', [DRPDSController::class, 'speciallist']);
+    Route::get('/drpds/special/add', [DRPDSController::class, 'specialadd']);
+    Route::post('/drpds/special/store', [DRPDSController::class, 'specialstore']);
 
 
     Route::get('/md/dashboard', [MDController::class, 'dashboard']);

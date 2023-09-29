@@ -11,6 +11,7 @@ use App\Models\Sales;
 use App\Models\Services;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class LoanQueryService
 {
@@ -383,6 +384,7 @@ class LoanQueryService
         // Build the Loan query with additional conditions
         if($distinct){
             $query = Loan::select('*',DB::raw('SUM(disbursedamount) as disbursed_total'), DB::raw('SUM(collectedamount) as collect_total'), DB::raw('SUM(collectedno) as collect_count'), DB::raw('SUM(disbursedno) as disbursed_count'))->with('loantype');
+//            $query = Loan::select('*')->with('loantype');
         }
         else {
             $query = Loan::select('*')->with('loantype');
@@ -437,6 +439,9 @@ class LoanQueryService
         if($distinct){
             $query->groupBy('loandate', 'loantype_id');
         }
+        $queryLog = DB::getQueryLog();
+
+        Log::info(end($queryLog));
         return $query->get();
 
     }

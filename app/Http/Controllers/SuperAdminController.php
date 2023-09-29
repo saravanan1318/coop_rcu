@@ -1391,7 +1391,6 @@ class SuperAdminController extends Controller
             });
 
         $societiestypes=$soctietyvalue->get();
-
         $filteredLoans = LoanQueryService::getFilteredLoans($request, true);
         $loans = $filteredLoans;
         $secTableRecords = LoanQueryService::getFilteredLoans($request);

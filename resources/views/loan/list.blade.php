@@ -2,7 +2,7 @@
 @section('content')
     <main id="main" class="main">
         <div class="pagetitle">
-            <h1>List</h1>
+            <h1>Loan Report</h1>
             <nav>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="/society/dashboard">Dashboard</a></li>
@@ -44,7 +44,7 @@
 
                                 {{--                                <form method="GET" action="{{ route('loanlist.index') }}">--}}
                                 <form method="GET" action="{{ URL::current() }}">
-                                    <h3>Filters:</h3>
+{{--                                    <h3>Filters:</h3>--}}
                                     <div class="row filterpaddings">
                                         @if(isset($regions))
                                         <div class="col-3">
@@ -147,32 +147,36 @@
                                 @endphp
                                 @foreach($loans as $loan)
                                     @php
-                                        $totalDisbursedNo += $loan->disbursedno;
-                                        $totaldisbursedamount +=$loan ->disbursedamount;
-                                        $totalcollectedno +=$loan ->collectedno;
-                                        $totalcollectedamount +=$loan ->collectedamount;
+//                                        $totalDisbursedNo += $loan->disbursedno;
+//                                        $totaldisbursedamount +=$loan ->disbursedamount;
+//                                        $totalcollectedno +=$loan ->collectedno;
+//                                        $totalcollectedamount +=$loan ->collectedamount;
+
+                                        $totalDisbursedNo += $loan->disbursed_count;
+                                        $totaldisbursedamount +=$loan ->disbursed_total;
+                                        $totalcollectedno +=$loan ->collected_count;
+                                        $totalcollectedamount +=$loan ->collect_total;
                                     @endphp
                                 @endforeach
                                 <div class="row p-4">
                                     <div class="row p-4">
-                                        <table class="table table-bordered">
+                                        <table class="table table-bordered table-info" style="font-size: 16px;">
                                             <thead>
                                                 <tr>
-                                                    <th>Total</th>
-                                                    <th>Distributed Loan No</th>
-                                                    <th>Distributed Amount</th>
-                                                    <th>Collected Loan No</th>
-                                                    <th>Collected Amount</th>
+                                                    <th  scope="col" class="py-4" rowspan="2" rowspan="2"><center>Abstract</center></th>
+                                                    <th scope="col" rowspan="1"><center>Distributed Loan No</center></th>
+                                                    <th scope="col" rowspan="1"><center>Distributed Amount</center></th>
+                                                    <th scope="col" rowspan="1"><center>Collected Loan No</center></th>
+                                                    <th scope="col" rowspan="1"><center>Collected Amount</center></th>
+                                                </tr>
+                                                <tr>
+                                                    <td><center><?= $totalDisbursedNo ?></center></td>
+                                                    <td><center><?= $totaldisbursedamount ?></center></td>
+                                                    <td><center><?= $totalcollectedno ?></center></td>
+                                                    <td><center><?= $totalcollectedamount ?></center></td>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr>
-                                                    <td><b>Total</b></td>
-                                                    <td><?= $totalDisbursedNo ?></td>
-                                                    <td><?= $totaldisbursedamount ?></td>
-                                                    <td><?= $totalcollectedno ?></td>
-                                                    <td><?= $totalcollectedamount ?></td>
-                                                </tr>
                                             </tbody>
                                         </table>
                                     </div>
@@ -183,16 +187,16 @@
                                         <table class="stripe table-bordered table-info " id="data-table">
                                             <thead style="text-align: center">
                                             <tr>
-                                                <th scope="col" rowspan="2">Date</th>
-                                                <th scope="col" rowspan="2">Loan Types</th>
-                                                <th scope="col" colspan="2" rowspan="1">Disbursed</th>
-                                                <th scope="col" colspan="2" rowspan="1">Collected</th>
+                                                <th scope="col" rowspan="2"><center>Date</center></th>
+                                                <th scope="col" rowspan="2"><center>Loan Types</center></th>
+                                                <th scope="col" colspan="2" rowspan="1"><center>Issue Of Loan</center></th>
+                                                <th scope="col" colspan="2" rowspan="1"><center>Collection Of Loan</center></th>
                                             </tr>
                                             <tr style="text-align: center">
-                                                <th scope="col">No. of Loan</th>
-                                                <th scope="col">Amount of Loan</th>
-                                                <th scope="col">No. of Loan</th>
-                                                <th scope="col">Amount of Loan</th>
+                                                <th scope="col"><center>No. of Loan</center></th>
+                                                <th scope="col"><center>Amount of Loan</center></th>
+                                                <th scope="col"><center>No. of Loan</center></th>
+                                                <th scope="col"><center>Amount of Loan</center></th>
                                             </tr>
                                             </thead>
                                             <tbody >
@@ -234,21 +238,21 @@
                                     <br />
                                     <br />
                                     @if(isset($subloans))
-                                        <h3>Detailed Loans</h3>
+                                        <h3>Details of Loans</h3>
                                         <br />
                                         <table class="stripe table-bordered table-info " id="sub-data-table">
                                             <thead style="text-align: center">
                                             <tr>
-                                                <th scope="col" rowspan="2">Date</th>
-                                                <th scope="col" rowspan="2">Loan Types</th>
-                                                <th scope="col" colspan="2" rowspan="1">Disbursed</th>
-                                                <th scope="col" colspan="2" rowspan="1">Collected</th>
+                                                <th scope="col" rowspan="2"><center>Date</center></th>
+                                                <th scope="col" rowspan="2"><center>Loan Types</center></th>
+                                                <th scope="col" colspan="2" rowspan="1"><center>Issue Of Loan</center></th>
+                                                <th scope="col" colspan="2" rowspan="1"><center>Collection Of Loan</center></th>
                                             </tr>
                                             <tr style="text-align: center">
-                                                <th scope="col">No. of Loan</th>
-                                                <th scope="col">Amount of Loan</th>
-                                                <th scope="col">No. of Loan</th>
-                                                <th scope="col">Amount of Loan</th>
+                                                <th scope="col"><center>No. of Loan</center></th>
+                                                <th scope="col"><center>Amount of Loan</center></th>
+                                                <th scope="col"><center>No. of Loan</center></th>
+                                                <th scope="col"><center>Amount of Loan</center></th>
                                             </tr>
                                             </thead>
                                             <tbody>
