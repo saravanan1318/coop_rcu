@@ -53,7 +53,8 @@
                               <input type="hidden" id="startDate">
                           </div>--}}
                         <div class="col-md-12" style="margin-top: 10px">
-                            <table class="table table-responsive table-bordered datatable">
+{{--                            <table class="table table-responsive table-bordered datatable">--}}
+                            <table class="table table-bordered">
                                 <thead style="text-align: center">
                                 <tr>
 {{--                                  <th scope="col" >Region</th>--}}

@@ -126,6 +126,36 @@
                       <i class="bi bi-circle"></i><span>Godown</span>
                   </a>
               </li>
+              <li>
+                  <a href="/superadmin/byireport">
+                      <i class="bi bi-circle"></i><span>BYI</span>
+                  </a>
+              </li>
+              <li>
+                  <a href="/superadmin/faceliftingreport">
+                      <i class="bi bi-circle"></i><span>Facelifting</span>
+                  </a>
+              </li>
+              <li>
+                  <a href="/superadmin/isoreport">
+                      <i class="bi bi-circle"></i><span>ISO</span>
+                  </a>
+              </li>
+              <li>
+                  <a href="/superadmin/palmjaggeryreport">
+                      <i class="bi bi-circle"></i><span>Palm Jaggery</span>
+                  </a>
+              </li>
+              <li>
+                  <a href="/superadmin/upi_fpsreport">
+                      <i class="bi bi-circle"></i><span>UPI-FPS</span>
+                  </a>
+              </li>
+              <li>
+                  <a href="/superadmin/gunnyduereport">
+                      <i class="bi bi-circle"></i><span>Gunny Due</span>
+                  </a>
+              </li>
           </ul>
       </li>
       <!-- End Dashboard Nav -->
@@ -470,10 +500,10 @@
              </ul>
          </li>
          <li class="nav-item">
-             <a class="nav-link collapsed" data-bs-target="#build-nav" data-bs-toggle="collapse" href="#">
+             <a class="nav-link collapsed" data-bs-target="#ISO-nav" data-bs-toggle="collapse" href="#">
                  <i class="bi bi-journal-text"></i><span>ISO</span><i class="bi bi-chevron-down ms-auto"></i>
              </a>
-             <ul id="build-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+             <ul id="ISO-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                  <li>
                      <a href="/drpds/iso/add">
                          <i class="bi bi-circle"></i><span>Entry</span>
@@ -481,6 +511,75 @@
                  </li>
                  <li>
                      <a href="/drpds/iso/list">
+                         <i class="bi bi-circle"></i><span>View</span>
+                     </a>
+                 </li>
+             </ul>
+         </li>
+         <li class="nav-item">
+             <a class="nav-link collapsed" data-bs-target="#Tea-nav" data-bs-toggle="collapse" href="#">
+                 <i class="bi bi-journal-text"></i><span>Tea</span><i class="bi bi-chevron-down ms-auto"></i>
+             </a>
+             <ul id="Tea-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                 <li>
+                     <a href="/drpds/tea/add">
+                         <i class="bi bi-circle"></i><span>Entry</span>
+                     </a>
+                 </li>
+                 <li>
+                     <a href="/drpds/tea/list">
+                         <i class="bi bi-circle"></i><span>View</span>
+                     </a>
+                 </li>
+             </ul>
+         </li>
+         <li class="nav-item">
+             <a class="nav-link collapsed" data-bs-target="#Indcoserve-nav" data-bs-toggle="collapse" href="#">
+                 <i class="bi bi-journal-text"></i><span>Indcoserve</span><i class="bi bi-chevron-down ms-auto"></i>
+             </a>
+             <ul id="Indcoserve-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                 <li>
+                     <a href="/drpds/indcoserve/add">
+                         <i class="bi bi-circle"></i><span>Entry</span>
+                     </a>
+                 </li>
+                 <li>
+                     <a href="/drpds/indcoserve/list">
+                         <i class="bi bi-circle"></i><span>View</span>
+                     </a>
+                 </li>
+             </ul>
+         </li>
+
+         <li class="nav-item">
+             <a class="nav-link collapsed" data-bs-target="#saltsale-nav" data-bs-toggle="collapse" href="#">
+                 <i class="bi bi-journal-text"></i><span>Salt Sales</span><i class="bi bi-chevron-down ms-auto"></i>
+             </a>
+             <ul id="saltsale-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                 <li>
+                     <a href="/drpds/salt/add">
+                         <i class="bi bi-circle"></i><span>Entry</span>
+                     </a>
+                 </li>
+                 <li>
+                     <a href="/drpds/salt/list">
+                         <i class="bi bi-circle"></i><span>View</span>
+                     </a>
+                 </li>
+             </ul>
+         </li>
+         <li class="nav-item">
+             <a class="nav-link collapsed" data-bs-target="#salt-nav" data-bs-toggle="collapse" href="#">
+                 <i class="bi bi-journal-text"></i><span>Dues to TN Salt</span><i class="bi bi-chevron-down ms-auto"></i>
+             </a>
+             <ul id="salt-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                 <li>
+                     <a href="/drpds/duesalt/add">
+                         <i class="bi bi-circle"></i><span>Entry</span>
+                     </a>
+                 </li>
+                 <li>
+                     <a href="/drpds/duesalt/list">
                          <i class="bi bi-circle"></i><span>View</span>
                      </a>
                  </li>

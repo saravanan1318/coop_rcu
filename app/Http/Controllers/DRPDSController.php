@@ -5,8 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Drpds_byi;
 use App\Models\Drpds_bys;
+use App\Models\Drpds_duesalt;
 use App\Models\Drpds_facelifting;
+use App\Models\Drpds_indcoserve;
 use App\Models\Drpds_iso;
+use App\Models\Drpds_salt;
+use App\Models\Drpds_tea;
 use Illuminate\Support\Facades\Auth;
 
 class DRPDSController extends Controller
@@ -189,5 +193,162 @@ class DRPDSController extends Controller
         $byi->save();
 
         return redirect('/drpds/iso/list')->with('status', 'ISO added successfully');
+    }
+    function teaadd()
+    {
+
+        $drpds = Drpds_tea::select('*')->paginate(5);
+        return view("drpds.tea.add", compact('drpds'));
+    }
+
+    function tealist()
+    {
+
+        $drpds = Drpds_tea::select('*')->paginate(5);
+        return view("drpds.tea.list", compact('drpds'));
+    }
+
+
+    function teastore(Request $request)
+    {
+        // Validate the form data
+        $request->validate([
+            'teadate' => 'required',
+            'fmc' => 'required|',
+            'nl' => 'required|',
+            'purchase' => 'required|',
+            'sale' => 'required|',
+            'percentage' => 'required|',
+        ]);
+
+        // Create a new instance of the model and populate it with the form data
+        $byi = new Drpds_tea();
+        $byi->region_id = Auth::user()->region_id;
+        $byi->user_id = Auth::user()->id;
+        $byi->teadate = $request->input('teadate');
+        $byi->fmc = $request->input('fmc');
+        $byi->nl = $request->input('nl');
+        $byi->purchase = $request->input('purchase');
+        $byi->sale = $request->input('sale');
+        $byi->percentage = $request->input('percentage');
+        $byi->save();
+
+        return redirect('/drpds/tea/list')->with('status', 'Ooty Tea Sale added successfully');
+    }
+
+    function indcoserveadd()
+    {
+
+        $drpds = Drpds_indcoserve::select('*')->paginate(5);
+        return view("drpds.indcoserve.add", compact('drpds'));
+    }
+
+    function indcoservelist()
+    {
+
+        $drpds = Drpds_indcoserve::select('*')->paginate(5);
+        return view("drpds.indcoserve.list", compact('drpds'));
+    }
+
+
+    function indcoservestore(Request $request)
+    {
+        // Validate the form data
+        $request->validate([
+            'indcoservedate' => 'required',
+            'three' => 'required|',
+            'six' => 'required|',
+            'abovesix' => 'required|',
+        ]);
+
+        // Create a new instance of the model and populate it with the form data
+        $byi = new Drpds_indcoserve();
+        $byi->region_id = Auth::user()->region_id;
+        $byi->user_id = Auth::user()->id;
+        $byi->indcoservedate = $request->input('indcoservedate');
+        $byi->three = $request->input('three');
+        $byi->six = $request->input('six');
+        $byi->abovesix = $request->input('abovesix');
+        $byi->save();
+
+        return redirect('/drpds/indcoserve/list')->with('status', 'Indcoserve added successfully');
+    }
+
+
+    function saltadd()
+    {
+
+        $drpds = Drpds_salt::select('*')->paginate(5);
+        return view("drpds.salt.add", compact('drpds'));
+    }
+
+    function saltlist()
+    {
+
+        $drpds = Drpds_salt::select('*')->paginate(5);
+        return view("drpds.salt.list", compact('drpds'));
+    }
+
+
+    function saltstore(Request $request)
+    {
+        // Validate the form data
+        $request->validate([
+            'saltdate' => 'required',
+            'dl' => 'required|',
+            'purchase' => 'required|',
+            'sale' => 'required|',
+        ]);
+
+        // Create a new instance of the model and populate it with the form data
+        $byi = new Drpds_salt();
+        $byi->region_id = Auth::user()->region_id;
+        $byi->user_id = Auth::user()->id;
+        $byi->saltdate = $request->input('saltdate');
+        $byi->dl = $request->input('dl');
+        $byi->purchase = $request->input('purchase');
+        $byi->sale = $request->input('sale');
+        $byi->save();
+
+        return redirect('/drpds/salt/list')->with('status', 'Salt Sales added successfully');
+    }
+
+
+    function duesaltadd()
+    {
+
+        $drpds = Drpds_duesalt::select('*')->paginate(5);
+        return view("drpds.duesalt.add", compact('drpds'));
+    }
+
+    function duesaltlist()
+    {
+
+        $drpds = Drpds_duesalt::select('*')->paginate(5);
+        return view("drpds.duesalt.list", compact('drpds'));
+    }
+
+
+    function duesaltstore(Request $request)
+    {
+        // Validate the form data
+        $request->validate([
+            'duesaltdate' => 'required',
+            'three' => 'required|',
+            'six' => 'required|',
+            'abovesix' => 'required|',
+        ]);
+
+        // Create a new instance of the model and populate it with the form data
+        $byi = new Drpds_duesalt();
+        $byi->region_id = Auth::user()->region_id;
+        $byi->user_id = Auth::user()->id;
+        $byi->duesaltdate = $request->input('duesaltdate');
+        $byi->three = $request->input('three');
+        $byi->six = $request->input('six');
+        $byi->abovesix = $request->input('abovesix');
+        $byi->save();
+
+        return redirect('/drpds/duesalt/list')->with('status', 'Due to TN Salt  added successfully');
     }
 }

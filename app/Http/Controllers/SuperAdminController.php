@@ -596,6 +596,217 @@ class SuperAdminController extends Controller
 //        return view("superadmin.salereport", compact('sales', 'salereportdate'));
     }
 
+    function byireport(Request $request)
+    {
+
+
+        $societiestypes = Mtr_societytype::all();
+        $societyTypesFilter=$request->input('societyTypes');
+        $startDate= $request->input('startDate');
+        $endDate= $request->input('endDate');
+        if(!empty($startDate)) {
+            $results = DB::table('mtr_region AS a')
+                ->select(
+                    'a.region_name AS Region_Name',
+                    DB::raw('(SELECT IFNULL(SUM(drpds_byi.prb), 0) FROM drpds_byi WHERE drpds_byi.region_id = a.id AND drpds_byi.region_id = a.id AND drpds_byi.identifieddate BETWEEN "'.$startDate.'" AND "'.$endDate.'") AS prb'),
+                    DB::raw('(SELECT IFNULL(SUM(drpds_byi.fps), 0) FROM drpds_byi WHERE drpds_byi.region_id = a.id AND drpds_byi.identifieddate BETWEEN "'.$startDate.'" AND "'.$endDate.'") AS fps'),
+                    DB::raw('(SELECT IFNULL(SUM(drpds_byi.fpsc), 0) FROM drpds_byi WHERE drpds_byi.region_id = a.id AND drpds_byi.identifieddate BETWEEN "'.$startDate.'" AND "'.$endDate.'") AS fpsc'),
+                )
+                ->get();
+        }
+        else{
+            $results = DB::table('mtr_region AS a')
+                ->select(
+                    'a.region_name AS Region_Name',
+                    DB::raw('(SELECT IFNULL(SUM(drpds_byi.prb), 0) FROM drpds_byi WHERE drpds_byi.region_id = a.id AND MONTH(drpds_byi.identifieddate) = MONTH(NOW())) AS prb'),
+                    DB::raw('(SELECT IFNULL(SUM(drpds_byi.fps), 0) FROM drpds_byi WHERE drpds_byi.region_id = a.id AND MONTH(drpds_byi.identifieddate)= MONTH(NOW())) AS fps'),
+                    DB::raw('(SELECT IFNULL(SUM(drpds_byi.fpsc), 0) FROM drpds_byi WHERE drpds_byi.region_id = a.id AND MONTH(drpds_byi.identifieddate)= MONTH(NOW()) ) AS fpsc'),
+                )
+                ->get();
+
+        }
+        return view("superadmin.byireport", compact('results','startDate','endDate'));
+    }
+
+    function faciliftingreport(Request $request)
+    {
+
+
+        $societiestypes = Mtr_societytype::all();
+        $societyTypesFilter=$request->input('societyTypes');
+        $startDate= $request->input('startDate');
+        $endDate= $request->input('endDate');
+        if(!empty($startDate)) {
+
+            $results = DB::table('mtr_region AS a')
+                ->select(
+                    'a.region_name AS Region_Name',
+                    DB::raw('(SELECT IFNULL(SUM(drpds_facelifting.fpsb), 0) FROM drpds_facelifting WHERE drpds_facelifting.region_id = a.id AND drpds_facelifting.faceliftingdate BETWEEN "'.$startDate.'" AND "'.$endDate.'") AS fpsb'),
+                    DB::raw('    (SELECT IFNULL(SUM(drpds_facelifting.fpsp), 0) FROM drpds_facelifting WHERE drpds_facelifting.region_id = a.id AND  drpds_facelifting.faceliftingdate BETWEEN "'.$startDate.'" AND "'.$endDate.'") AS fpsp'),
+                    DB::raw('(SELECT IFNULL(SUM(drpds_facelifting.due), 0) FROM drpds_facelifting WHERE drpds_facelifting.region_id = a.id AND drpds_facelifting.faceliftingdate BETWEEN "'.$startDate.'" AND "'.$endDate.'") AS due'),
+                )
+                ->get();
+        }
+        else{
+            $results = DB::table('mtr_region AS a')
+                ->select(
+                    'a.region_name AS Region_Name',
+                    DB::raw('(SELECT IFNULL(SUM(drpds_facelifting.fpsb), 0) FROM drpds_facelifting WHERE drpds_facelifting.region_id = a.id AND MONTH(drpds_facelifting.faceliftingdate) = MONTH(NOW())) AS fpsb'),
+                    DB::raw('    (SELECT IFNULL(SUM(drpds_facelifting.fpsp), 0) FROM drpds_facelifting WHERE drpds_facelifting.region_id = a.id AND MONTH(drpds_facelifting.faceliftingdate)= MONTH(NOW())) AS fpsp'),
+                    DB::raw('(SELECT IFNULL(SUM(drpds_facelifting.due), 0) FROM drpds_facelifting WHERE drpds_facelifting.region_id = a.id AND MONTH(drpds_facelifting.faceliftingdate)= MONTH(NOW()) ) AS due'),
+                )
+                ->get();
+
+        }
+        return view("superadmin.facelifting", compact('results','startDate','endDate'));
+    }
+    function isoreport(Request $request)
+    {
+
+
+        $startDate= $request->input('startDate');
+        $endDate= $request->input('endDate');
+        if(!empty($startDate)) {
+
+            $results = DB::table('mtr_region AS a')
+                ->select(
+                    'a.region_name AS Region_Name',
+                    DB::raw('(SELECT IFNULL(SUM(drpds_iso.ftfps), 0) FROM drpds_iso WHERE drpds_iso.region_id = a.id AND drpds_iso.isodate BETWEEN "'.$startDate.'" AND "'.$endDate.'") AS ftfps'),
+                    DB::raw('(SELECT IFNULL(SUM(drpds_iso.ftfpsc), 0) FROM drpds_iso WHERE drpds_iso.region_id = a.id AND drpds_iso.isodate BETWEEN "'.$startDate.'" AND "'.$endDate.'") AS ftfpsc'),
+                    DB::raw('(SELECT IFNULL(SUM(drpds_iso.wc), 0) FROM drpds_iso WHERE drpds_iso.region_id = a.id AND drpds_iso.isodate BETWEEN "'.$startDate.'" AND "'.$endDate.'") AS wc'),
+                    DB::raw('(SELECT IFNULL(SUM(drpds_iso.twc), 0) FROM drpds_iso WHERE drpds_iso.region_id = a.id AND drpds_iso.isodate BETWEEN "'.$startDate.'" AND "'.$endDate.'") AS twc'),
+                    DB::raw('(SELECT IFNULL(SUM(drpds_iso.percentage), 0) FROM drpds_iso WHERE drpds_iso.region_id = a.id AND drpds_iso.isodate BETWEEN "'.$startDate.'" AND "'.$endDate.'") AS percentage'),
+                )
+                ->get();
+        }
+        else{
+            $results = DB::table('mtr_region AS a')
+                ->select(
+                    'a.region_name AS Region_Name',
+                    DB::raw('(SELECT IFNULL(SUM(drpds_iso.ftfps), 0) FROM drpds_iso WHERE drpds_iso.region_id = a.id AND MONTH(drpds_iso.isodate) = MONTH(NOW())) AS ftfps'),
+                    DB::raw('(SELECT IFNULL(SUM(drpds_iso.ftfpsc), 0) FROM drpds_iso WHERE drpds_iso.region_id = a.id AND MONTH(drpds_iso.isodate)= MONTH(NOW())) AS ftfpsc'),
+                    DB::raw('(SELECT IFNULL(SUM(drpds_iso.wc), 0) FROM drpds_iso WHERE drpds_iso.region_id = a.id AND MONTH(drpds_iso.isodate)= MONTH(NOW()) ) AS wc'),
+                    DB::raw('(SELECT IFNULL(SUM(drpds_iso.twc), 0) FROM drpds_iso WHERE drpds_iso.region_id = a.id AND MONTH(drpds_iso.isodate)= MONTH(NOW()) ) AS twc'),
+                    DB::raw('(SELECT IFNULL(SUM(drpds_iso.percentage), 0) FROM drpds_iso WHERE drpds_iso.region_id = a.id AND MONTH(drpds_iso.isodate)= MONTH(NOW()) ) AS percentage'),
+
+                )
+                ->get();
+
+
+
+
+
+        }
+        return view("superadmin.iso", compact('results','startDate','endDate'));
+    }
+
+    function palmjaggeryreport(Request $request)
+    {
+
+
+        $startDate= $request->input('startDate');
+        $endDate= $request->input('endDate');
+        if(!empty($startDate)) {
+
+            $results = DB::table('mtr_region AS a')
+                ->select(
+                    'a.region_name AS Region_Name',
+                    DB::raw('(SELECT IFNULL(SUM(palm_jaggery.target), 0) FROM palm_jaggery WHERE palm_jaggery.region_id = a.id AND palm_jaggery.created_at BETWEEN "'.$startDate.'" AND "'.$endDate.'") AS target'),
+                    DB::raw('(SELECT IFNULL(SUM(palm_jaggery.achievement), 0) FROM palm_jaggery WHERE palm_jaggery.region_id = a.id AND palm_jaggery.created_at BETWEEN "'.$startDate.'" AND "'.$endDate.'") AS achievement'),
+
+                )
+                ->get();
+        }
+        else{
+            $results = DB::table('mtr_region AS a')
+                ->select(
+                    'a.region_name AS Region_Name',
+                    DB::raw('(SELECT IFNULL(SUM(palm_jaggery.target), 0) FROM palm_jaggery WHERE palm_jaggery.region_id = a.id AND MONTH(palm_jaggery.created_at) = MONTH(NOW())) AS target'),
+                    DB::raw('(SELECT IFNULL(SUM(palm_jaggery.achievement), 0) FROM palm_jaggery WHERE palm_jaggery.region_id = a.id AND MONTH(palm_jaggery.created_at)= MONTH(NOW())) AS achievement'),
+
+                )
+                ->get();
+
+
+
+
+
+        }
+        return view("superadmin.palmjaggery", compact('results','startDate','endDate'));
+    }
+    function upi_fpsreport(Request $request)
+    {
+
+
+        $startDate= $request->input('startDate');
+        $endDate= $request->input('endDate');
+        if(!empty($startDate)) {
+
+            $results = DB::table('mtr_region AS a')
+                ->select(
+                    'a.region_name AS Region_Name',
+                    DB::raw('(SELECT IFNULL(SUM(upi_fps.fps_fulltime), 0) FROM upi_fps WHERE upi_fps.region_id = a.id AND upi_fps.created_at BETWEEN "'.$startDate.'" AND "'.$endDate.'") AS fps_fulltime'),
+                    DB::raw('(SELECT IFNULL(SUM(upi_fps.fps_parttime), 0) FROM upi_fps WHERE upi_fps.region_id = a.id AND upi_fps.created_at BETWEEN "'.$startDate.'" AND "'.$endDate.'") AS fps_parttime'),
+                    DB::raw('(SELECT IFNULL(SUM(upi_fps.upi_introduced), 0) FROM upi_fps WHERE upi_fps.region_id = a.id AND upi_fps.created_at BETWEEN "'.$startDate.'" AND "'.$endDate.'") AS upi_introduced'),
+                )
+                ->get();
+        }
+        else{
+            $results = DB::table('mtr_region AS a')
+                ->select(
+                    'a.region_name AS Region_Name',
+                    DB::raw('(SELECT IFNULL(SUM(upi_fps.fps_fulltime), 0) FROM upi_fps WHERE upi_fps.region_id = a.id AND MONTH(upi_fps.created_at) = MONTH(NOW())) AS fps_fulltime'),
+                    DB::raw('(SELECT IFNULL(SUM(upi_fps.fps_parttime), 0) FROM upi_fps WHERE upi_fps.region_id = a.id AND MONTH(upi_fps.created_at)= MONTH(NOW())) AS fps_parttime'),
+                    DB::raw('(SELECT IFNULL(SUM(upi_fps.upi_introduced), 0) FROM upi_fps WHERE upi_fps.region_id = a.id AND MONTH(upi_fps.created_at)= MONTH(NOW())) AS upi_introduced'),
+
+                )
+                ->get();
+
+
+
+
+
+        }
+        return view("superadmin.upi-fps", compact('results','startDate','endDate'));
+    }
+    function gunnyduereport(Request $request)
+    {
+
+
+        $startDate= $request->input('startDate');
+        $endDate= $request->input('endDate');
+        if(!empty($startDate)) {
+
+            $results = DB::table('mtr_region AS a')
+                ->select(
+                    'a.region_name AS Region_Name',
+                    DB::raw('(SELECT IFNULL(SUM(gunny_dues.consumer_goods), 0) FROM gunny_dues WHERE gunny_dues.region_id = a.id AND gunny_dues.created_at BETWEEN "'.$startDate.'" AND "'.$endDate.'") AS consumer_goods'),
+                    DB::raw('(SELECT IFNULL(SUM(gunny_dues.amount_received), 0) FROM gunny_dues WHERE gunny_dues.region_id = a.id AND gunny_dues.created_at BETWEEN "'.$startDate.'" AND "'.$endDate.'") AS amount_received'),
+                    DB::raw('(SELECT consumer_goods_sync_date FROM gunny_dues WHERE gunny_dues.region_id = a.id AND gunny_dues.created_at BETWEEN "'.$startDate.'" AND "'.$endDate.'" LIMIT 1) AS consumer_goods_sync_date'),
+                )
+                ->get();
+        }
+        else{
+            $results = DB::table('mtr_region AS a')
+                ->select(
+                    'a.region_name AS Region_Name',
+                    DB::raw('(SELECT IFNULL(SUM(gunny_dues.consumer_goods), 0) FROM gunny_dues WHERE gunny_dues.region_id = a.id AND MONTH(gunny_dues.created_at) = MONTH(NOW())) AS consumer_goods'),
+                    DB::raw('(SELECT IFNULL(SUM(gunny_dues.amount_received), 0) FROM gunny_dues WHERE gunny_dues.region_id = a.id AND MONTH(gunny_dues.created_at)= MONTH(NOW())) AS amount_received'),
+                    DB::raw('(SELECT consumer_goods_sync_date FROM gunny_dues WHERE gunny_dues.region_id = a.id AND MONTH(gunny_dues.created_at)= MONTH(NOW()) LIMIT 1) AS consumer_goods_sync_date'),
+
+
+
+                )
+                ->get();
+
+
+
+
+
+        }
+        return view("superadmin.gunny-due", compact('results','startDate','endDate'));
+    }
+
     function croploanreport(Request $request)
     {
 
