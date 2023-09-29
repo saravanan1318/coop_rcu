@@ -2,11 +2,11 @@
 @section('content')
 <main id="main" class="main">
   <div class="pagetitle">
-    <h1>Palm Jaggery Report</h1>
+    <h1>Remittance Report</h1>
     <nav>
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="/society/dashboard">Dashboard</a></li>
-        <li class="breadcrumb-item">Palm Jaggery</li>
+        <li class="breadcrumb-item">Remittance</li>
         <li class="breadcrumb-item active">Report</li>
       </ol>
     </nav>
@@ -25,33 +25,6 @@
                      </div>
                     <div class="col-md-12" style="margin-top: 10px">
 
-{{--                        <table class="stripe table-bordered table-info " id="data-table">--}}
-{{--                            <table class="stripe table-bordered table-info " id="data-table">--}}
-{{--                            <thead style="text-align: center">--}}
-{{--                            <tr>--}}
-{{--                                <th colspan="4">--}}
-{{--                                    <center>BYI Report </center>--}}
-{{--                                </th>--}}
-{{--                            </tr>--}}
-{{--                            <tr>--}}
-{{--                                <th scope="col" rowspan="2">Name of the District</th>--}}
-{{--                                <th scope="col" rowspan="2">No of FPS functioning in Private rental buildings</th>--}}
-{{--                                <th scope="col" rowspan="2">No.of places identified for Fair price shop construction</th>--}}
-{{--                                <th scope="col" rowspan="2">No of Places yet to be identified for Fair Price Shop construction</th>--}}
-{{--                            </tr>--}}
-
-{{--                            </thead>--}}
-{{--                            <tbody >--}}
-{{--                            @foreach($results as $result)--}}
-{{--                                <tr>--}}
-{{--                                    <td>{{$result->Region_Name}}</td>--}}
-{{--                                    <td>{{$result->prb}}</td>--}}
-{{--                                    <td>{{$result->fps}}</td>--}}
-{{--                                    <td>{{$result->fpsc}}</td>--}}
-{{--                                </tr>--}}
-{{--                            @endforeach--}}
-{{--                            </tbody>--}}
-{{--                        </table>--}}
                         <form method="GET" action="{{ URL::current() }}">
                             <h3>Filters:</h3>
                             <div class="row filterpaddings">
@@ -79,15 +52,13 @@
 
                             <thead style="text-align: center">
                             <tr>
-                                <th colspan="4">
-                                    Palm Vellum Sales Details (in Rs. Lakhs)
+                                <th colspan="9">
+                                    Details of Penalty Remittance due in Govt Account - August 2023
                                 </th>
                             </tr>
                             <tr>
-                                <th scope="col">Name of the District</th>
-                                <th scope="col">Monthly sales target</th>
-                                <th scope="col">Achievement of this month</th>
-                                <th scope="col">Balance</th>
+                                <th scope="col">Region</th>
+                                <th scope="col">Balance Amt to be remitted at the end of the month (Rs. in lakhs)</th>
                             </tr>
 
                             </thead>
@@ -95,9 +66,7 @@
                             @foreach($results as $result)
                                 <tr>
                                     <td>{{$result->Region_Name}}</td>
-                                    <td>{{$result->target}}</td>
-                                    <td>{{$result->achievement}}</td>
-                                    <td>{{$result->target - $result->achievement }}</td>
+                                    <td>{{$result->balance_amt}}</td>
                                 </tr>
                             @endforeach
                             </tbody>

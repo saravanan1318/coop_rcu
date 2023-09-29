@@ -807,6 +807,77 @@ class SuperAdminController extends Controller
         return view("superadmin.gunny-due", compact('results','startDate','endDate'));
     }
 
+    function gunnysalereport(Request $request)
+    {
+
+
+        $startDate= $request->input('startDate');
+        $endDate= $request->input('endDate');
+        if(!empty($startDate)) {
+
+            $results = DB::table('mtr_region AS a')
+                ->select(
+                    'a.region_name AS Region_Name',
+                    DB::raw('(SELECT IFNULL(SUM(gunny_sales.initial_balance), 0) FROM gunny_sales WHERE gunny_sales.region_id = a.id AND gunny_sales.created_at BETWEEN "'.$startDate.'" AND "'.$endDate.'") AS initial_balance'),
+                    DB::raw('(SELECT IFNULL(SUM(gunny_sales.curr_month_income), 0) FROM gunny_sales WHERE gunny_sales.region_id = a.id AND  gunny_sales.created_at BETWEEN "'.$startDate.'" AND "'.$endDate.'") AS curr_month_income'),
+                    DB::raw('(SELECT IFNULL(SUM(gunny_sales.cms_tncsc), 0) FROM gunny_sales WHERE gunny_sales.region_id = a.id AND gunny_sales.created_at BETWEEN "'.$startDate.'" AND "'.$endDate.'") AS cms_tncsc'),
+                    DB::raw('(SELECT IFNULL(SUM(gunny_sales.cms_mstc), 0) FROM gunny_sales WHERE gunny_sales.region_id = a.id AND gunny_sales.created_at BETWEEN "'.$startDate.'" AND "'.$endDate.'") AS cms_mstc'),
+                    DB::raw('(SELECT IFNULL(SUM(gunny_sales.cms_ncdfi), 0) FROM gunny_sales WHERE gunny_sales.region_id = a.id AND gunny_sales.created_at BETWEEN "'.$startDate.'" AND "'.$endDate.'") AS cms_ncdfi'),
+                )
+                ->get();
+        }
+        else{
+            $results = DB::table('mtr_region AS a')
+                ->select(
+                    'a.region_name AS Region_Name',
+                    DB::raw('(SELECT IFNULL(SUM(gunny_sales.initial_balance), 0) FROM gunny_sales WHERE gunny_sales.region_id = a.id AND MONTH(gunny_sales.created_at) = MONTH(NOW())) AS initial_balance'),
+                    DB::raw('(SELECT IFNULL(SUM(gunny_sales.curr_month_income), 0) FROM gunny_sales WHERE gunny_sales.region_id = a.id AND MONTH(gunny_sales.created_at)= MONTH(NOW())) AS curr_month_income'),
+                    DB::raw('(SELECT IFNULL(SUM(gunny_sales.cms_tncsc), 0) FROM gunny_sales WHERE gunny_sales.region_id = a.id AND MONTH(gunny_sales.created_at)= MONTH(NOW())) AS cms_tncsc'),
+                    DB::raw('(SELECT IFNULL(SUM(gunny_sales.cms_mstc), 0) FROM gunny_sales WHERE gunny_sales.region_id = a.id AND MONTH(gunny_sales.created_at)= MONTH(NOW())) AS cms_mstc'),
+                    DB::raw('(SELECT IFNULL(SUM(gunny_sales.cms_ncdfi), 0) FROM gunny_sales WHERE gunny_sales.region_id = a.id AND MONTH(gunny_sales.created_at)= MONTH(NOW())) AS cms_ncdfi'),
+
+                )
+                ->get();
+
+
+
+
+
+        }
+        return view("superadmin.gunny-sale", compact('results','startDate','endDate'));
+    }
+    function remittancereport(Request $request)
+    {
+
+
+        $startDate= $request->input('startDate');
+        $endDate= $request->input('endDate');
+        if(!empty($startDate)) {
+
+            $results = DB::table('mtr_region AS a')
+                ->select(
+                    'a.region_name AS Region_Name',
+                    DB::raw('(SELECT IFNULL(SUM(remittance_to_govt_ac.balance_amt), 0) FROM remittance_to_govt_ac WHERE remittance_to_govt_ac.region_id = a.id AND remittance_to_govt_ac.created_at BETWEEN "'.$startDate.'" AND "'.$endDate.'") AS balance_amt'),
+                )
+                ->get();
+        }
+        else{
+            $results = DB::table('mtr_region AS a')
+                ->select(
+                    'a.region_name AS Region_Name',
+                    DB::raw('(SELECT IFNULL(SUM(remittance_to_govt_ac.balance_amt), 0) FROM remittance_to_govt_ac WHERE remittance_to_govt_ac.region_id = a.id AND MONTH(remittance_to_govt_ac.created_at) = MONTH(NOW())) AS balance_amt'),
+
+                )
+                ->get();
+
+
+
+
+
+        }
+        return view("superadmin.remittance", compact('results','startDate','endDate'));
+    }
+
     function croploanreport(Request $request)
     {
 

@@ -2,11 +2,11 @@
 @section('content')
 <main id="main" class="main">
   <div class="pagetitle">
-    <h1>Palm Jaggery Report</h1>
+    <h1>Gunny sale Report</h1>
     <nav>
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="/society/dashboard">Dashboard</a></li>
-        <li class="breadcrumb-item">Palm Jaggery</li>
+        <li class="breadcrumb-item">Gunny sale</li>
         <li class="breadcrumb-item active">Report</li>
       </ol>
     </nav>
@@ -25,33 +25,6 @@
                      </div>
                     <div class="col-md-12" style="margin-top: 10px">
 
-{{--                        <table class="stripe table-bordered table-info " id="data-table">--}}
-{{--                            <table class="stripe table-bordered table-info " id="data-table">--}}
-{{--                            <thead style="text-align: center">--}}
-{{--                            <tr>--}}
-{{--                                <th colspan="4">--}}
-{{--                                    <center>BYI Report </center>--}}
-{{--                                </th>--}}
-{{--                            </tr>--}}
-{{--                            <tr>--}}
-{{--                                <th scope="col" rowspan="2">Name of the District</th>--}}
-{{--                                <th scope="col" rowspan="2">No of FPS functioning in Private rental buildings</th>--}}
-{{--                                <th scope="col" rowspan="2">No.of places identified for Fair price shop construction</th>--}}
-{{--                                <th scope="col" rowspan="2">No of Places yet to be identified for Fair Price Shop construction</th>--}}
-{{--                            </tr>--}}
-
-{{--                            </thead>--}}
-{{--                            <tbody >--}}
-{{--                            @foreach($results as $result)--}}
-{{--                                <tr>--}}
-{{--                                    <td>{{$result->Region_Name}}</td>--}}
-{{--                                    <td>{{$result->prb}}</td>--}}
-{{--                                    <td>{{$result->fps}}</td>--}}
-{{--                                    <td>{{$result->fpsc}}</td>--}}
-{{--                                </tr>--}}
-{{--                            @endforeach--}}
-{{--                            </tbody>--}}
-{{--                        </table>--}}
                         <form method="GET" action="{{ URL::current() }}">
                             <h3>Filters:</h3>
                             <div class="row filterpaddings">
@@ -79,25 +52,47 @@
 
                             <thead style="text-align: center">
                             <tr>
-                                <th colspan="4">
-                                    Palm Vellum Sales Details (in Rs. Lakhs)
+                                <th colspan="9">
+                                    Sales and Closing Balance of Gallicons (in Lakhs) – As on this month 2023
                                 </th>
                             </tr>
                             <tr>
-                                <th scope="col">Name of the District</th>
-                                <th scope="col">Monthly sales target</th>
-                                <th scope="col">Achievement of this month</th>
-                                <th scope="col">Balance</th>
+                                <th scope="col" rowspan="2">Name of the District</th>
+                                <th scope="col" rowspan="2">Initial balance</th>
+                                <th scope="col" rowspan="2">Current month's income</th>
+                                <th scope="col" rowspan="2">Total</th>
+                                <th scope="col"  colspan="4">Current Month Sales</th>
+                                <th scope="col" rowspan="2">OverAll Balance</th>
+                            </tr>
+                            <tr>
+                                <th>TNCSC</th>
+                                <th>MSTC (Tender)</th>
+                                <th>NCDFI (e-market)</th>
+                                <th>Total</th>
                             </tr>
 
                             </thead>
                             <tbody >
                             @foreach($results as $result)
+                                @php
+                                $intialBalance=$result->initial_balance;
+                                $intialCurrent=$result->curr_month_income;
+                                $total=$intialBalance+$intialCurrent;
+                                $cms_tncsc=$result->cms_tncsc;
+                                $cms_mstc=$result->cms_mstc;
+                                $cms_ncdfi=$result->cms_ncdfi;
+                                $totalsc=$cms_tncsc+$cms_mstc+$cms_ncdfi;
+                                @endphp
                                 <tr>
                                     <td>{{$result->Region_Name}}</td>
-                                    <td>{{$result->target}}</td>
-                                    <td>{{$result->achievement}}</td>
-                                    <td>{{$result->target - $result->achievement }}</td>
+                                    <td>{{$result->initial_balance}}</td>
+                                    <td>{{$result->curr_month_income}}</td>
+                                    <td>{{$total}}</td>
+                                    <td>{{$cms_tncsc}}</td>
+                                    <td>{{$cms_mstc}}</td>
+                                    <td>{{$cms_ncdfi}}</td>
+                                    <td>{{$totalsc}}</td>
+                                    <td>{{$total-$totalsc}}</td>
                                 </tr>
                             @endforeach
                             </tbody>

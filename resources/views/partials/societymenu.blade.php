@@ -156,6 +156,16 @@
                       <i class="bi bi-circle"></i><span>Gunny Due</span>
                   </a>
               </li>
+              <li>
+                  <a href="/superadmin/gunnysalereport">
+                      <i class="bi bi-circle"></i><span>Gunny Sale</span>
+                  </a>
+              </li>
+              <li>
+                  <a href="/superadmin/remittancereport">
+                      <i class="bi bi-circle"></i><span>Remittance</span>
+                  </a>
+              </li>
           </ul>
       </li>
       <!-- End Dashboard Nav -->

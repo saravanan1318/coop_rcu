@@ -2,11 +2,11 @@
 @section('content')
 <main id="main" class="main">
   <div class="pagetitle">
-    <h1>Report</h1>
+    <h1>UPI-FPS Report</h1>
     <nav>
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="/society/dashboard">Dashboard</a></li>
-        <li class="breadcrumb-item">BYI</li>
+        <li class="breadcrumb-item">UPI-FPS</li>
         <li class="breadcrumb-item active">Report</li>
       </ol>
     </nav>
