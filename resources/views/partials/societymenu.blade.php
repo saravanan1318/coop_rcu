@@ -307,23 +307,40 @@
           </li>
         </ul>
       </li>
-{{--      <li class="nav-item">--}}
-{{--          <a class="nav-link collapsed" data-bs-target="#build-nav-press" data-bs-toggle="collapse" href="#">--}}
-{{--              <i class="bi bi-journal-text"></i><span>Press</span><i class="bi bi-chevron-down ms-auto"></i>--}}
-{{--          </a>--}}
-{{--          <ul id="build-nav-press" class="nav-content collapse " data-bs-parent="#sidebar-nav">--}}
-{{--              <li>--}}
-{{--                  <a href="/jr/press/add">--}}
-{{--                      <i class="bi bi-circle"></i><span>Entry</span>--}}
-{{--                  </a>--}}
-{{--              </li>--}}
-{{--              <li>--}}
-{{--                  <a href="/jr/press/list">--}}
-{{--                      <i class="bi bi-circle"></i><span>View</span>--}}
-{{--                  </a>--}}
-{{--              </li>--}}
-{{--          </ul>--}}
-{{--      </li>--}}
+      <li class="nav-item">
+          <a class="nav-link collapsed" data-bs-target="#build-nav-press" data-bs-toggle="collapse" href="#">
+              <i class="bi bi-journal-text"></i><span>Press</span><i class="bi bi-chevron-down ms-auto"></i>
+          </a>
+          <ul id="build-nav-press" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+              <li>
+                  <a href="/jr/press/add">
+                      <i class="bi bi-circle"></i><span>Entry</span>
+                  </a>
+              </li>
+              <li>
+                  <a href="/jr/press/list">
+                      <i class="bi bi-circle"></i><span>View</span>
+                  </a>
+              </li>
+          </ul>
+      </li>
+      <li class="nav-item">
+          <a class="nav-link collapsed" data-bs-target="#build-nav" data-bs-toggle="collapse" href="#">
+              <i class="bi bi-journal-text"></i><span>Profit $ Loss</span><i class="bi bi-chevron-down ms-auto"></i>
+          </a>
+          <ul id="build-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+              <li>
+                  <a href="/jr/profit/add">
+                      <i class="bi bi-circle"></i><span>Entry</span>
+                  </a>
+              </li>
+              <li>
+                  <a href="/jr/profit/list">
+                      <i class="bi bi-circle"></i><span>View</span>
+                  </a>
+              </li>
+          </ul>
+      </li>
 
       <script>
         // Add jQuery or JavaScript code to toggle the collapse/expand behavior

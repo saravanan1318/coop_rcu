@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Helpers\LoanQueryService;
 use App\Models\Deposit_outstandings;
+use App\Models\Jr_press;
+use App\Models\Jr_profit;
 use App\Models\Mtr_societytype;
 use Validator;
 
@@ -711,5 +713,91 @@ class JRController extends Controller
         $societiesBoardDirectors->save();
 
         return redirect('/jr/disqualify/list')->with('status', '36 Disqualification added successfully');
+    }
+    function pressadd()
+    {
+
+        $jr = Jr_press::select('*')->paginate(5);
+        return view("jr.press.add", compact('jr'));
+    }
+
+    function presslist()
+    {
+
+        $jr = Jr_press::select('*')->paginate(5);
+        return view("jr.press.list", compact('jr'));
+    }
+
+    function pressstore(Request $request)
+    {
+        $request->validate([
+            'pressdate' => 'required',
+            'npp' => 'required|integer',
+            'dt' => 'required|string|max:255',
+            'achievement' => 'required|string|max:255',
+            'percentage' => 'required',
+            'lya' => 'required|string|max:255',
+
+        ]);
+
+
+        $seventeena = new Jr_press();
+        $seventeena->region_id = Auth::user()->id;
+        $seventeena->pressdate = $request->input('pressdate');
+        $seventeena->npp = $request->input('npp');
+        $seventeena->dt = $request->input('dt');
+        $seventeena->achievement = $request->input('achievement');
+        $seventeena->percentage = $request->input('percentage');
+        $seventeena->lya = $request->input('lya');
+        $seventeena->save();
+
+
+        return redirect('/jr/press/list')->with('status', 'Press added successfully');
+    }
+
+    function profitadd()
+    {
+
+        $jr = Jr_profit::select('*')->paginate(5);
+        return view("jr.profit.add", compact('jr'));
+    }
+
+    function profitlist()
+    {
+
+        $jr = Jr_profit::select('*')->paginate(5);
+        return view("jr.profit.list", compact('jr'));
+    }
+
+    function profitstore(Request $request)
+    {
+        $request->validate([
+            'profitdate' => 'required',
+            'total' => 'required|integer',
+            'nsnp_no' => 'required|string|max:255',
+            'nsnp_percentage' => 'required|string|max:255',
+            'nsp_no' => 'required',
+            'nsp_percentage' => 'required|string|max:255',
+            'nsl_no' => 'required',
+            'nsl_percentage' => 'required|string|max:255',
+            'progress' => 'required',
+
+        ]);
+
+
+        $seventeena = new Jr_profit();
+        $seventeena->region_id = Auth::user()->id;
+        $seventeena->profitdate = $request->input('profitdate');
+        $seventeena->total = $request->input('total');
+        $seventeena->nsnp_no = $request->input('nsnp_no');
+        $seventeena->nsnp_percentage = $request->input('nsnp_percentage');
+        $seventeena->nsp_no = $request->input('nsp_no');
+        $seventeena->nsp_percentage = $request->input('nsp_percentage');
+        $seventeena->nsl_no = $request->input('nsl_no');
+        $seventeena->nsl_percentage = $request->input('nsl_percentage');
+        $seventeena->progress = $request->input('progress');
+        $seventeena->save();
+
+        return redirect('/jr/profit/list')->with('status', 'Profit & Loss added successfully');
     }
 }
