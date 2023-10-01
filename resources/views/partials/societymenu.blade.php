@@ -142,6 +142,16 @@
                   </a>
               </li>
               <li>
+                  <a href="/superadmin/teareport">
+                      <i class="bi bi-circle"></i><span>Tea</span>
+                  </a>
+              </li>
+              <li>
+                  <a href="/superadmin/indcoreport">
+                      <i class="bi bi-circle"></i><span>Indco</span>
+                  </a>
+              </li>
+              <li>
                   <a href="/superadmin/palmjaggeryreport">
                       <i class="bi bi-circle"></i><span>Palm Jaggery</span>
                   </a>

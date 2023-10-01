@@ -700,6 +700,80 @@ class SuperAdminController extends Controller
         return view("superadmin.iso", compact('results','startDate','endDate'));
     }
 
+    function teareport(Request $request)
+    {
+
+
+        $startDate= $request->input('startDate');
+        $endDate= $request->input('endDate');
+        if(!empty($startDate)) {
+
+            $results = DB::table('mtr_region AS a')
+                ->select(
+                    'a.region_name AS Region_Name',
+                    DB::raw('(SELECT IFNULL(SUM(drpds_tea.fmc), 0) FROM drpds_tea WHERE drpds_tea.region_id = a.id AND drpds_tea.created_at BETWEEN "'.$startDate.'" AND "'.$endDate.'") AS fmc'),
+                    DB::raw('(SELECT IFNULL(SUM(drpds_tea.nl), 0) FROM drpds_tea WHERE drpds_tea.region_id = a.id AND drpds_tea.created_at BETWEEN "'.$startDate.'" AND "'.$endDate.'") AS nl'),
+                    DB::raw('(SELECT IFNULL(SUM(drpds_tea.purchase), 0) FROM drpds_tea WHERE drpds_tea.region_id = a.id AND drpds_tea.created_at BETWEEN "'.$startDate.'" AND "'.$endDate.'") AS purchase'),
+                    DB::raw('(SELECT IFNULL(SUM(drpds_tea.sale), 0) FROM drpds_tea WHERE drpds_tea.region_id = a.id AND drpds_tea.created_at BETWEEN "'.$startDate.'" AND "'.$endDate.'") AS sale'),
+                    DB::raw('(SELECT IFNULL(SUM(drpds_tea.percentage), 0) FROM drpds_tea WHERE drpds_tea.region_id = a.id AND drpds_tea.created_at BETWEEN "'.$startDate.'" AND "'.$endDate.'") AS percentage'),
+                )
+                ->get();
+        }
+        else{
+            $results = DB::table('mtr_region AS a')
+                ->select(
+                    'a.region_name AS Region_Name',
+                    DB::raw('(SELECT IFNULL(SUM(drpds_tea.fmc), 0) FROM drpds_tea WHERE drpds_tea.region_id = a.id AND MONTH(drpds_tea.created_at) = MONTH(NOW())) AS fmc'),
+                    DB::raw('(SELECT IFNULL(SUM(drpds_tea.nl), 0) FROM drpds_tea WHERE drpds_tea.region_id = a.id AND MONTH(drpds_tea.created_at) = MONTH(NOW())) AS nl'),
+                    DB::raw('(SELECT IFNULL(SUM(drpds_tea.purchase), 0) FROM drpds_tea WHERE drpds_tea.region_id = a.id AND MONTH(drpds_tea.created_at) = MONTH(NOW())) AS purchase'),
+                    DB::raw('(SELECT IFNULL(SUM(drpds_tea.sale), 0) FROM drpds_tea WHERE drpds_tea.region_id = a.id AND MONTH(drpds_tea.created_at) = MONTH(NOW())) AS sale'),
+                    DB::raw('(SELECT IFNULL(SUM(drpds_tea.percentage), 0) FROM drpds_tea WHERE drpds_tea.region_id = a.id AND MONTH(drpds_tea.created_at) = MONTH(NOW())) AS percentage'),
+                )
+                ->get();
+
+
+
+
+
+        }
+        return view("superadmin.tea", compact('results','startDate','endDate'));
+    }
+
+    function indcoreport(Request $request)
+    {
+
+
+        $startDate= $request->input('startDate');
+        $endDate= $request->input('endDate');
+        if(!empty($startDate)) {
+
+            $results = DB::table('mtr_region AS a')
+                ->select(
+                    'a.region_name AS Region_Name',
+                    DB::raw('(SELECT IFNULL(SUM(drpds_indcoserve.three), 0) FROM drpds_indcoserve WHERE drpds_indcoserve.region_id = a.id AND drpds_indcoserve.created_at BETWEEN "'.$startDate.'" AND "'.$endDate.'") AS three'),
+                    DB::raw('(SELECT IFNULL(SUM(drpds_indcoserve.six), 0) FROM drpds_indcoserve WHERE drpds_indcoserve.region_id = a.id AND drpds_indcoserve.created_at BETWEEN "'.$startDate.'" AND "'.$endDate.'") AS six'),
+                    DB::raw('(SELECT IFNULL(SUM(drpds_indcoserve.abovesix), 0) FROM drpds_indcoserve WHERE drpds_indcoserve.region_id = a.id AND drpds_indcoserve.created_at BETWEEN "'.$startDate.'" AND "'.$endDate.'") AS abovesix'),
+                )
+                ->get();
+        }
+        else{
+            $results = DB::table('mtr_region AS a')
+                ->select(
+                    'a.region_name AS Region_Name',
+                    DB::raw('(SELECT IFNULL(SUM(drpds_indcoserve.three), 0) FROM drpds_indcoserve WHERE drpds_indcoserve.region_id = a.id AND MONTH(drpds_indcoserve.created_at) = MONTH(NOW())) AS three'),
+                    DB::raw('(SELECT IFNULL(SUM(drpds_indcoserve.six), 0) FROM drpds_indcoserve WHERE drpds_indcoserve.region_id = a.id AND MONTH(drpds_indcoserve.created_at) = MONTH(NOW())) AS six'),
+                    DB::raw('(SELECT IFNULL(SUM(drpds_indcoserve.abovesix), 0) FROM drpds_indcoserve WHERE drpds_indcoserve.region_id = a.id AND MONTH(drpds_indcoserve.created_at) = MONTH(NOW())) AS abovesix'),
+                )
+                ->get();
+
+
+
+
+
+        }
+        return view("superadmin.indco", compact('results','startDate','endDate'));
+    }
+
     function palmjaggeryreport(Request $request)
     {
 
