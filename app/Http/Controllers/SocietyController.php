@@ -166,7 +166,8 @@ class SocietyController extends Controller
 
         $loans = $query->get();
 
-        return view("loan.list", compact('loans',  'regionFilter','circleFilter','societyFilter','startDate','endDate'));
+        $from="society";
+        return view("loan.list", compact('loans',  'regionFilter','circleFilter','societyFilter','startDate','endDate','from'));
 
 //        return view("loan.list", compact('loans'));
     }

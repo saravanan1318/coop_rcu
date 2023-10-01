@@ -147,15 +147,27 @@
                                 @endphp
                                 @foreach($loans as $loan)
                                     @php
-//                                        $totalDisbursedNo += $loan->disbursedno;
-//                                        $totaldisbursedamount +=$loan ->disbursedamount;
-//                                        $totalcollectedno +=$loan ->collectedno;
-//                                        $totalcollectedamount +=$loan ->collectedamount;
-
+                                    if(isset($from))
+                                        {
+                                            $from=$from;
+                                        }
+                                    else{
+                                        $from="";
+                                    }
+                                    if($from=="society")
+                                    {
+                                        $totalDisbursedNo += $loan->disbursedno;
+                                        $totaldisbursedamount +=$loan ->disbursedamount;
+                                        $totalcollectedno +=$loan ->collectedno;
+                                        $totalcollectedamount +=$loan ->collectedamount;
+                                    }
+                                    else
+                                        {
                                         $totalDisbursedNo += $loan->disbursed_count;
                                         $totaldisbursedamount +=$loan ->disbursed_total;
                                         $totalcollectedno +=$loan ->collected_count;
                                         $totalcollectedamount +=$loan ->collect_total;
+                                        }
                                     @endphp
                                 @endforeach
                                 <div class="row p-4">
