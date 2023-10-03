@@ -111,6 +111,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/superadmin/gunnyduereport', [SuperAdminController::class, 'gunnyduereport']);
     Route::get('/superadmin/gunnysalereport', [SuperAdminController::class, 'gunnysalereport']);
     Route::get('/superadmin/remittancereport', [SuperAdminController::class, 'remittancereport']);
+    Route::get('/superadmin/saltreport', [SuperAdminController::class, 'saltreport']);
+    Route::get('/superadmin/duesaltreport', [SuperAdminController::class, 'duesaltreport']);
 
 
     Route::get('/superadmin/users', [SuperAdminController::class, 'userslist']);

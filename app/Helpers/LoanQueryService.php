@@ -834,7 +834,7 @@ class LoanQueryService
         return $query->get();
 
     }
-    public  static function getJRFilteredCropLoan($request)
+    public  static function getJRFilteredCropLoan($request,$distinct = false)
     {
         $regionFilter = $request->input('region');
         $circleFilter = $request->input('circle');

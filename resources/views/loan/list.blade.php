@@ -176,10 +176,10 @@
                                             <thead>
                                                 <tr>
                                                     <th  scope="col" class="py-4" rowspan="2" rowspan="2"><center>Abstract</center></th>
-                                                    <th scope="col" rowspan="1"><center>Distributed Loan No</center></th>
-                                                    <th scope="col" rowspan="1"><center>Distributed Amount</center></th>
-                                                    <th scope="col" rowspan="1"><center>Collected Loan No</center></th>
-                                                    <th scope="col" rowspan="1"><center>Collected Amount</center></th>
+                                                    <th scope="col" rowspan="1"><center>Issue Of Loan No</center></th>
+                                                    <th scope="col" rowspan="1"><center>Issue Of Loan Amount</center></th>
+                                                    <th scope="col" rowspan="1"><center>Collection Of Loan No</center></th>
+                                                    <th scope="col" rowspan="1"><center>Collection Of Loan Amount</center></th>
                                                 </tr>
                                                 <tr>
                                                     <td><center><?= $totalDisbursedNo ?></center></td>

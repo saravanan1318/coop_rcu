@@ -951,6 +951,65 @@ class SuperAdminController extends Controller
         }
         return view("superadmin.remittance", compact('results','startDate','endDate'));
     }
+    function  saltreport(Request $request)
+    {
+
+
+        $startDate = $request->input('startDate');
+        $endDate = $request->input('endDate');
+        if (!empty($startDate)) {
+
+            $results = DB::table('mtr_region AS a')
+                ->select(
+                    'a.region_name AS Region_Name',
+                    DB::raw('(SELECT IFNULL(SUM(drpds_salt.dl), 0) FROM drpds_salt WHERE drpds_salt.region_id = a.id AND drpds_salt.created_at BETWEEN "' . $startDate . '" AND "' . $endDate . '") AS dl'),
+                    DB::raw('(SELECT IFNULL(SUM(drpds_salt.purchase), 0) FROM drpds_salt WHERE drpds_salt.region_id = a.id AND drpds_salt.created_at BETWEEN "' . $startDate . '" AND "' . $endDate . '") AS purchase'),
+                    DB::raw('(SELECT IFNULL(SUM(drpds_salt.sale), 0) FROM drpds_salt WHERE drpds_salt.region_id = a.id AND drpds_salt.created_at BETWEEN "' . $startDate . '" AND "' . $endDate . '") AS sale'),
+                )
+                ->get();
+        } else {
+            $results = DB::table('mtr_region AS a')
+                ->select(
+                    'a.region_name AS Region_Name',
+                    DB::raw('(SELECT IFNULL(SUM(drpds_salt.dl), 0) FROM drpds_salt WHERE drpds_salt.region_id = a.id AND MONTH(drpds_salt.created_at) = MONTH(NOW())) AS dl'),
+                    DB::raw('(SELECT IFNULL(SUM(drpds_salt.purchase), 0) FROM drpds_salt WHERE drpds_salt.region_id = a.id AND MONTH(drpds_salt.created_at) = MONTH(NOW())) AS purchase'),
+                    DB::raw('(SELECT IFNULL(SUM(drpds_salt.sale), 0) FROM drpds_salt WHERE drpds_salt.region_id = a.id AND MONTH(drpds_salt.created_at) = MONTH(NOW())) AS sale'),
+
+                )
+                ->get();
+        }
+        return view("superadmin.saltreport", compact('results', 'startDate', 'endDate'));
+    }
+
+    function  duesaltreport(Request $request)
+    {
+
+
+        $startDate = $request->input('startDate');
+        $endDate = $request->input('endDate');
+        if (!empty($startDate)) {
+
+            $results = DB::table('mtr_region AS a')
+                ->select(
+                    'a.region_name AS Region_Name',
+                    DB::raw('(SELECT IFNULL(SUM(drpds_duesalt.three), 0) FROM drpds_duesalt WHERE drpds_duesalt.region_id = a.id AND drpds_duesalt.created_at BETWEEN "' . $startDate . '" AND "' . $endDate . '") AS three'),
+                    DB::raw('(SELECT IFNULL(SUM(drpds_duesalt.six), 0) FROM drpds_duesalt WHERE drpds_duesalt.region_id = a.id AND drpds_duesalt.created_at BETWEEN "' . $startDate . '" AND "' . $endDate . '") AS six'),
+                    DB::raw('(SELECT IFNULL(SUM(drpds_duesalt.abovesix), 0) FROM drpds_duesalt WHERE drpds_duesalt.region_id = a.id AND drpds_duesalt.created_at BETWEEN "' . $startDate . '" AND "' . $endDate . '") AS abovesix'),
+                )
+                ->get();
+        } else {
+            $results = DB::table('mtr_region AS a')
+                ->select(
+                    'a.region_name AS Region_Name',
+                    DB::raw('(SELECT IFNULL(SUM(drpds_duesalt.three), 0) FROM drpds_duesalt WHERE drpds_duesalt.region_id = a.id AND MONTH(drpds_duesalt.created_at) = MONTH(NOW())) AS three'),
+                    DB::raw('(SELECT IFNULL(SUM(drpds_duesalt.six), 0) FROM drpds_duesalt WHERE drpds_duesalt.region_id = a.id AND MONTH(drpds_duesalt.created_at) = MONTH(NOW())) AS six'),
+                    DB::raw('(SELECT IFNULL(SUM(drpds_duesalt.abovesix), 0) FROM drpds_duesalt WHERE drpds_duesalt.region_id = a.id AND MONTH(drpds_duesalt.created_at) = MONTH(NOW())) AS abovesix'),
+
+                )
+                ->get();
+        }
+        return view("superadmin.duesaltreport", compact('results', 'startDate', 'endDate'));
+    }
 
     function croploanreport(Request $request)
     {

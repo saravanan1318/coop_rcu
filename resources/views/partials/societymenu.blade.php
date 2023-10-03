@@ -152,6 +152,16 @@
                   </a>
               </li>
               <li>
+                  <a href="/superadmin/saltreport">
+                      <i class="bi bi-circle"></i><span>Salt Sales</span>
+                  </a>
+              </li>
+              <li>
+                  <a href="/superadmin/duesaltreport">
+                      <i class="bi bi-circle"></i><span>Dues to TN Salts</span>
+                  </a>
+              </li>
+              <li>
                   <a href="/superadmin/palmjaggeryreport">
                       <i class="bi bi-circle"></i><span>Palm Jaggery</span>
                   </a>

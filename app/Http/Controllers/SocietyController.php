@@ -849,6 +849,7 @@ class SocietyController extends Controller
 
         $croploan = new Croploan_entry();
         $croploan->croploandate = $request->input('croploandate');
+        $croploan->user_id = Auth::user()->id;
         $croploan->annualTarget = $request->input('annualTarget');
         $croploan->proportionateTarget = $request->input('proportionateTarget');
         $croploan->cultivableLand = $request->input('cultivableLand');
