@@ -144,6 +144,32 @@
                                     $totaldisbursedamount=0;
                                     $totalcollectedno=0;
                                     $totalcollectedamount=0;
+                                    function formatIndianNumber($number) {
+                                        // Convert the number to a float
+                                        return number_format($number, 2, '.', ',');
+                                                                                $number =$number;
+
+                                        // Check if the number is greater than or equal to 1 lakh (100,000)
+                                        if ($number >= 100000) {
+                                            // Convert the number to a string with 2 decimal places
+                                            $formatted = number_format($number, 2);
+
+                                            // Split the formatted string into parts (before and after the decimal point)
+                                            $parts = explode('.', $formatted);
+
+                                            // Format the thousands part with commas as separators
+                                            $thousands = number_format((float)$parts[0]);
+
+                                            // Combine the thousands part and the decimal part with a comma separator
+                                            $formatted = $thousands . ',' . $parts[1];
+                                        } else {
+                                            // If the number is less than 1 lakh, format it with commas as separators
+                                            $formatted = number_format($number);
+                                        }
+
+                                        return $formatted;
+                                    }
+
                                 @endphp
                                 @foreach($loans as $loan)
                                     @php
@@ -183,9 +209,9 @@
                                                 </tr>
                                                 <tr>
                                                     <td><center><?= $totalDisbursedNo ?></center></td>
-                                                    <td><center><?= $totaldisbursedamount ?></center></td>
+                                                    <td><center><?= formatIndianNumber($totaldisbursedamount) ?></center></td>
                                                     <td><center><?= $totalcollectedno ?></center></td>
-                                                    <td><center><?= $totalcollectedamount ?></center></td>
+                                                    <td><center><?= formatIndianNumber($totalcollectedamount) ?></center></td>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -223,9 +249,9 @@
                                                     <td>{{ $loan->loantype->loantype??"" }}</td>
                                                     @if(isset($subloans))
                                                         <td style="text-align: right;">{{ $loan->disbursed_count }}</td>
-                                                        <td style="text-align: right;">{{ $loan->disbursed_total }}</td>
+                                                        <td style="text-align: right;">{{ formatIndianNumber($loan->disbursed_total) }}</td>
                                                         <td style="text-align: right;">{{ $loan->collected_count }}</td>
-                                                        <td style="text-align: right;">{{ $loan->collect_total }}</td>
+                                                        <td style="text-align: right;">{{ formatIndianNumber($loan->collect_total) }}</td>
                                                     @else
                                                         <td style="text-align: right;">{{ $loan->disbursedno }}</td>
                                                         <td style="text-align: right;">{{ $loan->disbursedamount }}</td>

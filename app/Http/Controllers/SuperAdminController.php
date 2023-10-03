@@ -50,7 +50,17 @@ class SuperAdminController extends Controller
 
     function dashboard()
     {
-        return view("superadmin.dashboard");
+        $currentDate = now()->toDateString();
+
+        $regions = DB::table('mtr_region as a')
+            ->select([
+                'a.region_name as Region_Name',
+                'a.id as Region_ID',
+                DB::raw('(SELECT COUNT(DISTINCT ls.userid) FROM loggedsessions as ls WHERE ls.regionid = a.id AND DATE(ls.created_at) = CURDATE()) as logged_socities'),
+                DB::raw('(SELECT COUNT(*) FROM users WHERE users.region_id = a.id AND users.society_id IS NOT NULL) as total_no_of_society')
+            ])
+            ->get();
+        return view("superadmin.dashboard",compact("regions"));
     }
 
     function loanreportold(Request $request)

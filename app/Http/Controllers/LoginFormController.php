@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\LoggedSessions;
 use Hash;
 use Session;
 use Illuminate\Http\Request;
@@ -48,6 +49,12 @@ class LoginFormController extends Controller
                 return redirect()->intended('/dr/dashboard')
                     ->withSuccess('Signed in');
             } else if (Auth::user()->role > 4) {
+                $loggedSession = new LoggedSessions();
+                $loggedSession->userid= Auth::user()->id;
+                $loggedSession->regionid= Auth::user()->region_id;
+                $loggedSession->circleid= Auth::user()->circle_id;
+                $loggedSession->societyid= Auth::user()->society_id;
+                $loggedSession->save();
                 return redirect()->intended('/society/dashboard')
                     ->withSuccess('Signed in');
             }

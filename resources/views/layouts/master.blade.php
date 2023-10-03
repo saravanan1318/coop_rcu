@@ -49,6 +49,28 @@
             //     { targets: [0, 2], orderable: false } // Disable sorting for columns 0 and 1
             // ]
         } );
+        $('#data-table-dashboard').DataTable( {
+            dom: 'Bfrtip',
+            buttons: [
+                {
+                    extend: 'excelHtml5',
+                    text: '<i class="fas fa-file-excel"></i> Export Excel',
+                    className: 'btn btn-outline btn-success m-2', // Add a custom class for the Excel button
+                },
+                {
+                    extend: 'pdf',
+                    text: '<i class="fas fa-file-pdf"></i> Export PDF',
+                    className: 'btn btn-outline btn-success m-2',
+                },
+            ],
+            pageLength: 15,
+            lengthChange: false,
+            search: false,
+            order: [[0, 'desc']]
+            // columnDefs: [
+            //     { targets: [0, 2], orderable: false } // Disable sorting for columns 0 and 1
+            // ]
+        } );
 
     });
 
@@ -80,7 +102,7 @@
         float: right;
         margin-right: 10px; /* Add some right margin for spacing */
     }
-    #data-table {
+    #data-table, #data-table-dashboard {
         border: 1px solid #000; /* Add a 1px solid black border to the table */
     }
     tr.odd {
