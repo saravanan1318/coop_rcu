@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Coop</title>
+  <title>{{!empty($title)?$title: "COOP"}}</title>
   @include('partials.styles')
 </head>
 <body>
@@ -57,16 +57,11 @@
                     text: '<i class="fas fa-file-excel"></i> Export Excel',
                     className: 'btn btn-outline btn-success m-2', // Add a custom class for the Excel button
                 },
-                {
-                    extend: 'pdf',
-                    text: '<i class="fas fa-file-pdf"></i> Export PDF',
-                    className: 'btn btn-outline btn-success m-2',
-                },
             ],
             pageLength: 15,
             lengthChange: false,
-            search: false,
-            order: [[0, 'desc']]
+            search: true,
+            // order: [[0, 'desc']]
             // columnDefs: [
             //     { targets: [0, 2], orderable: false } // Disable sorting for columns 0 and 1
             // ]
@@ -103,6 +98,10 @@
         margin-right: 10px; /* Add some right margin for spacing */
     }
     #data-table, #data-table-dashboard {
+        border: 1px solid #000; /* Add a 1px solid black border to the table */
+    }
+    #data-table-dashboard
+    {
         border: 1px solid #000; /* Add a 1px solid black border to the table */
     }
     tr.odd {

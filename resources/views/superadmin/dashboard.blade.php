@@ -13,16 +13,19 @@
 
     <div class="card info-card sales-card">
         <div class="card-body">
-    <div class="col-6">
+    <div class="col-12">
+        @if(isset($regions))
         <table id="data-table-dashboard">
+
             <thead>
+            <tr><th colspan="6"><center>Details of Societies logged in the portal</center></th></tr>
             <tr>
-                <td>S.No</td>
-                <td>Region</td>
-                <td>Total No of society</td>
-                <td>No.of society logged in portal</td>
-                <td>Not logged in the portal</td>
-                <td>% of shortfall </td>
+                <th>S.No</th>
+                <th>Region</th>
+                <th>Total No of society</th>
+                <th>No.of society logged in portal</th>
+                <th>Not logged in the portal</th>
+                <th>% of shortfall </th>
             </tr>
             </thead>
             <tbody id="logged-datas">
@@ -39,12 +42,83 @@
                     <td>{{$region->Region_Name}}</td>
                     <td>{{$region->total_no_of_society}}</td>
                     <td>{{$region->logged_socities}}</td>
-                    <td>{{$region->total_no_of_society-$region->logged_socities}}</td>
-                    <td>{{number_format(($region->logged_socities/$region->total_no_of_society)*100,2,'.',',')}}</td>
+                    <td><a href="{{ URL::current() }}?Region={{$region->Region_ID}}">{{$region->total_no_of_society-$region->logged_socities}}</a></td>
+                    <td>{{number_format(100-(($region->logged_socities/$region->total_no_of_society)*100),2,'.',',')}}</td>
                 </tr>
                 @endforeach
             </tbody>
         </table>
+        @endif
+        @if(isset($circles))
+                <table id="data-table-dashboard">
+
+                    <thead>
+                    <tr><th colspan="6"><center>{{$title}}</center></th></tr>
+                    <tr>
+                        <th>S.No</th>
+                        <th>circles</th>
+                        <th>Total No of society</th>
+                        <th>No.of society logged in portal</th>
+                        <th>Not logged in the portal</th>
+                        <th>% of shortfall </th>
+                    </tr>
+                    </thead>
+                    <tbody id="logged-datas">
+
+                        <?php
+                        $tmp=0
+                        ?>
+                    @foreach($circles as $circle)
+                        @php
+                            $tmp++;
+                        @endphp
+                        <tr>
+                            <td>{{$tmp}}</td>
+                            <td>{{$circle->circleName}}</td>
+                            <td>{{$circle->total_no_of_society}}</td>
+                            <td>{{$circle->counts}}</td>
+                            <td><a href="{{ URL::current() }}?circle={{$circle->circleID}}&Region={{$disrict}}">{{$circle->total_no_of_society-$circle->counts}}</a></td>
+                            <td>{{number_format(100-(($circle->counts/$circle->total_no_of_society)*100),2,'.',',')}}</td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+            @endif
+            @if(isset($societies))
+                <table id="data-table-dashboard">
+
+                    <thead>
+                    <tr><th colspan="6"><center>{{$title}}</center></th></tr>
+                    <tr>
+                        <th>S.No</th>
+                        <th>circles</th>
+                        <th>Logged in Time</th>
+                        <th>No.of society logged in portal</th>
+                        <th>Not logged in the portal</th>
+                        <th>% of shortfall </th>
+                    </tr>
+                    </thead>
+                    <tbody id="logged-datas">
+
+                        <?php
+                        $tmp=0
+                        ?>
+                    @foreach($societies as $society)
+                        @php
+                            $tmp++;
+                        @endphp
+                        <tr>
+                            <td>{{$tmp}}</td>
+                            <td>{{$society->societyName}}</td>
+                            <td>{{!empty($society->societyLoginTime)?date( "d-m-y h:i",strtotime($society->societyLoginTime)):"-"}}</td>
+                            <td>{{$society->societycount}}</td>
+                            <td>{{1-$circle->societycount}}</td>
+                            <td>{{number_format(((1-$society->societycount)*100),2,'.',',')}}</td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+            @endif
 
     </div>
         </div>

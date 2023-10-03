@@ -1,7 +1,7 @@
 <header id="header" class="header fixed-top d-flex align-items-center">
 
   <div class="d-flex align-items-center justify-content-between">
-    <a href="index.html" class="d-flex align-items-center">
+    <a href="dashboard" class="d-flex align-items-center">
       <img src="/assets/img/photo.jpg" alt="" style="width: 190px">
     </a>
     <i class="bi bi-list toggle-sidebar-btn"></i>

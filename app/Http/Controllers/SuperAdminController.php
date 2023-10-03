@@ -48,19 +48,52 @@ class SuperAdminController extends Controller
         });
     }
 
-    function dashboard()
+    function dashboard(Request $request)
     {
-        $currentDate = now()->toDateString();
-
-        $regions = DB::table('mtr_region as a')
-            ->select([
-                'a.region_name as Region_Name',
-                'a.id as Region_ID',
-                DB::raw('(SELECT COUNT(DISTINCT ls.userid) FROM loggedsessions as ls WHERE ls.regionid = a.id AND DATE(ls.created_at) = CURDATE()) as logged_socities'),
-                DB::raw('(SELECT COUNT(*) FROM users WHERE users.region_id = a.id AND users.society_id IS NOT NULL) as total_no_of_society')
+        $disrict=$request->input("Region");
+        $circleid=$request->input("circle");
+        if(!empty($disrict)&& isset($disrict)&&!empty($circleid)&& isset($circleid))
+        {
+            $societies = Mtr_society::select([
+                'mtr_society.society_name as societyName',
+                'mtr_society.id as societyID',
+                DB::raw('(SELECT COUNT(DISTINCT userid ) FROM loggedsessions WHERE regionid='.$disrict.' AND circleid='.$circleid.' AND societyid=mtr_society.id and Date(created_at) = CURDATE()) AS societycount'),
+                DB::raw('(SELECT created_at FROM loggedsessions WHERE regionid='.$disrict.' AND circleid='.$circleid.' AND societyid=mtr_society.id and Date(created_at) = CURDATE()  LIMIT 1  ) AS societyLoginTime')
             ])
-            ->get();
-        return view("superadmin.dashboard",compact("regions"));
+                ->where('region_id', $disrict)
+                ->where('circle_id',$circleid)
+                ->get();
+            $region = Mtr_region::select('region_name')->where('id', $disrict)->first();
+            $circle = Mtr_circle::select('circle_name')->where('id', $circleid)->first();
+            $title = "Details of Societies logged in the portal (".$region->region_name."+ ".$circle->circle_name.")";
+            return view("superadmin.dashboard",compact("societies","title","disrict","circle"));
+        }
+        elseif(!empty($disrict)&& isset($disrict))
+        {
+            $circles = Mtr_circle::select([
+                'mtr_circle.circle_name as circleName',
+                'mtr_circle.id as circleID',
+                DB::raw('(SELECT COUNT(DISTINCT userid) FROM loggedsessions WHERE regionid = '.$disrict.' AND circleid = mtr_circle.id and Date(created_at) = CURDATE()) as counts'),
+                DB::raw('(SELECT COUNT(*) FROM users WHERE users.region_id = '.$disrict.' AND users.circle_id=mtr_circle.id AND users.society_id IS NOT NULL) as total_no_of_society')
+            ])
+                ->where('region_id', $disrict)
+                ->get();
+            $region = Mtr_region::select('region_name')->where('id', $disrict)->first();
+            $title = "Details of Societies logged in the portal(".$region->region_name.")";
+            return view("superadmin.dashboard",compact("circles","title","disrict"));
+        }
+        else {
+            $regions = DB::table('mtr_region as a')
+                ->select([
+                    'a.region_name as Region_Name',
+                    'a.id as Region_ID',
+                    DB::raw('(SELECT COUNT(DISTINCT ls.userid) FROM loggedsessions as ls WHERE ls.regionid = a.id AND DATE(ls.created_at) = CURDATE()) as logged_socities'),
+                    DB::raw('(SELECT COUNT(*) FROM users WHERE users.region_id = a.id AND users.society_id IS NOT NULL) as total_no_of_society')
+                ])
+                ->get();
+            $title = "Details of Societies logged in the portal";
+        }
+        return view("superadmin.dashboard",compact("regions","title"));
     }
 
     function loanreportold(Request $request)
