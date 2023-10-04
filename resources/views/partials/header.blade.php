@@ -10,10 +10,27 @@
     <ul class="d-flex align-items-center">
       <li class="nav-item dropdown pe-3">
 
+          <?php
+              if(Auth::user()->role >3)
+              {
+              $circle=\App\Models\Mtr_circle::select("circle_name")->where("id",Auth::user()->circle_id)->first();
+              $region=\App\Models\Mtr_region::select("region_name")->where("id",Auth::user()->region_id)->first();
+              ?>
         <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-          <span class="d-none d-md-block dropdown-toggle ps-2">{{ Auth::user()->name }}</span>
+          <span class="d-none d-md-block dropdown-toggle ps-2">{{isset($region)&& !empty($region)? $region->region_name.",":""}}{{isset($circle)&& !empty($circle)? $circle->circle_name.",":""}}{{ Auth::user()->name }}</span>
         </a><!-- End Profile Iamge Icon -->
 
+          <?php
+          }
+              else{
+                  ?>
+          <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
+              <span class="d-none d-md-block dropdown-toggle ps-2">{{ Auth::user()->name }}</span>
+          </a>
+          <?php
+
+              }
+              ?>
         <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
           <li class="dropdown-header">
             <h6>{{ Auth::user()->name }}</h6>
