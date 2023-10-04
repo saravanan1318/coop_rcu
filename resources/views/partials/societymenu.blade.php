@@ -49,7 +49,7 @@
   @endif
   @if(Auth::user()->role == 2)
   <ul class="sidebar-nav" id="sidebar-nav">
-    <li class="nav-item">
+   {{-- <li class="nav-item">
       <a class="nav-link " href="/superadmin/loanlist">
         <i class="bi bi-grid"></i>
         <span>Loan</span>
@@ -90,7 +90,13 @@
         <i class="bi bi-grid"></i>
         <span>Services</span>
       </a>
-    </li>
+    </li>--}}
+      <li class="nav-item">
+          <a class="nav-link " href="/superadmin/dashboard">
+              <i class="bi bi-grid"></i>
+              <span>Dashboard</span>
+          </a>
+      </li>
       <li class="nav-item">
           <a class="nav-link collapsed" data-bs-target="#Report-nav" data-bs-toggle="collapse" href="#">
               <i class="bi bi-journal-text"></i><span>Reports</span><i class="bi bi-chevron-down ms-auto"></i>

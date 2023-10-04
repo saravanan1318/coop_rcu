@@ -14,11 +14,88 @@
         <div class="card info-card sales-card">
             <div class="card-body">
                 <div class="col-12">
+                    <?php
+                    $totalsociety=0;
+                    $loggedsociety=0;
+                    $notloggedsociety=0;
+                    $shortfall=0;
+
+                    if(isset($regions))
+                    {
+                        foreach ($regions as $region)
+                        {
+                            $totalsociety+=$region->total_no_of_society;
+                            $loggedsociety+=$region->logged_socities;
+                        }
+                        $notloggedsociety=$totalsociety-$loggedsociety;
+                        $shortfall=$notloggedsociety/$totalsociety*100;
+                    }
+                    if(isset($circles))
+                    {
+                        foreach ($circles as $circle)
+                        {
+                            $totalsociety+=$circle->total_no_of_society;
+                            $loggedsociety+=$circle->counts;
+                        }
+                        $notloggedsociety=$totalsociety-$loggedsociety;
+
+                        if($totalsociety !=0) {
+                            $shortfall = $notloggedsociety / $totalsociety * 100;
+                        }
+                        else{
+                            $shortfall=0;
+                        }
+                    }
+                    if(isset($societies))
+                    {
+                        $tmpvalue=0;
+                        foreach($societies as $society)
+                        {
+                            $tmpvalue++;
+                            $totalsociety=$tmpvalue;
+                            $loggedsociety +=$society->societycount;
+                        }
+                        $notloggedsociety=$totalsociety-$loggedsociety;
+                        if($totalsociety !=0) {
+                            $shortfall = $notloggedsociety / $totalsociety * 100;
+                        }
+                        else{
+                            $shortfall=0;
+                        }
+
+                    }
+                    ?>
+                    <div class="row p-4">
+                        <div class="row p-4">
+                            <table class="table table-bordered table-info" style="font-size: 16px;">
+                                <thead>
+                                <tr>
+                                    <th  scope="col" class="py-4" rowspan="2" rowspan="2"><center>Abstract</center></th>
+                                    <th scope="col" rowspan="1"><center>Date</center></th>
+                                    <th scope="col" rowspan="1"><center>Total Society</center></th>
+                                    <th scope="col" rowspan="1"><center>Total no of  logged Society</center></th>
+                                    <th scope="col" rowspan="1"><center>Total no of not logged Society</center></th>
+                                    <th scope="col" rowspan="1"><center>% shortfall</center></th>
+                                </tr>
+                                <tr>
+                                    <td><center>{{ date("d-m-Y", strtotime(now())) }}</center></td>
+                                    <td><center>{{$totalsociety}}</center></td>
+                                    <td><center>{{$loggedsociety}}</center></td>
+                                    <td><center>{{$notloggedsociety}}</center></td>
+                                    <td><center>{{number_format($shortfall,2,'.')}}</center></td>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
                     @if(isset($regions))
                         <table id="data-table-dashboard">
 
                             <thead>
-                            <tr><th colspan="6"><center>Details of Societies logged in the portal</center></th></tr>
+                            <tr><th colspan="6"><center>Details of Societies logged in the portal {{ date("d-m-Y", now()) }}</center></th></tr>
                             <tr>
                                 <th>S.No</th>
                                 <th>Region</th>
@@ -78,7 +155,8 @@
                                     <td>{{$circle->total_no_of_society}}</td>
                                     <td>{{$circle->counts}}</td>
                                     <td><a href="{{ URL::current() }}?circle={{$circle->circleID}}&Region={{$disrict}}">{{$circle->total_no_of_society-$circle->counts}}</a></td>
-                                    <td>{{number_format(100-(($circle->counts/$circle->total_no_of_society)*100),2,'.',',')}}</td>
+                                    <td>{{$circle->total_no_of_society==0?"0":number_format(100-(($circle->counts/$circle->total_no_of_society)*100),2,'.',',')}}</td>
+{{--                                    <td>0</td>--}}
                                 </tr>
                             @endforeach
                             </tbody>
@@ -93,9 +171,9 @@
                                 <th>S.No</th>
                                 <th>circles</th>
                                 <th>Logged in Time</th>
-                                <th>No.of society logged in portal</th>
-                                <th>Not logged in the portal</th>
-                                <th>% of shortfall </th>
+{{--                                <th>No.of society logged in portal</th>--}}
+{{--                                <th>Not logged in the portal</th>--}}
+{{--                                <th>% of shortfall </th>--}}
                             </tr>
                             </thead>
                             <tbody id="logged-datas">
@@ -111,9 +189,9 @@
                                     <td>{{$tmp}}</td>
                                     <td>{{$society->societyName}}</td>
                                     <td>{{!empty($society->societyLoginTime)?date( "d-m-y h:i",strtotime($society->societyLoginTime)):"-"}}</td>
-                                    <td>{{$society->societycount}}</td>
-                                    <td>{{1-$circle->societycount}}</td>
-                                    <td>{{number_format(((1-$society->societycount)*100),2,'.',',')}}</td>
+{{--                                    <td>{{$society->societycount}}</td>--}}
+{{--                                    <td>{{1-$circle->societycount}}</td>--}}
+{{--                                    <td>{{number_format(((1-$society->societycount)*100),2,'.',',')}}</td>--}}
                                 </tr>
                             @endforeach
                             </tbody>
