@@ -10,7 +10,7 @@
                 </ol>
             </nav>
         </div><!-- End Page Title -->
-
+        @if(isset($regions) ||isset($circles) || isset($societies))
         <div class="card info-card sales-card">
             <div class="card-body">
                 <div class="col-12">
@@ -91,6 +91,7 @@
                         </div>
 
                     </div>
+
                     @if(isset($regions))
                         <table id="data-table-dashboard">
 
@@ -201,6 +202,7 @@
                 </div>
             </div>
         </div>
+        @endif
 
         {{--  <section class="section dashboard">--}}
         {{--    <div class="row">--}}
