@@ -2,7 +2,7 @@
 @section('content')
 <main id="main" class="main">
   <div class="pagetitle">
-    <h1> Dues to TN Salts Report</h1>
+    <h1>  Report on Dues to TN Salts</h1>
     <nav>
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="/society/dashboard">Dashboard</a></li>

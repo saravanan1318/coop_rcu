@@ -7,7 +7,7 @@
 </style>
 <main id="main" class="main">
     <div class="pagetitle">
-        <h1>Crop loan entry</h1>
+        <h1>Report on Crop loan </h1>
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="/society/dashboard">Dashboard</a></li>

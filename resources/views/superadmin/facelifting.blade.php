@@ -2,7 +2,7 @@
 @section('content')
 <main id="main" class="main">
   <div class="pagetitle">
-    <h1>Face Lifting Report</h1>
+    <h1>Report on Face Lifting </h1>
     <nav>
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="/society/dashboard">Dashboard</a></li>
@@ -80,14 +80,14 @@
                             <thead style="text-align: center">
                             <tr>
                                 <th colspan="4">
-                                    Notification of grant request for the year 2023-2024 Upgradation of 1500 Fair Price Shops (15.09.2023)
+                                    <center>Notification of grant request for the year 2023-2024 Upgradation of 1500 Fair Price Shops (15.09.2023)</center>
                                 </th>
                             </tr>
                             <tr>
-                                <th scope="col">Name of the District</th>
-                                <th scope="col">No.of Fair Price Stores Targeted to Brighten</th>
-                                <th scope="col">No.of Fair Price Shops Enlightened</th>
-                                <th scope="col">Balance</th>
+                                <th scope="col"><center>Name of the District</center></th>
+                                <th scope="col"><center>No.of Fair Price Stores Targeted to Brighten</center></th>
+                                <th scope="col"><center>No.of Fair Price Shops Enlightened</center></th>
+                                <th scope="col"><center>Balance</center></th>
                             </tr>
 
                             </thead>

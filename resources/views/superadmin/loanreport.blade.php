@@ -2,7 +2,7 @@
 @section('content')
 <main id="main" class="main">
   <div class="pagetitle">
-    <h1>List</h1>
+    <h1>Report on Loan</h1>
     <nav>
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="/society/dashboard">Dashboard</a></li>
@@ -88,6 +88,32 @@
 
 
                     </form>
+                    @php
+                        function formatIndianNumber($number) {
+//                                            return $number;
+                                            // Convert the number to a float
+                                            $formatted_number = '';
+                                            if(strlen($number) >4)
+                                                {
+                                            $tmpnumber=substr($number,0,strlen($number)-3);
+    //                                        $tmpnumber=$number;
+        $number_str = strrev((string)$tmpnumber); // Reverse the number to process from right to left
+
+        for ($i = 0; $i < strlen($number_str); $i++) {
+            if($i > 0 && $i % 2 == 0 ) {
+                $formatted_number .= ',' ;
+            }
+            $formatted_number .= $number_str[$i];
+        }
+        $number=strrev((string)$number);
+    $formatted_number = strrev($formatted_number).",".$number[2].$number[1].$number[0];
+        return ($formatted_number);
+        }
+                                            else{
+                                                return $number;
+                                            }
+                                        }
+                    @endphp
                     <table class="stripe table-bordered table-info " id="data-table">
                         <thead style="text-align: center">
                         <tr>
@@ -107,9 +133,9 @@
                         @foreach($results as $result)
                             <tr>
                                 <td>{{$result->Region_Name}}</td>
-                                <td>{{$result->Loan_Target_2023_24}}</td>
-                                <td>{{$result->Disbursed_Amount}}</td>
-                                <td>{{$result->Percent_of_Loan??"-"}}</td>
+                                <td>{{formatIndianNumber((int)$result->Loan_Target_2023_24)}}</td>
+                                <td>{{formatIndianNumber((int)$result->Disbursed_Amount)}}</td>
+                                <td>{{($result->Percent_of_Loan)??"-"}}</td>
                             </tr>
                         @endforeach
                         </tbody>

@@ -2,7 +2,7 @@
 @section('content')
 <main id="main" class="main">
   <div class="pagetitle">
-    <h1>BYI Report</h1>
+    <h1>Report on BYI</h1>
     <nav>
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="/society/dashboard">Dashboard</a></li>
@@ -53,14 +53,15 @@
                             <thead style="text-align: center">
                             <tr>
                                 <th colspan="4">
-                                     2021-2022  Announcement - No of Places  yet to be  identified for Fair Price Shop construction
+                                     <center>
+                                         2021-2022  Announcement - No of Places  yet to be  identified for Fair Price Shop construction</center>
                                 </th>
                             </tr>
                             <tr>
-                                <th scope="col">Name of the District</th>
-                                <th scope="col">No of FPS functioning in Private rental buildings</th>
-                                <th scope="col">No.of places identified for Fair price shop construction</th>
-                                <th scope="col">No of Places yet to be identified for Fair Price Shop construction</th>
+                                <th scope="col"><center>Name of the District</center></th>
+                                <th scope="col"><center>No of FPS functioning in Private rental buildings</center></th>
+                                <th scope="col"><center>No.of places identified for Fair price shop construction</center></th>
+                                <th scope="col"><center>No of Places yet to be identified for Fair Price Shop construction</center></th>
                             </tr>
 
                             </thead>
