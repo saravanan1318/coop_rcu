@@ -391,12 +391,14 @@ class LoanQueryService
 //            $query = Loan::select('*')->with('loantype');
         }
         else {
-            $query = Loan::select('*')->with('loantype');
+            $query = Loan::select('*')->with('loantype') ->leftJoin('users', 'loan.user_id', '=', 'users.id')
+                ->leftJoin('mtr_society', 'mtr_society.id', '=', 'users.society_id');
         }
 
         if ($regionFilter || $circleFilter || $societyFilter ) {
             $query->whereIn('user_id', function ($subquery) use ($societyTypesFilter, $circleFilter, $regionFilter, $societyFilter) {
                 $subquery->select('id')->from('users');
+//                    ->leftJoin('mtr_society', 'mtr_society.id', '=', 'users.society_id');
                 if (!empty($regionFilter)) {
                     // Apply condition for region filter
                     $subquery->where('region_id', $regionFilter);
@@ -443,6 +445,7 @@ class LoanQueryService
         if($distinct){
             $query->groupBy('loandate', 'loantype_id');
         }
+
         return $query->get();
 
     }
