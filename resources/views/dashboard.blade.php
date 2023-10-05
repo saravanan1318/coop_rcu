@@ -170,7 +170,7 @@
                             <tr><th colspan="6"><center>{{$title}}</center></th></tr>
                             <tr>
                                 <th>S.No</th>
-                                <th>circles</th>
+                                <th>Society Name</th>
                                 <th>Logged in Time</th>
 {{--                                <th>No.of society logged in portal</th>--}}
 {{--                                <th>Not logged in the portal</th>--}}

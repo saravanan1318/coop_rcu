@@ -96,7 +96,7 @@ class DRController extends Controller
                 ->get();
             $region = Mtr_region::select('region_name')->where('id', $disrict)->first();
             $circle = Mtr_circle::select('circle_name')->where('id', $circleid)->first();
-            $title = "Details of Societies logged in the portal (".$region->region_name."+ ".$circle->circle_name.")";
+            $title = "Details of Societies logged in the portal";
             return view("dashboard",compact("societies","title","disrict","circle"));
         }
         elseif(!empty($disrict)&& isset($disrict))
