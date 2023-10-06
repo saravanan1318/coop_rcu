@@ -212,16 +212,16 @@
                                                         <center>Abstract</center>
                                                     </th>
                                                     <th scope="col" rowspan="1">
-                                                        <center>Issue Of Loan No</center>
+                                                        <center>Issue of Loan No</center>
                                                     </th>
                                                     <th scope="col" rowspan="1">
-                                                        <center>Issue Of Loan Amount</center>
+                                                        <center>Issue of Loan Amount (Rs)</center>
                                                     </th>
                                                     <th scope="col" rowspan="1">
-                                                        <center>Collection Of Loan No</center>
+                                                        <center>Collection of Loan No</center>
                                                     </th>
                                                     <th scope="col" rowspan="1">
-                                                        <center>Collection Of Loan Amount</center>
+                                                        <center>Collection of Loan Amount (Rs)</center>
                                                     </th>
                                                 </tr>
                                                 <tr>
@@ -253,16 +253,16 @@
                                                     <center>Date</center>
                                                 </th>
                                                 <th scope="col" rowspan="2">
-                                                    <center>Loan Types</center>
+                                                    <center>Type of Loan</center>
                                                 </th>
                                                 <th scope="col" rowspan="2">
-                                                    <center>Societies</center>
+                                                    <center>Name of Societies</center>
                                                 </th>
                                                 <th scope="col" colspan="2" rowspan="1">
-                                                    <center>Issue Of Loan</center>
+                                                    <center>Issue of Loan</center>
                                                 </th>
                                                 <th scope="col" colspan="2" rowspan="1">
-                                                    <center>Collection Of Loan</center>
+                                                    <center>Collection of Loan</center>
                                                 </th>
                                             </tr>
                                             <tr style="text-align: center">
@@ -270,13 +270,13 @@
                                                     <center>No. of Loan</center>
                                                 </th>
                                                 <th scope="col">
-                                                    <center>Amount of Loan</center>
+                                                    <center>Amount of Loan (Rs)</center>
                                                 </th>
                                                 <th scope="col">
                                                     <center>No. of Loan</center>
                                                 </th>
                                                 <th scope="col">
-                                                    <center>Amount of Loan</center>
+                                                    <center>Amount of Loan (Rs)</center>
                                                 </th>
                                             </tr>
                                             </thead>
@@ -293,10 +293,12 @@
                                             {{--                                            @endforeach--}}
 
                                             @foreach($loans as $loan)
+                                                @if($loan->disbursed_count !=0 || $loan->disbursedno!=0)
+{{--                                                @if(1==1)--}}
                                                 <tr>
                                                     <td>{{ \Carbon\Carbon::parse($loan->loandate)->format('d-m-Y') }}</td>
                                                     <td>{{ $loan->loantype->loantype??"" }}</td>
-                                                    <td>{{ $loan->society_name??"" }}</td>
+                                                    <td>{{ $loan->society_name??"-" }}</td>
                                                     @if(isset($subloans))
                                                         @if(empty($loan->disbursed_count))
                                                             <td style="text-align: right;"><a
@@ -333,6 +335,7 @@
                                                     @endif
 
                                                 </tr>
+                                                @endif
                                             @endforeach
                                             </tbody>
                                         </table>
@@ -351,10 +354,10 @@
 {{--                                                        <center>Loan Types</center>--}}
 {{--                                                    </th>--}}
 {{--                                                    <th scope="col" colspan="2" rowspan="1">--}}
-{{--                                                        <center>Issue Of Loan</center>--}}
+{{--                                                        <center>Issue of Loan</center>--}}
 {{--                                                    </th>--}}
 {{--                                                    <th scope="col" colspan="2" rowspan="1">--}}
-{{--                                                        <center>Collection Of Loan</center>--}}
+{{--                                                        <center>Collection of Loan</center>--}}
 {{--                                                    </th>--}}
 {{--                                                </tr>--}}
 {{--                                                <tr style="text-align: center">--}}
