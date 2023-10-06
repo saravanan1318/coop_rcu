@@ -130,6 +130,17 @@
 
                     <thead>
                     <tr><th colspan="6"><center>{{$title}}</center></th></tr>
+                        <?php
+                    if(isset($region_name))
+                    {
+                        ?>
+
+
+                    <tr><th colspan="6">Region: {{$region_name}}</th></tr>
+                        <?php
+
+                    }
+                        ?>
                     <tr>
                         <th>S.No</th>
                         <th>circles</th>
@@ -165,7 +176,19 @@
                 <table id="data-table-dashboard">
 
                     <thead>
-                    <tr><th colspan="6"><center>{{$title}}</center></th></tr>
+                    <tr><th colspan="3"><center>{{$title}}</center></th></tr>
+                        <?php
+                    if(isset($region_name))
+                    {
+                        ?>
+
+
+                    <tr><th colspan="1">Region: {{$region_name}}</th>
+                        <th colspan="1">Circle: {{$circle_name}}</th></tr>
+                        <?php
+
+                    }
+                        ?>
                     <tr>
                         <th>S.No</th>
                         <th>Name of Societies</th>

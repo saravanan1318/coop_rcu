@@ -65,8 +65,10 @@ class SuperAdminController extends Controller
                 ->get();
             $region = Mtr_region::select('region_name')->where('id', $disrict)->first();
             $circle = Mtr_circle::select('circle_name')->where('id', $circleid)->first();
-            $title = "Details of Societies logged in the portal (".$region->region_name."+ ".$circle->circle_name.")";
-            return view("superadmin.dashboard",compact("societies","title","disrict","circle"));
+            $region_name=$region->region_name;
+            $circle_name=$circle->circle_name;
+            $title = "Details of Societies logged in the portal.";
+            return view("superadmin.dashboard",compact("societies","title","disrict","circle" ,"region_name","circle_name"));
         }
         elseif(!empty($disrict)&& isset($disrict))
         {
@@ -79,8 +81,9 @@ class SuperAdminController extends Controller
                 ->where('region_id', $disrict)
                 ->get();
             $region = Mtr_region::select('region_name')->where('id', $disrict)->first();
-            $title = "Details of Societies logged in the portal(".$region->region_name.")";
-            return view("superadmin.dashboard",compact("circles","title","disrict"));
+            $region_name=$region->region_name;
+            $title = "Details of Societies logged in the portal";
+            return view("superadmin.dashboard",compact("circles","title","disrict","region_name"));
         }
         else {
             $regions = DB::table('mtr_region as a')
