@@ -33,6 +33,7 @@ use App\Models\Services;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\URL;
 
 class SuperAdminController extends Controller
 {
@@ -67,7 +68,7 @@ class SuperAdminController extends Controller
             $circle = Mtr_circle::select('circle_name')->where('id', $circleid)->first();
             $region_name=$region->region_name;
             $circle_name=$circle->circle_name;
-            $title = "Details of Societies logged in the portal.";
+            $title = "Details of societies  not logged in the portal.";
             return view("superadmin.dashboard",compact("societies","title","disrict","circle" ,"region_name","circle_name"));
         }
         elseif(!empty($disrict)&& isset($disrict))
@@ -82,7 +83,7 @@ class SuperAdminController extends Controller
                 ->get();
             $region = Mtr_region::select('region_name')->where('id', $disrict)->first();
             $region_name=$region->region_name;
-            $title = "Details of Societies logged in the portal";
+            $title = "Details of societies not logged in the portal";
             return view("superadmin.dashboard",compact("circles","title","disrict","region_name"));
         }
         else {
@@ -94,7 +95,7 @@ class SuperAdminController extends Controller
                     DB::raw('(SELECT COUNT(*) FROM users WHERE users.region_id = a.id AND users.society_id IS NOT NULL) as total_no_of_society')
                 ])
                 ->get();
-            $title = "Details of Societies logged in the portal";
+            $title = "Details of societies not logged in the portal";
         }
         return view("superadmin.dashboard",compact("regions","title"));
     }
@@ -284,10 +285,15 @@ class SuperAdminController extends Controller
         $loans = Loan::select("*")->get();
 
 
-
+        $regions = Mtr_region::all();
+        $circles = Mtr_circle::all();
+        $societiestypes = Mtr_societytype::all();
+        $societies = Mtr_society::all();
+        $loantypes = Mtr_loan::all();
+        $currentUrl = URL::current();
 //        $results = DB::select('SELECT * FROM view_regionwise_credit_and_deopsit');
 
-        return view("superadmin.loanreport", compact('loans', 'loanreportdate','results','societiestypes','societyTypesFilter'));
+        return view("superadmin.loanreport", compact('loans', 'loanreportdate','results','societiestypes','societyTypesFilter','regions'));
     }
 
     function depositreportold(Request $request)

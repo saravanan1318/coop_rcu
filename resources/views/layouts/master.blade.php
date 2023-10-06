@@ -36,9 +36,6 @@
                     className: 'btn btn-outline btn-success m-2', // Add a custom class for the Excel button
                     exportOptions: {
                         columns: ':visible' ,// Export only visible columns
-                        rows: function (idx, data, node) {
-                            return idx !== 0; // Exclude the first row from export
-                        }
                     }
                 },
                 {
@@ -47,9 +44,6 @@
                     className: 'btn btn-outline btn-success m-2',
                     exportOptions: {
                         columns: ':visible' ,// Export only visible columns
-                        rows: function (idx, data, node) {
-                            return idx !== 0; // Exclude the first row from export
-                        }
                     }
                 },
             ],
@@ -70,9 +64,6 @@
                     className: 'btn btn-outline btn-success m-2', // Add a custom class for the Excel button
                     exportOptions: {
                         columns: ':visible' ,// Export only visible columns
-                        rows: function (idx, data, node) {
-                            return idx !== 0; // Exclude the first row from export
-                        }
                     }
                 },
             ],

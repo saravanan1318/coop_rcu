@@ -94,7 +94,7 @@
         <table id="data-table-dashboard">
 
             <thead>
-            <tr><th colspan="6"><center>Details of Societies logged in the portal</center></th></tr>
+            <tr><th colspan="6"><center>Details of societies not logged in the portal</center></th></tr>
             <tr>
                 <th>S.No</th>
                 <th>Region</th>
