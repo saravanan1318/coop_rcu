@@ -34,11 +34,23 @@
                     extend: 'excelHtml5',
                     text: '<i class="fas fa-file-excel"></i> Export Excel',
                     className: 'btn btn-outline btn-success m-2', // Add a custom class for the Excel button
+                    exportOptions: {
+                        columns: ':visible' ,// Export only visible columns
+                        rows: function (idx, data, node) {
+                            return idx !== 0; // Exclude the first row from export
+                        }
+                    }
                 },
                 {
                     extend: 'pdf',
                     text: '<i class="fas fa-file-pdf"></i> Export PDF',
                     className: 'btn btn-outline btn-success m-2',
+                    exportOptions: {
+                        columns: ':visible' ,// Export only visible columns
+                        rows: function (idx, data, node) {
+                            return idx !== 0; // Exclude the first row from export
+                        }
+                    }
                 },
             ],
             pageLength: 15,
@@ -56,6 +68,12 @@
                     extend: 'excelHtml5',
                     text: '<i class="fas fa-file-excel"></i> Export Excel',
                     className: 'btn btn-outline btn-success m-2', // Add a custom class for the Excel button
+                    exportOptions: {
+                        columns: ':visible' ,// Export only visible columns
+                        rows: function (idx, data, node) {
+                            return idx !== 0; // Exclude the first row from export
+                        }
+                    }
                 },
             ],
             pageLength: 15,
@@ -66,7 +84,7 @@
             //     { targets: [0, 2], orderable: false } // Disable sorting for columns 0 and 1
             // ]
         } );
-
+        table.buttons().container().appendTo('#export-buttons');
     });
 
     const dateForm = document.getElementById('endDate');

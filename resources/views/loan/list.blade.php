@@ -139,7 +139,10 @@
 
 
                                 </form>
-                                @if(isset($loans))
+                                <?php
+                                $userid = \Illuminate\Support\Facades\Auth::user()->role;
+                                ?>
+                                @if(isset($loans) && $userid >=5)
                                     @php
                                         $totalDisbursedNo=0;
                                         $totaldisbursedamount=0;
@@ -283,33 +286,28 @@
                                             <tbody>
 
 
-                                            {{--//                                               $loans = collect($loans)->sortByDesc('loandate')->values()->all();--}}
-                                            {{--                                            @foreach($loans as $loan)--}}
-                                            {{--                                                @php--}}
-                                            {{--                                               print_r("<pre>");--}}
-                                            {{--                                               print_r($loan);--}}
-                                            {{--                                               print_r("</pre>");--}}
-                                            {{--                                               @endphp--}}
-                                            {{--                                            @endforeach--}}
-
                                             @foreach($loans as $loan)
                                                 @if($loan->disbursed_count !=0 || $loan->disbursedno!=0)
-{{--                                                @if(1==1)--}}
-                                                <tr>
-                                                    <td>{{ \Carbon\Carbon::parse($loan->loandate)->format('d-m-Y') }}</td>
-                                                    <td>{{ $loan->loantype->loantype??"" }}</td>
-                                                    <td>{{ $loan->society_name??"-" }}</td>
-                                                    @if(isset($subloans))
-                                                        @if(empty($loan->disbursed_count))
-                                                            <td style="text-align: right;"><a
-                                                                    href="loanlist?region={{$regionFilter}}&circle={{$circleFilter}}&societyTypes={{$societyTypesFilter}}&society={{$societyFilter}}&loantype={{$loan->loantype->id}}&startDate={{\Carbon\Carbon::parse($loan->loandate)->format('Y-m-d') }}&endDate={{\Carbon\Carbon::parse($loan->loandate)->format('Y-m-d') }}&filterssocietyby={{$loan->loantype->id}}">{{ formatIndianNumber($loan->disbursedno) }}</a>
-                                                            </td>
 
-                                                    @else
-                                                        <td style="text-align: right;"><a
-                                                                href="loanlist?region={{$regionFilter}}&circle={{$circleFilter}}&societyTypes={{$societyTypesFilter}}&society={{$societyFilter}}&loantype={{$loan->loantype->id}}&startDate={{\Carbon\Carbon::parse($loan->loandate)->format('Y-m-d') }}&endDate={{\Carbon\Carbon::parse($loan->loandate)->format('Y-m-d') }}&filterssocietyby={{$loan->loantype->id}}">{{ $loan->disbursed_count }}</a>
-                                                        </td>
-                                                        @endif
+                                                    <tr>
+                                                        <td>{{ \Carbon\Carbon::parse($loan->loandate)->format('d-m-Y') }}</td>
+                                                        <td>{{ $loan->loantype->loantype??"" }}</td>
+                                                        <td>{{ $loan->society_name??"-" }}</td>
+                                                        <td>{{ formatIndianNumber($loan->disbursedno) }}</td>
+                                                        <td style="text-align: right;">{{ formatIndianNumber($loan->disbursedamount) }}</td>
+                                                        <td style="text-align: right;">{{ formatIndianNumber($loan->collectedno) }}</td>
+                                                        <td style="text-align: right;">{{ formatIndianNumber($loan->collectedamount) }}</td>
+                                                        @if(isset($subloans))
+                                                            @if(empty($loan->disbursed_count))
+                                                                <td style="text-align: right;"><a
+                                                                        href="loanlist?region={{$regionFilter}}&circle={{$circleFilter}}&societyTypes={{$societyTypesFilter}}&society={{$societyFilter}}&loantype={{$loan->loantype->id}}&startDate={{\Carbon\Carbon::parse($loan->loandate)->format('Y-m-d') }}&endDate={{\Carbon\Carbon::parse($loan->loandate)->format('Y-m-d') }}&filterssocietyby={{$loan->loantype->id}}">{{ formatIndianNumber($loan->disbursedno) }}</a>
+                                                                </td>
+
+                                                            @else
+                                                                <td style="text-align: right;"><a
+                                                                        href="loanlist?region={{$regionFilter}}&circle={{$circleFilter}}&societyTypes={{$societyTypesFilter}}&society={{$societyFilter}}&loantype={{$loan->loantype->id}}&startDate={{\Carbon\Carbon::parse($loan->loandate)->format('Y-m-d') }}&endDate={{\Carbon\Carbon::parse($loan->loandate)->format('Y-m-d') }}&filterssocietyby={{$loan->loantype->id}}">{{ $loan->disbursed_count }}</a>
+                                                                </td>
+                                                            @endif
                                                             @if(empty($loan->disbursed_total))
                                                                 <td style="text-align: right;">{{ formatIndianNumber($loan->disbursedamount) }}</td>
 
@@ -329,67 +327,262 @@
                                                                 <td style="text-align: right;">{{ formatIndianNumber($loan->collect_total) }}</td>
                                                             @endif
 
+                                                        @endif
 
+                                                    </tr>
+                                                @endif
+                                            @endforeach
+                                            </tbody>
+                                        </table>
 
+                                    </div>
+                                @endif
 
-                                                    @endif
+                                @if(isset($loans) && $userid <=4)
+                                    @php
+                                        $totalDisbursedNo=0;
+                                        $totaldisbursedamount=0;
+                                        $totalcollectedno=0;
+                                        $totalcollectedamount=0;
+                                        $originalcollectedLoan=[];
+                                        function formatIndianNumber($number) {
+                                            $formatted_number = '';
+                                            if(strlen($number) >4)
+                                                {
+                                            $tmpnumber=substr($number,0,strlen($number)-3);
+                                            $number_str = strrev((string)$tmpnumber); // Reverse the number to process from right to left
 
+                                                for ($i = 0; $i < strlen($number_str); $i++) {
+                                                    if($i > 0 && $i % 2 == 0 ) {
+                                                        $formatted_number .= ',' ;
+                                                    }
+                                                    $formatted_number .= $number_str[$i];
+                                                }
+                                                $number=strrev((string)$number);
+                                            $formatted_number = strrev($formatted_number).",".$number[2].$number[1].$number[0];
+                                                return ($formatted_number);
+                                                }
+                                            else{
+                                                return $number;
+                                            }
+                                        }
+
+                                    @endphp
+                                    @foreach($loans as $loan)
+                                        @php
+                                            if(isset($from))
+                                                {
+                                                    $from=$from;
+                                                }
+                                            else{
+                                                $from="";
+                                            }
+                                            if($from=="society")
+                                            {
+                                                $totalDisbursedNo += $loan->disbursedno;
+                                                $totaldisbursedamount +=$loan ->disbursedamount;
+                                                $totalcollectedno +=$loan ->collectedno;
+                                                $totalcollectedamount +=$loan ->collectedamount;
+                                            }
+                                            else
+                                                {
+                                                $totalDisbursedNo += !empty($loan->disbursed_count)?$loan->disbursed_count:$loan->disbursedno;
+                                                $totaldisbursedamount +=!empty($loan ->disbursed_total)?$loan ->disbursed_total:$loan ->disbursedamount;
+                                                $totalcollectedno +=!empty($loan ->collected_count)?$loan ->collected_count:$loan ->collectedno;
+                                                $totalcollectedamount +=!empty($loan ->collect_total)?$loan ->collect_total:$loan ->collectedamount;
+                                                }
+//                                                $totalDisbursedNo += $loan->disbursedno;
+//                                                $totaldisbursedamount +=$loan ->disbursedamount;
+//                                                $totalcollectedno +=$loan ->collectedno;
+//                                                $totalcollectedamount +=$loan ->collectedamount;
+//                                                $tmpvalue=0;
+//
+                                        @endphp
+                                    @endforeach
+                                    <div class="row p-4">
+                                        <div class="row p-4">
+                                            <table class="table table-bordered table-info" style="font-size: 16px;">
+                                                <thead>
+                                                <tr>
+                                                    <th scope="col" class="py-4" rowspan="2" rowspan="2">
+                                                        <center>Abstract</center>
+                                                    </th>
+                                                    <th scope="col" rowspan="1">
+                                                        <center>Issue of Loan No</center>
+                                                    </th>
+                                                    <th scope="col" rowspan="1">
+                                                        <center>Issue of Loan Amount (Rs)</center>
+                                                    </th>
+                                                    <th scope="col" rowspan="1">
+                                                        <center>Collection of Loan No</center>
+                                                    </th>
+                                                    <th scope="col" rowspan="1">
+                                                        <center>Collection of Loan Amount (Rs)</center>
+                                                    </th>
                                                 </tr>
+                                                <tr>
+                                                    <td>
+                                                        <center><?= $totalDisbursedNo ?></center>
+                                                    </td>
+                                                    <td>
+                                                        <center><?= formatIndianNumber($totaldisbursedamount) ?></center>
+                                                    </td>
+                                                    <td>
+                                                        <center><?= $totalcollectedno ?></center>
+                                                    </td>
+                                                    <td>
+                                                        <center><?= formatIndianNumber($totalcollectedamount) ?></center>
+                                                    </td>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                </tbody>
+                                            </table>
+                                        </div>
+
+
+                                        {{--                  <table class="table table-responsive table-bordered datatable" id="data-table">--}}
+                                        <table class="stripe table-bordered table-info " id="data-table">
+                                            <thead style="text-align: center">
+                                            <tr>
+                                                <th scope="col" rowspan="2">
+                                                    <center>Date</center>
+                                                </th>
+                                                <th scope="col" rowspan="2">
+                                                    <center>Type of Loan</center>
+                                                </th>
+                                                <th scope="col" rowspan="2">
+                                                    <center>Name of Societies</center>
+                                                </th>
+                                                <th scope="col" colspan="2" rowspan="1">
+                                                    <center>Issue of Loan</center>
+                                                </th>
+                                                <th scope="col" colspan="2" rowspan="1">
+                                                    <center>Collection of Loan</center>
+                                                </th>
+                                            </tr>
+                                            <tr style="text-align: center">
+                                                <th scope="col">
+                                                    <center>No. of Loan</center>
+                                                </th>
+                                                <th scope="col">
+                                                    <center>Amount of Loan (Rs)</center>
+                                                </th>
+                                                <th scope="col">
+                                                    <center>No. of Loan</center>
+                                                </th>
+                                                <th scope="col">
+                                                    <center>Amount of Loan (Rs)</center>
+                                                </th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+
+
+                                            {{--//                                               $loans = collect($loans)->sortByDesc('loandate')->values()->all();--}}
+                                            {{--                                            @foreach($loans as $loan)--}}
+                                            {{--                                                @php--}}
+                                            {{--                                               print_r("<pre>");--}}
+                                            {{--                                               print_r($loan);--}}
+                                            {{--                                               print_r("</pre>");--}}
+                                            {{--                                               @endphp--}}
+                                            {{--                                            @endforeach--}}
+
+                                            @foreach($loans as $loan)
+                                                @if($loan->disbursed_count !=0 || $loan->disbursedno!=0)
+                                                    {{--                                                @if(1==1)--}}
+                                                    <tr>
+                                                        <td>{{ \Carbon\Carbon::parse($loan->loandate)->format('d-m-Y') }}</td>
+                                                        <td>{{ $loan->loantype->loantype??"" }}</td>
+                                                        <td>{{ $loan->society_name??"-" }}</td>
+                                                        @if(isset($subloans))
+                                                            @if(empty($loan->disbursed_count))
+                                                                <td style="text-align: right;"><a
+                                                                        href="loanlist?region={{$regionFilter}}&circle={{$circleFilter}}&societyTypes={{$societyTypesFilter}}&society={{$societyFilter}}&loantype={{$loan->loantype->id}}&startDate={{\Carbon\Carbon::parse($loan->loandate)->format('Y-m-d') }}&endDate={{\Carbon\Carbon::parse($loan->loandate)->format('Y-m-d') }}&filterssocietyby={{$loan->loantype->id}}">{{ formatIndianNumber($loan->disbursedno) }}</a>
+                                                                </td>
+
+                                                            @else
+                                                                <td style="text-align: right;"><a
+                                                                        href="loanlist?region={{$regionFilter}}&circle={{$circleFilter}}&societyTypes={{$societyTypesFilter}}&society={{$societyFilter}}&loantype={{$loan->loantype->id}}&startDate={{\Carbon\Carbon::parse($loan->loandate)->format('Y-m-d') }}&endDate={{\Carbon\Carbon::parse($loan->loandate)->format('Y-m-d') }}&filterssocietyby={{$loan->loantype->id}}">{{ $loan->disbursed_count }}</a>
+                                                                </td>
+                                                            @endif
+                                                            @if(empty($loan->disbursed_total))
+                                                                <td style="text-align: right;">{{ formatIndianNumber($loan->disbursedamount) }}</td>
+
+                                                            @else
+                                                                <td style="text-align: right;">{{ formatIndianNumber($loan->disbursed_total) }}</td>
+                                                            @endif
+                                                            @if(empty($loan->collected_count))
+                                                                <td style="text-align: right;">{{ formatIndianNumber($loan->collectedno) }}</td>
+
+                                                            @else
+                                                                <td style="text-align: right;">{{ $loan->collected_count }}</td>
+                                                            @endif
+                                                            @if(empty($loan->collect_total))
+                                                                <td style="text-align: right;">{{ formatIndianNumber($loan->collectedamount) }}</td>
+
+                                                            @else
+                                                                <td style="text-align: right;">{{ formatIndianNumber($loan->collect_total) }}</td>
+                                                            @endif
+
+                                                        @endif
+
+                                                    </tr>
                                                 @endif
                                             @endforeach
                                             </tbody>
                                         </table>
                                         <br/>
                                         <br/>
-{{--                                        @if(isset($subloans))--}}
-{{--                                            <h3>Details of Loans</h3>--}}
-{{--                                            <br/>--}}
-{{--                                            <table class="stripe table-bordered table-info " id="sub-data-table">--}}
-{{--                                                <thead style="text-align: center">--}}
-{{--                                                <tr>--}}
-{{--                                                    <th scope="col" rowspan="2">--}}
-{{--                                                        <center>Date</center>--}}
-{{--                                                    </th>--}}
-{{--                                                    <th scope="col" rowspan="2">--}}
-{{--                                                        <center>Loan Types</center>--}}
-{{--                                                    </th>--}}
-{{--                                                    <th scope="col" colspan="2" rowspan="1">--}}
-{{--                                                        <center>Issue of Loan</center>--}}
-{{--                                                    </th>--}}
-{{--                                                    <th scope="col" colspan="2" rowspan="1">--}}
-{{--                                                        <center>Collection of Loan</center>--}}
-{{--                                                    </th>--}}
-{{--                                                </tr>--}}
-{{--                                                <tr style="text-align: center">--}}
-{{--                                                    <th scope="col">--}}
-{{--                                                        <center>No. of Loan</center>--}}
-{{--                                                    </th>--}}
-{{--                                                    <th scope="col">--}}
-{{--                                                        <center>Amount of Loan</center>--}}
-{{--                                                    </th>--}}
-{{--                                                    <th scope="col">--}}
-{{--                                                        <center>No. of Loan</center>--}}
-{{--                                                    </th>--}}
-{{--                                                    <th scope="col">--}}
-{{--                                                        <center>Amount of Loan</center>--}}
-{{--                                                    </th>--}}
-{{--                                                </tr>--}}
-{{--                                                </thead>--}}
-{{--                                                <tbody>--}}
-{{--                                                @foreach($subloans as $loan)--}}
+                                        {{--                                        @if(isset($subloans))--}}
+                                        {{--                                            <h3>Details of Loans</h3>--}}
+                                        {{--                                            <br/>--}}
+                                        {{--                                            <table class="stripe table-bordered table-info " id="sub-data-table">--}}
+                                        {{--                                                <thead style="text-align: center">--}}
+                                        {{--                                                <tr>--}}
+                                        {{--                                                    <th scope="col" rowspan="2">--}}
+                                        {{--                                                        <center>Date</center>--}}
+                                        {{--                                                    </th>--}}
+                                        {{--                                                    <th scope="col" rowspan="2">--}}
+                                        {{--                                                        <center>Loan Types</center>--}}
+                                        {{--                                                    </th>--}}
+                                        {{--                                                    <th scope="col" colspan="2" rowspan="1">--}}
+                                        {{--                                                        <center>Issue of Loan</center>--}}
+                                        {{--                                                    </th>--}}
+                                        {{--                                                    <th scope="col" colspan="2" rowspan="1">--}}
+                                        {{--                                                        <center>Collection of Loan</center>--}}
+                                        {{--                                                    </th>--}}
+                                        {{--                                                </tr>--}}
+                                        {{--                                                <tr style="text-align: center">--}}
+                                        {{--                                                    <th scope="col">--}}
+                                        {{--                                                        <center>No. of Loan</center>--}}
+                                        {{--                                                    </th>--}}
+                                        {{--                                                    <th scope="col">--}}
+                                        {{--                                                        <center>Amount of Loan</center>--}}
+                                        {{--                                                    </th>--}}
+                                        {{--                                                    <th scope="col">--}}
+                                        {{--                                                        <center>No. of Loan</center>--}}
+                                        {{--                                                    </th>--}}
+                                        {{--                                                    <th scope="col">--}}
+                                        {{--                                                        <center>Amount of Loan</center>--}}
+                                        {{--                                                    </th>--}}
+                                        {{--                                                </tr>--}}
+                                        {{--                                                </thead>--}}
+                                        {{--                                                <tbody>--}}
+                                        {{--                                                @foreach($subloans as $loan)--}}
 
-{{--                                                    <tr>--}}
-{{--                                                        <td>{{ \Carbon\Carbon::parse($loan->loandate)->format('d-m-Y') }}</td>--}}
-{{--                                                        <td>{{ $loan->loantype->loantype??"" }}</td>--}}
-{{--                                                        <td style="text-align: right;">{{ $loan->disbursedno }}</td>--}}
-{{--                                                        <td style="text-align: right;">{{ $loan->disbursedamount }}</td>--}}
-{{--                                                        <td style="text-align: right;">{{ $loan->collectedno }}</td>--}}
-{{--                                                        <td style="text-align: right;">{{ $loan->collectedamount }}</td>--}}
-{{--                                                    </tr>--}}
-{{--                                                @endforeach--}}
-{{--                                                </tbody>--}}
-{{--                                            </table>--}}
-{{--                                        @endif--}}
+                                        {{--                                                    <tr>--}}
+                                        {{--                                                        <td>{{ \Carbon\Carbon::parse($loan->loandate)->format('d-m-Y') }}</td>--}}
+                                        {{--                                                        <td>{{ $loan->loantype->loantype??"" }}</td>--}}
+                                        {{--                                                        <td style="text-align: right;">{{ $loan->disbursedno }}</td>--}}
+                                        {{--                                                        <td style="text-align: right;">{{ $loan->disbursedamount }}</td>--}}
+                                        {{--                                                        <td style="text-align: right;">{{ $loan->collectedno }}</td>--}}
+                                        {{--                                                        <td style="text-align: right;">{{ $loan->collectedamount }}</td>--}}
+                                        {{--                                                    </tr>--}}
+                                        {{--                                                @endforeach--}}
+                                        {{--                                                </tbody>--}}
+                                        {{--                                            </table>--}}
+                                        {{--                                        @endif--}}
                                     </div>
                                 @endif
             </div>

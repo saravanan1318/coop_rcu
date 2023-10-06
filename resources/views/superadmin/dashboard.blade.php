@@ -2,7 +2,7 @@
 @section('content')
 <main id="main" class="main">
   <div class="pagetitle">
-    <h1>Superadmin Dashboard</h1>
+    <h1>Logged in Details</h1>
     <nav>
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="index.html">Home</a></li>
@@ -96,11 +96,11 @@
             <thead>
             <tr><th colspan="6"><center>Details of Societies logged in the portal</center></th></tr>
             <tr>
-                <th>S.No1</th>
+                <th>S.No</th>
                 <th>Region</th>
-                <th>Total No of society</th>
-                <th>No.of society logged in portal</th>
-                <th>Not logged in the portal</th>
+                <th>Total No of societies</th>
+                <th>No.of societies logged in portal</th>
+                <th>No.of societies Not logged in the portal</th>
                 <th>% of shortfall </th>
             </tr>
             </thead>
@@ -133,9 +133,9 @@
                     <tr>
                         <th>S.No</th>
                         <th>circles</th>
-                        <th>Total No of society</th>
-                        <th>No.of society logged in portal</th>
-                        <th>Not logged in the portal</th>
+                        <th>Total No of societies</th>
+                        <th>No.of societies logged in portal</th>
+                        <th>No.of societies Not logged in the portal</th>
                         <th>% of shortfall </th>
                     </tr>
                     </thead>
@@ -168,8 +168,8 @@
                     <tr><th colspan="6"><center>{{$title}}</center></th></tr>
                     <tr>
                         <th>S.No</th>
-                        <th>circles</th>
-                        <th>Logged in Time</th>
+                        <th>Name of Societies</th>
+{{--                        <th>Logged in Time</th>--}}
 {{--                        <th>No.of society logged in portal</th>--}}
 {{--                        <th>Not logged in the portal</th>--}}
 {{--                        <th>% of shortfall </th>--}}
@@ -184,14 +184,16 @@
                         @php
                             $tmp++;
                         @endphp
+                        @if(empty($society->societyLoginTime))
                         <tr>
                             <td>{{$tmp}}</td>
                             <td>{{$society->societyName}}</td>
-                            <td>{{!empty($society->societyLoginTime)?date( "d-m-y h:i",strtotime($society->societyLoginTime)):"-"}}</td>
+{{--                            <td>{{!empty($society->societyLoginTime)?date( "d-m-y h:i",strtotime($society->societyLoginTime)):"-"}}</td>--}}
 {{--                            <td>{{$society->societycount}}</td>--}}
 {{--                            <td>{{1-$circle->societycount}}</td>--}}
 {{--                            <td>{{number_format(((1-$society->societycount)*100),2,'.',',')}}</td>--}}
                         </tr>
+                        @endif
                     @endforeach
                     </tbody>
                 </table>
