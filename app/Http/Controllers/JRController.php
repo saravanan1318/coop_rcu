@@ -199,7 +199,7 @@ class JRController extends Controller
         $loantypes=Mtr_loan::all();
         $currentUrl = URL::current();
 
-        $regionFilter = $request->input('region');
+        $regionFilter = Auth::user()->region_id;
         $circleFilter = $request->input('circle');
         $societyFilter = $request->input('society');
         $endDate = $request->input('endDate');

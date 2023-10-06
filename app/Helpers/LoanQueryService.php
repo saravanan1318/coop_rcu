@@ -452,7 +452,7 @@ class LoanQueryService
 
     public  static function getJRFilteredDeposits($request)
     {
-        $regionFilter = $request->input('region');
+        $regionFilter = Auth::user()->region_id;
         $circleFilter = $request->input('circle');
         $societyFilter = $request->input('society');
         $endDate = $request->input('endDate');
