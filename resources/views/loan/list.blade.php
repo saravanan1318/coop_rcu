@@ -284,7 +284,7 @@
 
 
                                             @foreach($loans as $loan)
-                                                @if($loan->disbursed_count !=0 || $loan->disbursedno!=0)
+                                                @if($loan->collectedno !=0 || $loan->disbursedno!=0)
 
                                                     <tr>
                                                         <td>{{ \Carbon\Carbon::parse($loan->loandate)->format('d-m-Y') }}</td>
