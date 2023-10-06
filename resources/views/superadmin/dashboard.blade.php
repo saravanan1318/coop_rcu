@@ -71,9 +71,9 @@
                     <tr>
                         <th  scope="col" class="py-4" rowspan="2" rowspan="2"><center>Abstract</center></th>
                         <th scope="col" rowspan="1"><center>Date</center></th>
-                        <th scope="col" rowspan="1"><center>Total Society</center></th>
-                        <th scope="col" rowspan="1"><center>Total no of  logged Society</center></th>
-                        <th scope="col" rowspan="1"><center>Total no of not logged Society</center></th>
+                        <th scope="col" rowspan="1"><center>Total no.of societies</center></th>
+                        <th scope="col" rowspan="1"><center>Total no.of  societies logged in portal </center></th>
+                        <th scope="col" rowspan="1"><center>Total no.of societies not logged in portal</center></th>
                         <th scope="col" rowspan="1"><center>% shortfall</center></th>
                     </tr>
                     <tr>
@@ -98,7 +98,7 @@
             <tr>
                 <th>S.No</th>
                 <th>Region</th>
-                <th>Total No of societies</th>
+                <th>Total no.of societies</th>
                 <th>No.of societies logged in portal</th>
                 <th>No.of societies Not logged in the portal</th>
                 <th>% of shortfall </th>
@@ -133,7 +133,7 @@
                     <tr>
                         <th>S.No</th>
                         <th>circles</th>
-                        <th>Total No of societies</th>
+                        <th>Total no.of societies</th>
                         <th>No.of societies logged in portal</th>
                         <th>No.of societies Not logged in the portal</th>
                         <th>% of shortfall </th>
