@@ -258,9 +258,6 @@
                                                 <th scope="col" rowspan="2">
                                                     <center>Type of Loan</center>
                                                 </th>
-                                                <th scope="col" rowspan="2">
-                                                    <center>Name of Societies</center>
-                                                </th>
                                                 <th scope="col" colspan="2" rowspan="1">
                                                     <center>Issue of Loan</center>
                                                 </th>
@@ -292,7 +289,6 @@
                                                     <tr>
                                                         <td>{{ \Carbon\Carbon::parse($loan->loandate)->format('d-m-Y') }}</td>
                                                         <td>{{ $loan->loantype->loantype??"" }}</td>
-                                                        <td>{{ $loan->society_name??"-" }}</td>
                                                         <td>{{ formatIndianNumber($loan->disbursedno) }}</td>
                                                         <td style="text-align: right;">{{ formatIndianNumber($loan->disbursedamount) }}</td>
                                                         <td style="text-align: right;">{{ formatIndianNumber($loan->collectedno) }}</td>
