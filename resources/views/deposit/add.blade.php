@@ -74,16 +74,16 @@
                                             </select>
                                         </td>
                                         <td>
-                                            <input type="text"   onkeypress="return isNumberKey(event)" class="form-control" id="floatingName"  name="recievedno[]" value="{{ old('recievedno[]') }}" required>
+                                            <input  type="number" min="0" step="any"  onkeypress="return isNumberKey(event)" class="form-control" id="floatingName"  name="recievedno[]" value="{{ old('recievedno[]') }}" required>
                                         </td>
                                         <td>
-                                            <input type="text"  onkeypress="return isNumberKey(event)"  class="form-control" id="floatingName"  name="recievedamount[]" value="{{ old('recievedamount[]') }}" required>
+                                            <input  type="number" min="0" step="any" onkeypress="return isNumberKey(event)"  class="form-control" id="floatingName"  name="recievedamount[]" value="{{ old('recievedamount[]') }}" required>
                                         </td>
                                         <td>
-                                            <input type="text"   onkeypress="return isNumberKey(event)" class="form-control" id="floatingName"  name="closedno[]" value="{{ old('closedno[]') }}" required>
+                                            <input  type="number" min="0" step="any"  onkeypress="return isNumberKey(event)" class="form-control" id="floatingName"  name="closedno[]" value="{{ old('closedno[]') }}" required>
                                         </td>
                                         <td>
-                                            <input type="text"   onkeypress="return isNumberKey(event)" class="form-control" id="floatingName"  name="closedamount[]" value="{{ old('closedamount[]') }}" required>
+                                            <input  type="number" min="0" step="any"  onkeypress="return isNumberKey(event)" class="form-control" id="floatingName"  name="closedamount[]" value="{{ old('closedamount[]') }}" required>
                                         </td>
                                         <td>
                                         </td>
@@ -144,7 +144,7 @@
         console.log("Add new clicked");
         var rowadded = $("#rowadded").val();
         var updatedrowadded = parseInt(rowadded) + 1;
-        var html = '<tr data-id="'+updatedrowadded+'" id="row'+updatedrowadded+'"> <td> <select class="form-control" id="floatingName" name="deposittype_id[]" ><option value="">--SELECT--</option> <?php foreach($mtr_deposits as $deposits){ ?> <option value="<?php echo $deposits->id ?>"><?php echo $deposits->deposit_name ?></option> <?php } ?> </select> </td> <td> <input type="text"  onkeypress="return isNumberKey(event)"  class="form-control" id="floatingName"  name="recievedno[]" required> </td> <td> <input type="text"  onkeypress="return isNumberKey(event)"  class="form-control" id="floatingName"  name="recievedamount[]" required> </td> <td> <input type="text"  onkeypress="return isNumberKey(event)"  class="form-control" id="floatingName"  name="closedno[]" required> </td> <td> <input type="text"  onkeypress="return isNumberKey(event)"  class="form-control" id="floatingName"  name="closedamount[]" required> </td> <td> <a  class="btn btn-danger deleterow" data-delete-id="'+updatedrowadded+'" onclick="deletethisrow('+updatedrowadded+')" >Delete</a> </td> </tr>';
+        var html = '<tr data-id="'+updatedrowadded+'" id="row'+updatedrowadded+'"> <td> <select class="form-control" id="floatingName" name="deposittype_id[]" ><option value="">--SELECT--</option> <?php foreach($mtr_deposits as $deposits){ ?> <option value="<?php echo $deposits->id ?>"><?php echo $deposits->deposit_name ?></option> <?php } ?> </select> </td> <td> <input  type="number" min="0" step="any" onkeypress="return isNumberKey(event)"  class="form-control" id="floatingName"  name="recievedno[]" required> </td> <td> <input  type="number" min="0" step="any" onkeypress="return isNumberKey(event)"  class="form-control" id="floatingName"  name="recievedamount[]" required> </td> <td> <input  type="number" min="0" step="any" onkeypress="return isNumberKey(event)"  class="form-control" id="floatingName"  name="closedno[]" required> </td> <td> <input  type="number" min="0" step="any" onkeypress="return isNumberKey(event)"  class="form-control" id="floatingName"  name="closedamount[]" required> </td> <td> <a  class="btn btn-danger deleterow" data-delete-id="'+updatedrowadded+'" onclick="deletethisrow('+updatedrowadded+')" >Delete</a> </td> </tr>';
         console.log(html);
         $("#tbody").append(html);
         $("#rowadded").val(updatedrowadded);

@@ -12,3 +12,7 @@ function isNumberKey(evt) {
     return true;
 
 }
+function numberMobile(e){
+    e.target.value = e.target.value.replace(/[^\d]/g,'');
+    return false;
+}

@@ -119,6 +119,14 @@
     .filterpaddings{
         padding: 20px 0px 4px 20px;
     }
+    input[type=number]::-webkit-inner-spin-button,
+    input[type=number]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+    }
+
+    input[type=number] {
+        -moz-appearance: textfield;
+    }
 </style>
 <script>
     $('#region').on('change', function () {

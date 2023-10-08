@@ -61,19 +61,19 @@
                                 <tbody id="tbody">
                                     <tr data-id="1" id="row1">
                                         <td>
-                                            <input type="text"  onkeypress="return isNumberKey(event)"  class="form-control"  id="count1" name="count[]" value="{{ old('count[]') }}" required>
+                                            <input  type="number" min="0" step="any" onkeypress="return isNumberKey(event)"  class="form-control"  id="count1" name="count[]" value="{{ old('count[]') }}" required>
                                         </td>
                                         <td>
-                                            <input type="text"  onkeypress="return isNumberKey(event)"  class="form-control"  id="capacity1" name="capacity[]" value="{{ old('capacity[]') }}" required>
+                                            <input  type="number" min="0" step="any" onkeypress="return isNumberKey(event)"  class="form-control"  id="capacity1" name="capacity[]" value="{{ old('capacity[]') }}" required>
                                         </td>
                                         <td>
-                                            <input type="text"  onkeypress="return isNumberKey(event)"  class="form-control"  id="utilized1" name="utilized[]" value="{{ old('utilized[]') }}" required>
+                                            <input  type="number" min="0" step="any" onkeypress="return isNumberKey(event)"  class="form-control"  id="utilized1" name="utilized[]" value="{{ old('utilized[]') }}" required>
                                         </td>
                                         <td>
-                                            <input type="text"  onkeypress="return isNumberKey(event)"  class="form-control"  id="percentageutilized1" name="percentageutilized[]" value="{{ old('percentageutilized[]') }}" required>
+                                            <input  type="number" min="0" step="any" onkeypress="return isNumberKey(event)"  class="form-control"  id="percentageutilized1" name="percentageutilized[]" value="{{ old('percentageutilized[]') }}" required>
                                         </td>
                                         <td>
-                                            <input type="text"  onkeypress="return isNumberKey(event)"  class="form-control"  id="income1" name="income[]" value="{{ old('income[]') }}" required>
+                                            <input  type="number" min="0" step="any" onkeypress="return isNumberKey(event)"  class="form-control"  id="income1" name="income[]" value="{{ old('income[]') }}" required>
                                         </td>
                                         <td>
                                         </td>
@@ -135,7 +135,7 @@
         console.log("Add new clicked");
         var rowadded = $("#rowadded").val();
         var updatedrowadded = parseInt(rowadded) + 1;
-        var html = ' <tr data-id="'+updatedrowadded+'" id="row'+updatedrowadded+'"> <td> <input type="text"  onkeypress="return isNumberKey(event)"  class="form-control"  id="count'+updatedrowadded+'" name="count[]" required> </td> <td> <input type="text"  onkeypress="return isNumberKey(event)"  class="form-control"  id="capacity'+updatedrowadded+'" name="capacity[]" required> </td> <td> <input type="text"  onkeypress="return isNumberKey(event)"  class="form-control"  id="utilized'+updatedrowadded+'" name="utilized[]" required> </td> <td> <input type="text"  onkeypress="return isNumberKey(event)"  class="form-control"  id="percentageutilized'+updatedrowadded+'" name="percentageutilized[]" required> </td> <td> <input type="text"  onkeypress="return isNumberKey(event)"  class="form-control"  id="income'+updatedrowadded+'" name="income[]" required> </td> <td> </td><td> <a  class="btn btn-danger deleterow" data-delete-id="'+updatedrowadded+'" onclick="deletethisrow('+updatedrowadded+')" >Delete</a> </td> </tr>';
+        var html = ' <tr data-id="'+updatedrowadded+'" id="row'+updatedrowadded+'"> <td> <input  type="number" min="0" step="any" onkeypress="return isNumberKey(event)"  class="form-control"  id="count'+updatedrowadded+'" name="count[]" required> </td> <td> <input  type="number" min="0" step="any" onkeypress="return isNumberKey(event)"  class="form-control"  id="capacity'+updatedrowadded+'" name="capacity[]" required> </td> <td> <input  type="number" min="0" step="any" onkeypress="return isNumberKey(event)"  class="form-control"  id="utilized'+updatedrowadded+'" name="utilized[]" required> </td> <td> <input  type="number" min="0" step="any" onkeypress="return isNumberKey(event)"  class="form-control"  id="percentageutilized'+updatedrowadded+'" name="percentageutilized[]" required> </td> <td> <input  type="number" min="0" step="any" onkeypress="return isNumberKey(event)"  class="form-control"  id="income'+updatedrowadded+'" name="income[]" required> </td> <td> </td><td> <a  class="btn btn-danger deleterow" data-delete-id="'+updatedrowadded+'" onclick="deletethisrow('+updatedrowadded+')" >Delete</a> </td> </tr>';
         console.log(html);
         $("#tbody").append(html);
         $("#rowadded").val(updatedrowadded);

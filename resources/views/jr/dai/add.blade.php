@@ -62,11 +62,11 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td><input type="text"  onkeypress="return isNumberKey(event)"  name="ob" class="form-control" required></td>
-                                        <td><input type="text"  onkeypress="return isNumberKey(event)"  name="recommended_action" class="form-control" required></td>
-                                        <td><input type="text"  onkeypress="return isNumberKey(event)"  name="action_taken" id="action_taken" class="form-control" required></td>
-                                        <td><input type="text"  onkeypress="return isNumberKey(event)"  name="disposal" id="disposal" class="form-control" required></td>
-                                        <td><input type="text"  onkeypress="return isNumberKey(event)"  name="percentage_of_disposal" id="percentage_of_disposal" class="form-control" required readonly></td>
+                                        <td><input  type="number" min="0" step="any" onkeypress="return isNumberKey(event)"  name="ob" class="form-control" required></td>
+                                        <td><input  type="number" min="0" step="any" onkeypress="return isNumberKey(event)"  name="recommended_action" class="form-control" required></td>
+                                        <td><input  type="number" min="0" step="any" onkeypress="return isNumberKey(event)"  name="action_taken" id="action_taken" class="form-control" required></td>
+                                        <td><input  type="number" min="0" step="any" onkeypress="return isNumberKey(event)"  name="disposal" id="disposal" class="form-control" required></td>
+                                        <td><input  type="number" min="0" step="any" onkeypress="return isNumberKey(event)"  name="percentage_of_disposal" id="percentage_of_disposal" class="form-control" required readonly></td>
                                     </tr>
                                 </tbody>
                             </table>

@@ -67,15 +67,15 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td><input type="text"  onkeypress="return isNumberKey(event)"  name="ob_eighty_one" class="form-control" required></td>
-                                        <td><input type="text"  onkeypress="return isNumberKey(event)"  name="ordered_this_month_eighty_one" class="form-control" required></td>
-                                        <td><input type="text"  onkeypress="return isNumberKey(event)"  name="total_ob_ordered_eighty_one" class="form-control" required></td>
-                                        <td><input type="text"  onkeypress="return isNumberKey(event)"  name="completed_this_month_eighty_one" class="form-control" required></td>
-                                        <td><input type="text"  onkeypress="return isNumberKey(event)"  name="pending_within_3_months_eighty_one" class="form-control" required></td>
-                                        <td><input type="text"  onkeypress="return isNumberKey(event)"  name="pending_in_3_to_6_months_eighty_one" class="form-control" required></td>
-                                        <td><input type="text"  onkeypress="return isNumberKey(event)"  name="pending_above_6_months_eighty_one" class="form-control" required></td>
-                                        <td><input type="text"  onkeypress="return isNumberKey(event)"  name="total_pending_eighty_one" class="form-control" required></td>
-                                        <td><input type="text"  onkeypress="return isNumberKey(event)"  name="pending_percentage_eighty_one" class="form-control" required></td>
+                                        <td><input  type="number" min="0" step="any" onkeypress="return isNumberKey(event)"  name="ob_eighty_one" class="form-control" required></td>
+                                        <td><input  type="number" min="0" step="any" onkeypress="return isNumberKey(event)"  name="ordered_this_month_eighty_one" class="form-control" required></td>
+                                        <td><input  type="number" min="0" step="any" onkeypress="return isNumberKey(event)"  name="total_ob_ordered_eighty_one" class="form-control" required></td>
+                                        <td><input  type="number" min="0" step="any" onkeypress="return isNumberKey(event)"  name="completed_this_month_eighty_one" class="form-control" required></td>
+                                        <td><input  type="number" min="0" step="any" onkeypress="return isNumberKey(event)"  name="pending_within_3_months_eighty_one" class="form-control" required></td>
+                                        <td><input  type="number" min="0" step="any" onkeypress="return isNumberKey(event)"  name="pending_in_3_to_6_months_eighty_one" class="form-control" required></td>
+                                        <td><input  type="number" min="0" step="any" onkeypress="return isNumberKey(event)"  name="pending_above_6_months_eighty_one" class="form-control" required></td>
+                                        <td><input  type="number" min="0" step="any" onkeypress="return isNumberKey(event)"  name="total_pending_eighty_one" class="form-control" required></td>
+                                        <td><input  type="number" min="0" step="any" onkeypress="return isNumberKey(event)"  name="pending_percentage_eighty_one" class="form-control" required></td>
                                     </tr>
                                 </tbody>
                             </table>

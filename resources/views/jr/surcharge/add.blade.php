@@ -62,13 +62,13 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td><input type="text"  onkeypress="return isNumberKey(event)"  name="surcharge_order_issued_number" class="form-control" required></td>
-                                        <td><input type="text"  onkeypress="return isNumberKey(event)"  name="surcharge_issued_amount" class="form-control" required></td>
-                                        <td><input type="text"  onkeypress="return isNumberKey(event)"  name="numbers_collected_during_month" class="form-control" required></td>
-                                        <td><input type="text"  onkeypress="return isNumberKey(event)"  name="collected_amount" class="form-control" required></td>
-                                        <td><input type="text"  onkeypress="return isNumberKey(event)"  name="balance_numbers" class="form-control" required></td>
-                                        <td><input type="text"  onkeypress="return isNumberKey(event)"  name="balance_amount" class="form-control" required></td>
-                                        <td><input type="text"  onkeypress="return isNumberKey(event)"  name="percentage_of_collection" class="form-control" required></td>
+                                        <td><input  type="number" min="0" step="any" onkeypress="return isNumberKey(event)"  name="surcharge_order_issued_number" class="form-control" required></td>
+                                        <td><input  type="number" min="0" step="any" onkeypress="return isNumberKey(event)"  name="surcharge_issued_amount" class="form-control" required></td>
+                                        <td><input  type="number" min="0" step="any" onkeypress="return isNumberKey(event)"  name="numbers_collected_during_month" class="form-control" required></td>
+                                        <td><input  type="number" min="0" step="any" onkeypress="return isNumberKey(event)"  name="collected_amount" class="form-control" required></td>
+                                        <td><input  type="number" min="0" step="any" onkeypress="return isNumberKey(event)"  name="balance_numbers" class="form-control" required></td>
+                                        <td><input  type="number" min="0" step="any" onkeypress="return isNumberKey(event)"  name="balance_amount" class="form-control" required></td>
+                                        <td><input  type="number" min="0" step="any" onkeypress="return isNumberKey(event)"  name="percentage_of_collection" class="form-control" required></td>
                                     </tr>
                                 </tbody>
                             </table>
