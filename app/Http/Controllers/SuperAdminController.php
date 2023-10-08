@@ -1080,7 +1080,7 @@ class SuperAdminController extends Controller
         $societiestypes = Mtr_societytype::all();
         $societyTypesFilter=$request->input('societyTypes');
         if(!empty($societyTypesFilter)) {
-            $results = DB::table('mtr_region AS a')
+            /*$results = DB::table('mtr_region AS a')
                 ->select(
                     'a.region_name AS Region_Name',
                     DB::raw('(SELECT IFNULL(SUM(croploan_entry.receivedNo), 0)
@@ -1138,12 +1138,23 @@ class SuperAdminController extends Controller
                     WHERE users.region_id = a.id AND users.role = '.$societyTypesFilter.'
                 )) AS overdueamount')
                 )
+                ->get();*/
+
+            $results = DB::table('mtr_region as a')
+                ->select('a.region_name as Region_Name')
+                ->selectRaw('(SELECT IFNULL(SUM(ce.cultivableLand), 0) FROM croploan_entry as ce WHERE ce.user_id IN (SELECT u.id FROM users as u WHERE u.region_id = a.id and u.role= '.$societyTypesFilter.' )) AS totalcultivatedarea')
+                ->selectRaw('(SELECT IFNULL(SUM(ce.receivedNo), 0) FROM croploan_entry as ce WHERE ce.user_id IN (SELECT u.id FROM users as u WHERE u.region_id = a.id and u.role= '.$societyTypesFilter.')) AS noofappreceived')
+                ->selectRaw('(SELECT IFNULL(SUM(ce.receivedAmount), 0) FROM croploan_entry as ce WHERE ce.user_id IN (SELECT u.id FROM users as u WHERE u.region_id = a.id and u.role= '.$societyTypesFilter.')) AS noofappreceivedAmount')
+                ->selectRaw('(SELECT IFNULL(SUM(ce.sanctionedNo), 0) FROM croploan_entry as ce WHERE ce.user_id IN (SELECT u.id FROM users as u WHERE u.region_id = a.id and u.role= '.$societyTypesFilter.')) AS noofappsanctioned')
+                ->selectRaw('(SELECT IFNULL(SUM(ce.sanctionedAmount), 0) FROM croploan_entry as ce WHERE ce.user_id IN (SELECT u.id FROM users as u WHERE u.region_id = a.id and u.role= '.$societyTypesFilter.')) AS noofappsanctionedAmount')
+                ->selectRaw('(SELECT IFNULL(SUM(ce.rejectedno), 0) FROM croploan_entry as ce WHERE ce.user_id IN (SELECT u.id FROM users as u WHERE u.region_id = a.id and u.role= '.$societyTypesFilter.')) AS noofrejectedno')
+                ->selectRaw('(SELECT IFNULL(SUM(ce.applicationpendingno), 0) FROM croploan_entry as ce WHERE ce.user_id IN (SELECT u.id FROM users as u WHERE u.region_id = a.id and u.role= '.$societyTypesFilter.')) AS noofapppending')
+                ->selectRaw('(SELECT IFNULL(SUM(ce.applicationpendingamount), 0) FROM croploan_entry as ce WHERE ce.user_id IN (SELECT u.id FROM users as u WHERE u.region_id = a.id and u.role= '.$societyTypesFilter.')) AS noofappapplicationpendingamount')
                 ->get();
         }
         else{
 
-
-            $results = DB::table('mtr_region AS a')
+            /*$results = DB::table('mtr_region AS a')
                 ->select(
                     'a.region_name AS Region_Name',
                     DB::raw('(SELECT IFNULL(SUM(croploan_entry.receivedNo), 0)
@@ -1176,7 +1187,7 @@ class SuperAdminController extends Controller
                     SELECT users.id FROM users
                     WHERE users.region_id = a.id
                 )) AS cultivatedarealoanissuedto'),
-                    DB::raw('(SELECT IFNULL(SUM(croploan_entry.outstandingno), 0)
+                    DB::raw('(SELECT IFNULL(SUM(croploan_entry.outstandingno1), 0)
                 FROM croploan_entry
                 WHERE croploan_entry.user_id IN (
                     SELECT users.id FROM users
@@ -1201,9 +1212,19 @@ class SuperAdminController extends Controller
                     WHERE users.region_id = a.id
                 )) AS overdueamount')
                 )
+                ->get();*/
+
+            $results = DB::table('mtr_region as a')
+                ->select('a.region_name as Region_Name')
+                ->selectRaw('(SELECT IFNULL(SUM(ce.cultivableLand), 0) FROM croploan_entry as ce WHERE ce.user_id IN (SELECT u.id FROM users as u WHERE u.region_id = a.id)) AS totalcultivatedarea')
+                ->selectRaw('(SELECT IFNULL(SUM(ce.receivedNo), 0) FROM croploan_entry as ce WHERE ce.user_id IN (SELECT u.id FROM users as u WHERE u.region_id = a.id)) AS noofappreceived')
+                ->selectRaw('(SELECT IFNULL(SUM(ce.receivedAmount), 0) FROM croploan_entry as ce WHERE ce.user_id IN (SELECT u.id FROM users as u WHERE u.region_id = a.id)) AS noofappreceivedAmount')
+                ->selectRaw('(SELECT IFNULL(SUM(ce.sanctionedNo), 0) FROM croploan_entry as ce WHERE ce.user_id IN (SELECT u.id FROM users as u WHERE u.region_id = a.id)) AS noofappsanctioned')
+                ->selectRaw('(SELECT IFNULL(SUM(ce.sanctionedAmount), 0) FROM croploan_entry as ce WHERE ce.user_id IN (SELECT u.id FROM users as u WHERE u.region_id = a.id)) AS noofappsanctionedAmount')
+                ->selectRaw('(SELECT IFNULL(SUM(ce.rejectedno), 0) FROM croploan_entry as ce WHERE ce.user_id IN (SELECT u.id FROM users as u WHERE u.region_id = a.id)) AS noofrejectedno')
+                ->selectRaw('(SELECT IFNULL(SUM(ce.applicationpendingno), 0) FROM croploan_entry as ce WHERE ce.user_id IN (SELECT u.id FROM users as u WHERE u.region_id = a.id)) AS noofapppending')
+                ->selectRaw('(SELECT IFNULL(SUM(ce.applicationpendingamount), 0) FROM croploan_entry as ce WHERE ce.user_id IN (SELECT u.id FROM users as u WHERE u.region_id = a.id)) AS noofappapplicationpendingamount')
                 ->get();
-
-
 
         }
         return view("superadmin.croploanreport", compact('results','societiestypes','societyTypesFilter'));

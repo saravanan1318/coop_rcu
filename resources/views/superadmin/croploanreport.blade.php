@@ -140,15 +140,18 @@
                                 </tr>
                                 <tr>
                                     <th scope="col" >Region</th>
-                                    <th scope="col" >No of Application Received</th>
-                                    <th scope="col" >No of Application Sanctioned</th>
-                                    <th scope="col" >No of Application Pending</th>
+                                    <th scope="col" >No.of Application Received</th>
+                                    <th scope="col" >No.of  Received Amount</th>
+                                    <th scope="col" >No.of Application Sanctioned</th>
+                                    <th scope="col" >No.of Sanctioned Amount</th>
+                                    <th scope="col" >No.of Application Pending</th>
+                                    <th scope="col" >No.of Pending Amount</th>
                                     <th scope="col" >Total Cultivate Area</th>
-                                    <th scope="col" >Cultivated Area Loan issued</th>
-                                    <th scope="col" >No of Outstanding </th>
-                                    <th scope="col" > Outstanding Amount</th>
-                                    <th scope="col" >No of OverDue</th>
-                                    <th scope="col" >OverDue Amount</th>
+{{--                                    <th scope="col" >Cultivated Area Loan issued</th>--}}
+{{--                                    <th scope="col" >No of Outstanding </th>--}}
+{{--                                    <th scope="col" > Outstanding Amount</th>--}}
+{{--                                    <th scope="col" >No of OverDue</th>--}}
+{{--                                    <th scope="col" >OverDue Amount</th>--}}
                                 </tr>
 
                                 </thead>
@@ -157,14 +160,17 @@
                                     <tr>
                                         <td>{{$result->Region_Name}}</td>
                                         <td>{{$result->noofappreceived}}</td>
+                                        <td>{{$result->noofappreceivedAmount}}</td>
                                         <td>{{$result->noofappsanctioned}}</td>
+                                        <td>{{$result->noofappsanctionedAmount}}</td>
                                         <td>{{$result->noofapppending}}</td>
+                                        <td>{{$result->noofappapplicationpendingamount}}</td>
                                         <td>{{$result->totalcultivatedarea??"-"}}</td>
-                                        <td>{{$result->cultivatedarealoanissuedto??"-"}}</td>
-                                        <td>{{$result->outstandingno??"-"}}</td>
-                                        <td>{{$result->outstandingamount??"-"}}</td>
-                                        <td>{{$result->overdueno??"-"}}</td>
-                                        <td>{{$result->overdueamount??"-"}}</td>
+{{--                                        <td>{{$result->cultivatedarealoanissuedto??"-"}}</td>--}}
+{{--                                        <td>{{$result->outstandingno??"-"}}</td>--}}
+{{--                                        <td>{{$result->outstandingamount??"-"}}</td>--}}
+{{--                                        <td>{{$result->overdueno??"-"}}</td>--}}
+{{--                                        <td>{{$result->overdueamount??"-"}}</td>--}}
                                     </tr>
                                 @endforeach
                                 </tbody>
