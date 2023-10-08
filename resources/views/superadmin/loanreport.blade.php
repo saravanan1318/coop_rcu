@@ -148,6 +148,17 @@
                                         $percentage = $RecievedAmount / $totalTarget * 100;
                                     }
                                 }
+                                if (isset($Circleresults)) {
+                                    $resulting = $Circleresults;
+                                    foreach ($Circleresults as $result) {
+                                        $totalTarget += $result->Loan_Target_2023_24;
+                                        $RecievedAmount += $result->Disbursed_Amount;
+                                    }
+
+                                    if ($totalTarget != 0 && $RecievedAmount !=0) {
+                                        $percentage = $RecievedAmount / $totalTarget * 100;
+                                    }
+                                }
 
                                 ?>
                                 @php
@@ -272,8 +283,39 @@
                                         @foreach($Regionresults as $result)
                                             <tr>
                                                 <td>
-{{--                                                    <a href="?region={{$result->circleID}}&startDate={{$startDate}}&endDate={{$endDate}}&loantype={{$loantypeFilter}}">{{$result->circleName}}</a>--}}
-                                                    {{$result->circleName}}
+                                                    <a href="?region={{$district}}&circle={{$result->circleID}}&startDate={{$startDate}}&endDate={{$endDate}}&loantype={{$loantypeFilter}}">{{$result->circleName}}</a>
+{{--                                                    {{$result->circleName}}--}}
+                                                </td>
+                                                <td>{{formatIndianNumber((int)$result->Loan_Target_2023_24)}}</td>
+                                                <td>{{formatIndianNumber((int)$result->Disbursed_Amount)}}</td>
+                                                <td>{{$result->Disbursed_Amount!=0 &&$result->Loan_Target_2023_24!=0?number_format($result->Disbursed_Amount/$result->Loan_Target_2023_24*100,2,".",","):"-"}}</td>
+                                            </tr>
+                                        @endforeach
+                                        </tbody>
+                                    </table>
+                                @endif
+                                @if(isset($Circleresults))
+                                    <table class="stripe table-bordered table-info " id="data-table">
+                                        <thead style="text-align: center">
+                                        <tr>
+                                            <th colspan="4">
+                                                <center>Loan Report - ({{$showCase}})</center>
+                                            </th>
+                                        </tr>
+                                        <tr>
+                                            <th scope="col">Societies Name</th>
+                                            <th scope="col">Target (2023-2024)</th>
+                                            <th scope="col">Received Amount</th>
+                                            <th scope="col">% Of Loans</th>
+                                        </tr>
+
+                                        </thead>
+                                        <tbody>
+                                        @foreach($Circleresults as $result)
+                                            <tr>
+                                                <td>
+{{--                                                    <a href="?region={{$district}}&circle={{$result->circleID}}&startDate={{$startDate}}&endDate={{$endDate}}&loantype={{$loantypeFilter}}">{{$result->circleName}}</a>--}}
+                                                    {{$result->SocietyName}}
                                                 </td>
                                                 <td>{{formatIndianNumber((int)$result->Loan_Target_2023_24)}}</td>
                                                 <td>{{formatIndianNumber((int)$result->Disbursed_Amount)}}</td>

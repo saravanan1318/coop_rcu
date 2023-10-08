@@ -212,7 +212,32 @@ class SuperAdminController extends Controller
         $societiestypes = Mtr_societytype::all();
         $societyTypesFilter=$request->input('societyTypes');
         $district= $request->input("region");
-        if(!empty($district))
+        if(!empty($circleFilter))
+        {
+            if(empty($startDate) && !empty($endDate))
+            {
+                $startDate = date( "Y-m-d", strtotime(now()));
+            }
+            if(!empty($startDate) && empty($endDate))
+            {
+                $endDate = date( "Y-m-d", strtotime(now()));
+            }
+
+
+            $Circleresults = DB::table('mtr_society AS mtc')
+                ->select(
+                    'mtc.id AS societyID',
+                    'mtc.society_name AS SocietyName',
+                    DB::raw('(SELECT IFNULL(SUM(loan_onetimeentry.annual_target), 0) FROM loan_onetimeentry WHERE loan_onetimeentry.user_id IN (SELECT users.id FROM users WHERE users.region_id = '.$district.' AND users.circle_id =  '.$circleFilter.' AND users.society_id=mtc.id )
+                    ' . ($loantypeFilter ? 'AND loan_onetimeentry.loan_id = ' . $loantypeFilter : '') . ') AS Loan_Target_2023_24'),
+                    DB::raw('(SELECT IFNULL(SUM(loan.disbursedamount), 0) FROM loan WHERE loan.user_id IN (SELECT users.id FROM users WHERE users.region_id = '.$district.' AND users.circle_id =  '.$circleFilter.' AND users.society_id=mtc.id)
+                    ' . ($loantypeFilter ? 'AND loan.loantype_id = ' . $loantypeFilter : '') .  ($startDate && $endDate ? ' AND loan.loandate BETWEEN \'' . $startDate . '\' AND \'' . $endDate . '\'' : '')  . ') AS Disbursed_Amount')
+                )
+                ->where('region_id', $district)
+                ->get();
+            return view("superadmin.loanreport", compact('loanreportdate', 'district','Circleresults', 'societiestypes', 'societyTypesFilter', 'regions', 'regionFilter', 'circles', 'circleFilter', 'loantypes', 'startDate', 'endDate', 'societyTypesFilter', 'loantypeFilter'));
+        }
+        elseif(!empty($district))
         {
             if(empty($startDate) && !empty($endDate))
             {
@@ -236,7 +261,7 @@ class SuperAdminController extends Controller
                 ->get();
 
 
-            return view("superadmin.loanreport", compact('loanreportdate', 'Regionresults', 'societiestypes', 'societyTypesFilter', 'regions', 'regionFilter', 'circles', 'circleFilter', 'loantypes', 'startDate', 'endDate', 'societyTypesFilter', 'loantypeFilter'));
+            return view("superadmin.loanreport", compact('loanreportdate', 'district','Regionresults', 'societiestypes', 'societyTypesFilter', 'regions', 'regionFilter', 'circles', 'circleFilter', 'loantypes', 'startDate', 'endDate', 'societyTypesFilter', 'loantypeFilter'));
 
         }
 
