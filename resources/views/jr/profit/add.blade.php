@@ -71,14 +71,14 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td><input type="text" name="total" class="form-control" required></td>
-                                        <td><input type="text" name="nsnp_no" class="form-control" required></td>
-                                        <td><input type="text" name="nsnp_percentage" class="form-control" required></td>
-                                        <td><input type="text" name="nsp_no" class="form-control" required></td>
-                                        <td><input type="text" name="nsp_percentage" class="form-control" required></td>
-                                        <td><input type="text" name="nsl_no" class="form-control" required></td>
-                                        <td><input type="text" name="nsl_percentage" class="form-control" required></td>
-                                        <td><input type="text" name="progress" class="form-control" required></td>
+                                        <td><input type="text"  onkeypress="return isNumberKey(event)"  name="total" class="form-control" required></td>
+                                        <td><input type="text"  onkeypress="return isNumberKey(event)"  name="nsnp_no" class="form-control" required></td>
+                                        <td><input type="text"  onkeypress="return isNumberKey(event)"  name="nsnp_percentage" class="form-control" required></td>
+                                        <td><input type="text"  onkeypress="return isNumberKey(event)"  name="nsp_no" class="form-control" required></td>
+                                        <td><input type="text"  onkeypress="return isNumberKey(event)"  name="nsp_percentage" class="form-control" required></td>
+                                        <td><input type="text"  onkeypress="return isNumberKey(event)"  name="nsl_no" class="form-control" required></td>
+                                        <td><input type="text"  onkeypress="return isNumberKey(event)"  name="nsl_percentage" class="form-control" required></td>
+                                        <td><input type="text"  onkeypress="return isNumberKey(event)"  name="progress" class="form-control" required></td>
                                     </tr>
                                 </tbody>
                             </table>

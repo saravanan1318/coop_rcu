@@ -63,12 +63,12 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td><input type="text" name="disciplinary_ob_seventeena" class="form-control" required></td>
-                                        <td><input type="text" name="initiated_during_month_seventeena" class="form-control" required></td>
-                                        <td><input type="text" name="disciplinary_total_seventeena" class="form-control" readonly></td>
-                                        <td><input type="text" name="disposed_this_month_seventeena" class="form-control" required></td>
-                                        <td><input type="text" name="disciplinary_pending_seventeena" class="form-control" readonly></td>
-                                        <td><input type="text" name="disciplinary_pending_percentage_seventeena" class="form-control" readonly></td>
+                                        <td><input type="text"  onkeypress="return isNumberKey(event)"  name="disciplinary_ob_seventeena" class="form-control" required></td>
+                                        <td><input type="text"  onkeypress="return isNumberKey(event)"  name="initiated_during_month_seventeena" class="form-control" required></td>
+                                        <td><input type="text"  onkeypress="return isNumberKey(event)"  name="disciplinary_total_seventeena" class="form-control" readonly></td>
+                                        <td><input type="text"  onkeypress="return isNumberKey(event)"  name="disposed_this_month_seventeena" class="form-control" required></td>
+                                        <td><input type="text"  onkeypress="return isNumberKey(event)"  name="disciplinary_pending_seventeena" class="form-control" readonly></td>
+                                        <td><input type="text"  onkeypress="return isNumberKey(event)"  name="disciplinary_pending_percentage_seventeena" class="form-control" readonly></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -88,12 +88,12 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td><input type="text" name="disciplinary_ob_seventeenb" class="form-control" required></td>
-                                            <td><input type="text" name="initiated_during_month_seventeenb" class="form-control" required></td>
-                                            <td><input type="text" name="disciplinary_total_seventeenb" class="form-control" readonly></td>
-                                            <td><input type="text" name="disposed_this_month_seventeenb" class="form-control" required></td>
-                                            <td><input type="text" name="disciplinary_pending_seventeenb" class="form-control" readonly></td>
-                                            <td><input type="text" name="disciplinary_pending_percentage_seventeenb" class="form-control" readonly></td>
+                                            <td><input type="text"  onkeypress="return isNumberKey(event)"  name="disciplinary_ob_seventeenb" class="form-control" required></td>
+                                            <td><input type="text"  onkeypress="return isNumberKey(event)"  name="initiated_during_month_seventeenb" class="form-control" required></td>
+                                            <td><input type="text"  onkeypress="return isNumberKey(event)"  name="disciplinary_total_seventeenb" class="form-control" readonly></td>
+                                            <td><input type="text"  onkeypress="return isNumberKey(event)"  name="disposed_this_month_seventeenb" class="form-control" required></td>
+                                            <td><input type="text"  onkeypress="return isNumberKey(event)"  name="disciplinary_pending_seventeenb" class="form-control" readonly></td>
+                                            <td><input type="text"  onkeypress="return isNumberKey(event)"  name="disciplinary_pending_percentage_seventeenb" class="form-control" readonly></td>
                                     </tr>
                                     </tbody>
                                 </table>

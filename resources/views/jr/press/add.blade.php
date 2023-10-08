@@ -61,11 +61,11 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td><input type="text" name="npp" class="form-control" required></td>
-                                        <td><input type="text" name="dt" class="form-control" required></td>
-                                        <td><input type="text" name="achievement" id="action_taken" class="form-control" required></td>
-                                        <td><input type="text" name="percentage" id="disposal" class="form-control" required></td>
-                                        <td><input type="text" name="lya" id="percentage_of_disposal" class="form-control" required ></td>
+                                        <td><input type="text"  onkeypress="return isNumberKey(event)"  name="npp" class="form-control" required></td>
+                                        <td><input type="text"  onkeypress="return isNumberKey(event)"  name="dt" class="form-control" required></td>
+                                        <td><input type="text"  onkeypress="return isNumberKey(event)"  name="achievement" id="action_taken" class="form-control" required></td>
+                                        <td><input type="text"  onkeypress="return isNumberKey(event)"  name="percentage" id="disposal" class="form-control" required></td>
+                                        <td><input type="text"  onkeypress="return isNumberKey(event)"  name="lya" id="percentage_of_disposal" class="form-control" required ></td>
                                     </tr>
                                 </tbody>
                             </table>
