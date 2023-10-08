@@ -62,6 +62,36 @@
                                 <form method="GET" action="{{ URL::current() }}">
                                     <h3>Filters:</h3>
                                     <div class="row filterpaddings">
+                                        @if(isset($regions))
+                                            <div class="col-3">
+                                                <label for="region">Region:</label>
+                                                <select name="region" id="region" class="form-control">
+                                                    <option value="">All</option>
+                                                    @foreach($regions as $region)
+                                                        <option
+                                                            value="{{ $region->id }}" {{$regionFilter == $region->id? "selected":""}}>{{ $region->region_name}}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        @endif
+                                            @if(isset($circles))
+                                                <div class="col-3">
+                                                    <label for="circle">Circle:</label>
+                                                    <select name="circle" id="circle" class="form-control">
+                                                        <option value="">Please select circle</option>
+                                                        @foreach($circles as $circle)
+                                                            @if($circle->region_id == $regionFilter || count($circles)==1)
+                                                                <option
+                                                                    value="{{ $circle->id }}" {{$circleFilter == $circle->id? "selected":""}}>{{ $circle->circle_name }}</option>
+                                                            @endif
+                                                            @if(!isset($regions) && count($circles)>0)
+                                                                <option
+                                                                    value="{{ $circle->id }}" {{$circleFilter == $circle->id? "selected":""}}>{{ $circle->circle_name }}</option>
+                                                            @endif
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            @endif
                                         @if(isset($societiestypes))
                                             <div class="col-3 ">
                                                 <label for="society">Types:</label>
@@ -78,12 +108,42 @@
                                                 </select>
                                             </div>
                                         @endif
+                                            <div class="row filterpaddings">
+                                                @if(isset($loantypes))
+                                                    <div class="col-3 ">
+                                                        <label for="society">Loan type:</label>
+                                                        <select name="loantype" id="loantype" class="form-control">
+                                                            <option value="">Please select Loan Type</option>
+                                                            @foreach($loantypes as $loantype)
+                                                                {{--                                                            @if($loantype->id == $loantypeFilter)--}}
+                                                                <option
+                                                                    value="{{ $loantype->id }}" {{$loantypeFilter == $loantype->id ? "selected" : "" }}>{{ $loantype->loantype }}</option>
+                                                                {{--                                                            @endif--}}
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                @endif
+                                                <div class="col-3">
+                                                    <label for="startDate">Start Date:</label>
+                                                    <input type="date" class="form-control" id="startDate" name="startDate"
+                                                           value={{isset($startDate)?$startDate:""}} >
+                                                </div>
+                                                <div class="col-3">
+                                                    <label for="endDate">End Date:</label>
+                                                    <input type="date" class="form-control" id="endDate" name="endDate"
+                                                           value={{isset($endDate)?$endDate:""}} >
+                                                </div>
+                                                <div class="col-3 mt-3" `>
+                                                    <button type="submit" class="btn btn-primary m-1">Apply Filters</button>
+                                                    <a href="{{ URL::current() }}" type="submit" class=" m-1 btn btn-primary">Clear</a>
+                                                </div>
+                                            </div>
 
-                                        <div class="col-3 mt-3" `>
-                                            <button type="submit" class="btn btn-primary m-1">Apply Filters</button>
-                                            <a href="{{ URL::current() }}" type="submit"
-                                               class=" m-1 btn btn-primary">Clear</a>
-                                        </div>
+{{--                                        <div class="col-3 mt-3" `>--}}
+{{--                                            <button type="submit" class="btn btn-primary m-1">Apply Filters</button>--}}
+{{--                                            <a href="{{ URL::current() }}" type="submit"--}}
+{{--                                               class=" m-1 btn btn-primary">Clear</a>--}}
+{{--                                        </div>--}}
                                     </div>
 
 
@@ -131,7 +191,7 @@
                                             <td>{{$result->Region_Name}}</td>
                                             <td>{{formatIndianNumber((int)$result->Loan_Target_2023_24)}}</td>
                                             <td>{{formatIndianNumber((int)$result->Disbursed_Amount)}}</td>
-                                            <td>{{($result->Percent_of_Loan)??"-"}}</td>
+                                            <td>{{$result->Disbursed_Amount!=0 &&$result->Loan_Target_2023_24!=0?number_format($result->Disbursed_Amount/$result->Loan_Target_2023_24*100,2,".",","):""}}</td>
                                         </tr>
                                     @endforeach
                         </tbody>

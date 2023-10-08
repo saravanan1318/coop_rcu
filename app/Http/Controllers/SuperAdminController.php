@@ -187,6 +187,13 @@ class SuperAdminController extends Controller
     {
 
         $loanreportdate = $request->loanreportdate;
+        $regionFilter = $request->input('region');
+        $circleFilter = $request->input('circle');
+        $societyFilter = $request->input('society');
+        $endDate = $request->input('endDate');
+        $startDate = $request->input('startDate');
+        $societyTypesFilter = $request->input('societyTypes');
+        $loantypeFilter = $request->input('loantype');
 
         if (!empty($loanreportdate)) {
             $loanreportdate = $request->loanreportdate;
@@ -206,36 +213,36 @@ class SuperAdminController extends Controller
                 WHERE loan_onetimeentry.user_id IN (
                     SELECT users.id FROM users
                     WHERE users.region_id = a.id AND users.role = '.$societyTypesFilter.'
-                )) AS Loan_Target_2023_24'),
+                ) ' . ($loantypeFilter ? 'AND loan_onetimeentry.loan_id = ' . $loantypeFilter : '') . ') AS Loan_Target_2023_24'),
                     DB::raw('(SELECT IFNULL(SUM(loan.disbursedamount), 0)
                 FROM loan
                 WHERE loan.user_id IN (
                     SELECT users.id FROM users
                     WHERE users.region_id = a.id AND users.role = '.$societyTypesFilter.'
-                )) AS Disbursed_Amount'),
-                    DB::raw('CONCAT(
-                    ROUND(
-                        IFNULL(
-                            (SELECT SUM(loan.disbursedamount)
-                             FROM loan
-                             WHERE loan.user_id IN (
-                                 SELECT users.id
-                                 FROM users
-                                 WHERE users.region_id = a.id AND users.role = '.$societyTypesFilter.'
-                             )), 0
-                        ) /
-                        IFNULL(
-                            (SELECT SUM(loan_onetimeentry.annual_target)
-                             FROM loan_onetimeentry
-                             WHERE loan_onetimeentry.user_id IN (
-                                 SELECT users.id
-                                 FROM users
-                                 WHERE users.region_id = a.id AND users.role = '.$societyTypesFilter.'
-                             )), 0
-                        ) * 100, 2
-                    ),
-                    "%"
-                ) AS Percent_of_Loan')
+                )' . ($loantypeFilter ? 'AND loan.loantype_id = ' . $loantypeFilter : '') . ') AS Disbursed_Amount'),
+//                    DB::raw('CONCAT(
+//                    ROUND(
+//                        IFNULL(
+//                            (SELECT SUM(loan.disbursedamount)
+//                             FROM loan
+//                             WHERE loan.user_id IN (
+//                                 SELECT users.id
+//                                 FROM users
+//                                 WHERE users.region_id = a.id AND users.role = '.$societyTypesFilter.'
+//                             )), 0
+//                        ) /
+//                        IFNULL(
+//                            (SELECT SUM(loan_onetimeentry.annual_target)
+//                             FROM loan_onetimeentry
+//                             WHERE loan_onetimeentry.user_id IN (
+//                                 SELECT users.id
+//                                 FROM users
+//                                 WHERE users.region_id = a.id AND users.role = '.$societyTypesFilter.'
+//                             )), 0
+//                        ) * 100, 2
+//                    ),
+//                    "%"
+//                ) AS Percent_of_Loan')
                 )
                 ->get();
         }
@@ -282,9 +289,6 @@ class SuperAdminController extends Controller
                 ->get();
         }
 
-        $loans = Loan::select("*")->get();
-
-
         $regions = Mtr_region::all();
         $circles = Mtr_circle::all();
         $societiestypes = Mtr_societytype::all();
@@ -293,7 +297,7 @@ class SuperAdminController extends Controller
         $currentUrl = URL::current();
 //        $results = DB::select('SELECT * FROM view_regionwise_credit_and_deopsit');
 
-        return view("superadmin.loanreport", compact('loans', 'loanreportdate','results','societiestypes','societyTypesFilter','regions'));
+        return view("superadmin.loanreport", compact( 'loanreportdate','results','societiestypes','societyTypesFilter','regions','regionFilter' ,'circles','circleFilter','loantypes','startDate', 'endDate', 'societyTypesFilter', 'loantypeFilter'));
     }
 
     function depositreportold(Request $request)
