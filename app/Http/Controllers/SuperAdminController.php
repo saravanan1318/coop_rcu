@@ -42,7 +42,7 @@ class SuperAdminController extends Controller
     public function __construct()
     {
         $this->middleware(function ($request, $next) {
-            if (Auth::check() && Auth::user()->role == 2) {
+            if (Auth::check() && Auth::user()->role == 2  || Auth::user()->role == 1) {
                 return $next($request);
             }
             abort(403);

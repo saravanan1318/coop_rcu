@@ -285,6 +285,25 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/md/servicelist', [MDController::class, 'serviceslist']);
     Route::get('/md/croploanlist', [MDController::class, 'croploanlist']);
 
+    Route::get('/md/loanreport', [SuperAdminController::class, 'loanreport']);
+    Route::get('/md/croploanreport', [SuperAdminController::class, 'croploanreport']);
+    Route::get('/md/depositreport', [SuperAdminController::class, 'depositreport']);
+    Route::get('/md/purchasereport', [SuperAdminController::class, 'purchasereport']);
+    Route::get('/md/salereport', [SuperAdminController::class, 'salereport']);
+    Route::get('/md/godownreport', [SuperAdminController::class, 'godownreport']);
+    Route::get('/md/byireport', [SuperAdminController::class, 'byireport']);
+    Route::get('/md/faceliftingreport', [SuperAdminController::class, 'faciliftingreport']);
+    Route::get('/md/isoreport', [SuperAdminController::class, 'isoreport']);
+    Route::get('/md/teareport', [SuperAdminController::class, 'teareport']);
+    Route::get('/md/indcoreport', [SuperAdminController::class, 'indcoreport']);
+    Route::get('/md/palmjaggeryreport', [SuperAdminController::class, 'palmjaggeryreport']);
+    Route::get('/md/upi_fpsreport', [SuperAdminController::class, 'upi_fpsreport']);
+    Route::get('/md/gunnyduereport', [SuperAdminController::class, 'gunnyduereport']);
+    Route::get('/md/gunnysalereport', [SuperAdminController::class, 'gunnysalereport']);
+    Route::get('/md/remittancereport', [SuperAdminController::class, 'remittancereport']);
+    Route::get('/md/saltreport', [SuperAdminController::class, 'saltreport']);
+    Route::get('/md/duesaltreport', [SuperAdminController::class, 'duesaltreport']);
+
     //PDS Controller
     //palmjaggery
     Route::get('/drpds/palm-jaggery/add', [PDSController::class, 'palmJaggeryAdd']);

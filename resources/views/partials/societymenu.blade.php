@@ -14,92 +14,92 @@
           </a>
           <ul id="Report-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
               <li>
-                  <a href="/superadmin/loanreport">
+                  <a href="/md/loanreport">
                       <i class="bi bi-circle"></i><span>Loan</span>
                   </a>
               </li>
               <li>
-                  <a href="/superadmin/croploanreport">
+                  <a href="/md/croploanreport">
                       <i class="bi bi-circle"></i><span>Crop Loan</span>
                   </a>
               </li>
               <li>
-                  <a href="/superadmin/depositreport">
+                  <a href="/md/depositreport">
                       <i class="bi bi-circle"></i><span>Deposit</span>
                   </a>
               </li>
               <li>
-                  <a href="/superadmin/purchasereport">
+                  <a href="/md/purchasereport">
                       <i class="bi bi-circle"></i><span>Purchase</span>
                   </a>
               </li>
               <li>
-                  <a href="/superadmin/salereport">
+                  <a href="/md/salereport">
                       <i class="bi bi-circle"></i><span>Sale</span>
                   </a>
               </li>
               <li>
-                  <a href="/superadmin/godownreport">
+                  <a href="/md/godownreport">
                       <i class="bi bi-circle"></i><span>Godown</span>
                   </a>
               </li>
               <li>
-                  <a href="/superadmin/byireport">
+                  <a href="/md/byireport">
                       <i class="bi bi-circle"></i><span>BYI</span>
                   </a>
               </li>
               <li>
-                  <a href="/superadmin/faceliftingreport">
+                  <a href="/md/faceliftingreport">
                       <i class="bi bi-circle"></i><span>Facelifting</span>
                   </a>
               </li>
               <li>
-                  <a href="/superadmin/isoreport">
+                  <a href="/md/isoreport">
                       <i class="bi bi-circle"></i><span>ISO</span>
                   </a>
               </li>
               <li>
-                  <a href="/superadmin/teareport">
+                  <a href="/md/teareport">
                       <i class="bi bi-circle"></i><span>Tea</span>
                   </a>
               </li>
               <li>
-                  <a href="/superadmin/indcoreport">
+                  <a href="/md/indcoreport">
                       <i class="bi bi-circle"></i><span>Indco</span>
                   </a>
               </li>
               <li>
-                  <a href="/superadmin/saltreport">
+                  <a href="/md/saltreport">
                       <i class="bi bi-circle"></i><span>Salt Sales</span>
                   </a>
               </li>
               <li>
-                  <a href="/superadmin/duesaltreport">
+                  <a href="/md/duesaltreport">
                       <i class="bi bi-circle"></i><span>Dues to TN Salts</span>
                   </a>
               </li>
               <li>
-                  <a href="/superadmin/palmjaggeryreport">
+                  <a href="/md/palmjaggeryreport">
                       <i class="bi bi-circle"></i><span>Palm Jaggery</span>
                   </a>
               </li>
               <li>
-                  <a href="/superadmin/upi_fpsreport">
+                  <a href="/md/upi_fpsreport">
                       <i class="bi bi-circle"></i><span>UPI-FPS</span>
                   </a>
               </li>
               <li>
-                  <a href="/superadmin/gunnyduereport">
+                  <a href="/md/gunnyduereport">
                       <i class="bi bi-circle"></i><span>Gunny Due</span>
                   </a>
               </li>
               <li>
-                  <a href="/superadmin/gunnysalereport">
+                  <a href="/md/gunnysalereport">
                       <i class="bi bi-circle"></i><span>Gunny Sale</span>
                   </a>
               </li>
               <li>
-                  <a href="/superadmin/remittancereport">
+                  <a href="/md/remittancereport">
                       <i class="bi bi-circle"></i><span>Remittance</span>
                   </a>
               </li>
