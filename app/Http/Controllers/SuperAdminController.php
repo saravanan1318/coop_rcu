@@ -195,6 +195,13 @@ class SuperAdminController extends Controller
         $societyTypesFilter = $request->input('societyTypes');
         $loantypeFilter = $request->input('loantype');
 
+        $regions = Mtr_region::all();
+        $circles = Mtr_circle::all();
+        $societiestypes = Mtr_societytype::all();
+        $societies = Mtr_society::all();
+        $loantypes = Mtr_loan::all();
+        $currentUrl = URL::current();
+
         if (!empty($loanreportdate)) {
             $loanreportdate = $request->loanreportdate;
         } else {
@@ -204,65 +211,86 @@ class SuperAdminController extends Controller
 //        $loans = Loan::where('loandate', $loanreportdate)->paginate(5);
         $societiestypes = Mtr_societytype::all();
         $societyTypesFilter=$request->input('societyTypes');
-        if(!empty($societyTypesFilter)) {
-            $results = DB::table('mtr_region AS a')
+        $district= $request->input("region");
+        if(!empty($district))
+        {
+            if(empty($startDate) && !empty($endDate))
+            {
+                $startDate = date( "Y-m-d", strtotime(now()));
+            }
+            if(!empty($startDate) && empty($endDate))
+            {
+                $endDate = date( "Y-m-d", strtotime(now()));
+            }
+
+
+            $Regionresults = DB::table('mtr_circle AS mtc')
                 ->select(
-                    'a.region_name AS Region_Name',
-                    DB::raw('(SELECT IFNULL(SUM(loan_onetimeentry.annual_target), 0)
-                FROM loan_onetimeentry
-                WHERE loan_onetimeentry.user_id IN (
-                    SELECT users.id FROM users
-                    WHERE users.region_id = a.id AND users.role = '.$societyTypesFilter.'
-                ) ' . ($loantypeFilter ? 'AND loan_onetimeentry.loan_id = ' . $loantypeFilter : '') . ') AS Loan_Target_2023_24'),
-                    DB::raw('(SELECT IFNULL(SUM(loan.disbursedamount), 0)
-                FROM loan
-                WHERE loan.user_id IN (
-                    SELECT users.id FROM users
-                    WHERE users.region_id = a.id AND users.role = '.$societyTypesFilter.'
-                )' . ($loantypeFilter ? 'AND loan.loantype_id = ' . $loantypeFilter : '') . ') AS Disbursed_Amount'),
-//                    DB::raw('CONCAT(
-//                    ROUND(
-//                        IFNULL(
-//                            (SELECT SUM(loan.disbursedamount)
-//                             FROM loan
-//                             WHERE loan.user_id IN (
-//                                 SELECT users.id
-//                                 FROM users
-//                                 WHERE users.region_id = a.id AND users.role = '.$societyTypesFilter.'
-//                             )), 0
-//                        ) /
-//                        IFNULL(
-//                            (SELECT SUM(loan_onetimeentry.annual_target)
-//                             FROM loan_onetimeentry
-//                             WHERE loan_onetimeentry.user_id IN (
-//                                 SELECT users.id
-//                                 FROM users
-//                                 WHERE users.region_id = a.id AND users.role = '.$societyTypesFilter.'
-//                             )), 0
-//                        ) * 100, 2
-//                    ),
-//                    "%"
-//                ) AS Percent_of_Loan')
+                    'mtc.id AS circleID',
+                    'mtc.circle_name AS circleName',
+                    DB::raw('(SELECT IFNULL(SUM(loan_onetimeentry.annual_target), 0) FROM loan_onetimeentry WHERE loan_onetimeentry.user_id IN (SELECT users.id FROM users WHERE users.region_id = '.$district.' AND users.circle_id = mtc.id ' . ($societyTypesFilter ? ' AND users.role = \'' . $societyTypesFilter . '\'' : '') . ')
+                    ' . ($loantypeFilter ? 'AND loan_onetimeentry.loan_id = ' . $loantypeFilter : '') . ') AS Loan_Target_2023_24'),
+                    DB::raw('(SELECT IFNULL(SUM(loan.disbursedamount), 0) FROM loan WHERE loan.user_id IN (SELECT users.id FROM users WHERE users.region_id = '.$district.' AND users.circle_id = mtc.id ' . ($societyTypesFilter ? ' AND users.role = \'' . $societyTypesFilter . '\'' : '') . ')' . ($loantypeFilter ? 'AND loan.loantype_id = ' . $loantypeFilter : '') .  ($startDate && $endDate ? ' AND loan.loandate BETWEEN \'' . $startDate . '\' AND \'' . $endDate . '\'' : '')  . ') AS Disbursed_Amount')
                 )
+                ->where('region_id', $district)
                 ->get();
+
+
+            return view("superadmin.loanreport", compact('loanreportdate', 'Regionresults', 'societiestypes', 'societyTypesFilter', 'regions', 'regionFilter', 'circles', 'circleFilter', 'loantypes', 'startDate', 'endDate', 'societyTypesFilter', 'loantypeFilter'));
+
         }
-        else{
-            $results = DB::table('mtr_region AS a')
-                ->select(
-                    'a.region_name AS Region_Name',
-                    DB::raw('(SELECT IFNULL(SUM(loan_onetimeentry.annual_target), 0)
+
+
+//        $results = DB::select('SELECT * FROM view_regionwise_credit_and_deopsit');
+
+
+
+        else {
+            if (!empty($societyTypesFilter) || !empty($loantypeFilter)) {
+                if(empty($startDate) && !empty($endDate))
+                {
+                    $startDate = date( "Y-m-d", strtotime(now()));
+                }
+                if(!empty($startDate) && empty($endDate))
+                {
+                    $endDate = date( "Y-m-d", strtotime(now()));
+                }
+                $results = DB::table('mtr_region AS a')
+                    ->select(
+                        'a.region_name AS Region_Name',
+                        'a.id As regionId',
+                        DB::raw('(SELECT IFNULL(SUM(loan_onetimeentry.annual_target), 0)
+            FROM loan_onetimeentry
+            WHERE loan_onetimeentry.user_id IN (
+                SELECT users.id FROM users
+                WHERE users.region_id = a.id ' . ($societyTypesFilter ? 'AND users.role = \'' . $societyTypesFilter . '\'' : '') . ')
+            ' . ($loantypeFilter ? 'AND loan_onetimeentry.loan_id = ' . $loantypeFilter : '')  . ') AS Loan_Target_2023_24'),
+                        DB::raw('(SELECT IFNULL(SUM(loan.disbursedamount), 0)
+            FROM loan
+            WHERE loan.user_id IN (
+                SELECT users.id FROM users
+                WHERE users.region_id = a.id ' . ($societyTypesFilter ? 'AND users.role = \'' . $societyTypesFilter . '\'' : '') . ')
+            ' . ($loantypeFilter ? 'AND loan.loantype_id = ' . $loantypeFilter : '') .  ($startDate && $endDate ? ' AND loan.loandate BETWEEN \'' . $startDate . '\' AND \'' . $endDate . '\'' : '')  . ') AS Disbursed_Amount')
+                    )
+                    ->get();
+            } else {
+                $results = DB::table('mtr_region AS a')
+                    ->select(
+                        'a.region_name AS Region_Name',
+                        'a.id As regionId',
+                        DB::raw('(SELECT IFNULL(SUM(loan_onetimeentry.annual_target), 0)
                 FROM loan_onetimeentry
                 WHERE loan_onetimeentry.user_id IN (
                     SELECT users.id FROM users
                     WHERE users.region_id = a.id
                 )) AS Loan_Target_2023_24'),
-                    DB::raw('(SELECT IFNULL(SUM(loan.disbursedamount), 0)
+                        DB::raw('(SELECT IFNULL(SUM(loan.disbursedamount), 0)
                 FROM loan
                 WHERE loan.user_id IN (
                     SELECT users.id FROM users
                     WHERE users.region_id = a.id
                 )) AS Disbursed_Amount'),
-                    DB::raw('CONCAT(
+                        DB::raw('CONCAT(
                     ROUND(
                         IFNULL(
                             (SELECT SUM(loan.disbursedamount)
@@ -285,19 +313,15 @@ class SuperAdminController extends Controller
                     ),
                     "%"
                 ) AS Percent_of_Loan')
-                )
-                ->get();
-        }
+                    )
+                    ->get();
+            }
 
-        $regions = Mtr_region::all();
-        $circles = Mtr_circle::all();
-        $societiestypes = Mtr_societytype::all();
-        $societies = Mtr_society::all();
-        $loantypes = Mtr_loan::all();
-        $currentUrl = URL::current();
+
 //        $results = DB::select('SELECT * FROM view_regionwise_credit_and_deopsit');
 
-        return view("superadmin.loanreport", compact( 'loanreportdate','results','societiestypes','societyTypesFilter','regions','regionFilter' ,'circles','circleFilter','loantypes','startDate', 'endDate', 'societyTypesFilter', 'loantypeFilter'));
+            return view("superadmin.loanreport", compact('loanreportdate', 'results', 'societiestypes', 'societyTypesFilter', 'regions', 'regionFilter', 'circles', 'circleFilter', 'loantypes', 'startDate', 'endDate', 'societyTypesFilter', 'loantypeFilter'));
+        }
     }
 
     function depositreportold(Request $request)

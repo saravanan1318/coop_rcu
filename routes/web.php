@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\GeneralController;
+use App\Http\Controllers\MasterController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WebsiteController;
 use App\Http\Controllers\SocietyController;
@@ -303,6 +305,15 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/md/remittancereport', [SuperAdminController::class, 'remittancereport']);
     Route::get('/md/saltreport', [SuperAdminController::class, 'saltreport']);
     Route::get('/md/duesaltreport', [SuperAdminController::class, 'duesaltreport']);
+
+    // Ranjith Routes
+    // Master Controller
+    Route::get('/superadmin/regionmaster', [MasterController::class, 'region']);
+    Route::get('/superadmin/circlemaster', [MasterController::class, 'circle']);
+    Route::get('/superadmin/societymaster', [MasterController::class, 'society']);
+    Route::get('/superadmin/jrusers', [UserController::class, 'jrusers']);
+    Route::get('/superadmin/drusers', [UserController::class, 'drusers']);
+    Route::get('/superadmin/societyusers', [UserController::class, 'societyusers']);
 
     //PDS Controller
     //palmjaggery

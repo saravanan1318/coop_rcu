@@ -254,6 +254,53 @@
               </li>
           </ul>
       </li>
+
+      {{--Ranjith--}}
+      <li class="nav-item">
+          <a class="nav-link collapsed" data-bs-target="#Master-nav" data-bs-toggle="collapse" href="#">
+              <i class="bi bi-list-ul"></i><span>Master</span><i class="bi bi-chevron-down ms-auto"></i>
+          </a>
+          <ul id="Master-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+              <li>
+                  <a href="/superadmin/regionmaster">
+                      <i class="bi bi-circle"></i><span>Region</span>
+                  </a>
+              </li>
+              <li>
+                  <a href="/superadmin/circlemaster">
+                      <i class="bi bi-circle"></i><span>Circle</span>
+                  </a>
+              </li>
+              <li>
+                  <a href="/superadmin/societymaster">
+                      <i class="bi bi-circle"></i><span>Society</span>
+                  </a>
+              </li>
+          </ul>
+      </li>
+      <li class="nav-item">
+          <a class="nav-link collapsed" data-bs-target="#User-nav" data-bs-toggle="collapse" href="#">
+              <i class="bi bi-people"></i><span>Users</span><i class="bi bi-chevron-down ms-auto"></i>
+          </a>
+          <ul id="User-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+              <li>
+                  <a href="/superadmin/jrusers">
+                      <i class="bi bi-circle"></i><span>JR</span>
+                  </a>
+              </li>
+              <li>
+                  <a href="/superadmin/drusers">
+                      <i class="bi bi-circle"></i><span>Dr</span>
+                  </a>
+              </li>
+              <li>
+                  <a href="/superadmin/societyusers">
+                      <i class="bi bi-circle"></i><span>Society</span>
+                  </a>
+              </li>
+          </ul>
+      </li>
+{{--      Ranjith--}}
       <!-- End Dashboard Nav -->
   </ul>
   @endif
