@@ -82,40 +82,40 @@
                                                 </select>
                                             </td>
                                             <td>
-                                                <input type="text" class="form-control" style=" width: 150px;" id="count1" name="count[]" required>
+                                                <input type="text"  onkeypress="return isNumberKey(event)"  class="form-control" style=" width: 150px;" id="count1" name="count[]" required>
                                             </td>
                                             <td>
-                                                <input type="text" class="form-control" style=" width: 150px; " id="noofcentres1" name="noofcentres[]" required>
+                                                <input type="text"  onkeypress="return isNumberKey(event)"  class="form-control" style=" width: 150px; " id="noofcentres1" name="noofcentres[]" required>
                                             </td>
                                             <td>
-                                                <input type="text" class="form-control" style=" width: 150px; " id="noofvarieties1" name="noofvarieties[]" required>
+                                                <input type="text"  onkeypress="return isNumberKey(event)"  class="form-control" style=" width: 150px; " id="noofvarieties1" name="noofvarieties[]" required>
                                             </td>
                                             <td>
-                                                <input type="text" class="form-control" style=" width: 150px; " id="noofcustomers1" name="noofcustomers[]" required>
+                                                <input type="text"  onkeypress="return isNumberKey(event)"  class="form-control" style=" width: 150px; " id="noofcustomers1" name="noofcustomers[]" required>
                                             </td>
                                             <td>
-                                                <input type="text" class="form-control" style=" width: 150px; " id="nooffarmers1" name="nooffarmers[]" required>
+                                                <input type="text"  onkeypress="return isNumberKey(event)"  class="form-control" style=" width: 150px; " id="nooffarmers1" name="nooffarmers[]" required>
                                             </td>
                                             <td>
-                                                <input type="text" class="form-control" style=" width: 150px; " id="quantitykilos1" name="quantitykilos[]" required>
+                                                <input type="text"  onkeypress="return isNumberKey(event)"  class="form-control" style=" width: 150px; " id="quantitykilos1" name="quantitykilos[]" required>
                                             </td>
                                             <td>
-                                                <input type="text" class="form-control" style=" width: 150px; " id="quantitylitres1" name="quantitylitres[]" required>
+                                                <input type="text"  onkeypress="return isNumberKey(event)"  class="form-control" style=" width: 150px; " id="quantitylitres1" name="quantitylitres[]" required>
                                             </td>
                                             <td>
-                                                <input type="text" class="form-control" style=" width: 150px; " id="purchase1" name="purchase[]" required>
+                                                <input type="text"  onkeypress="return isNumberKey(event)"  class="form-control" style=" width: 150px; " id="purchase1" name="purchase[]" required>
                                             </td>
                                             <td>
-                                                <input type="text" class="form-control" style=" width: 150px; " id="salesamountetrading1" name="salesamountetrading[]" required>
+                                                <input type="text"  onkeypress="return isNumberKey(event)"  class="form-control" style=" width: 150px; " id="salesamountetrading1" name="salesamountetrading[]" required>
                                             </td>
                                             <td>
-                                                <input type="text" class="form-control" style=" width: 150px; " id="salesamountphysical1" name="salesamountphysical[]" required>
+                                                <input type="text"  onkeypress="return isNumberKey(event)"  class="form-control" style=" width: 150px; " id="salesamountphysical1" name="salesamountphysical[]" required>
                                             </td>
                                             <td>
-                                                <input type="text" class="form-control" style=" width: 150px; " id="incomegenerated1" name="incomegenerated[]" required>
+                                                <input type="text"  onkeypress="return isNumberKey(event)"  class="form-control" style=" width: 150px; " id="incomegenerated1" name="incomegenerated[]" required>
                                             </td>
                                             <td>
-                                                <input type="text" class="form-control" style=" width: 150px; " id="profit1" name="profit[]" required>
+                                                <input type="text"  onkeypress="return isNumberKey(event)"  class="form-control" style=" width: 150px; " id="profit1" name="profit[]" required>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -175,7 +175,7 @@
         console.log("Add new clicked");
         var rowadded = $("#rowadded").val();
         var updatedrowadded = parseInt(rowadded) + 1;
-        var html = '<tr data-id="'+updatedrowadded+'" id="'+updatedrowadded+'"> <td> <select class="form-control service_id" data-rowid="'+updatedrowadded+'" style=" width: 150px; " id="service_id'+updatedrowadded+'" name="service_id[]" required> <option value="">SELECT</option> <?php foreach($mtr_services as $services){ ?> <option value="<?php echo $services->id ?>"><?php echo $services->service_name ?></option> <?php } ?> </select> </td> <td> <input type="text" class="form-control" style=" width: 150px; " id="count'+updatedrowadded+'" name="count[]" required> </td> <td> <input type="text" class="form-control" style=" width: 150px; " id="noofcentres'+updatedrowadded+'" name="noofcentres[]" required> </td> <td> <input type="text" class="form-control" style=" width: 150px; " id="noofvarieties'+updatedrowadded+'" name="noofvarieties[]" required> </td> <td> <input type="text" class="form-control" style=" width: 150px; " id="noofcustomers'+updatedrowadded+'" name="noofcustomers[]" required> </td> <td> <input type="text" class="form-control" style=" width: 150px; " id="nooffarmers'+updatedrowadded+'" name="nooffarmers[]" required> </td> <td> <input type="text" class="form-control" style=" width: 150px; " id="quantitykilos'+updatedrowadded+'" name="quantitykilos[]" required> </td> <td> <input type="text" class="form-control" style=" width: 150px; " id="quantitylitres'+updatedrowadded+'" name="quantitylitres[]" required> </td> <td> <input type="text" class="form-control" style=" width: 150px; " id="purchase'+updatedrowadded+'" name="purchase[]" required> </td> <td> <input type="text" class="form-control" style=" width: 150px; " id="salesamountetrading'+updatedrowadded+'" name="salesamountetrading[]" required> </td> <td> <input type="text" class="form-control" style=" width: 150px; " id="salesamountphysical'+updatedrowadded+'" name="salesamountphysical[]" required> </td> <td> <input type="text" class="form-control" style=" width: 150px; " id="incomegenerated'+updatedrowadded+'" name="incomegenerated[]" required> </td> <td> <input type="text" class="form-control" style=" width: 150px; " id="profit'+updatedrowadded+'" name="profit[]" required> </td><td> <a  class="btn btn-danger deleterow" data-delete-id="'+updatedrowadded+'" onclick="deletethisrow('+updatedrowadded+')" >Delete</a> </td> </tr>';
+        var html = '<tr data-id="'+updatedrowadded+'" id="'+updatedrowadded+'"> <td> <select class="form-control service_id" data-rowid="'+updatedrowadded+'" style=" width: 150px; " id="service_id'+updatedrowadded+'" name="service_id[]" required> <option value="">SELECT</option> <?php foreach($mtr_services as $services){ ?> <option value="<?php echo $services->id ?>"><?php echo $services->service_name ?></option> <?php } ?> </select> </td> <td> <input type="text"  onkeypress="return isNumberKey(event)"  class="form-control" style=" width: 150px; " id="count'+updatedrowadded+'" name="count[]" required> </td> <td> <input type="text"  onkeypress="return isNumberKey(event)"  class="form-control" style=" width: 150px; " id="noofcentres'+updatedrowadded+'" name="noofcentres[]" required> </td> <td> <input type="text"  onkeypress="return isNumberKey(event)"  class="form-control" style=" width: 150px; " id="noofvarieties'+updatedrowadded+'" name="noofvarieties[]" required> </td> <td> <input type="text"  onkeypress="return isNumberKey(event)"  class="form-control" style=" width: 150px; " id="noofcustomers'+updatedrowadded+'" name="noofcustomers[]" required> </td> <td> <input type="text"  onkeypress="return isNumberKey(event)"  class="form-control" style=" width: 150px; " id="nooffarmers'+updatedrowadded+'" name="nooffarmers[]" required> </td> <td> <input type="text"  onkeypress="return isNumberKey(event)"  class="form-control" style=" width: 150px; " id="quantitykilos'+updatedrowadded+'" name="quantitykilos[]" required> </td> <td> <input type="text"  onkeypress="return isNumberKey(event)"  class="form-control" style=" width: 150px; " id="quantitylitres'+updatedrowadded+'" name="quantitylitres[]" required> </td> <td> <input type="text"  onkeypress="return isNumberKey(event)"  class="form-control" style=" width: 150px; " id="purchase'+updatedrowadded+'" name="purchase[]" required> </td> <td> <input type="text"  onkeypress="return isNumberKey(event)"  class="form-control" style=" width: 150px; " id="salesamountetrading'+updatedrowadded+'" name="salesamountetrading[]" required> </td> <td> <input type="text"  onkeypress="return isNumberKey(event)"  class="form-control" style=" width: 150px; " id="salesamountphysical'+updatedrowadded+'" name="salesamountphysical[]" required> </td> <td> <input type="text"  onkeypress="return isNumberKey(event)"  class="form-control" style=" width: 150px; " id="incomegenerated'+updatedrowadded+'" name="incomegenerated[]" required> </td> <td> <input type="text"  onkeypress="return isNumberKey(event)"  class="form-control" style=" width: 150px; " id="profit'+updatedrowadded+'" name="profit[]" required> </td><td> <a  class="btn btn-danger deleterow" data-delete-id="'+updatedrowadded+'" onclick="deletethisrow('+updatedrowadded+')" >Delete</a> </td> </tr>';
 
         console.log(html);
         $("#tbody").append(html);

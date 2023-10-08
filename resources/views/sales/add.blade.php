@@ -78,28 +78,28 @@
                                                 </select>
                                             </td>
                                             <td>
-                                                <input type="text" class="form-control" style=" width: 150px; " id="noofvarieties1" name="noofvarieties[]" value="{{ old('noofvarieties') }}" placeholder="" required>
+                                                <input type="text"  onkeypress="return isNumberKey(event)"  class="form-control" style=" width: 150px; " id="noofvarieties1" name="noofvarieties[]" value="{{ old('noofvarieties') }}" placeholder="" required>
                                             </td>
                                             <td>
-                                                <input type="text" class="form-control" style=" width: 150px; " id="noofoutlets1" name="noofoutlets[]" value="{{ old('noofoutlets') }}" placeholder="" required>
+                                                <input type="text"  onkeypress="return isNumberKey(event)"  class="form-control" style=" width: 150px; " id="noofoutlets1" name="noofoutlets[]" value="{{ old('noofoutlets') }}" placeholder="" required>
                                             </td>
                                             <td>
-                                                <input type="text" class="form-control" style=" width: 150px; " id="noofcustomers1" name="noofcustomers[]" value="{{ old('noofcustomers') }}" placeholder="" required>
+                                                <input type="text"  onkeypress="return isNumberKey(event)"  class="form-control" style=" width: 150px; " id="noofcustomers1" name="noofcustomers[]" value="{{ old('noofcustomers') }}" placeholder="" required>
                                             </td>
                                             <td>
-                                                <input type="text" class="form-control" style=" width: 150px; " id="nooffarmers1" name="nooffarmers[]" value="{{ old('nooffarmers') }}" placeholder="" required>
+                                                <input type="text"  onkeypress="return isNumberKey(event)"  class="form-control" style=" width: 150px; " id="nooffarmers1" name="nooffarmers[]" value="{{ old('nooffarmers') }}" placeholder="" required>
                                             </td>
                                             <td>
-                                                <input type="text" class="form-control" style=" width: 150px; " id="quantitykilo1" name="quantitykilo[]" value="{{ old('quantitykilo') }}" placeholder="" required>
+                                                <input type="text"  onkeypress="return isNumberKey(event)"  class="form-control" style=" width: 150px; " id="quantitykilo1" name="quantitykilo[]" value="{{ old('quantitykilo') }}" placeholder="" required>
                                             </td>
                                             <td>
-                                                <input type="text" class="form-control" style=" width: 150px; " id="quantitylitres1" name="quantitylitres[]" value="{{ old('quantitylitres') }}" placeholder="" required>
+                                                <input type="text"  onkeypress="return isNumberKey(event)"  class="form-control" style=" width: 150px; " id="quantitylitres1" name="quantitylitres[]" value="{{ old('quantitylitres') }}" placeholder="" required>
                                             </td>
                                             <td>
-                                                <input type="text" class="form-control" style=" width: 150px; " id="salesamountphysical1" name="salesamountphysical[]" value="{{ old('salesamountphysical') }}" placeholder="" required>
+                                                <input type="text"  onkeypress="return isNumberKey(event)"  class="form-control" style=" width: 150px; " id="salesamountphysical1" name="salesamountphysical[]" value="{{ old('salesamountphysical') }}" placeholder="" required>
                                             </td>
                                             <td>
-                                                <input type="text" class="form-control" style=" width: 150px; " id="salesamountcoopbazaar1" name="salesamountcoopbazaar[]" value="{{ old('salesamountcoopbazaar') }}" placeholder="" required>
+                                                <input type="text"  onkeypress="return isNumberKey(event)"  class="form-control" style=" width: 150px; " id="salesamountcoopbazaar1" name="salesamountcoopbazaar[]" value="{{ old('salesamountcoopbazaar') }}" placeholder="" required>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -159,7 +159,7 @@
         console.log("Add new clicked");
         var rowadded = $("#rowadded").val();
         var updatedrowadded = parseInt(rowadded) + 1;
-        var html = '<tr data-id="'+updatedrowadded+'" id="row'+updatedrowadded+'"> <td> <select class="form-control sale_id" data-rowid="'+updatedrowadded+'" id="sale_id'+updatedrowadded+'" style=" width: 150px; " name="sale_id[]" ><option value="">--SELECT--</option> <?php foreach($mtr_sales as $sales){ ?> <option value="<?php echo $sales->id ?>"><?php echo $sales->sale_name ?></option> <?php } ?> </select> <td> <input type="text" class="form-control" style=" width: 150px; " id="noofvarieties'+updatedrowadded+'" name="noofvarieties[]" value="{{ old('noofvarieties') }}" placeholder="Your No of Varieties." required> </td> <td> <input type="text" class="form-control" style=" width: 150px; " id="noofoutlets'+updatedrowadded+'" name="noofoutlets[]" value="{{ old('noofoutlets') }}" placeholder="Your No of Outlets." required> </td> <td> <input type="text" class="form-control" style=" width: 150px; " id="noofcustomers'+updatedrowadded+'" name="noofcustomers[]" value="{{ old('noofcustomers') }}" placeholder="Your No of Customers" required> </td> <td> <input type="text" class="form-control" style=" width: 150px; " id="nooffarmers'+updatedrowadded+'" name="nooffarmers[]" value="{{ old('nooffarmers') }}" placeholder="Your No of farmers" required> </td> <td> <input type="text" class="form-control" style=" width: 150px; " id="quantitykilo'+updatedrowadded+'" name="quantitykilo[]" value="{{ old('quantitykilo') }}" placeholder="Your Quantity in Kilo." required> </td> <td> <input type="text" class="form-control" style=" width: 150px; " id="quantitylitres'+updatedrowadded+'" name="quantitylitres[]" value="{{ old('quantitylitres') }}" placeholder="Your Quantity in Litres." required> </td> <td> <input type="text" class="form-control" style=" width: 150px; " id="salesamountphysical'+updatedrowadded+'" name="salesamountphysical[]" value="{{ old('salesamountphysical') }}" placeholder="Your Physical." required> </td> <td> <input type="text" class="form-control" style=" width: 150px; " id="salesamountcoopbazaar'+updatedrowadded+'" name="salesamountcoopbazaar[]" value="{{ old('salesamountcoopbazaar') }}" placeholder="Your Coop Bazaar." required> </td> <td> <a  class="btn btn-danger deleterow" data-delete-id="'+updatedrowadded+'" onclick="deletethisrow('+updatedrowadded+')" >Delete</a> </td> </tr>';
+        var html = '<tr data-id="'+updatedrowadded+'" id="row'+updatedrowadded+'"> <td> <select class="form-control sale_id" data-rowid="'+updatedrowadded+'" id="sale_id'+updatedrowadded+'" style=" width: 150px; " name="sale_id[]" ><option value="">--SELECT--</option> <?php foreach($mtr_sales as $sales){ ?> <option value="<?php echo $sales->id ?>"><?php echo $sales->sale_name ?></option> <?php } ?> </select> <td> <input type="text"  onkeypress="return isNumberKey(event)"  class="form-control" style=" width: 150px; " id="noofvarieties'+updatedrowadded+'" name="noofvarieties[]" value="{{ old('noofvarieties') }}" placeholder="Your No of Varieties." required> </td> <td> <input type="text"  onkeypress="return isNumberKey(event)"  class="form-control" style=" width: 150px; " id="noofoutlets'+updatedrowadded+'" name="noofoutlets[]" value="{{ old('noofoutlets') }}" placeholder="Your No of Outlets." required> </td> <td> <input type="text"  onkeypress="return isNumberKey(event)"  class="form-control" style=" width: 150px; " id="noofcustomers'+updatedrowadded+'" name="noofcustomers[]" value="{{ old('noofcustomers') }}" placeholder="Your No of Customers" required> </td> <td> <input type="text"  onkeypress="return isNumberKey(event)"  class="form-control" style=" width: 150px; " id="nooffarmers'+updatedrowadded+'" name="nooffarmers[]" value="{{ old('nooffarmers') }}" placeholder="Your No of farmers" required> </td> <td> <input type="text"  onkeypress="return isNumberKey(event)"  class="form-control" style=" width: 150px; " id="quantitykilo'+updatedrowadded+'" name="quantitykilo[]" value="{{ old('quantitykilo') }}" placeholder="Your Quantity in Kilo." required> </td> <td> <input type="text"  onkeypress="return isNumberKey(event)"  class="form-control" style=" width: 150px; " id="quantitylitres'+updatedrowadded+'" name="quantitylitres[]" value="{{ old('quantitylitres') }}" placeholder="Your Quantity in Litres." required> </td> <td> <input type="text"  onkeypress="return isNumberKey(event)"  class="form-control" style=" width: 150px; " id="salesamountphysical'+updatedrowadded+'" name="salesamountphysical[]" value="{{ old('salesamountphysical') }}" placeholder="Your Physical." required> </td> <td> <input type="text"  onkeypress="return isNumberKey(event)"  class="form-control" style=" width: 150px; " id="salesamountcoopbazaar'+updatedrowadded+'" name="salesamountcoopbazaar[]" value="{{ old('salesamountcoopbazaar') }}" placeholder="Your Coop Bazaar." required> </td> <td> <a  class="btn btn-danger deleterow" data-delete-id="'+updatedrowadded+'" onclick="deletethisrow('+updatedrowadded+')" >Delete</a> </td> </tr>';
 
         console.log(html);
         $("#tbody").append(html);
@@ -185,7 +185,7 @@
             $("#noofcustomers"+rowid).attr("readonly",true);
             $("#nooffarmers"+rowid).attr("readonly",false);
             $("#quantitykilo"+rowid).attr("readonly",false);
-            $("#quantitylitres"+rowid).attr("readonly",true);
+            // $("#quantitylitres"+rowid).attr("readonly",true);
             $("#salesamountphysical"+rowid).attr("readonly",false);
             $("#salesamountcoopbazaar"+rowid).attr("readonly",true);
 
@@ -286,7 +286,7 @@
         $("#noofcustomers"+rowid).attr("readonly",true);
         $("#nooffarmers"+rowid).attr("readonly",false);
         $("#quantitykilo"+rowid).attr("readonly",false);
-        $("#quantitylitres"+rowid).attr("readonly",true);
+        // $("#quantitylitres"+rowid).attr("readonly",true);
         $("#salesamountphysical"+rowid).attr("readonly",false);
         $("#salesamountcoopbazaar"+rowid).attr("readonly",true);
 
