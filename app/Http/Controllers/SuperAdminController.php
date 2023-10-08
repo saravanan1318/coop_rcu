@@ -1083,25 +1083,25 @@ class SuperAdminController extends Controller
             $results = DB::table('mtr_region AS a')
                 ->select(
                     'a.region_name AS Region_Name',
-                    DB::raw('(SELECT IFNULL(SUM(croploan_entry.noofappreceived), 0)
+                    DB::raw('(SELECT IFNULL(SUM(croploan_entry.receivedNo), 0)
                 FROM croploan_entry
                 WHERE croploan_entry.user_id IN (
                     SELECT users.id FROM users
                     WHERE users.region_id = a.id AND users.role = '.$societyTypesFilter.'
                 )) AS noofappreceived'),
-                    DB::raw('(SELECT IFNULL(SUM(croploan_entry.noofappsanctioned), 0)
+                    DB::raw('(SELECT IFNULL(SUM(croploan_entry.sanctionedNo), 0)
                 FROM croploan_entry
                 WHERE croploan_entry.user_id IN (
                     SELECT users.id FROM users
                     WHERE users.region_id = a.id AND users.role = '.$societyTypesFilter.'
                 )) AS noofappsanctioned'),
-                    DB::raw('(SELECT IFNULL(SUM(croploan_entry.noofapppending), 0)
+                    DB::raw('(SELECT IFNULL(SUM(croploan_entry.applicationpendingno), 0)
                 FROM croploan_entry
                 WHERE croploan_entry.user_id IN (
                     SELECT users.id FROM users
                     WHERE users.region_id = a.id AND users.role = '.$societyTypesFilter.'
                 )) AS noofapppending'),
-                    DB::raw('(SELECT IFNULL(SUM(croploan_entry.totalcultivatedarea), 0)
+                    DB::raw('(SELECT IFNULL(SUM(croploan_entry.cultivableLand), 0)
                 FROM croploan_entry
                 WHERE croploan_entry.user_id IN (
                     SELECT users.id FROM users
@@ -1146,25 +1146,25 @@ class SuperAdminController extends Controller
             $results = DB::table('mtr_region AS a')
                 ->select(
                     'a.region_name AS Region_Name',
-                    DB::raw('(SELECT IFNULL(SUM(croploan_entry.noofappreceived), 0)
+                    DB::raw('(SELECT IFNULL(SUM(croploan_entry.receivedNo), 0)
                 FROM croploan_entry
                 WHERE croploan_entry.user_id IN (
                     SELECT users.id FROM users
                     WHERE users.region_id = a.id
                 )) AS noofappreceived'),
-                    DB::raw('(SELECT IFNULL(SUM(croploan_entry.noofappsanctioned), 0)
+                    DB::raw('(SELECT IFNULL(SUM(croploan_entry.sanctionedNo), 0)
                 FROM croploan_entry
                 WHERE croploan_entry.user_id IN (
                     SELECT users.id FROM users
                     WHERE users.region_id = a.id
                 )) AS noofappsanctioned'),
-                    DB::raw('(SELECT IFNULL(SUM(croploan_entry.noofapppending), 0)
+                    DB::raw('(SELECT IFNULL(SUM(croploan_entry.applicationpendingno), 0)
                 FROM croploan_entry
                 WHERE croploan_entry.user_id IN (
                     SELECT users.id FROM users
                     WHERE users.region_id = a.id
                 )) AS noofapppending'),
-                    DB::raw('(SELECT IFNULL(SUM(croploan_entry.totalcultivatedarea), 0)
+                    DB::raw('(SELECT IFNULL(SUM(croploan_entry.cultivableLand), 0)
                 FROM croploan_entry
                 WHERE croploan_entry.user_id IN (
                     SELECT users.id FROM users

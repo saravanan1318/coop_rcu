@@ -2,49 +2,109 @@
 <aside id="sidebar" class="sidebar">
   @if(Auth::user()->role == 1)
   <ul class="sidebar-nav" id="sidebar-nav">
-    <li class="nav-item">
-      <a class="nav-link " href="/md/loanlist">
-        <i class="bi bi-grid"></i>
-        <span>Loan</span>
-      </a>
-    </li>
-    <!-- End Dashboard Nav -->
-    <li class="nav-item">
-      <a class="nav-link " href="/md/croploanlist">
-        <i class="bi bi-grid"></i>
-        <span>Crop Loan</span>
-      </a>
-    </li><!-- End Dashboard Nav -->
-    <li class="nav-item">
-      <a class="nav-link " href="/md/depositlist">
-        <i class="bi bi-grid"></i>
-        <span>Deposit</span>
-      </a>
-    </li><!-- End Dashboard Nav -->
-    <li class="nav-item">
-      <a class="nav-link " href="/md/purchaselist">
-        <i class="bi bi-grid"></i>
-        <span>Purchase</span>
-      </a>
-    </li><!-- End Dashboard Nav -->
-    <li class="nav-item">
-      <a class="nav-link " href="/md/saleslist">
-        <i class="bi bi-grid"></i>
-        <span>Sales</span>
-      </a>
-    </li><!-- End Dashboard Nav -->
-    <li class="nav-item">
-      <a class="nav-link " href="/md/godownlist">
-        <i class="bi bi-grid"></i>
-        <span>Godown</span>
-      </a>
-    </li><!-- End Dashboard Nav -->
-    <li class="nav-item">
-      <a class="nav-link " href="/md/servicelist">
-        <i class="bi bi-grid"></i>
-        <span>Services</span>
-      </a>
-    </li><!-- End Dashboard Nav -->
+      <li class="nav-item">
+          <a class="nav-link " href="/md/dashboard">
+              <i class="bi bi-grid"></i>
+              <span>Dashboard - Tableau</span>
+          </a>
+      </li>
+      <li class="nav-item">
+          <a class="nav-link collapsed" data-bs-target="#Report-nav" data-bs-toggle="collapse" href="#">
+              <i class="bi bi-journal-text"></i><span>Reports</span><i class="bi bi-chevron-down ms-auto"></i>
+          </a>
+          <ul id="Report-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+              <li>
+                  <a href="/superadmin/loanreport">
+                      <i class="bi bi-circle"></i><span>Loan</span>
+                  </a>
+              </li>
+              <li>
+                  <a href="/superadmin/croploanreport">
+                      <i class="bi bi-circle"></i><span>Crop Loan</span>
+                  </a>
+              </li>
+              <li>
+                  <a href="/superadmin/depositreport">
+                      <i class="bi bi-circle"></i><span>Deposit</span>
+                  </a>
+              </li>
+              <li>
+                  <a href="/superadmin/purchasereport">
+                      <i class="bi bi-circle"></i><span>Purchase</span>
+                  </a>
+              </li>
+              <li>
+                  <a href="/superadmin/salereport">
+                      <i class="bi bi-circle"></i><span>Sale</span>
+                  </a>
+              </li>
+              <li>
+                  <a href="/superadmin/godownreport">
+                      <i class="bi bi-circle"></i><span>Godown</span>
+                  </a>
+              </li>
+              <li>
+                  <a href="/superadmin/byireport">
+                      <i class="bi bi-circle"></i><span>BYI</span>
+                  </a>
+              </li>
+              <li>
+                  <a href="/superadmin/faceliftingreport">
+                      <i class="bi bi-circle"></i><span>Facelifting</span>
+                  </a>
+              </li>
+              <li>
+                  <a href="/superadmin/isoreport">
+                      <i class="bi bi-circle"></i><span>ISO</span>
+                  </a>
+              </li>
+              <li>
+                  <a href="/superadmin/teareport">
+                      <i class="bi bi-circle"></i><span>Tea</span>
+                  </a>
+              </li>
+              <li>
+                  <a href="/superadmin/indcoreport">
+                      <i class="bi bi-circle"></i><span>Indco</span>
+                  </a>
+              </li>
+              <li>
+                  <a href="/superadmin/saltreport">
+                      <i class="bi bi-circle"></i><span>Salt Sales</span>
+                  </a>
+              </li>
+              <li>
+                  <a href="/superadmin/duesaltreport">
+                      <i class="bi bi-circle"></i><span>Dues to TN Salts</span>
+                  </a>
+              </li>
+              <li>
+                  <a href="/superadmin/palmjaggeryreport">
+                      <i class="bi bi-circle"></i><span>Palm Jaggery</span>
+                  </a>
+              </li>
+              <li>
+                  <a href="/superadmin/upi_fpsreport">
+                      <i class="bi bi-circle"></i><span>UPI-FPS</span>
+                  </a>
+              </li>
+              <li>
+                  <a href="/superadmin/gunnyduereport">
+                      <i class="bi bi-circle"></i><span>Gunny Due</span>
+                  </a>
+              </li>
+              <li>
+                  <a href="/superadmin/gunnysalereport">
+                      <i class="bi bi-circle"></i><span>Gunny Sale</span>
+                  </a>
+              </li>
+              <li>
+                  <a href="/superadmin/remittancereport">
+                      <i class="bi bi-circle"></i><span>Remittance</span>
+                  </a>
+              </li>
+          </ul>
+      </li>
   </ul>
   @endif
   @if(Auth::user()->role == 2)

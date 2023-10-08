@@ -9,223 +9,299 @@
                     <li class="breadcrumb-item active">Dashboard</li>
                 </ol>
             </nav>
-        </div><!-- End Page Title -->
+        </div>
+        <!-- End Page Title -->
+        @if(\Illuminate\Support\Facades\Auth::user()->role ==1)
+            <div class='tableauPlaceholder' id='viz1696736754130' style='position: relative'>
+                <noscript><a href='#'><img alt='Main Dashboard '
+                                           src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Rc&#47;RcsMondayMeeting09-10-2023&#47;MainDashboard&#47;1_rss.png'
+                                           style='border: none'/></a></noscript>
+                <object class='tableauViz' style='display:none;'>
+                    <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F'/>
+                    <param name='embed_code_version' value='3'/>
+                    <param name='site_root' value=''/>
+                    <param name='name' value='RcsMondayMeeting09-10-2023&#47;MainDashboard'/>
+                    <param name='tabs' value='no'/>
+                    <param name='toolbar' value='yes'/>
+                    <param name='static_image'
+                           value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Rc&#47;RcsMondayMeeting09-10-2023&#47;MainDashboard&#47;1.png'/>
+                    <param name='animate_transition' value='yes'/>
+                    <param name='display_static_image' value='yes'/>
+                    <param name='display_spinner' value='yes'/>
+                    <param name='display_overlay' value='yes'/>
+                    <param name='display_count' value='yes'/>
+                    <param name='language' value='en-US'/>
+                    <param name='filter' value='publish=yes'/>
+                </object>
+            </div>
+            <script
+                type='text/javascript'>                    var divElement = document.getElementById('viz1696736754130');
+                var vizElement = divElement.getElementsByTagName('object')[0];
+                if (divElement.offsetWidth > 800) {
+                    vizElement.style.width = '100%';
+                    vizElement.style.height = (divElement.offsetWidth * 0.75) + 'px';
+                } else if (divElement.offsetWidth > 500) {
+                    vizElement.style.width = '100%';
+                    vizElement.style.height = (divElement.offsetWidth * 0.75) + 'px';
+                } else {
+                    vizElement.style.width = '100%';
+                    vizElement.style.height = '1727px';
+                }
+                var scriptElement = document.createElement('script');
+                scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
+                vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>
+        @endif
         @if(isset($regions) ||isset($circles) || isset($societies))
-        <div class="card info-card sales-card">
-            <div class="card-body">
-                <div class="col-12">
-                    <?php
-                    $totalsociety=0;
-                    $loggedsociety=0;
-                    $notloggedsociety=0;
-                    $shortfall=0;
+            <div class="card info-card sales-card">
+                <div class="card-body">
+                    <div class="col-12">
+                            <?php
+                            $totalsociety = 0;
+                            $loggedsociety = 0;
+                            $notloggedsociety = 0;
+                            $shortfall = 0;
 
-                    if(isset($regions))
-                    {
-                        foreach ($regions as $region)
-                        {
-                            $totalsociety+=$region->total_no_of_society;
-                            $loggedsociety+=$region->logged_socities;
-                        }
-                        $notloggedsociety=$totalsociety-$loggedsociety;
-                        $shortfall=$notloggedsociety/$totalsociety*100;
-                    }
-                    if(isset($circles))
-                    {
-                        foreach ($circles as $circle)
-                        {
-                            $totalsociety+=$circle->total_no_of_society;
-                            $loggedsociety+=$circle->counts;
-                        }
-                        $notloggedsociety=$totalsociety-$loggedsociety;
+                            if (isset($regions)) {
+                                foreach ($regions as $region) {
+                                    $totalsociety += $region->total_no_of_society;
+                                    $loggedsociety += $region->logged_socities;
+                                }
+                                $notloggedsociety = $totalsociety - $loggedsociety;
+                                $shortfall = $notloggedsociety / $totalsociety * 100;
+                            }
+                            if (isset($circles)) {
+                                foreach ($circles as $circle) {
+                                    $totalsociety += $circle->total_no_of_society;
+                                    $loggedsociety += $circle->counts;
+                                }
+                                $notloggedsociety = $totalsociety - $loggedsociety;
 
-                        if($totalsociety !=0) {
-                            $shortfall = $notloggedsociety / $totalsociety * 100;
-                        }
-                        else{
-                            $shortfall=0;
-                        }
-                    }
-                    if(isset($societies))
-                    {
-                        $tmpvalue=0;
-                        foreach($societies as $society)
-                        {
-                            $tmpvalue++;
-                            $totalsociety=$tmpvalue;
-                            $loggedsociety +=$society->societycount;
-                        }
-                        $notloggedsociety=$totalsociety-$loggedsociety;
-                        if($totalsociety !=0) {
-                            $shortfall = $notloggedsociety / $totalsociety * 100;
-                        }
-                        else{
-                            $shortfall=0;
-                        }
+                                if ($totalsociety != 0) {
+                                    $shortfall = $notloggedsociety / $totalsociety * 100;
+                                } else {
+                                    $shortfall = 0;
+                                }
+                            }
+                            if (isset($societies)) {
+                                $tmpvalue = 0;
+                                foreach ($societies as $society) {
+                                    $tmpvalue++;
+                                    $totalsociety = $tmpvalue;
+                                    $loggedsociety += $society->societycount;
+                                }
+                                $notloggedsociety = $totalsociety - $loggedsociety;
+                                if ($totalsociety != 0) {
+                                    $shortfall = $notloggedsociety / $totalsociety * 100;
+                                } else {
+                                    $shortfall = 0;
+                                }
 
-                    }
-                    ?>
-                    <div class="row p-4">
+                            }
+                            ?>
                         <div class="row p-4">
-                            <table class="table table-bordered table-info" style="font-size: 16px;">
-                                <thead>
-                                <tr>
-                                    <th  scope="col" class="py-4" rowspan="2" rowspan="2"><center>Abstract</center></th>
-                                    <th scope="col" rowspan="1"><center>Date</center></th>
-                                    <th scope="col" rowspan="1"><center>Total Society</center></th>
-                                    <th scope="col" rowspan="1"><center>Total no of  logged Society</center></th>
-                                    <th scope="col" rowspan="1"><center>Total no of not logged Society</center></th>
-                                    <th scope="col" rowspan="1"><center>% shortfall</center></th>
-                                </tr>
-                                <tr>
-                                    <td><center>{{ date("d-m-Y", strtotime(now())) }}</center></td>
-                                    <td><center>{{$totalsociety}}</center></td>
-                                    <td><center>{{$loggedsociety}}</center></td>
-                                    <td><center>{{$notloggedsociety}}</center></td>
-                                    <td><center>{{number_format($shortfall,2,'.')}}</center></td>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                </tbody>
-                            </table>
+                            <div class="row p-4">
+                                <table class="table table-bordered table-info" style="font-size: 16px;">
+                                    <thead>
+                                    <tr>
+                                        <th scope="col" class="py-4" rowspan="2" rowspan="2">
+                                            <center>Abstract</center>
+                                        </th>
+                                        <th scope="col" rowspan="1">
+                                            <center>Date</center>
+                                        </th>
+                                        <th scope="col" rowspan="1">
+                                            <center>Total Society</center>
+                                        </th>
+                                        <th scope="col" rowspan="1">
+                                            <center>Total no of logged Society</center>
+                                        </th>
+                                        <th scope="col" rowspan="1">
+                                            <center>Total no of not logged Society</center>
+                                        </th>
+                                        <th scope="col" rowspan="1">
+                                            <center>% shortfall</center>
+                                        </th>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <center>{{ date("d-m-Y", strtotime(now())) }}</center>
+                                        </td>
+                                        <td>
+                                            <center>{{$totalsociety}}</center>
+                                        </td>
+                                        <td>
+                                            <center>{{$loggedsociety}}</center>
+                                        </td>
+                                        <td>
+                                            <center>{{$notloggedsociety}}</center>
+                                        </td>
+                                        <td>
+                                            <center>{{number_format($shortfall,2,'.')}}</center>
+                                        </td>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
+
                         </div>
 
+                        @if(isset($regions))
+                            <table id="data-table-dashboard">
+
+                                <thead>
+                                <tr>
+                                    <th colspan="6">
+                                        <center>Details of Societies logged in the
+                                            portal {{ date("d-m-Y", now()) }}</center>
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th>S.No</th>
+                                    <th>Region</th>
+                                    <th>Total No of society</th>
+                                    <th>No.of society logged in portal</th>
+                                    <th>Not logged in the portal</th>
+                                    <th>% of shortfall</th>
+                                </tr>
+                                </thead>
+                                <tbody id="logged-datas">
+
+                                    <?php
+                                    $tmp = 0
+                                    ?>
+                                @foreach($regions as $region)
+                                    @php
+                                        $tmp++;
+                                    @endphp
+                                    <tr>
+                                        <td>{{$tmp}}</td>
+                                        <td>{{$region->Region_Name}}</td>
+                                        <td>{{$region->total_no_of_society}}</td>
+                                        <td>{{$region->logged_socities}}</td>
+                                        <td>
+                                            <a href="{{ URL::current() }}?Region={{$region->Region_ID}}">{{$region->total_no_of_society-$region->logged_socities}}</a>
+                                        </td>
+                                        <td>{{number_format(100-(($region->logged_socities/$region->total_no_of_society)*100),2,'.',',')}}</td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+                        @endif
+                        @if(isset($circles))
+                            <table id="data-table-dashboard">
+
+                                <thead>
+                                <tr>
+                                    <th colspan="6">
+                                        <center>{{$title}}</center>
+                                    </th>
+                                </tr>
+                                    <?php
+                                if (isset($region_name))
+                                {
+                                    ?>
+
+
+                                <tr>
+                                    <th colspan="6">Region: {{$region_name}}</th>
+                                </tr>
+                                    <?php
+
+                                }
+                                    ?>
+                                <tr>
+                                    <th>S.No</th>
+                                    <th>circles</th>
+                                    <th>Total No of society</th>
+                                    <th>No.of society logged in portal</th>
+                                    <th>Not logged in the portal</th>
+                                    <th>% of shortfall</th>
+                                </tr>
+                                </thead>
+                                <tbody id="logged-datas">
+
+                                    <?php
+                                    $tmp = 0
+                                    ?>
+                                @foreach($circles as $circle)
+                                    @php
+                                        $tmp++;
+                                    @endphp
+                                    <tr>
+                                        <td>{{$tmp}}</td>
+                                        <td>{{$circle->circleName}}</td>
+                                        <td>{{$circle->total_no_of_society}}</td>
+                                        <td>{{$circle->counts}}</td>
+                                        <td>
+                                            <a href="{{ URL::current() }}?circle={{$circle->circleID}}&Region={{$disrict}}">{{$circle->total_no_of_society-$circle->counts}}</a>
+                                        </td>
+                                        <td>{{$circle->total_no_of_society==0?"0":number_format(100-(($circle->counts/$circle->total_no_of_society)*100),2,'.',',')}}</td>
+                                        {{--                                    <td>0</td>--}}
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+                        @endif
+                        @if(isset($societies))
+                            <table id="data-table-dashboard">
+
+                                <thead>
+
+                                <tr>
+                                    <th colspan="3">
+                                        <center>{{$title}}</center>
+                                    </th>
+                                </tr>
+                                    <?php
+                                if (isset($region_name))
+                                {
+                                    ?>
+
+
+                                <tr>
+                                    <th colspan="2">Region: {{$region_name}}</th>
+                                    <th colspan="1">Circle: {{$circle_name}}</th>
+                                </tr>
+                                    <?php
+
+                                }
+                                    ?>
+                                <tr>
+                                    <th>S.No</th>
+                                    <th>Society Name</th>
+                                    <th>Logged in Time</th>
+                                    {{--                                <th>No.of society logged in portal</th>--}}
+                                    {{--                                <th>Not logged in the portal</th>--}}
+                                    {{--                                <th>% of shortfall </th>--}}
+                                </tr>
+                                </thead>
+                                <tbody id="logged-datas">
+
+                                    <?php
+                                    $tmp = 0
+                                    ?>
+                                @foreach($societies as $society)
+                                    @php
+                                        $tmp++;
+                                    @endphp
+                                    <tr>
+                                        <td>{{$tmp}}</td>
+                                        <td>{{$society->societyName}}</td>
+                                        <td>{{!empty($society->societyLoginTime)?date( "d-m-y h:i",strtotime($society->societyLoginTime)):"-"}}</td>
+                                        {{--                                    <td>{{$society->societycount}}</td>--}}
+                                        {{--                                    <td>{{1-$circle->societycount}}</td>--}}
+                                        {{--                                    <td>{{number_format(((1-$society->societycount)*100),2,'.',',')}}</td>--}}
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+                        @endif
+
                     </div>
-
-                    @if(isset($regions))
-                        <table id="data-table-dashboard">
-
-                            <thead>
-                            <tr><th colspan="6"><center>Details of Societies logged in the portal {{ date("d-m-Y", now()) }}</center></th></tr>
-                            <tr>
-                                <th>S.No</th>
-                                <th>Region</th>
-                                <th>Total No of society</th>
-                                <th>No.of society logged in portal</th>
-                                <th>Not logged in the portal</th>
-                                <th>% of shortfall </th>
-                            </tr>
-                            </thead>
-                            <tbody id="logged-datas">
-
-                                <?php
-                                $tmp=0
-                                ?>
-                            @foreach($regions as $region)
-                                @php
-                                    $tmp++;
-                                @endphp
-                                <tr>
-                                    <td>{{$tmp}}</td>
-                                    <td>{{$region->Region_Name}}</td>
-                                    <td>{{$region->total_no_of_society}}</td>
-                                    <td>{{$region->logged_socities}}</td>
-                                    <td><a href="{{ URL::current() }}?Region={{$region->Region_ID}}">{{$region->total_no_of_society-$region->logged_socities}}</a></td>
-                                    <td>{{number_format(100-(($region->logged_socities/$region->total_no_of_society)*100),2,'.',',')}}</td>
-                                </tr>
-                            @endforeach
-                            </tbody>
-                        </table>
-                    @endif
-                    @if(isset($circles))
-                        <table id="data-table-dashboard">
-
-                            <thead>
-                            <tr><th colspan="6"><center>{{$title}}</center></th></tr>
-                                <?php
-                            if(isset($region_name))
-                            {
-                                ?>
-
-
-                            <tr><th colspan="6">Region: {{$region_name}}</th></tr>
-                                <?php
-
-                            }
-                                ?>
-                            <tr>
-                                <th>S.No</th>
-                                <th>circles</th>
-                                <th>Total No of society</th>
-                                <th>No.of society logged in portal</th>
-                                <th>Not logged in the portal</th>
-                                <th>% of shortfall </th>
-                            </tr>
-                            </thead>
-                            <tbody id="logged-datas">
-
-                                <?php
-                                $tmp=0
-                                ?>
-                            @foreach($circles as $circle)
-                                @php
-                                    $tmp++;
-                                @endphp
-                                <tr>
-                                    <td>{{$tmp}}</td>
-                                    <td>{{$circle->circleName}}</td>
-                                    <td>{{$circle->total_no_of_society}}</td>
-                                    <td>{{$circle->counts}}</td>
-                                    <td><a href="{{ URL::current() }}?circle={{$circle->circleID}}&Region={{$disrict}}">{{$circle->total_no_of_society-$circle->counts}}</a></td>
-                                    <td>{{$circle->total_no_of_society==0?"0":number_format(100-(($circle->counts/$circle->total_no_of_society)*100),2,'.',',')}}</td>
-{{--                                    <td>0</td>--}}
-                                </tr>
-                            @endforeach
-                            </tbody>
-                        </table>
-                    @endif
-                    @if(isset($societies))
-                        <table id="data-table-dashboard">
-
-                            <thead>
-
-                            <tr><th colspan="3"><center>{{$title}}</center></th></tr>
-                                <?php
-                            if(isset($region_name))
-                            {
-                                ?>
-
-
-                            <tr><th colspan="2">Region: {{$region_name}}</th>
-                                <th colspan="1">Circle: {{$circle_name}}</th></tr>
-                                <?php
-
-                            }
-                                ?>
-                            <tr>
-                                <th>S.No</th>
-                                <th>Society Name</th>
-                                <th>Logged in Time</th>
-{{--                                <th>No.of society logged in portal</th>--}}
-{{--                                <th>Not logged in the portal</th>--}}
-{{--                                <th>% of shortfall </th>--}}
-                            </tr>
-                            </thead>
-                            <tbody id="logged-datas">
-
-                                <?php
-                                $tmp=0
-                                ?>
-                            @foreach($societies as $society)
-                                @php
-                                    $tmp++;
-                                @endphp
-                                <tr>
-                                    <td>{{$tmp}}</td>
-                                    <td>{{$society->societyName}}</td>
-                                    <td>{{!empty($society->societyLoginTime)?date( "d-m-y h:i",strtotime($society->societyLoginTime)):"-"}}</td>
-{{--                                    <td>{{$society->societycount}}</td>--}}
-{{--                                    <td>{{1-$circle->societycount}}</td>--}}
-{{--                                    <td>{{number_format(((1-$society->societycount)*100),2,'.',',')}}</td>--}}
-                                </tr>
-                            @endforeach
-                            </tbody>
-                        </table>
-                    @endif
-
                 </div>
             </div>
-        </div>
         @endif
 
         {{--  <section class="section dashboard">--}}
