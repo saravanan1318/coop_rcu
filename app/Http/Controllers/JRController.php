@@ -6,6 +6,7 @@ use App\Helpers\LoanQueryService;
 use App\Models\Deposit_outstandings;
 use App\Models\Jr_press;
 use App\Models\Jr_profit;
+use App\Models\Jr_project;
 use App\Models\Mtr_societytype;
 use Validator;
 
@@ -809,5 +810,62 @@ class JRController extends Controller
         $seventeena->save();
 
         return redirect('/jr/profit/list')->with('status', 'Profit & Loss added successfully');
+    }
+    function projectadd()
+    {
+
+        $jr = Jr_project::select('*')->paginate(5);
+        return view("jr.project.add", compact('jr'));
+    }
+
+    function projectlist()
+    {
+
+        $jr = Jr_project::select('*')->paginate(5);
+        return view("jr.project.list", compact('jr'));
+    }
+
+    function projectstore(Request $request)
+    {
+        $request->validate([
+            'projectdate' => "required",
+            'total_no_of_society' => 'required|integer',
+            'total_no_of_work_supply_orders' => 'required|integer',
+            'column_no4_civil' => 'required|string|max:255',
+            'column_no4_machineries' => 'required|string|max:255',
+            'yet_to_be_started' => 'required|string|max:255',
+            'foundation_basement' => 'required|string|max:255',
+            'lintel_level' => 'required|string|max:255',
+            'roofing_level' => 'required|string|max:255',
+            'electrical_plastering_painting' => 'required|string|max:255',
+            'work_completed' => 'required|string|max:255',
+            'remarks_civil' => 'required|string|max:255',
+            'machineries_purchased' => 'required|string|max:255',
+            'machineries_put_into_use' => 'required|string|max:255',
+            'income_generated' => 'required|string|max:255',
+            'remarks_machineries' => 'required|string|max:255',
+        ]);
+
+        $jr = new Jr_project();
+        $jr->region_id = Auth::user()->region_id;
+        $jr->user_id = Auth::user()->id;
+        $jr->total_no_of_society = $request->input('total_no_of_society');
+        $jr->total_no_of_work_supply_orders = $request->input('total_no_of_work_supply_orders');
+        $jr->column_no4_civil = $request->input('column_no4_civil');
+        $jr->column_no4_machineries = $request->input('column_no4_machineries');
+        $jr->yet_to_be_started = $request->input('yet_to_be_started');
+        $jr->foundation_basement = $request->input('foundation_basement');
+        $jr->lintel_level = $request->input('lintel_level');
+        $jr->roofing_level = $request->input('roofing_level');
+        $jr->electrical_plastering_painting = $request->input('electrical_plastering_painting');
+        $jr->work_completed = $request->input('work_completed');
+        $jr->remarks_civil = $request->input('remarks_civil');
+        $jr->machineries_purchased = $request->input('machineries_purchased');
+        $jr->machineries_put_into_use = $request->input('machineries_put_into_use');
+        $jr->income_generated = $request->input('income_generated');
+        $jr->remarks_machineries = $request->input('remarks_machineries');
+        $jr->save();
+
+        return redirect('/jr/project/list')->with('status', 'Project added successfully');
     }
 }

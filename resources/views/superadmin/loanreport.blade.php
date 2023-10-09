@@ -202,7 +202,7 @@
                                                     <center>Target 2023-2024</center>
                                                 </th>
                                                 <th scope="col" rowspan="1">
-                                                    <center>Recived Amount</center>
+                                                    <center>Achievement </center>
                                                 </th>
                                                 <th scope="col" rowspan="1">
                                                     <center>% of Loans</center>
@@ -244,7 +244,7 @@
                                         <tr>
                                             <th scope="col">Region Name</th>
                                             <th scope="col">Target (2023-2024)</th>
-                                            <th scope="col">Received Amount</th>
+                                            <th scope="col">Achievement</th>
                                             <th scope="col">% Of Loans</th>
                                         </tr>
 
@@ -274,7 +274,7 @@
                                         <tr>
                                             <th scope="col">Circle Name</th>
                                             <th scope="col">Target (2023-2024)</th>
-                                            <th scope="col">Received Amount</th>
+                                            <th scope="col">Achievement</th>
                                             <th scope="col">% Of Loans</th>
                                         </tr>
 
@@ -305,7 +305,7 @@
                                         <tr>
                                             <th scope="col">Societies Name</th>
                                             <th scope="col">Target (2023-2024)</th>
-                                            <th scope="col">Received Amount</th>
+                                            <th scope="col">Achievement</th>
                                             <th scope="col">% Of Loans</th>
                                         </tr>
 
