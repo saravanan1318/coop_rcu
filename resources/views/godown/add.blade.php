@@ -67,10 +67,10 @@
                                             <input  type="number" min="0" step="any" onkeypress="return isNumberKey(event)"  class="form-control"  id="capacity1" name="capacity[]" value="{{ old('capacity[]') }}" required>
                                         </td>
                                         <td>
-                                            <input  type="number" min="0" step="any" onkeypress="return isNumberKey(event)"  class="form-control"  id="utilized1" name="utilized[]" value="{{ old('utilized[]') }}" required>
+                                            <input type="number" min="0" step="any" onkeypress="return isNumberKey(event)" class="form-control" id="utilized1" name="utilized[]" value="{{ old('utilized[]') }}" required oninput="calculatePercentage(1)">
                                         </td>
                                         <td>
-                                            <input  type="number" min="0" step="any" onkeypress="return isNumberKey(event)"  class="form-control"  id="percentageutilized1" name="percentageutilized[]" value="{{ old('percentageutilized[]') }}" required>
+                                            <input type="number" min="0" step="any" class="form-control" id="percentageutilized1" name="percentageutilized[]" value="{{ old('percentageutilized[]') }}" required disabled>
                                         </td>
                                         <td>
                                             <input  type="number" min="0" step="any" onkeypress="return isNumberKey(event)"  class="form-control"  id="income1" name="income[]" value="{{ old('income[]') }}" required>
@@ -169,6 +169,20 @@
         $("#forminputs").html(html);
 
         console.log(html);
+    }
+    function calculatePercentage(rowId) {
+        var utilizedInput = document.getElementById('utilized' + rowId);
+        var percentageUtilizedInput = document.getElementById('percentageutilized' + rowId);
+
+        var utilizedValue = parseFloat(utilizedInput.value);
+        var capacityValue = parseFloat(document.getElementById('capacity' + rowId).value);
+
+        if (!isNaN(utilizedValue) && !isNaN(capacityValue) && capacityValue > 0) {
+            var percentageUtilized = (utilizedValue / capacityValue) * 100;
+            percentageUtilizedInput.value = percentageUtilized.toFixed(2); // Display the percentage with two decimal places
+        } else {
+            percentageUtilizedInput.value = ""; // Clear the percentage field if the inputs are invalid
+        }
     }
 </script>
 @endsection

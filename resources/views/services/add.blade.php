@@ -175,7 +175,7 @@
         console.log("Add new clicked");
         var rowadded = $("#rowadded").val();
         var updatedrowadded = parseInt(rowadded) + 1;
-        var html = '<tr data-id="'+updatedrowadded+'" id="'+updatedrowadded+'"> <td> <select class="form-control service_id" data-rowid="'+updatedrowadded+'" style=" width: 150px; " id="service_id'+updatedrowadded+'" name="service_id[]" required> <option value="">SELECT</option> <?php foreach($mtr_services as $services){ ?> <option value="<?php echo $services->id ?>"><?php echo $services->service_name ?></option> <?php } ?> </select> </td> <td> <input  type="number" min="0" step="any" onkeypress="return isNumberKey(event)"  class="form-control" style=" width: 150px; " id="count'+updatedrowadded+'" name="count[]" required> </td> <td> <input  type="number" min="0" step="any" onkeypress="return isNumberKey(event)"  class="form-control" style=" width: 150px; " id="noofcentres'+updatedrowadded+'" name="noofcentres[]" required> </td> <td> <input  type="number" min="0" step="any" onkeypress="return isNumberKey(event)"  class="form-control" style=" width: 150px; " id="noofvarieties'+updatedrowadded+'" name="noofvarieties[]" required> </td> <td> <input  type="number" min="0" step="any" onkeypress="return isNumberKey(event)"  class="form-control" style=" width: 150px; " id="noofcustomers'+updatedrowadded+'" name="noofcustomers[]" required> </td> <td> <input  type="number" min="0" step="any" onkeypress="return isNumberKey(event)"  class="form-control" style=" width: 150px; " id="nooffarmers'+updatedrowadded+'" name="nooffarmers[]" required> </td> <td> <input  type="number" min="0" step="any" onkeypress="return isNumberKey(event)"  class="form-control" style=" width: 150px; " id="quantitykilos'+updatedrowadded+'" name="quantitykilos[]" required> </td> <td> <input  type="number" min="0" step="any" onkeypress="return isNumberKey(event)"  class="form-control" style=" width: 150px; " id="quantitylitres'+updatedrowadded+'" name="quantitylitres[]" required> </td> <td> <input  type="number" min="0" step="any" onkeypress="return isNumberKey(event)"  class="form-control" style=" width: 150px; " id="purchase'+updatedrowadded+'" name="purchase[]" required> </td> <td> <input  type="number" min="0" step="any" onkeypress="return isNumberKey(event)"  class="form-control" style=" width: 150px; " id="salesamountetrading'+updatedrowadded+'" name="salesamountetrading[]" required> </td> <td> <input  type="number" min="0" step="any" onkeypress="return isNumberKey(event)"  class="form-control" style=" width: 150px; " id="salesamountphysical'+updatedrowadded+'" name="salesamountphysical[]" required> </td> <td> <input  type="number" min="0" step="any" onkeypress="return isNumberKey(event)"  class="form-control" style=" width: 150px; " id="incomegenerated'+updatedrowadded+'" name="incomegenerated[]" required> </td> <td> <input  type="number" min="0" step="any" onkeypress="return isNumberKey(event)"  class="form-control" style=" width: 150px; " id="profit'+updatedrowadded+'" name="profit[]" required> </td><td> <a  class="btn btn-danger deleterow" data-delete-id="'+updatedrowadded+'" onclick="deletethisrow('+updatedrowadded+')" >Delete</a> </td> </tr>';
+        var html = '<tr data-id="'+updatedrowadded+'" id="'+updatedrowadded+'"> <td> <select class="form-control service_id" data-rowid="'+updatedrowadded+'" style=" width: 150px; " id="service_id'+updatedrowadded+'" name="service_id[]" required> <option value="">SELECT</option> <?php foreach($mtr_services as $services){ ?> <option value="<?php echo $services->id ?>"><?php echo $services->services_name ?></option> <?php } ?> </select> </td> <td> <input  type="number" min="0" step="any" onkeypress="return isNumberKey(event)"  class="form-control" style=" width: 150px; " id="count'+updatedrowadded+'" name="count[]" required> </td> <td> <input  type="number" min="0" step="any" onkeypress="return isNumberKey(event)"  class="form-control" style=" width: 150px; " id="noofcentres'+updatedrowadded+'" name="noofcentres[]" required> </td> <td> <input  type="number" min="0" step="any" onkeypress="return isNumberKey(event)"  class="form-control" style=" width: 150px; " id="noofvarieties'+updatedrowadded+'" name="noofvarieties[]" required> </td> <td> <input  type="number" min="0" step="any" onkeypress="return isNumberKey(event)"  class="form-control" style=" width: 150px; " id="noofcustomers'+updatedrowadded+'" name="noofcustomers[]" required> </td> <td> <input  type="number" min="0" step="any" onkeypress="return isNumberKey(event)"  class="form-control" style=" width: 150px; " id="nooffarmers'+updatedrowadded+'" name="nooffarmers[]" required> </td> <td> <input  type="number" min="0" step="any" onkeypress="return isNumberKey(event)"  class="form-control" style=" width: 150px; " id="quantitykilos'+updatedrowadded+'" name="quantitykilos[]" required> </td> <td> <input  type="number" min="0" step="any" onkeypress="return isNumberKey(event)"  class="form-control" style=" width: 150px; " id="quantitylitres'+updatedrowadded+'" name="quantitylitres[]" required> </td> <td> <input  type="number" min="0" step="any" onkeypress="return isNumberKey(event)"  class="form-control" style=" width: 150px; " id="purchase'+updatedrowadded+'" name="purchase[]" required> </td> <td> <input  type="number" min="0" step="any" onkeypress="return isNumberKey(event)"  class="form-control" style=" width: 150px; " id="salesamountetrading'+updatedrowadded+'" name="salesamountetrading[]" required> </td> <td> <input  type="number" min="0" step="any" onkeypress="return isNumberKey(event)"  class="form-control" style=" width: 150px; " id="salesamountphysical'+updatedrowadded+'" name="salesamountphysical[]" required> </td> <td> <input  type="number" min="0" step="any" onkeypress="return isNumberKey(event)"  class="form-control" style=" width: 150px; " id="incomegenerated'+updatedrowadded+'" name="incomegenerated[]" required> </td> <td> <input  type="number" min="0" step="any" onkeypress="return isNumberKey(event)"  class="form-control" style=" width: 150px; " id="profit'+updatedrowadded+'" name="profit[]" required> </td><td> <a  class="btn btn-danger deleterow" data-delete-id="'+updatedrowadded+'" onclick="deletethisrow('+updatedrowadded+')" >Delete</a> </td> </tr>';
 
         console.log(html);
         $("#tbody").append(html);
@@ -264,16 +264,16 @@
         }else if(this.value == "5"){
 
             $("#count"+rowid).attr("readonly",true);
-            $("#noofcentres"+rowid).attr("readonly",false);
+            $("#noofcentres"+rowid).attr("readonly",true);
             $("#noofvarieties"+rowid).attr("readonly",true);
-            $("#noofcustomers"+rowid).attr("readonly",true);
-            $("#nooffarmers"+rowid).attr("readonly",false);
-            $("#quantitykilos"+rowid).attr("readonly",false);
-            $("#quantitylitres"+rowid).attr("readonly",false);
-            $("#purchase"+rowid).attr("readonly",false);
+            $("#noofcustomers"+rowid).attr("readonly",false);
+            $("#nooffarmers"+rowid).attr("readonly",true);
+            $("#quantitykilos"+rowid).attr("readonly",true);
+            $("#quantitylitres"+rowid).attr("readonly",true);
+            $("#purchase"+rowid).attr("readonly",true);
             $("#salesamountetrading"+rowid).attr("readonly",true);
             $("#salesamountphysical"+rowid).attr("readonly",true);
-            $("#incomegenerated"+rowid).attr("readonly",true);
+            $("#incomegenerated"+rowid).attr("readonly",false);
             $("#profit"+rowid).attr("readonly",true);
 
         }else if(this.value == "6"){
@@ -386,17 +386,17 @@
     }else if(this.value == "5"){
 
         $("#count"+rowid).attr("readonly",true);
-        $("#noofcentres"+rowid).attr("readonly",false);
-        $("#noofvarieties"+rowid).attr("readonly",true);
-        $("#noofcustomers"+rowid).attr("readonly",true);
-        $("#nooffarmers"+rowid).attr("readonly",false);
-        $("#quantitykilos"+rowid).attr("readonly",false);
-        $("#quantitylitres"+rowid).attr("readonly",false);
-        $("#purchase"+rowid).attr("readonly",false);
-        $("#salesamountetrading"+rowid).attr("readonly",true);
-        $("#salesamountphysical"+rowid).attr("readonly",true);
-        $("#incomegenerated"+rowid).attr("readonly",true);
-        $("#profit"+rowid).attr("readonly",true);
+            $("#noofcentres"+rowid).attr("readonly",true);
+            $("#noofvarieties"+rowid).attr("readonly",true);
+            $("#noofcustomers"+rowid).attr("readonly",false);
+            $("#nooffarmers"+rowid).attr("readonly",true);
+            $("#quantitykilos"+rowid).attr("readonly",true);
+            $("#quantitylitres"+rowid).attr("readonly",true);
+            $("#purchase"+rowid).attr("readonly",true);
+            $("#salesamountetrading"+rowid).attr("readonly",true);
+            $("#salesamountphysical"+rowid).attr("readonly",true);
+            $("#incomegenerated"+rowid).attr("readonly",false);
+            $("#profit"+rowid).attr("readonly",true);
 
     }else if(this.value == "6"){
 
@@ -409,8 +409,8 @@
         $("#quantitylitres"+rowid).attr("readonly",true);
         $("#purchase"+rowid).attr("readonly",true);
         $("#salesamountetrading"+rowid).attr("readonly",true);
-        $("#salesamountphysical"+rowid).attr("readonly",false);
-        $("#incomegenerated"+rowid).attr("readonly",true);
+        $("#salesamountphysical"+rowid).attr("readonly",true);
+        $("#incomegenerated"+rowid).attr("readonly",false);
         $("#profit"+rowid).attr("readonly",true);
 
 
