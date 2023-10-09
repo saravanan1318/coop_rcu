@@ -99,6 +99,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/society/croploan/loanissued/store', [SocietyController::class, 'croploanloanissuedstore']);
 
     Route::get('/superadmin/loanreport', [SuperAdminController::class, 'loanreport']);
+    Route::get('/superadmin/loanreportjson', [SuperAdminController::class, 'loanreportjson']);
     Route::get('/superadmin/croploanreport', [SuperAdminController::class, 'croploanreport']);
     Route::get('/superadmin/depositreport', [SuperAdminController::class, 'depositreport']);
     Route::get('/superadmin/purchasereport', [SuperAdminController::class, 'purchasereport']);
