@@ -169,6 +169,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/jr/profit/add', [JRController::class, 'profitadd']);
     Route::post('/jr/profit/store', [JRController::class, 'profitstore']);
 
+    Route::get('/jr/project/list', [JRController::class, 'projectlist']);
+    Route::get('/jr/project/add', [JRController::class, 'projectadd']);
+    Route::post('/jr/project/store', [JRController::class, 'projectstore']);
+
 
     Route::get('/dr/dashboard', [DRController::class, 'dashboard']);
     Route::get('/dr/loanlist', [DRController::class, 'loanlist']);

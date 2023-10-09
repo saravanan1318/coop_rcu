@@ -474,6 +474,23 @@
               </li>
           </ul>
       </li>
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#services-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-journal-text"></i><span>Project Monitering</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="services-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="/jr/project/add">
+              <i class="bi bi-circle"></i><span>Entry</span>
+            </a>
+          </li>
+          <li>
+            <a href="/jr/project/list">
+              <i class="bi bi-circle"></i><span>View</span>
+            </a>
+          </li>
+        </ul>
+      </li>
 
       <script>
         // Add jQuery or JavaScript code to toggle the collapse/expand behavior
