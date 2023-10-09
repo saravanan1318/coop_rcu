@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\GeneralController;
+use App\Http\Controllers\JsonController;
 use App\Http\Controllers\MasterController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -44,6 +45,8 @@ Route::get('/fetch-societies/{circleId}', [GeneralController::class, 'fetchSocie
 //    Route::get('/fetch-societies-fromtype', [GeneralController::class, 'fetchSocietiesfromtype']);
 Route::get('/fetch-societies-fromtype', [GeneralController::class, 'fetchSocietiesfromtype']);
 Route::get('//fetch-societiestype-fromregions', [GeneralController::class, 'fetchSocietiestypefromregions']);
+/*Json generate Part*/
+Route::get('/report/loanreportjson', [JsonController::class, 'loanreportjson']);
 
 /**SocietyController */
 Route::group(['middleware' => 'auth'], function () {
@@ -99,7 +102,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/society/croploan/loanissued/store', [SocietyController::class, 'croploanloanissuedstore']);
 
     Route::get('/superadmin/loanreport', [SuperAdminController::class, 'loanreport']);
-    Route::get('/superadmin/loanreportjson', [SuperAdminController::class, 'loanreportjson']);
+
     Route::get('/superadmin/croploanreport', [SuperAdminController::class, 'croploanreport']);
     Route::get('/superadmin/depositreport', [SuperAdminController::class, 'depositreport']);
     Route::get('/superadmin/purchasereport', [SuperAdminController::class, 'purchasereport']);
