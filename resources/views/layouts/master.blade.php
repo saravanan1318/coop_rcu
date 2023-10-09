@@ -27,6 +27,21 @@
 <script>
 
     $(document).ready(function () {
+
+        function exportDataToJSON(dataTable) {
+            const tableData = dataTable.rows({ page: 'current' }).data().toArray();
+            const jsonContent = JSON.stringify(tableData);
+
+            // Create a temporary anchor element to trigger the download
+            const blob = new Blob([jsonContent], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'data.json';
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+
         $('#data-table').DataTable( {
             dom: 'Bfrtip',
             buttons: [
@@ -46,6 +61,13 @@
                         columns: ':visible' ,// Export only visible columns
                     }
                 },
+                // {
+                //     text: '<i class="fas fa-file-code"></i> Export JSON',
+                //     className: 'btn btn-outline btn-success m-2',
+                //     action: function (e, dt, button, config) {
+                //         exportDataToJSON(dt); // Call a custom function to export data to JSON
+                //     }
+                //     },
             ],
             pageLength: 15,
             lengthChange: false,
@@ -55,6 +77,7 @@
             //     { targets: [0, 2], orderable: false } // Disable sorting for columns 0 and 1
             // ]
         } );
+
         $('#data-table-dashboard').DataTable( {
             dom: 'Bfrtip',
             buttons: [
