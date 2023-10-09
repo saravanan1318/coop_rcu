@@ -787,9 +787,9 @@ CREATE TABLE `view_regionwise_credit_and_deopsit` (
 -- Removing temporary table and create final VIEW structure
 DROP TABLE IF EXISTS `newsociety`;
 CREATE ALGORITHM=UNDEFINED SQL SECURITY DEFINER VIEW `newsociety` AS SELECT c.id as region_id, b.id as circle_id, d.id AS  societytype_id, a.SocietyNameinEnglish as society_name,
-a.SocietyRegistrationNumber as registration_no, a.`Society staff Name` as staff_name, 
+a.SocietyRegistrationNumber as registration_no, a.`Society staff Name` as staff_name,
 a.`Society Staff Designation` as designation, a.`Society Staff Mobile Number` AS  mobile_no,
-a.`Society Address` AS  address, a.Pincode AS  pincode, a.`Society Email id` AS email FROM `table` AS a 
+a.`Society Address` AS  address, a.Pincode AS  pincode, a.`Society Email id` AS email FROM `table` AS a
 LEFT JOIN `circlenew` AS b ON b.name = a.circlename
 LEFT JOIN `regonnew` AS c ON a.regionname = c.regionname
 LEFT JOIN `societytypenew` AS d ON a.`Type of Society` = d.society ;
@@ -797,12 +797,12 @@ LEFT JOIN `societytypenew` AS d ON a.`Type of Society` = d.society ;
 -- Dumping structure for view tncu_rcu.society_new
 -- Removing temporary table and create final VIEW structure
 DROP TABLE IF EXISTS `society_new`;
-CREATE ALGORITHM=UNDEFINED SQL SECURITY DEFINER VIEW `society_new` AS SELECT (SELECT id FROM regonnew WHERE regionname = a.regionname LIMIT 1) as region_id, 
-(SELECT id FROM circlenew WHERE name = a.circlename LIMIT 1) as circle_id, 
+CREATE ALGORITHM=UNDEFINED SQL SECURITY DEFINER VIEW `society_new` AS SELECT (SELECT id FROM regonnew WHERE regionname = a.regionname LIMIT 1) as region_id,
+(SELECT id FROM circlenew WHERE name = a.circlename LIMIT 1) as circle_id,
 (SELECT id FROM societytypenew WHERE society = a.`Type of Society` LIMIT 1) AS  societytype_id, a.SocietyNameinEnglish as society_name,
-a.SocietyRegistrationNumber as registration_no, a.`Society staff Name` as staff_name, 
+a.SocietyRegistrationNumber as registration_no, a.`Society staff Name` as staff_name,
 a.`Society Staff Designation` as designation, a.`Society Staff Mobile Number` AS  mobile_no,
-a.`Society Address` AS  address, a.Pincode AS  pincode, a.`Society Email id` AS email 
+a.`Society Address` AS  address, a.Pincode AS  pincode, a.`Society Email id` AS email
 FROM `table` AS a ;
 
 -- Dumping structure for view tncu_rcu.view_regionwise_credit_and_deopsit
