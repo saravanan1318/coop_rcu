@@ -306,12 +306,25 @@
   @endif
    @if(Auth::user()->role == 3)
   <ul class="sidebar-nav" id="sidebar-nav">
-    <li class="nav-item">
-      <a class="nav-link " href="/jr/loanlist">
-        <i class="bi bi-grid"></i>
-        <span>Loan</span>
-      </a>
-    </li><!-- End Dashboard Nav -->
+      <li class="nav-item">
+          <a class="nav-link collapsed" data-bs-target="#issue-nav-loans" data-bs-toggle="collapse" href="#">
+              <i class="bi bi-journal-text"></i><span>Loan</span><i class="bi bi-chevron-down ms-auto"></i>
+          </a>
+          <ul id="issue-nav-loans" class="nav-content collapse" data-bs-parent="#sidebar-nav">
+
+                  <li>
+                      <a href="/jr/loanlist">
+                          <i class="bi bi-circle"></i><span>Loans</span>
+                      </a>
+                  </li>
+                  <li>
+                      <a href="/jr/annualtarget">
+                          <i class="bi bi-circle"></i><span>Annual Target</span>
+                      </a>
+                  </li>
+
+          </ul>
+      </li>
     <li class="nav-item">
       <a class="nav-link " href="/jr/croploanlist">
         <i class="bi bi-grid"></i>

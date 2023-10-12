@@ -196,6 +196,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/jr/dashboard', [JRController::class, 'dashboard']);
     // Route::get('/jr/loanlist', [JRController::class, 'loanlist']);
     Route::get('/jr/loanlist', [JRController::class, 'loanlist'])->name('loanlist.index');
+    Route::get('/jr/annualtarget', [JRController::class, 'annualtarget']);
+    Route::post('/jr/generatesampleFiles', [JRController::class, 'generatesampleFiles']);
+    Route::post('jr/importtraget', [JRController::class, 'importfiles']);
+
 //    Route::get('/fetch-circles/{regionId}', [JRController::class, 'fetchCircles']);
 //    Route::get('/fetch-societies/{circleId}', [JRController::class, 'fetchSocieties']);
 

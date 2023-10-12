@@ -8,6 +8,7 @@ use App\Models\Jr_press;
 use App\Models\Jr_profit;
 use App\Models\Jr_project;
 use App\Models\Mtr_societytype;
+use League\Csv\Writer;
 use Validator;
 
 use App\Models\User;
@@ -187,6 +188,123 @@ class JRController extends Controller
                 return view("loan.list", compact('loans', 'subloans','regions', 'circles', 'societies', 'societiestypes', 'loantypes', 'regionFilter', 'circleFilter', 'societyFilter', 'startDate', 'endDate', 'societyTypesFilter', 'loantypeFilter'));
         }
         return view("loan.list", compact( 'regions', 'circles', 'societies', 'societiestypes', 'loantypes', 'regionFilter', 'circleFilter', 'societyFilter', 'startDate', 'endDate', 'societyTypesFilter', 'loantypeFilter'));
+
+    }
+    function annualtarget(Request $request)
+    {
+
+        $loan_onetimeentry = Loan_onetimeentry::where('region_id', Auth::user()->region_id)->get();
+        $circles = Mtr_circle::where("region_id",Auth::user()->region_id)->get();
+
+        return view("loan.annual.jrlist", compact('loan_onetimeentry','circles'));
+//        return view("loan.annual.list", compact( 'regions', 'circles', 'societies', 'societiestypes', 'loantypes', 'regionFilter', 'circleFilter', 'societyFilter', 'startDate', 'endDate', 'societyTypesFilter', 'loantypeFilter'));
+
+    }
+
+    function generatesampleFiles(Request $request){
+        $circles=$request->input("circle");
+        // Change the path to the public folder
+        $filname=Auth::user()->region_id."-".$circles.".csv";
+       $csv = Writer::createFromPath(public_path('generatedsamples/'.$filname), 'w+');
+        $loanTypes=["SocietyUserID","societyName"];
+        $loanTypeQuery=Mtr_loan::all();
+        foreach ($loanTypeQuery as $loantype)
+        {
+            array_push($loanTypes,$loantype->loantype);
+        }
+        $data = [
+            $loanTypes,
+        ];
+        $societies=Mtr_society::where("circle_id",$circles)->get();
+        $users=User::where("circle_id",$circles)->get();
+
+
+        foreach ($users as $user)
+        {
+            $tmp=[];
+//            Log::info(json_decode($society));
+            array_push($tmp,$user->id);
+            array_push($tmp,$user->name);
+            array_push($data,$tmp);
+        }
+
+
+
+        $csv->insertAll($data);
+        $returnfilname=request()->getSchemeAndHttpHost()."/generatedsamples/".$filname;
+        return $returnfilname;
+    }
+
+    function importfiles(Request $request){
+//        $request->validate([
+//            'uploadfile' => 'required|file|mimes:csv,txt',
+//        ]);
+
+        // Get the uploaded file
+//        return $request;
+        $file = $request->file('uploadfile');
+        $csv = fopen($file->getPathname(), 'r');
+//        return $csv;
+
+
+        if ($csv) {
+            $data = []; // Initialize an array to store all CSV data
+
+            // Read and process the CSV data
+            while (($row = fgetcsv($csv)) !== false) {
+                // Initialize an array for this row's data
+                $rowData = [];
+
+                // Loop through the columns (cells) of the row
+                foreach ($row as $cell) {
+                    $rowData[] = $cell; // Add the cell's value to the row's data
+                }
+
+                // Add the row's data to the main data array
+                $data[] = $rowData;
+            }
+
+            // Close the CSV file
+            fclose($csv);
+//            for($i=2;$i<count($data);$i++)
+//            {
+////                print_r()
+//            }
+            foreach ($data as $key=>$values)
+            {
+                if($key>=1) {
+//                print_r($key);
+                    foreach ($values as $secondKey=>$value) {
+                        if($secondKey>=2) {
+                            if($value !="") {
+                                $loantype=$secondKey-1;
+                                $societyuserID=$values[0];
+                                print_r($loantype);
+                                print_r("<br>");
+                                print_r($societyuserID);
+                                print_r("<br>");
+                                print_r($value);
+                                print_r("<br>");
+                                print_r("<br>");
+                                $loanontime_entry=new Loan_onetimeentry();
+                                $loanontime_entry->user_id=$societyuserID;
+                                $loanontime_entry->region_id=Auth::user()->region_id;
+                                $loanontime_entry->loan_id=$loantype;
+                                $loanontime_entry->jr_id=Auth::user()->id;
+                                $loanontime_entry->annual_target=$value;
+                                $loanontime_entry->current_year=date('Y-m-d');
+                                $loanontime_entry->save();
+                            }
+                        }
+                    }
+                }
+            }
+
+            return back()->with('success', 'CSV file uploaded and processed.');
+        } else {
+            // Handle the case where the file couldn't be opened
+            return back()->with('error', 'Unable to open the CSV file.');
+        }
 
     }
 
