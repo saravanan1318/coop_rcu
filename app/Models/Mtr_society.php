@@ -27,4 +27,7 @@ class Mtr_society extends Model
         return $this->hasOne(Mtr_societytype::class);
     }
 
+    // Ranjith Added
+    public $timestamps = false;
+
 }

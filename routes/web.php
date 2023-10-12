@@ -317,6 +317,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/md/duesaltreport', [SuperAdminController::class, 'duesaltreport']);
 
     // Ranjith Routes
+// Ranjith Routes
     // Master Controller
     Route::get('/superadmin/regionmaster', [MasterController::class, 'region']);
     Route::get('/superadmin/circlemaster', [MasterController::class, 'circle']);
@@ -324,6 +325,31 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/superadmin/jrusers', [UserController::class, 'jrusers']);
     Route::get('/superadmin/drusers', [UserController::class, 'drusers']);
     Route::get('/superadmin/societyusers', [UserController::class, 'societyusers']);
+    Route::get('/superadmin/regionmaster/add', [MasterController::class, 'regionAdd']);
+    Route::post('/superadmin/regionmaster/add', [MasterController::class, 'regionStore']);
+    Route::get('/superadmin/circlemaster/add', [MasterController::class, 'circleAdd']);
+    Route::post('/superadmin/circlemaster/add', [MasterController::class, 'circleStore']);
+    Route::get('/superadmin/societymaster/add', [MasterController::class, 'societyAdd']);
+    Route::post('/superadmin/societymaster/add', [MasterController::class, 'societyStore']);
+    Route::get('/superadmin/jrusers/add', [UserController::class, 'jrusersAdd']);
+    Route::post('/superadmin/jrusers/add', [UserController::class, 'jrusersStore']);
+    Route::get('/superadmin/drusers/add', [UserController::class, 'drusersAdd']);
+    Route::post('/superadmin/drusers/add', [UserController::class, 'drusersStore']);
+    Route::get('/superadmin/societyusers/add', [UserController::class, 'societyusersAdd']);
+    Route::post('/superadmin/societyusers/add', [UserController::class, 'societyusersStore']);
+    Route::get('/superadmin/regionmaster/edit/{id}', [MasterController::class, 'regionEdit']);
+    Route::post('/superadmin/regionmaster/edit/{id}', [MasterController::class, 'regionUpdate']);
+    Route::get('/superadmin/circlemaster/edit/{id}', [MasterController::class, 'circleEdit']);
+    Route::post('/superadmin/circlemaster/edit/{id}', [MasterController::class, 'circleUpdate']);
+    Route::get('/superadmin/societymaster/edit/{id}', [MasterController::class, 'societyEdit']);
+    Route::post('/superadmin/societymaster/edit/{id}', [MasterController::class, 'societyUpdate']);
+    Route::get('/superadmin/jrusers/edit/{id}', [UserController::class, 'jrusersEdit']);
+    Route::post('/superadmin/jrusers/edit/{id}', [UserController::class, 'jrusersUpdate']);
+    Route::get('/superadmin/drusers/edit/{id}', [UserController::class, 'drusersEdit']);
+    Route::post('/superadmin/drusers/edit/{id}', [UserController::class, 'drusersUpdate']);
+    Route::get('/superadmin/societyusers/edit/{id}', [UserController::class, 'societyusersEdit']);
+    Route::post('/superadmin/societyusers/edit/{id}', [UserController::class, 'societyusersUpdate']);
+    //End Ranjith Routes
 
     //PDS Controller
     //palmjaggery
