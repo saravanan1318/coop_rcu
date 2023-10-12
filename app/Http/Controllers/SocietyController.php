@@ -381,10 +381,12 @@ $details->annual_target=$request->input("annual_target");
         $annual->current_outstanding = $request->current_outstanding;
         $annual->current_year = $request->current_year;
         $annual->annual_target = $request->annual_target;
+        $annual->region_id =Auth::user()->region_id;
+        $annual->circle_id = Auth::user()->circle_id;
         $annual->save();
 
 
-        return redirect('/society/deposit/annual/add')->with('status', 'Deposit Target and Outstanding added successfully');
+        return redirect('/society/deposit/annual')->with('status', 'Deposit Target and Outstanding added successfully');
         // return view("annual");
     }
 
