@@ -992,7 +992,7 @@
                       </a>
                   </li>
                   <li>
-                      <a href="/society/deposit/annual/add">
+                      <a href="/society/deposit/annual">
                           <i class="bi bi-circle"></i><span>Annaul Target & outstanding</span>
                       </a>
                   </li>

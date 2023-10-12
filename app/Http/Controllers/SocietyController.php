@@ -334,6 +334,9 @@ $details->annual_target=$request->input("annual_target");
     }
 
 
+
+
+
     //Annual targer Form
 
     function depositannuallist()
@@ -385,7 +388,27 @@ $details->annual_target=$request->input("annual_target");
         // return view("annual");
     }
 
-
+    function  depositonetimeshowdetails(Request $request)
+    {
+        $id= $request->input("id");
+        Log::info("idddd");
+        Log::info($id);
+        $mtr_deposits = Mtr_deposits::all();
+        $details =Deposit_onetimeentry::find($id);
+        return view("deposit.annual.update" ,compact('mtr_deposits','details'));
+    }
+    function depositontimeupdate(Request $request)
+    {
+        $id=$request->input("onetimeID");
+        $details = Deposit_onetimeentry::find($id);
+        $details->deposit_id=$request->input("deposit_id");
+        $details->current_year=$request->input("current_year");
+        $details->overall_outstanding=$request->input("overall_outstanding");
+        $details->current_outstanding=$request->input("current_outstanding");
+        $details->annual_target=$request->input("annual_target");
+        $details->update();
+        return redirect('/society/deposit/annual')->with('status', 'Annual Target & Outstanding updated successfully');
+    }
     function purchaselist(Request $request)
     {
 

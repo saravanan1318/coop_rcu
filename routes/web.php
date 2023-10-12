@@ -67,6 +67,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/society/deposit/annual', [SocietyController::class, 'depositannuallist']);
     Route::get('/society/deposit/annual/add', [SocietyController::class, 'depositannualadd']);
     Route::post('/society/deposit/annual/store', [SocietyController::class, 'depositannualstore']);
+    Route::get('/society/deposit/annual/update', [SocietyController::class, 'depositonetimeshowdetails']);
+    Route::post('/society/deposit/annual/update', [SocietyController::class, 'depositontimeupdate']);
 
     Route::get('/society/deposit/list', [SocietyController::class, 'depositlist']);
     Route::get('/society/deposit/add', [SocietyController::class, 'depositadd']);
@@ -316,8 +318,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/md/saltreport', [SuperAdminController::class, 'saltreport']);
     Route::get('/md/duesaltreport', [SuperAdminController::class, 'duesaltreport']);
 
+
     // Ranjith Routes
-// Ranjith Routes
     // Master Controller
     Route::get('/superadmin/regionmaster', [MasterController::class, 'region']);
     Route::get('/superadmin/circlemaster', [MasterController::class, 'circle']);

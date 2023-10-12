@@ -15,11 +15,19 @@
 
   <section class="section dashboard">
     <div class="row">
+
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
                   <h5 class="card-title">Target & outstanding Add</h5>
                   <div class="row">
+                      <div class="col-sm-12 col-md-12 mb-4">
+                          @if(session('status'))
+                              <div class="alert alert-success">
+                                  {{ session('status') }}
+                              </div>
+                          @endif
+                      </div>
                     <div class="col-sm-4 col-md-4 mb-4">
 
                     </div>
@@ -55,6 +63,7 @@
                             <th scope="col">Current outstanding</th>
                             <th scope="col">Current Year</th>
                             <th scope="col">Annual target</th>
+                              <th>Action</th>
                           </tr>
                         </thead>
                         <tbody>
@@ -66,6 +75,7 @@
                                     <td style="text-align: right;">{{ $deposit_onetime->current_outstanding }}</td>
                                     <td >{{ $deposit_onetime->current_year }}</td>
                                     <td style="text-align: right;">{{ $deposit_onetime->annual_target }}</td>
+                                    <td><a class="btn btn-warning" href="annual/update?id={{$deposit_onetime->id}}">Edit</a></td>
                                 </tr>
                             @endforeach
                         </tbody>
