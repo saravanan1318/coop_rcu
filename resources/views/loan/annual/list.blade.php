@@ -20,6 +20,13 @@
                 <div class="card-body">
                   {{-- <h5 class="card-title">Annual Target and Outstanding </h5> --}}
                   <div class="row">
+                      <div class="col-sm-12 col-md-12 mb-4">
+                          @if(session('status'))
+                              <div class="alert alert-success">
+                                  {{ session('status') }}
+                              </div>
+                          @endif
+                      </div>
                     <div class="col-sm-4 col-md-4 mb-4">
 
                     </div>
@@ -55,6 +62,8 @@
                             <th scope="col">Current outstanding (from 1st April to current date)</th>
                             <th scope="col">Current Year</th>
                             <th scope="col">Annual target</th>
+                            <th scope="col">Action</th>
+
                           </tr>
                         </thead>
                         <tbody>
@@ -66,6 +75,7 @@
                                     <td style="text-align: right;">{{ $loan_onetime->current_outstanding }}</td>
                                     <td style="text-align: right;">{{ $loan_onetime->current_year }}</td>
                                     <td style="text-align: right;">{{ $loan_onetime->annual_target }}</td>
+                                    <td><a class="btn btn-warning" href="annual/update?id={{$loan_onetime->id}}">Edit</a></td>
                                 </tr>
                             @endforeach
                         </tbody>

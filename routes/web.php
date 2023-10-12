@@ -61,6 +61,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/society/loan/annual', [SocietyController::class, 'annuallist']);
     Route::get('/society/loan/annual/add', [SocietyController::class, 'annualadd']);
     Route::post('/society/loan/annual/store', [SocietyController::class, 'annualstore']);
+    Route::get('/society/loan/annual/update', [SocietyController::class, 'showdetails']);
+    Route::post('/society/loan/annual/update', [SocietyController::class, 'update']);
 
     Route::get('/society/deposit/annual', [SocietyController::class, 'depositannuallist']);
     Route::get('/society/deposit/annual/add', [SocietyController::class, 'depositannualadd']);

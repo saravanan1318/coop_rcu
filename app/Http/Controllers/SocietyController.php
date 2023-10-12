@@ -6,6 +6,7 @@ use App\Models\Deposit_outstandings;
 use App\Models\Mtr_circle;
 use App\Models\Mtr_region;
 use App\Models\Mtr_society;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\URL;
 use Validator;
 
@@ -216,12 +217,40 @@ class SocietyController extends Controller
         $annual->current_outstanding = $request->current_outstanding;
         $annual->current_year = $request->current_year;
         $annual->annual_target = $request->annual_target;
+        $annual->region_id = Auth::user()->region_id;
+        $annual->circle_id = Auth::user()->circle_id;
         $annual->save();
 
 
         return redirect('/society/loan/annual/add')->with('status', 'Annual Target & Outstanding added successfully');
         // return view("annual");
     }
+
+    function  showdetails(Request $request)
+    {
+        $id= $request->input("id");
+        Log::info("idddd");
+        Log::info($id);
+        $mtr_loan = Mtr_loan::all();
+        $details =Loan_onetimeentry::find($id);
+        return view("loan.annual.update" ,compact('mtr_loan','details'));
+    }
+    function update(Request $request)
+    {
+        $id=$request->input("onetimeID");
+        $details = Loan_onetimeentry::find($id);
+$details->loan_id=$request->input("loan_id");
+$details->current_year=$request->input("current_year");
+$details->overall_outstanding=$request->input("overall_outstanding");
+$details->current_outstanding=$request->input("current_outstanding");
+$details->annual_target=$request->input("annual_target");
+        $details->update();
+        $mtr_loan = Mtr_loan::all();
+        $details =Loan_onetimeentry::find($id);
+//        $success=
+//        return view("loan.annual.update",compact('mtr_loan','details'));
+        return redirect('/society/loan/annual')->with('status', 'Annual Target & Outstanding updated successfully');
+}
 
     //deposit
 
