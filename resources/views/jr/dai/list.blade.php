@@ -53,8 +53,9 @@
                 $data=$jr;
                 @endphp
 {{--                    @foreach($jr as $data)--}}
+                @if(!empty($data))
                         <tr>
-                            <td>{{ \Carbon\Carbon::parse($data->daidate)->format('d-m-Y') }}</td>
+                            <td>{{!empty($data->daidate)? \Carbon\Carbon::parse($data->daidate)->format('d-m-Y'):"" }}</td>
                             <td style="text-align: right;">{{ $data->ob }}</td>
                             <td style="text-align: right;">{{ $data->Initiated_during_the_month }}</td>
                             <td style="text-align: right;">{{ $data->total }}</td>
@@ -62,6 +63,7 @@
                             <td style="text-align: right;">{{ $data->pending }}</td>
                             <td style="text-align: right;">{{ $data->percentage_of_disposal }}</td>
                         </tr>
+                @endif
 {{--                    @endforeach--}}
                 </tbody>
               </table>
