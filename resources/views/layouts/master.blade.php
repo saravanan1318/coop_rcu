@@ -300,5 +300,15 @@
         // Perform the AJAX request
 
     });
+    $("#initiated_during_month_seventeena").change(function(e){
+        var total=$("#disciplinary_total_seventeena").val();
+        $("#disposed_this_month_seventeena").attr("max", total);
+
+    });
+    $("#initiated_during_month_seventeenb").change(function(e){
+        var total=$("#disciplinary_total_seventeenb").val();
+        $("#disposed_this_month_seventeenb").attr("max", total);
+
+    });
 </script>
 </html>

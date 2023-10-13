@@ -64,9 +64,9 @@
                                 <tbody>
                                     <tr>
                                         <td><input  type="number" min="0" step="any" onkeypress="return isNumberKey(event)"  name="disciplinary_ob_seventeena" class="form-control" required value="{{$jr->disciplinary_pending_seventeena??""}}" {{!empty($jr->disciplinary_pending_seventeenb)?"readonly":""}}></td>
-                                        <td><input  type="number" min="0" step="any" onkeypress="return isNumberKey(event)"  name="initiated_during_month_seventeena" class="form-control" required></td>
-                                        <td><input  type="number" min="0" step="any" onkeypress="return isNumberKey(event)"  name="disciplinary_total_seventeena" class="form-control" readonly></td>
-                                        <td><input  type="number" min="0" step="any" onkeypress="return isNumberKey(event)"  name="disposed_this_month_seventeena" class="form-control" required></td>
+                                        <td><input  type="number" min="0" step="any" onkeypress="return isNumberKey(event)"  name="initiated_during_month_seventeena" id="initiated_during_month_seventeena" class="form-control" required></td>
+                                        <td><input  type="number" min="0" step="any" onkeypress="return isNumberKey(event)"  name="disciplinary_total_seventeena"  id="disciplinary_total_seventeena" class="form-control" readonly></td>
+                                        <td><input  type="number" min="0" step="any" onkeypress="return isNumberKey(event)"  name="disposed_this_month_seventeena" id="disposed_this_month_seventeena" class="form-control" required></td>
                                         <td><input  type="number" min="0" step="any" onkeypress="return isNumberKey(event)"  name="disciplinary_pending_seventeena" class="form-control" readonly></td>
                                         <td><input  type="number" min="0" step="any" onkeypress="return isNumberKey(event)"  name="disciplinary_pending_percentage_seventeena" class="form-control" readonly></td>
                                     </tr>
@@ -89,9 +89,9 @@
                                     <tbody>
                                         <tr>
                                             <td><input  type="number" min="0" step="any" onkeypress="return isNumberKey(event)"  name="disciplinary_ob_seventeenb" class="form-control" required value="{{$jr->disciplinary_pending_seventeenb??""}}" {{!empty($jr->disciplinary_pending_seventeenb)?"readonly":""}}></td>
-                                            <td><input  type="number" min="0" step="any" onkeypress="return isNumberKey(event)"  name="initiated_during_month_seventeenb" class="form-control" required></td>
-                                            <td><input  type="number" min="0" step="any" onkeypress="return isNumberKey(event)"  name="disciplinary_total_seventeenb" class="form-control" readonly></td>
-                                            <td><input  type="number" min="0" step="any" onkeypress="return isNumberKey(event)"  name="disposed_this_month_seventeenb" class="form-control" required></td>
+                                            <td><input  type="number" min="0" step="any" onkeypress="return isNumberKey(event)"  name="initiated_during_month_seventeenb" id="initiated_during_month_seventeenb" class="form-control" required></td>
+                                            <td><input  type="number" min="0" step="any" onkeypress="return isNumberKey(event)"  name="disciplinary_total_seventeenb" id="disciplinary_total_seventeenb" class="form-control" readonly></td>
+                                            <td><input  type="number" min="0" step="any" onkeypress="return isNumberKey(event)"  name="disposed_this_month_seventeenb"  id="disposed_this_month_seventeenb" class="form-control" required></td>
                                             <td><input  type="number" min="0" step="any" onkeypress="return isNumberKey(event)"  name="disciplinary_pending_seventeenb" class="form-control" readonly></td>
                                             <td><input  type="number" min="0" step="any" onkeypress="return isNumberKey(event)"  name="disciplinary_pending_percentage_seventeenb" class="form-control" readonly></td>
                                     </tr>
@@ -188,6 +188,7 @@
     // Initialize the calculations
     updateTotalAndPendingSeventeena();
     updateTotalAndPendingSeventeenb();
+
 </script>
 <!-- End #main -->
 @endsection
