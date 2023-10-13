@@ -310,5 +310,10 @@
         $("#disposed_this_month_seventeenb").attr("max", total);
 
     });
+    $("#Initiated_during_the_month").change(function(e){
+        var total=$("#total").val();
+        $("#disposed_this_month").attr("max", total);
+
+    });
 </script>
 </html>

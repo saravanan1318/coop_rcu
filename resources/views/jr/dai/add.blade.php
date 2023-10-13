@@ -2,7 +2,7 @@
 @section('content')
 <main id="main" class="main">
   <div class="pagetitle">
-    <h1>JR Details</h1>
+    <h1>Details of Disciplinary Action-Institution</h1>
     <nav>
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="/jr/dai/add">Dashboard</a></li>
@@ -54,18 +54,20 @@
                                     <h6>Disciplinary Action-Institution</h6>
                                     <tr>
                                         <th>OB</th>
-                                        <th>Recommended this month</th>
-                                        <th>Action taken</th>
-                                        <th>Disposal</th>
-                                        <th>Percentage of Disposal</th>
+                                        <th>Initiated during the month</th>
+                                        <th>Total</th>
+                                        <th>Disposed this month</th>
+                                        <th>Pending</th>
+                                        <th>Percentage of Pending</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td><input  type="number" min="0" step="any" onkeypress="return isNumberKey(event)"  name="ob" class="form-control" required></td>
-                                        <td><input  type="number" min="0" step="any" onkeypress="return isNumberKey(event)"  name="recommended_action" class="form-control" required></td>
-                                        <td><input  type="number" min="0" step="any" onkeypress="return isNumberKey(event)"  name="action_taken" id="action_taken" class="form-control" required></td>
-                                        <td><input  type="number" min="0" step="any" onkeypress="return isNumberKey(event)"  name="disposal" id="disposal" class="form-control" required></td>
+                                        <td><input  type="number" min="0" step="any" onkeypress="return isNumberKey(event)"  name="ob" id="ob" class="form-control" required value="{{$jr->pending??""}}" {{!empty($jr->pending)?"readonly":""}}></td>
+                                        <td><input  type="number" min="0" step="any" onkeypress="return isNumberKey(event)"  name="Initiated_during_the_month" id="Initiated_during_the_month" class="form-control" required></td>
+                                        <td><input  type="number" min="0" step="any" onkeypress="return isNumberKey(event)"  name="total" id="total" class="form-control" required readonly></td>
+                                        <td><input  type="number" min="0" step="any" onkeypress="return isNumberKey(event)"  name="disposed_this_month" id="disposed_this_month" class="form-control" required></td>
+                                        <td><input  type="number" min="0" step="any" onkeypress="return isNumberKey(event)"  name="pending" id="pending" class="form-control" required readonly></td>
                                         <td><input  type="number" min="0" step="any" onkeypress="return isNumberKey(event)"  name="percentage_of_disposal" id="percentage_of_disposal" class="form-control" required readonly></td>
                                     </tr>
                                 </tbody>
@@ -89,14 +91,23 @@
   </section>
 </main>
 <script>
-    document.getElementById('action_taken').addEventListener('input', calculatePercentage);
-    document.getElementById('disposal').addEventListener('input', calculatePercentage);
+    document.getElementById('Initiated_during_the_month').addEventListener('input', calculateTotal);
+    document.getElementById('disposed_this_month').addEventListener('input', calculatePercentage);
     function calculatePercentage() {
-      const actionTaken = parseFloat(document.getElementById('action_taken').value) || 0;
-      const disposal = parseFloat(document.getElementById('disposal').value) || 0;
-
-      const percentage = (disposal / actionTaken) * 100;
+      const actionTaken = parseFloat(document.getElementById('total').value) || 0;
+      const disposal = parseFloat(document.getElementById('disposed_this_month').value) || 0;
+      const pending=actionTaken-disposal;
+        document.getElementById('pending').value = isNaN(pending) ? '' : pending;
+      const percentage = 100 - (disposal / actionTaken) * 100;
       document.getElementById('percentage_of_disposal').value = isNaN(percentage) ? '' : percentage.toFixed(2);
     }
+    function calculateTotal()
+    {
+const OB= parseFloat(document.getElementById('ob').value) || 0;
+const initial= parseFloat(document.getElementById('Initiated_during_the_month').value) || 0;
+var total=OB+initial;
+        document.getElementById('total').value = isNaN(total) ? '' : total.toFixed(2);
+    }
+
   </script>
   @endsection<!-- End #main -->

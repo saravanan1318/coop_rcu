@@ -3,7 +3,7 @@
 @section('content')
 <main id="main" class="main">
   <div class="pagetitle">
-    <h1>JR List</h1>
+    <h1>Details of Disciplinary Action-Institution</h1>
     <nav>
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="/jr/dai/list">Dashboard</a></li>
@@ -41,23 +41,28 @@
                     <tr>
                         <th scope="col">Date</th>
                         <th scope="col">OB</th>
-                        <th scope="col">Recommended this month</th>
-                        <th scope="col">Action taken</th>
-                        <th scope="col">Disposal</th>
-                        <th scope="col">Percentage of Disposal</th>
+                        <th scope="col">Initiated during the month</th>
+                        <th scope="col">Total</th>
+                        <th scope="col">Disposed this month</th>
+                        <th scope="col">Pending</th>
+                        <th scope="col">Percentage of Pending</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($jr as $data)
+                @php
+                $data=$jr;
+                @endphp
+{{--                    @foreach($jr as $data)--}}
                         <tr>
                             <td>{{ \Carbon\Carbon::parse($data->daidate)->format('d-m-Y') }}</td>
                             <td style="text-align: right;">{{ $data->ob }}</td>
-                            <td style="text-align: right;">{{ $data->recommended_action }}</td>
-                            <td style="text-align: right;">{{ $data->action_taken }}</td>
-                            <td style="text-align: right;">{{ $data->disposal }}</td>
+                            <td style="text-align: right;">{{ $data->Initiated_during_the_month }}</td>
+                            <td style="text-align: right;">{{ $data->total }}</td>
+                            <td style="text-align: right;">{{ $data->disposed_this_month }}</td>
+                            <td style="text-align: right;">{{ $data->pending }}</td>
                             <td style="text-align: right;">{{ $data->percentage_of_disposal }}</td>
                         </tr>
-                    @endforeach
+{{--                    @endforeach--}}
                 </tbody>
               </table>
              </div>

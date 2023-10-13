@@ -2,7 +2,7 @@
 @section('content')
 <main id="main" class="main">
   <div class="pagetitle">
-    <h1>JR Details</h1>
+    <h1>Details of Disciplinary Action-17(A) & 17(B)</h1>
     <nav>
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="/jr/seventeena/add">Dashboard</a></li>

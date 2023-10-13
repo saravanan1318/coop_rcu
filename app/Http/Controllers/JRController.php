@@ -718,37 +718,51 @@ class JRController extends Controller
     function daiadd()
     {
 
-        $jr = Jr_dai::select('*')->paginate(5);
-        return view("jr.dai.add", compact('jr'));
+//        $jr = Jr_dai::select('*')->paginate(5);
+        $jr = Jr_dai::where('region_id',Auth::user()->region_id)->orderBy('id', 'desc')->first();
+        $currentDate = now()->toDateString(); // Get the current date in 'YYYY-MM-DD' format
+        $record = Jr_dai::where('region_id',Auth::user()->region_id)->whereDate('created_at', $currentDate)->first();
+        if($record)
+        {
+            $status="SUCCESS";
+
+        }
+        else{
+            $status="FAIL";
+        }
+        return view("jr.dai.add", compact('jr','status'));
     }
 
     function dailist()
     {
 
-        $jr = Jr_dai::select('*')->paginate(5);
+//        $jr = Jr_dai::select('*')->paginate(5);
+        $jr =Jr_dai::where('region_id',Auth::user()->region_id)->orderBy('id', 'desc')->first();
         return view("jr.dai.list", compact('jr'));
     }
 
     function daistore(Request $request)
     {
-        $request->validate([
-            'daidate' => 'required',
-            'ob' => 'required|integer',
-            'recommended_action' => 'required|string|max:255',
-            'action_taken' => 'required|string|max:255',
-            'disposal' => 'required|string|max:255',
-            'percentage_of_disposal' => 'required',
-        ]);
+//        $request->validate([
+//            'daidate' => 'required',
+//            'ob' => 'required|integer',
+//            'recommended_action' => 'required|string|max:255',
+//            'action_taken' => 'required|string|max:255',
+//            'disposal' => 'required|string|max:255',
+//            'percentage_of_disposal' => 'required',
+//        ]);
 
 
         $seventeena = new Jr_dai();
         $seventeena->region_name = Auth::user()->name;
         $seventeena->daidate = $request->input('daidate');
         $seventeena->ob = $request->input('ob');
-        $seventeena->recommended_action = $request->input('recommended_action');
-        $seventeena->action_taken = $request->input('action_taken');
-        $seventeena->disposal = $request->input('disposal');
+        $seventeena->Initiated_during_the_month = $request->input('Initiated_during_the_month');
+        $seventeena->disposed_this_month = $request->input('disposed_this_month');
+        $seventeena->pending = $request->input('pending');
+        $seventeena->total = $request->input('total');
         $seventeena->percentage_of_disposal = $request->input('percentage_of_disposal');
+        $seventeena->region_id = Auth::user()->region_id;
         $seventeena->save();
 
 
