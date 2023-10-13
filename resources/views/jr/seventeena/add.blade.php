@@ -100,14 +100,14 @@
                         <div class="col-md-10">
                             <!-- Other form fields go here -->
                         </div>
-                               @if($status=="FAIL")
+{{--                               @if($status=="FAIL")--}}
                         <div class="col-md-2">
                             <div class="text-center">
                                 <input type="hidden" value="1" id="rowadded">
                                 <button type="submit" class="btn btn-warning">Submit</button>
                             </div>
                         </div>
-                               @endif
+{{--                               @endif--}}
                         <!-- Rest of your form goes here -->
                     </form>
                 </div>
