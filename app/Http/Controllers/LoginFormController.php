@@ -48,14 +48,17 @@ class LoginFormController extends Controller
             } else if (Auth::user()->role == 4) {
                 return redirect()->intended('/dr/dashboard')
                     ->withSuccess('Signed in');
-            } else if (Auth::user()->role > 4) {
+            } else if (Auth::user()->role > 4 && Auth::user()->role < 20) {
                 $loggedSession = new LoggedSessions();
-                $loggedSession->userid= Auth::user()->id;
-                $loggedSession->regionid= Auth::user()->region_id;
-                $loggedSession->circleid= Auth::user()->circle_id;
-                $loggedSession->societyid= Auth::user()->society_id;
+                $loggedSession->userid = Auth::user()->id;
+                $loggedSession->regionid = Auth::user()->region_id;
+                $loggedSession->circleid = Auth::user()->circle_id;
+                $loggedSession->societyid = Auth::user()->society_id;
                 $loggedSession->save();
                 return redirect()->intended('/society/dashboard')
+                    ->withSuccess('Signed in');
+            } else if (Auth::user()->role == 21) {
+                return redirect()->intended('/office/dashboard')
                     ->withSuccess('Signed in');
             }
         }

@@ -3,6 +3,7 @@
 use App\Http\Controllers\GeneralController;
 use App\Http\Controllers\JsonController;
 use App\Http\Controllers\MasterController;
+use App\Http\Controllers\OfficeController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WebsiteController;
@@ -292,6 +293,11 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/drpds/special/list', [DRPDSController::class, 'speciallist']);
     Route::get('/drpds/special/add', [DRPDSController::class, 'specialadd']);
     Route::post('/drpds/special/store', [DRPDSController::class, 'specialstore']);
+
+    Route::get('/office/dashboard', [OfficeController::class, 'dashboard']);
+    Route::get('/office/cm/list', [OfficeController::class, 'cmlist']);
+    Route::get('/office/cm/add', [OfficeController::class, 'cmadd']);
+    Route::post('/office/cm/store', [OfficeController::class, 'cmstore']);
 
 
     Route::get('/md/dashboard', [MDController::class, 'dashboard']);
