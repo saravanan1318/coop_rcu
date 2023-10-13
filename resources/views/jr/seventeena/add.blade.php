@@ -63,7 +63,7 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td><input  type="number" min="0" step="any" onkeypress="return isNumberKey(event)"  name="disciplinary_ob_seventeena" class="form-control" required></td>
+                                        <td><input  type="number" min="0" step="any" onkeypress="return isNumberKey(event)"  name="disciplinary_ob_seventeena" class="form-control" required value="{{$jr->disciplinary_pending_seventeena??""}}"></td>
                                         <td><input  type="number" min="0" step="any" onkeypress="return isNumberKey(event)"  name="initiated_during_month_seventeena" class="form-control" required></td>
                                         <td><input  type="number" min="0" step="any" onkeypress="return isNumberKey(event)"  name="disciplinary_total_seventeena" class="form-control" readonly></td>
                                         <td><input  type="number" min="0" step="any" onkeypress="return isNumberKey(event)"  name="disposed_this_month_seventeena" class="form-control" required></td>
@@ -88,7 +88,7 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td><input  type="number" min="0" step="any" onkeypress="return isNumberKey(event)"  name="disciplinary_ob_seventeenb" class="form-control" required></td>
+                                            <td><input  type="number" min="0" step="any" onkeypress="return isNumberKey(event)"  name="disciplinary_ob_seventeenb" class="form-control" required value="{{$jr->disciplinary_pending_seventeenb??""}}"></td>
                                             <td><input  type="number" min="0" step="any" onkeypress="return isNumberKey(event)"  name="initiated_during_month_seventeenb" class="form-control" required></td>
                                             <td><input  type="number" min="0" step="any" onkeypress="return isNumberKey(event)"  name="disciplinary_total_seventeenb" class="form-control" readonly></td>
                                             <td><input  type="number" min="0" step="any" onkeypress="return isNumberKey(event)"  name="disposed_this_month_seventeenb" class="form-control" required></td>
@@ -100,12 +100,14 @@
                         <div class="col-md-10">
                             <!-- Other form fields go here -->
                         </div>
+                               @if($status=="FAIL")
                         <div class="col-md-2">
                             <div class="text-center">
                                 <input type="hidden" value="1" id="rowadded">
                                 <button type="submit" class="btn btn-warning">Submit</button>
                             </div>
                         </div>
+                               @endif
                         <!-- Rest of your form goes here -->
                     </form>
                 </div>

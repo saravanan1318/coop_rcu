@@ -654,14 +654,24 @@ class JRController extends Controller
     function seventeenaadd()
     {
 
-        $jr = Jr_seventeena::select('*')->paginate(5);
-        return view("jr.seventeena.add", compact('jr'));
+        $jr = Jr_seventeena::where('region_id',Auth::user()->region_id)->orderBy('id', 'desc')->first();
+        $currentDate = now()->toDateString(); // Get the current date in 'YYYY-MM-DD' format
+        $record = Jr_seventeena::where('region_id',Auth::user()->region_id)->whereDate('created_at', $currentDate)->first();
+        if($record)
+        {
+            $status="SUCCESS";
+
+        }
+        else{
+            $status="FAIL";
+        }
+        return view("jr.seventeena.add", compact('jr','status'));
     }
 
     function seventeenalist()
     {
 
-        $jr = Jr_seventeena::select('*')->paginate(5);
+        $jr =Jr_seventeena::where('region_id',Auth::user()->region_id)->orderBy('id', 'desc')->first();
         return view("jr.seventeena.list", compact('jr'));
     }
 
@@ -698,6 +708,7 @@ class JRController extends Controller
         $seventeena->disposed_this_month_seventeenb = $request->input('disposed_this_month_seventeenb');
         $seventeena->disciplinary_pending_seventeenb = $request->input('disciplinary_pending_seventeenb');
         $seventeena->disciplinary_pending_percentage_seventeenb = $request->input('disciplinary_pending_percentage_seventeenb');
+        $seventeena->region_id =Auth::user()->region_id;
         $seventeena->save();
 
         return redirect('/jr/seventeena/list')->with('status', '17(A) & 17(B) added successfully');

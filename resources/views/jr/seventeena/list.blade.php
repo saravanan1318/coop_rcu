@@ -1,5 +1,4 @@
 @extends('layouts.master')
-
 @section('content')
 <main id="main" class="main">
   <div class="pagetitle">
@@ -49,17 +48,20 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($jr as $data)
+                            @php
+                            $data=$jr;
+                            @endphp
+{{--                                @foreach(json_decode($jr) as $data)--}}
                                     <tr>
-                                    <td>{{ $data->seventeenadate}}</td>
-                                    <td>{{ $data->disciplinary_ob_seventeena }}</td>
-                                    <td>{{ $data->initiated_during_month_seventeena }}</td>
-                                    <td>{{ $data->disciplinary_total_seventeena}}</td>
-                                    <td>{{ $data->disposed_this_month_seventeena }}</td>
-                                    <td>{{ $data->disciplinary_pending_seventeena }}</td>
-                                    <td>{{ $data->disciplinary_pending_percentage_seventeena }}</td>
+                                    <td>{{ $data->seventeenadate??""}}</td>
+                                    <td>{{ $data->disciplinary_ob_seventeena??"" }}</td>
+                                    <td>{{ $data->initiated_during_month_seventeena ??""}}</td>
+                                    <td>{{ $data->disciplinary_total_seventeena??""}}</td>
+                                    <td>{{ $data->disposed_this_month_seventeena ??""}}</td>
+                                    <td>{{ $data->disciplinary_pending_seventeena ??""}}</td>
+                                    <td>{{ $data->disciplinary_pending_percentage_seventeena ??""}}</td>
                                     </tr>
-                                @endforeach
+{{--                                @endforeach--}}
                             </tbody>
                     </table>
                 </div>
@@ -79,17 +81,17 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($jr as $data)
+{{--                            @foreach(json_decode($jr) as $data)--}}
                                 <tr>
-                                    <td>{{ $data->seventeenadate}}</td>
-                                    <td>{{ $data->disciplinary_ob_seventeenb }}</td>
-                                    <td>{{ $data->initiated_during_month_seventeenb }}</td>
-                                    <td>{{ $data->disciplinary_total_seventeenb}}</td>
-                                    <td>{{ $data->disposed_this_month_seventeenb }}</td>
-                                    <td>{{ $data->disciplinary_pending_seventeenb }}</td>
-                                    <td>{{ $data->disciplinary_pending_percentage_seventeenb }}</td>
+                                    <td>{{ $data->seventeenadate??""}}</td>
+                                    <td>{{ $data->disciplinary_ob_seventeenb??"" }}</td>
+                                    <td>{{ $data->initiated_during_month_seventeenb ??""}}</td>
+                                    <td>{{ $data->disciplinary_total_seventeenb??""}}</td>
+                                    <td>{{ $data->disposed_this_month_seventeenb ??""}}</td>
+                                    <td>{{ $data->disciplinary_pending_seventeenb ??""}}</td>
+                                    <td>{{ $data->disciplinary_pending_percentage_seventeenb ??""}}</td>
                                 </tr>
-                            @endforeach
+{{--                            @endforeach--}}
                         </tbody>
                 </table>
             </div>
