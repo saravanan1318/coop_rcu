@@ -193,4 +193,91 @@ class MasterController extends Controller
         // return $society;
         return redirect('/superadmin/societymaster')->with('success', 'Society Updated Successfully...');
     }
+
+    // Society Type
+    function societytype(Request $request) {
+        $societytypes = DB::table('mtr_societytype')
+            ->leftJoin('mtr_role','mtr_role.id','mtr_societytype.role_id')
+            ->select('mtr_societytype.*','mtr_role.role_name')
+            ->get();
+        $title = "List of Society Types";
+        return view("superadmin.master",compact("societytypes","title"));
+    }
+
+    // District
+    function district(Request $request) {
+        $districts = DB::table('mtr_districts')->get();
+        $title = "List of Districts";
+        return view("superadmin.master",compact("districts","title"));
+    }
+
+    // Block
+    function block(Request $request) {
+        $blocks = DB::table('mtr_blockpanchayat')
+            ->leftJoin('mtr_districts','mtr_districts.districtID','mtr_blockpanchayat.districtID')
+            ->select('mtr_blockpanchayat.*','mtr_districts.districtName')
+            ->get();
+        $title = "List of Block Panchayat";
+        return view("superadmin.master",compact("blocks","title"));
+    }
+
+    // Village
+    function village(Request $request) {
+        $villages = DB::table('mtr_villagepanchayat')
+            ->leftJoin('mtr_blockpanchayat','mtr_blockpanchayat.blockPanchayatID','mtr_villagepanchayat.blockPanchayatID')
+            ->leftJoin('mtr_districts','mtr_districts.districtID','mtr_villagepanchayat.districtID')
+            ->select('mtr_villagepanchayat.*','mtr_blockpanchayat.blockPanchayatName','mtr_districts.districtName')
+            ->get();
+        $title = "List of Village Panchayat";
+        return view("superadmin.master",compact("villages","title"));
+    }
+
+    // Corporations
+    function crop(Request $request) {
+        $crops = DB::table('mtr_crop')->get();
+        $title = "List of Crops";
+        return view("superadmin.master",compact("crops","title"));
+    }
+
+    // Deposits
+    function deposit(Request $request) {
+        $deposits = DB::table('mtr_deposits')->get();
+        $title = "List of Deposits";
+        return view("superadmin.master",compact("deposits","title"));
+    }
+
+    // Loan
+    function loan(Request $request) {
+        $loan = DB::table('mtr_loan')->get();
+        $title = "List of Loans";
+        return view("superadmin.master",compact("loan","title"));
+    }
+
+    // Purchase
+    function purchase(Request $request) {
+        $purchase = DB::table('mtr_purchase')->get();
+        $title = "List of Purchases";
+        return view("superadmin.master",compact("purchase","title"));
+    }
+
+    // Sale
+    function sale(Request $request) {
+        $sale = DB::table('mtr_sale')->get();
+        $title = "List of Sales";
+        return view("superadmin.master",compact("sale","title"));
+    }
+
+    // Service
+    function service(Request $request) {
+        $services = DB::table('mtr_services')->get();
+        $title = "List of Services";
+        return view("superadmin.master",compact("services","title"));
+    }
+
+    // Mino Millet
+    function minomillet(Request $request) {
+        $minomillets = DB::table('mtr_minomillet')->get();
+        $title = "List of Mino Millet";
+        return view("superadmin.master",compact("minomillets","title"));
+    }
 }

@@ -39,7 +39,15 @@ class OfficeController extends Controller
     function cmlist()
     {
 
-        $off = Office_cm::select('*')->paginate(5);
+//        $off = Office_cm::select('*')->join('mtr_petition_subject', 'office_cm.petition_related_to', '=', 'mtr_petition_subject.id')
+//            ->join('mtr_section_name', 'office_cm.fwd_to_section_name', '=', 'mtr_section_name.id')
+//            ->get();
+        $off=$offices = Office_cm::select('office_cm.*', 'mtr_petition_subject.*', 'fwd_section.section_name as fwd_section_name', 'edited_section.section_name as edited_section_name')
+            ->join('mtr_petition_subject', 'office_cm.petition_related_to', '=', 'mtr_petition_subject.id')
+            ->join('mtr_section_name as fwd_section', 'office_cm.fwd_to_section_name', '=', 'fwd_section.id')
+            ->join('mtr_section_name as edited_section', 'office_cm.edited_new_section_name', '=', 'edited_section.id')
+            ->get();
+
         return view("office.list", compact('off'));
     }
 
@@ -51,7 +59,6 @@ class OfficeController extends Controller
             'petition_related_to' => 'required|string|max:255',
             'received_date' => 'required|date',
             'fwd_to_section_name' => 'required|string|max:255',
-            'reply_sent_date' => 'required|date',
             'edited_new_section_name' => 'required|string|max:255',
             'edited_date' => 'required|date',
             'closure' => 'required|string|max:255',

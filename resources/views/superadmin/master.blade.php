@@ -8,7 +8,7 @@
             <nav>
             <ol class="breadcrumb ">
                 <li class="breadcrumb-item"><a href="dashboard">Dashboard</a></li>
-                <li class="breadcrumb-item active">Master</li>
+                <li class="breadcrumb-item active">{{$title}}</li>
             </ol>
             </nav>
         
@@ -125,7 +125,280 @@
                     </tbody>
                 </table>
                 @endif
+                @if(isset($societytypes))
+                <table id="data-table-dashboard">
+                    <thead>
+                    <tr><th colspan="6"><center>{{$title}}</center></th></tr>
+                    <tr>
+                        <th>S.No</th>
+                        <th>Society Type</th>
+                        <th>Role</th>
+                        <th>Society Code</th>
+                    </tr>
+                    </thead>
+                    <tbody id="logged-datas">
 
+                        <?php $tmp=0 ?>
+                        @foreach($societytypes as $societytype)
+                            @php
+                            $tmp++;
+                            @endphp
+                        <tr>
+                            <td>{{$tmp}}</td>
+                            <td>{{$societytype->societytype}}</td>
+                            <td>{{$societytype->role_name}}</td>
+                            <td>{{$societytype->societycode}}</td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+                @endif
+                @if(isset($districts))
+                <table id="data-table-dashboard">
+                    <thead>
+                    <tr><th colspan="6"><center>{{$title}}</center></th></tr>
+                    <tr>
+                        <th>S.No</th>
+                        <th>District Name</th>
+                    </tr>
+                    </thead>
+                    <tbody id="logged-datas">
+
+                        <?php $tmp=0 ?>
+                        @foreach($districts as $district)
+                            @php
+                            $tmp++;
+                            @endphp
+                        <tr>
+                            <td>{{$tmp}}</td>
+                            <td>{{$district->districtName}}</td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+                @endif
+                @if(isset($blocks))
+                <table id="data-table-dashboard">
+                    <thead>
+                    <tr><th colspan="6"><center>{{$title}}</center></th></tr>
+                    <tr>
+                        <th>S.No</th>
+                        <th>Block Panchayat Name</th>
+                        <th>District Name</th>
+                    </tr>
+                    </thead>
+                    <tbody id="logged-datas">
+
+                        <?php $tmp=0 ?>
+                        @foreach($blocks as $block)
+                            @php
+                            $tmp++;
+                            @endphp
+                        <tr>
+                            <td>{{$tmp}}</td>
+                            <td>{{$block->blockPanchayatName}}</td>
+                            <td>{{$block->districtName}}</td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+                @endif
+                @if(isset($villages))
+                <table id="data-table-dashboard">
+                    <thead>
+                    <tr><th colspan="6"><center>{{$title}}</center></th></tr>
+                    <tr>
+                        <th>S.No</th>
+                        <th>Village Panchayat Name</th>
+                        <th>Block Panchayat Name</th>
+                        <th>District Name</th>
+                    </tr>
+                    </thead>
+                    <tbody id="logged-datas">
+
+                        <?php $tmp=0 ?>
+                        @foreach($villages as $village)
+                            @php
+                            $tmp++;
+                            @endphp
+                        <tr>
+                            <td>{{$tmp}}</td>
+                            <td>{{$village->villagePanchayatName}}</td>
+                            <td>{{$village->blockPanchayatName}}</td>
+                            <td>{{$village->districtName}}</td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+                @endif
+                @if(isset($crops))
+                <table id="data-table-dashboard">
+                    <thead>
+                    <tr><th colspan="6"><center>{{$title}}</center></th></tr>
+                    <tr>
+                        <th>S.No</th>
+                        <th>Crop Name</th>
+                    </tr>
+                    </thead>
+                    <tbody id="logged-datas">
+
+                        <?php $tmp=0 ?>
+                        @foreach($crops as $crop)
+                            @php
+                            $tmp++;
+                            @endphp
+                        <tr>
+                            <td>{{$tmp}}</td>
+                            <td>{{$crop->crop_name}}</td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+                @endif
+                @if(isset($deposits))
+                <table id="data-table-dashboard">
+                    <thead>
+                    <tr><th colspan="6"><center>{{$title}}</center></th></tr>
+                    <tr>
+                        <th>S.No</th>
+                        <th>Deposit Name</th>
+                    </tr>
+                    </thead>
+                    <tbody id="logged-datas">
+
+                        <?php $tmp=0 ?>
+                        @foreach($deposits as $deposit)
+                            @php
+                            $tmp++;
+                            @endphp
+                        <tr>
+                            <td>{{$tmp}}</td>
+                            <td>{{$deposit->deposit_name}}</td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+                @endif
+                @if(isset($loan))
+                <table id="data-table-dashboard">
+                    <thead>
+                    <tr><th colspan="6"><center>{{$title}}</center></th></tr>
+                    <tr>
+                        <th>S.No</th>
+                        <th>Loan Type</th>
+                    </tr>
+                    </thead>
+                    <tbody id="logged-datas">
+
+                        <?php $tmp=0 ?>
+                        @foreach($loan as $item)
+                            @php
+                            $tmp++;
+                            @endphp
+                        <tr>
+                            <td>{{$tmp}}</td>
+                            <td>{{$item->loantype}}</td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+                @endif
+                @if(isset($purchase))
+                <table id="data-table-dashboard">
+                    <thead>
+                    <tr><th colspan="6"><center>{{$title}}</center></th></tr>
+                    <tr>
+                        <th>S.No</th>
+                        <th>Purchase Name</th>
+                    </tr>
+                    </thead>
+                    <tbody id="logged-datas">
+
+                        <?php $tmp=0 ?>
+                        @foreach($purchase as $item)
+                            @php
+                            $tmp++;
+                            @endphp
+                        <tr>
+                            <td>{{$tmp}}</td>
+                            <td>{{$item->purchase_name}}</td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+                @endif
+                @if(isset($sale))
+                <table id="data-table-dashboard">
+                    <thead>
+                    <tr><th colspan="6"><center>{{$title}}</center></th></tr>
+                    <tr>
+                        <th>S.No</th>
+                        <th>Sale Name</th>
+                    </tr>
+                    </thead>
+                    <tbody id="logged-datas">
+
+                        <?php $tmp=0 ?>
+                        @foreach($sale as $item)
+                            @php
+                            $tmp++;
+                            @endphp
+                        <tr>
+                            <td>{{$tmp}}</td>
+                            <td>{{$item->sale_name}}</td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+                @endif
+                @if(isset($services))
+                <table id="data-table-dashboard">
+                    <thead>
+                    <tr><th colspan="6"><center>{{$title}}</center></th></tr>
+                    <tr>
+                        <th>S.No</th>
+                        <th>Service Name</th>
+                    </tr>
+                    </thead>
+                    <tbody id="logged-datas">
+
+                        <?php $tmp=0 ?>
+                        @foreach($services as $item)
+                            @php
+                            $tmp++;
+                            @endphp
+                        <tr>
+                            <td>{{$tmp}}</td>
+                            <td>{{$item->services_name}}</td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+                @endif
+                @if(isset($minomillets))
+                <table id="data-table-dashboard">
+                    <thead>
+                    <tr><th colspan="6"><center>{{$title}}</center></th></tr>
+                    <tr>
+                        <th>S.No</th>
+                        <th>Service Name</th>
+                    </tr>
+                    </thead>
+                    <tbody id="logged-datas">
+
+                        <?php $tmp=0 ?>
+                        @foreach($minomillets as $item)
+                            @php
+                            $tmp++;
+                            @endphp
+                        <tr>
+                            <td>{{$tmp}}</td>
+                            <td>{{$item->grain_name}}</td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+                @endif
             </div>
         </div>
     </div>

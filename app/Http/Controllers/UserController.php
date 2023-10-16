@@ -35,7 +35,7 @@ class UserController extends Controller
             abort(403);
         });
     }
-
+    
     function jrusers(Request $request) {
         $jrusers = DB::table('users')->where('role','3')
             ->leftJoin('mtr_region', 'mtr_region.id', 'users.region_id')
@@ -88,7 +88,7 @@ class UserController extends Controller
         $user->update();
         return redirect('/superadmin/jrusers')->with('success', 'User Updated Successfully...');
     }
-
+    
     // Dr Users
     function drusers(Request $request) {
         $drusers = DB::table('users')->where('role','4')
@@ -212,6 +212,13 @@ class UserController extends Controller
         // return $user;
         $user->update();
         return redirect('/superadmin/societyusers')->with('success', 'Society User Updated Successfully...');
+    }
+
+    // Role
+    function userrole(Request $request) {
+        $roles = DB::table('mtr_role')->get();
+        $title = "List of Roles";
+        return view("superadmin.user",compact("roles","title"));
     }
 
 }

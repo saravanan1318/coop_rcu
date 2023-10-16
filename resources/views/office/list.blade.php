@@ -41,7 +41,7 @@
                     <tr>
                         <th scope="col">Cm Cell Petition No</th>
                         <th scope="col">Petitioner Name</th>
-                        <th scope="col">Petition related to </th>
+                        <th scope="col">Petition Subject </th>
                         <th scope="col">Recevied Date</th>
                         <th scope="col">Fwd to Section Name </th>
                         <th scope="col">Reply Sent date</th>
@@ -55,11 +55,11 @@
                     <tr>
                         <td>{{ $data->cm_cell_petition_no }}</td>
                         <td>{{ $data->petitioner_name }}</td>
-                        <td>{{ $data->petition_related_to }}</td>
+                        <td>{{ $data->subject }}</td>
                         <td>{{ \Carbon\Carbon::parse($data->received_date)->format('d-m-Y') }}</td>
-                        <td>{{ $data->fwd_to_section_name }}</td>
+                        <td>{{ $data->fwd_section_name }}</td>
                         <td>{{ \Carbon\Carbon::parse($data->reply_sent_date)->format('d-m-Y') }}</td>
-                        <td>{{ $data->edited_new_section_name }}</td>
+                        <td>{{ $data->edited_section_name }}</td>
                         <td>{{ \Carbon\Carbon::parse($data->edited_date)->format('d-m-Y') }}</td>
                         <td>{{ $data->closure }}</td>
                     </tr>

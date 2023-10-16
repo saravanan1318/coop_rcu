@@ -52,7 +52,7 @@
                                     <tr>
                                         <th>Cm Cell Petition No</th>
                                         <th>Petitioner Name</th>
-                                        <th>Petition related to </th>
+                                        <th>Petition Subject </th>
                                         <th>Recevied Date</th>
                                         <th>Fwd to Section Name </th>
                                         <th>Reply Sent date</th>
@@ -73,7 +73,7 @@
                                                 @endforeach
                                             </select>
                                         </td>
-                                        <td><input type="date" name="received_date" class="form-control" required></td>
+                                        <td><input type="date" id="received_date" name="received_date" class="form-control" required></td>
                                         <td>
                                             <select class="form-control" data-rowid="1" name="fwd_to_section_name" class="form-control" style=" width: 150px; " required>
                                                 <option value="">--SELECT--</option>
@@ -82,7 +82,7 @@
                                                 @endforeach
                                             </select>
                                         </td>
-                                        <td><input type="date" name="reply_sent_date" class="form-control" required></td>
+                                        <td><input type="date" name="reply_sent_date" class="form-control" ></td>
                                         <td>
                                             <select class="form-control" data-rowid="1" name="edited_new_section_name" class="form-control" style=" width: 150px; " required>
                                                 <option value="">--SELECT--</option>
@@ -92,7 +92,11 @@
                                             </select>
                                         </td>
                                         <td><input type="date" name="edited_date" class="form-control" required></td>
-                                        <td><input type="text" name="closure" class="form-control" required></td>
+                                        <td><select name="closure" class="form-control" style=" width: 150px; ">
+                                                <option value="YES">YES</option>
+                                                <option value="NO" selected>NO</option>
+                                            </select></td>
+{{--                                        <td><input type="text" name="closure" class="form-control" required></td>--}}
                                     </tr>
                                 </tbody>
                             </table>
@@ -122,5 +126,14 @@
         $('.js-example-basic-multiple').select2();
     });
 </script>
+<script>
+    // Get the input element
+    const receivedDateInput = document.getElementById('received_date');
 
+    // Get the current date
+    const today = new Date().toISOString().split('T')[0];
+
+    // Set the min attribute to the current date
+    receivedDateInput.setAttribute('max', today);
+</script>
 @endsection<!-- End #main -->

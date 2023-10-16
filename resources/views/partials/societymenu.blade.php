@@ -256,6 +256,7 @@
       </li>
 
       {{--Ranjith--}}
+      {{--Ranjith--}}
       <li class="nav-item">
           <a class="nav-link collapsed" data-bs-target="#Master-nav" data-bs-toggle="collapse" href="#">
               <i class="bi bi-list-ul"></i><span>Master</span><i class="bi bi-chevron-down ms-auto"></i>
@@ -276,6 +277,62 @@
                       <i class="bi bi-circle"></i><span>Society</span>
                   </a>
               </li>
+              <li>
+                  <a href="/superadmin/societytypemaster">
+                      <i class="bi bi-circle"></i><span>Society Type</span>
+                  </a>
+              </li>
+              <li>
+                  <a href="/superadmin/districtmaster">
+                      <i class="bi bi-circle"></i><span>District</span>
+                  </a>
+              </li>
+              <li>
+                  <a href="/superadmin/blockmaster">
+                      <i class="bi bi-circle"></i><span>Block Panchayat</span>
+                  </a>
+              </li>
+              <li>
+                  <a href="/superadmin/villagemaster">
+                      <i class="bi bi-circle"></i><span>Village Panchayat</span>
+                  </a>
+              </li>
+              <li>
+                  <a href="/superadmin/cropmaster">
+                      <i class="bi bi-circle"></i><span>Crop</span>
+                  </a>
+              </li>
+              <li>
+                  <a href="/superadmin/depositmaster">
+                      <i class="bi bi-circle"></i><span>Deposit</span>
+                  </a>
+              </li>
+              <li>
+                  <a href="/superadmin/loanmaster">
+                      <i class="bi bi-circle"></i><span>Loan</span>
+                  </a>
+              </li>
+              <li>
+                  <a href="/superadmin/purchasemaster">
+                      <i class="bi bi-circle"></i><span>Purchase</span>
+                  </a>
+              </li>
+              <li>
+                  <a href="/superadmin/salemaster">
+                      <i class="bi bi-circle"></i><span>Sale</span>
+                  </a>
+              </li>
+              <li>
+                  <a href="/superadmin/servicemaster">
+                      <i class="bi bi-circle"></i><span>Service</span>
+                  </a>
+              </li>
+              <li>
+                  <a href="/superadmin/minomilletmtr">
+                      <i class="bi bi-circle"></i><span>Mino Millet</span>
+                  </a>
+              </li>
+
           </ul>
       </li>
       <li class="nav-item">
@@ -298,8 +355,14 @@
                       <i class="bi bi-circle"></i><span>Society</span>
                   </a>
               </li>
+              <li>
+                  <a href="/superadmin/userrole">
+                      <i class="bi bi-circle"></i><span>Role</span>
+                  </a>
+              </li>
           </ul>
       </li>
+      {{--      Ranjith--}}
 {{--      Ranjith--}}
       <!-- End Dashboard Nav -->
   </ul>
