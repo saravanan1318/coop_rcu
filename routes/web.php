@@ -299,6 +299,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/office/cm/add', [OfficeController::class, 'cmadd']);
     Route::post('/office/cm/store', [OfficeController::class, 'cmstore']);
 
+    Route::get('/office/case/list', [OfficeController::class, 'caselist']);
+    Route::get('/office/case/add', [OfficeController::class, 'caseadd']);
+    Route::post('/office/case/store', [OfficeController::class, 'casestore']);
 
     Route::get('/md/dashboard', [MDController::class, 'dashboard']);
     Route::get('/md/loanlist', [MDController::class, 'loanlist']);

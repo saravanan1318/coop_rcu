@@ -3061,6 +3061,23 @@
                       </li>
                       <li>
                           <a href="/office/cm/list">
+              <i class="bi bi-circle"></i><span>View</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#court-case-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-journal-text"></i><span>Court Cases</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="court-case-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="/office/case/add">
+              <i class="bi bi-circle"></i><span>Entry</span>
+            </a>
+          </li>
+          <li>
+            <a href="/office/case/list">
                               <i class="bi bi-circle"></i><span>View</span>
                           </a>
                       </li>
