@@ -53,8 +53,10 @@ class SuperAdminController extends Controller
     {
         $disrict=$request->input("Region");
         $circleid=$request->input("circle");
+        $fromlogged =0;
         if(!empty($disrict)&& isset($disrict)&&!empty($circleid)&& isset($circleid))
         {
+            $fromlogged =$request->input("fromlogged");
             $societies = Mtr_society::select([
                 'mtr_society.society_name as societyName',
                 'mtr_society.id as societyID',
@@ -69,7 +71,7 @@ class SuperAdminController extends Controller
             $region_name=$region->region_name;
             $circle_name=$circle->circle_name;
             $title = "Details of societies  not logged in the portal.";
-            return view("superadmin.dashboard",compact("societies","title","disrict","circle" ,"region_name","circle_name"));
+            return view("superadmin.dashboard",compact("societies","title","disrict","circle" ,"region_name","circle_name","fromlogged"));
         }
         elseif(!empty($disrict)&& isset($disrict))
         {

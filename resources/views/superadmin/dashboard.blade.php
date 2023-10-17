@@ -117,7 +117,20 @@
                     <td>{{$tmp}}</td>
                     <td>{{$region->Region_Name}}</td>
                     <td>{{$region->total_no_of_society}}</td>
-                    <td>{{$region->logged_socities}}</td>
+                    <td><?php if($region->logged_socities !=0)
+                        {
+
+                        ?>
+
+                        <a href="{{ URL::current() }}?Region={{$region->Region_ID}}">{{$region->logged_socities}}</a>
+                        <?php
+                        }
+                        else{
+                            echo $region->logged_socities;
+
+                        }
+                            ?>
+                    </td>
                     <td><a href="{{ URL::current() }}?Region={{$region->Region_ID}}">{{$region->total_no_of_society-$region->logged_socities}}</a></td>
                     <td>{{number_format(100-(($region->logged_socities/$region->total_no_of_society)*100),2,'.',',')}}</td>
                 </tr>
@@ -163,7 +176,20 @@
                             <td>{{$tmp}}</td>
                             <td>{{$circle->circleName}}</td>
                             <td>{{$circle->total_no_of_society}}</td>
-                            <td>{{$circle->counts}}</td>
+                            <td><?php if($circle->counts !=0)
+                                {
+
+                                    ?>
+
+                                <a href="{{ URL::current() }}?circle={{$circle->circleID}}&Region={{$disrict}}&fromlogged=1">{{$circle->counts}}</a>
+                                    <?php
+                                }
+                                else{
+                                    echo $circle->counts;
+
+                                }
+                                    ?>
+                            </td>
                             <td><a href="{{ URL::current() }}?circle={{$circle->circleID}}&Region={{$disrict}}">{{$circle->total_no_of_society-$circle->counts}}</a></td>
 {{--                            <td>{{number_format(100-(($circle->counts/$circle->total_no_of_society)*100),2,'.',',')}}</td>--}}
                             <td>{{$circle->total_no_of_society==0?"0":number_format(100-(($circle->counts/$circle->total_no_of_society)*100),2,'.',',')}}</td>
@@ -176,15 +202,15 @@
                 <table id="data-table-dashboard">
 
                     <thead>
-                    <tr><th colspan="3"><center>{{$title}}</center></th></tr>
+                    <tr><th colspan="{{$fromlogged==1?"3":"3"}}"><center>{{$title}}</center></th></tr>
                         <?php
                     if(isset($region_name))
                     {
                         ?>
 
 
-                    <tr><th colspan="1">Region: {{$region_name}}</th>
-                        <th colspan="1">Circle: {{$circle_name}}</th></tr>
+                    <tr><th colspan="{{$fromlogged==1?"1":"1"}}">Region: {{$region_name}}</th>
+                        <th colspan="{{$fromlogged==1?"2":"1"}}">Circle: {{$circle_name}}</th></tr>
                         <?php
 
                     }
@@ -192,10 +218,12 @@
                     <tr>
                         <th>S.No</th>
                         <th>Name of Societies</th>
-{{--                        <th>Logged in Time</th>--}}
+                        @if($fromlogged==1)
+                        <th>Logged in Time</th>
 {{--                        <th>No.of society logged in portal</th>--}}
 {{--                        <th>Not logged in the portal</th>--}}
 {{--                        <th>% of shortfall </th>--}}
+                        @endif
                     </tr>
                     </thead>
                     <tbody id="logged-datas">
@@ -207,7 +235,7 @@
                         @php
                             $tmp++;
                         @endphp
-                        @if(empty($society->societyLoginTime))
+                        @if(empty($society->societyLoginTime) && $fromlogged==0)
                         <tr>
                             <td>{{$tmp}}</td>
                             <td>{{$society->societyName}}</td>
@@ -216,6 +244,13 @@
 {{--                            <td>{{1-$circle->societycount}}</td>--}}
 {{--                            <td>{{number_format(((1-$society->societycount)*100),2,'.',',')}}</td>--}}
                         </tr>
+                        @elseif(!empty($society->societyLoginTime) && $fromlogged==1)
+                            <td>{{$tmp}}</td>
+                            <td>{{$society->societyName}}</td>
+                                                        <td>{{!empty($society->societyLoginTime)?date( "d-m-y h:i",strtotime($society->societyLoginTime)):"-"}}</td>
+{{--                                                        <td>{{$society->societycount}}</td>--}}
+{{--                                                        <td>{{1-$circle->societycount}}</td>--}}
+{{--                                                        <td>{{number_format(((1-$society->societycount)*100),2,'.',',')}}</td>--}}
                         @endif
                     @endforeach
                     </tbody>

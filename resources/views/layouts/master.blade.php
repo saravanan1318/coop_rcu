@@ -315,5 +315,9 @@
         $("#disposed_this_month").attr("max", total);
 
     });
+    $("#reply_sent_date").change(function(e){
+        alert("TEST");
+        $("#closure").val("YES");
+    });
 </script>
 </html>

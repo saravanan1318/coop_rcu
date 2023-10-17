@@ -1,11 +1,10 @@
 @extends('layouts.master')
-
 @section('content')
 <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
 
 <main id="main" class="main">
   <div class="pagetitle">
-    <h1>CM CELL Petitions Details</h1>
+    <h1>CM CELL Petitions Details Edit</h1>
     <nav>
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="/office/cm/add">Dashboard</a></li>
@@ -41,7 +40,7 @@
                     </div>
                 </div>
 
-                <form action="{{url("/office/cm/store")}}" method="post" id="cmform" class="row g-3">
+                <form action="{{url("/office/cm/edit")}}" method="post" id="cmform" class="row g-3">
                     @csrf
                     <div class="row margindiv">
                         <div class="col-md-12" style="margin-top: 20px padding:50px">
@@ -63,38 +62,39 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td ><input type="text" min="0" step="any" onkeypress="return isNumberKey(event)" name="cm_cell_petition_no" class="form-control" required></td>
-                                        <td><input type="text" name="petitioner_name" class="form-control" required></td>
+                                        <input type="hidden" value="{{$off->id}}" name="id"/>
+                                        <td ><input type="text" min="0" step="any" onkeypress="return isNumberKey(event)" name="cm_cell_petition_no" class="form-control" value="{{$off->cm_cell_petition_no}}" readonly required></td>
+                                        <td><input type="text" name="petitioner_name" class="form-control" required value="{{$off->petitioner_name}}" readonly></td>
                                         <td>
-                                            <select class="form-control js-example-basic-multiple" data-rowid="1" name="petition_related_to" class="form-control" style=" width: 150px; "  required>
+                                            <select class="form-control js-example-basic-multiple" data-rowid="1" name="petition_related_to" class="form-control" style=" width: 150px; "  required disabled>
                                                 <option value="">--SELECT--</option>
                                                 @foreach($peti as $s)
-                                                <option value="{{ $s->id }}">{{ $s->subject }}</option>
+                                                <option value="{{ $s->id }}" {{$off->petition_related_to==$s->id?"selected":""}} >{{ $s->subject }}</option>
                                                 @endforeach
                                             </select>
                                         </td>
-                                        <td><input type="date" id="received_date" name="received_date" class="form-control" required></td>
+                                        <td><input type="date" id="received_date" name="received_date" class="form-control" required value="{{$off->received_date}}" readonly></td>
                                         <td>
-                                            <select class="form-control" data-rowid="1" name="fwd_to_section_name" class="form-control" style=" width: 150px; " required>
+                                            <select class="form-control" data-rowid="1" name="fwd_to_section_name" class="form-control" style=" width: 150px; " required disabled>
                                                 <option value="">--SELECT--</option>
                                                 @foreach($section as $sec)
-                                                <option value="{{ $sec->id }}">{{ $sec->section_name }}</option>
+                                                <option value="{{ $sec->id }}" {{$off->fwd_to_section_name==$sec->id?"selected":""}}>{{ $sec->section_name }}</option>
                                                 @endforeach
                                             </select>
                                         </td>
-                                        <td><input type="date" name="reply_sent_date" class="form-control" id="reply_sent_date" ></td>
+                                        <td><input type="date" name="reply_sent_date" class="form-control" id="reply_sent_date" value="{{$off->reply_sent_date}}" readonly></td>
                                         <td>
                                             <select class="form-control" data-rowid="1" name="edited_new_section_name" class="form-control" style=" width: 150px; " >
                                                 <option value="">--SELECT--</option>
                                                 @foreach($section as $sec)
-                                                <option value="{{ $sec->id }}">{{ $sec->section_name }}</option>
+                                                <option value="{{ $sec->id }}" {{$off->edited_new_section_name==$sec->id?"selected":""}}>{{ $sec->section_name }}</option>
                                                 @endforeach
                                             </select>
                                         </td>
-                                        <td><input type="date" name="edited_date" class="form-control"></td>
+                                        <td><input type="date" name="edited_date" class="form-control" value="{{$off->edited_date}}"></td>
                                         <td><select name="closure" id="closure" class="form-control" style=" width: 150px; ">
-                                                <option value="YES">YES</option>
-                                                <option value="NO" selected>NO</option>
+                                                <option value="YES" {{$off->closure=="YES"?"selected":""}}>YES</option>
+                                                <option value="NO" {{$off->closure=="YES"?"selected":""}} >NO</option>
                                             </select></td>
 {{--                                        <td><input type="text" name="closure" class="form-control" required></td>--}}
                                     </tr>

@@ -179,7 +179,7 @@
                                         <td>{{$tmp}}</td>
                                         <td>{{$region->Region_Name}}</td>
                                         <td>{{$region->total_no_of_society}}</td>
-                                        <td>{{$region->logged_socities}}</td>
+                                        <td><a href="{{ URL::current() }}?Region={{$region->Region_ID}}">{{$region->logged_socities}}</a></td>
                                         <td>
                                             <a href="{{ URL::current() }}?Region={{$region->Region_ID}}">{{$region->total_no_of_society-$region->logged_socities}}</a>
                                         </td>
@@ -233,7 +233,22 @@
                                         <td>{{$tmp}}</td>
                                         <td>{{$circle->circleName}}</td>
                                         <td>{{$circle->total_no_of_society}}</td>
-                                        <td>{{$circle->counts}}</td>
+                                        <td>
+                                                <?php if($circle->counts !=0)
+                                            {
+
+                                                ?>
+
+                                            <a href="{{ URL::current() }}?circle={{$circle->circleID}}&Region={{$disrict}}&fromlogged=1">{{$circle->counts}}</a>
+                                                <?php
+                                            }
+                                            else{
+                                                echo $circle->counts;
+
+                                            }
+                                                ?>
+{{--                                            <a href="{{ URL::current() }}?circle={{$circle->circleID}}&Region={{$disrict}}">{{$circle->counts}}</a>--}}
+                                        </td>
                                         <td>
                                             <a href="{{ URL::current() }}?circle={{$circle->circleID}}&Region={{$disrict}}">{{$circle->total_no_of_society-$circle->counts}}</a>
                                         </td>

@@ -88,8 +88,10 @@ class JRController extends Controller
     {
         $disrict=Auth::user()->region_id;
         $circleid=$request->input("circle");
+        $fromlogged =0;
         if(!empty($disrict)&& isset($disrict)&&!empty($circleid)&& isset($circleid))
         {
+            $fromlogged =$request->input("fromlogged");
             $societies = Mtr_society::select([
                 'mtr_society.society_name as societyName',
                 'mtr_society.id as societyID',
@@ -104,7 +106,7 @@ class JRController extends Controller
             $region_name=$region->region_name;
             $circle_name=$circle->circle_name;
             $title = "Details of Societies logged in the portal .";
-            return view("dashboard",compact("societies","title","disrict","circle","circle_name","region_name"));
+            return view("dashboard",compact("societies","title","disrict","circle","circle_name","region_name","fromlogged"));
         }
         elseif(!empty($disrict)&& isset($disrict))
         {

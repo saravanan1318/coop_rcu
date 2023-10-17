@@ -36,11 +36,38 @@ class OfficeController extends Controller
         $section = Mtr_section_name::all();
         return view("office.add", compact('off', 'peti', 'section'));
     }
+    function cmeditlist(Request $request,$id)
+    {
+
+        $off = Office_cm::select('*')->where("id",$id)->first();
+        $peti = Mtr_petition_subject::all();
+        $section = Mtr_section_name::all();
+        return view("office.edit", compact('off', 'peti', 'section'));
+    }
+    function cmedit(Request $request)
+    {
+        $id=$request->input("id");
+        $record = Office_cm::find($id);
+        $record->edited_new_section_name=$request->input("edited_new_section_name");
+        $record->edited_date=$request->input("edited_date");
+        $record->closure=$request->input("closure");
+        $record->update();
+
+        $off = Office_cm::select('*')->where("id",$id)->first();
+        $peti = Mtr_petition_subject::all();
+        $section = Mtr_section_name::all();
+        return redirect('/office/cm/list')->with('status', 'CM CELL Petition Updated successfully');
+    }
 
     function cmlist()
     {
 
-        $off = Office_cm::select('*')->paginate(5);
+        $off=$offices = Office_cm::select('office_cm.*', 'mtr_petition_subject.subject', 'fwd_section.section_name as fwd_section_name', 'edited_section.section_name as edited_section_name')
+            ->leftjoin('mtr_petition_subject', 'office_cm.petition_related_to', '=', 'mtr_petition_subject.id')
+            ->leftjoin('mtr_section_name as fwd_section', 'office_cm.fwd_to_section_name', '=', 'fwd_section.id')
+            ->leftjoin('mtr_section_name as edited_section', 'office_cm.edited_new_section_name', '=', 'edited_section.id')
+            ->get();
+
         return view("office.list", compact('off'));
     }
 
@@ -52,9 +79,6 @@ class OfficeController extends Controller
             'petition_related_to' => 'required|string|max:255',
             'received_date' => 'required|date',
             'fwd_to_section_name' => 'required|string|max:255',
-            'reply_sent_date' => 'required|date',
-            'edited_new_section_name' => 'required|string|max:255',
-            'edited_date' => 'required|date',
             'closure' => 'required|string|max:255',
         ]);
 

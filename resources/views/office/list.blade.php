@@ -1,5 +1,4 @@
 @extends('layouts.master')
-
 @section('content')
 <main id="main" class="main">
   <div class="pagetitle">
@@ -48,6 +47,7 @@
                         <th scope="col">Edited (New Section Name)</th>
                         <th scope="col">Edited dated</th>
                         <th scope="col">Closure</th>
+                        <th scope="col">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -62,6 +62,7 @@
                         <td>{{ $data->edited_section_name }}</td>
                         <td>{{ \Carbon\Carbon::parse($data->edited_date)->format('d-m-Y') }}</td>
                         <td>{{ $data->closure }}</td>
+                        <td><a class="btn btn-warning" href="edit/{{$data->id}}">Edit {{$data->id}}</a></td>
                     </tr>
 
                     @endforeach

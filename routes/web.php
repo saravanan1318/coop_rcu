@@ -298,6 +298,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/office/cm/list', [OfficeController::class, 'cmlist']);
     Route::get('/office/cm/add', [OfficeController::class, 'cmadd']);
     Route::post('/office/cm/store', [OfficeController::class, 'cmstore']);
+    Route::get('/office/cm/edit/{id}', [OfficeController::class, 'cmeditlist']);
+    Route::post('/office/cm/edit', [OfficeController::class, 'cmedit']);
 
     Route::get('/office/case/list', [OfficeController::class, 'caselist']);
     Route::get('/office/case/add', [OfficeController::class, 'caseadd']);
