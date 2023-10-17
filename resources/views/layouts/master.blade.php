@@ -316,8 +316,8 @@
 
     });
     $("#reply_sent_date").change(function(e){
-        alert("TEST");
         $("#closure").val("YES");
     });
+
 </script>
 </html>

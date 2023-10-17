@@ -39,6 +39,7 @@
                 <table class="table table-responsive table-bordered datatable">
                 <thead style="text-align: center">
                     <tr>
+                        <th>Region Name</th>
                         <th>Madras High Court / Type of Case</th>
                         <th>Case No</th>
                         <th>Year</th>
@@ -63,12 +64,13 @@
                 <tbody>
                     @foreach($off as $data)
                     <tr>
-                        <td>{{ $data->type_of_case }}</td>
+                        <td>{{ $data->Region_Name }}</td>
+                        <td>{{ $data->typeName }}</td>
                         <td>{{ $data->case_no }}</td>
                         <td>{{ $data->year }}</td>
                         <td>{{ $data->petitioner }}</td>
-                        <td>{{ $data->respondents }}</td>
-                        <td>{{ $data->subject_of_case }}</td>
+                        <td>{{ $data->respondent_Value }}</td>
+                        <td>{{ $data->subjectcase }}</td>
                         <td>{{ $data->prayer }}</td>
                         <td>{{ $data->counter_filed }}</td>
                         <td>{{ \Carbon\Carbon::parse($data->counter_filed_date)->format('d-m-Y') }}</td>

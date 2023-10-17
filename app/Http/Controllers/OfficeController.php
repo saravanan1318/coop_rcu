@@ -3,11 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Models\Mtr_petition_subject;
+use App\Models\Mtr_region;
 use App\Models\Mtr_section_name;
 use App\Models\Office_case;
 use App\Models\Office_cm;
+use App\Models\Respondents;
+use App\Models\SubjectCase;
+use App\Models\TypeofCase;
+use App\Models\YESORNO;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class OfficeController extends Controller
 {
@@ -103,41 +109,59 @@ class OfficeController extends Controller
     {
 
         $off = Office_case::select('*')->paginate(5);
-        return view("case.add", compact('off'));
+        $region=Mtr_region::all();
+        $typeofcase=TypeofCase::all();
+        $subjectofcase=SubjectCase::all();
+        $respondents=Respondents::all();
+        $yesorno=YESORNO::all();
+        return view("case.add", compact('region',"respondents","subjectofcase","typeofcase","yesorno"));
     }
 
     function caselist()
     {
 
-        $off = Office_case::select('*')->paginate(5);
+        $off = DB::table('office_case')
+            ->select('*',
+                'mtr.region_name AS Region_Name',
+                'mtres.respondentValue AS respondent_Value',
+                'mtstype.typename AS typeName',
+                'mtsubject.value AS subjectcase'
+            )
+            ->leftJoin('mtr_region AS mtr', 'office_case.Region', '=', 'mtr.id')
+            ->leftJoin('mtr_respondents AS mtres', 'office_case.respondents', '=', 'mtres.id')
+            ->leftJoin('mtr_typeofcase AS mtstype', 'office_case.type_of_case', '=', 'mtstype.id')
+            ->leftJoin('mtr_subject_of_case AS mtsubject', 'office_case.subject_of_case', '=', 'mtsubject.id')
+            ->get();
+        ;
         return view("case.list", compact('off'));
     }
 
     function casestore(Request $request)
     {
-        $request->validate([
-            'type_of_case' => 'required|string|max:255',
-            'case_no' => 'required|string|max:255',
-            'year' => 'required|integer',
-            'petitioner' => 'required|string|max:255',
-            'respondents' => 'required|string|max:255',
-            'subject_of_case' => 'required|string|max:255',
-            'prayer' => 'required|string|max:255',
-            'counter_filed' => 'required|string|max:255',
-            'counter_filed_date' => 'required|date',
-            'no_reason' => 'required|string|max:255',
-            'interim_stay' => 'required|string|max:255',
-            'order_details' => 'required|string|max:255',
-            'final_judgement' => 'required|string|max:255',
-            'direction_to_comply' => 'required|string|max:255',
-            'complied' => 'required|string|max:255',
-            'writ_appeal' => 'required|string|max:255',
-            'writ_appeal_details' => 'required|string|max:255',
-            'writ_appeal_stay' => 'required|string|max:255',
-        ]);
+//        $request->validate([
+//            'type_of_case' => 'required|string|max:255',
+//            'case_no' => 'required|string|max:255',
+//            'year' => 'required|integer',
+//            'petitioner' => 'required|string|max:255',
+//            'respondents' => 'required|string|max:255',
+//            'subject_of_case' => 'required|string|max:255',
+//            'prayer' => 'required|string|max:255',
+//            'counter_filed' => 'required|string|max:255',
+//            'counter_filed_date' => 'required|date',
+//            'no_reason' => 'required|string|max:255',
+//            'interim_stay' => 'required|string|max:255',
+//            'order_details' => 'required|string|max:255',
+//            'final_judgement' => 'required|string|max:255',
+//            'direction_to_comply' => 'required|string|max:255',
+//            'complied' => 'required|string|max:255',
+//            'writ_appeal' => 'required|string|max:255',
+//            'writ_appeal_details' => 'required|string|max:255',
+//            'writ_appeal_stay' => 'required|string|max:255',
+//        ]);
 
         $case = new Office_case();
 
+        $case->region = $request->input('region');
         $case->type_of_case = $request->input('type_of_case');
         $case->case_no = $request->input('case_no');
         $case->year = $request->input('year');
@@ -156,6 +180,7 @@ class OfficeController extends Controller
         $case->writ_appeal = $request->input('writ_appeal');
         $case->writ_appeal_details = $request->input('writ_appeal_details');
         $case->writ_appeal_stay = $request->input('writ_appeal_stay');
+        $case->writ_appeal_stage = $request->input('writ_appeal_stage');
 
         $case->save();
 
