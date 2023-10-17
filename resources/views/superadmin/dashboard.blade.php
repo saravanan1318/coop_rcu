@@ -232,10 +232,11 @@
                         $tmp=0
                         ?>
                     @foreach($societies as $society)
-                        @php
-                            $tmp++;
-                        @endphp
+
                         @if(empty($society->societyLoginTime) && $fromlogged==0)
+                            @php
+                                $tmp++;
+                            @endphp
                         <tr>
                             <td>{{$tmp}}</td>
                             <td>{{$society->societyName}}</td>
@@ -245,9 +246,14 @@
 {{--                            <td>{{number_format(((1-$society->societycount)*100),2,'.',',')}}</td>--}}
                         </tr>
                         @elseif(!empty($society->societyLoginTime) && $fromlogged==1)
+                            @php
+                                $tmp++;
+                            @endphp
+                            <tr>
                             <td>{{$tmp}}</td>
                             <td>{{$society->societyName}}</td>
                                                         <td>{{!empty($society->societyLoginTime)?date( "d-m-y h:i",strtotime($society->societyLoginTime)):"-"}}</td>
+                            </tr>
 {{--                                                        <td>{{$society->societycount}}</td>--}}
 {{--                                                        <td>{{1-$circle->societycount}}</td>--}}
 {{--                                                        <td>{{number_format(((1-$society->societycount)*100),2,'.',',')}}</td>--}}
