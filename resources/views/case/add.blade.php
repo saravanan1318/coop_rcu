@@ -95,7 +95,7 @@
                                     </div>
                                     <div class="col-4 mt-4">
                                         <label>Counter filed </label>
-                                        <select class="form-control" name="counter_filed" required>
+                                        <select class="form-control" name="counter_filed" id="counter_filed" required>
                                             <option value="">Please select respondents</option>
                                             @foreach($yesorno as $value)
                                                 <option value="{{$value->value}}">{{$value->ShowValue}}</option>
@@ -192,3 +192,8 @@
     <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
 
 @endsection<!-- End #main -->
+<script>
+    $("#counter_filed").change(function(e){
+        alert("test");
+    });
+</script>
