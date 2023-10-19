@@ -55,10 +55,6 @@
                                         <th>Petition Subject </th>
                                         <th>Recevied Date</th>
                                         <th>Fwd to Section Name </th>
-                                        <th>Reply Sent date</th>
-                                        <th>Edited (New Section Name)</th>
-                                        <th>Edited dated</th>
-                                        <th>Closure</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -66,7 +62,7 @@
                                         <td ><input type="text" min="0" step="any" onkeypress="return isNumberKey(event)" name="cm_cell_petition_no" class="form-control" required></td>
                                         <td><input type="text" name="petitioner_name" class="form-control" required></td>
                                         <td>
-                                            <select class="form-control js-example-basic-multiple" data-rowid="1" name="petition_related_to" class="form-control" style=" width: 150px; "  required>
+                                            <select class="js-example-basic-multiple"  multiple="multiple" data-rowid="1" name="petition_related_to[]" class="form-control" style=" width: 150px; "  required>
                                                 <option value="">--SELECT--</option>
                                                 @foreach($peti as $s)
                                                 <option value="{{ $s->id }}">{{ $s->subject }}</option>
@@ -75,28 +71,14 @@
                                         </td>
                                         <td><input type="date" id="received_date" name="received_date" class="form-control" required></td>
                                         <td>
-                                            <select class="form-control" data-rowid="1" name="fwd_to_section_name" class="form-control" style=" width: 150px; " required>
+                                            <select class="js-example-basic-multiple"  multiple="multiple" data-rowid="1" name="fwd_to_section_name[]" class="form-control" style=" width: 150px; " required>
                                                 <option value="">--SELECT--</option>
                                                 @foreach($section as $sec)
                                                 <option value="{{ $sec->id }}">{{ $sec->section_name }}</option>
                                                 @endforeach
                                             </select>
                                         </td>
-                                        <td><input type="date" name="reply_sent_date" class="form-control" id="reply_sent_date" ></td>
-                                        <td>
-                                            <select class="form-control" data-rowid="1" name="edited_new_section_name" class="form-control" style=" width: 150px; " >
-                                                <option value="">--SELECT--</option>
-                                                @foreach($section as $sec)
-                                                <option value="{{ $sec->id }}">{{ $sec->section_name }}</option>
-                                                @endforeach
-                                            </select>
-                                        </td>
-                                        <td><input type="date" name="edited_date" class="form-control"></td>
-                                        <td><select name="closure" id="closure" class="form-control" style=" width: 150px; ">
-                                                <option value="YES">YES</option>
-                                                <option value="NO" selected>NO</option>
-                                            </select></td>
-{{--                                        <td><input type="text" name="closure" class="form-control" required></td>--}}
+
                                     </tr>
                                 </tbody>
                             </table>

@@ -54,10 +54,11 @@
                                         <th>Petition Subject </th>
                                         <th>Recevied Date</th>
                                         <th>Fwd to Section Name </th>
-                                        <th>Reply Sent date</th>
-                                        <th>Edited (New Section Name)</th>
-                                        <th>Edited dated</th>
-                                        <th>Closure</th>
+                                        <th>whether fwd new section</th>
+                                        <th class="fwdSection">Reply Sent date</th>
+                                        <th class="fwdSection">Edited (New Section Name)</th>
+                                        <th class="fwdSection">Edited dated</th>
+                                        <th class="fwdSection">Closure</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -66,33 +67,39 @@
                                         <td ><input type="text" min="0" step="any" onkeypress="return isNumberKey(event)" name="cm_cell_petition_no" class="form-control" value="{{$off->cm_cell_petition_no}}" readonly required></td>
                                         <td><input type="text" name="petitioner_name" class="form-control" required value="{{$off->petitioner_name}}" readonly></td>
                                         <td>
-                                            <select class="form-control js-example-basic-multiple" data-rowid="1" name="petition_related_to" class="form-control" style=" width: 150px; "  required disabled>
+                                            <select class="js-example-basic-multiple" multiple="multiple" data-rowid="1" name="petition_related_to" class="form-control" style=" width: 150px; "  required disabled>
                                                 <option value="">--SELECT--</option>
                                                 @foreach($peti as $s)
-                                                <option value="{{ $s->id }}" {{$off->petition_related_to==$s->id?"selected":""}} >{{ $s->subject }}</option>
+                                                <option value="{{ $s->id }}" {{in_array($s->id,explode(",",$off->petition_related_to))?"selected":""}} >{{ $s->subject }}</option>
                                                 @endforeach
                                             </select>
                                         </td>
+
                                         <td><input type="date" id="received_date" name="received_date" class="form-control" required value="{{$off->received_date}}" readonly></td>
                                         <td>
-                                            <select class="form-control" data-rowid="1" name="fwd_to_section_name" class="form-control" style=" width: 150px; " required disabled>
+                                            <select class="js-example-basic-multiple" multiple="multiple" data-rowid="1" name="fwd_to_section_name" class="form-control" style=" width: 150px; " required disabled>
                                                 <option value="">--SELECT--</option>
                                                 @foreach($section as $sec)
-                                                <option value="{{ $sec->id }}" {{$off->fwd_to_section_name==$sec->id?"selected":""}}>{{ $sec->section_name }}</option>
+                                                <option value="{{ $sec->id }}" {{in_array($sec->id,explode(",",$off->fwd_to_section_name))?"selected":""}}>{{ $sec->section_name }}</option>
                                                 @endforeach
                                             </select>
                                         </td>
-                                        <td><input type="date" name="reply_sent_date" class="form-control" id="reply_sent_date" value="{{$off->reply_sent_date}}" readonly></td>
-                                        <td>
-                                            <select class="form-control" data-rowid="1" name="edited_new_section_name" class="form-control" style=" width: 150px; " >
+                                        <td><select class="form-control" id="FWDSelection" name="FWDSelection" required>
+                                                <option value="">Please select</option>
+                                                <option value="YES" {{$off->isfwdnewsection=="YES"?"selected":""}}>YES</option>
+                                                <option value="NO">NO</option>
+                                            </select> </td>
+                                        <td  class="fwdSection"><input type="date" name="reply_sent_date" class="form-control" id="reply_sent_date" value="{{$off->reply_sent_date}}" ></td>
+                                        <td  class="fwdSection">
+                                            <select class="js-example-basic-multiple" multiple="multiple" data-rowid="1" name="edited_new_section_name[]" class="form-control" style=" width: 150px; " >
                                                 <option value="">--SELECT--</option>
                                                 @foreach($section as $sec)
-                                                <option value="{{ $sec->id }}" {{$off->edited_new_section_name==$sec->id?"selected":""}}>{{ $sec->section_name }}</option>
+                                                <option value="{{ $sec->id }}" {{in_array($sec->id,explode(",",$off->edited_new_section_name))?"selected":""}}>{{ $sec->section_name }}</option>
                                                 @endforeach
                                             </select>
                                         </td>
-                                        <td><input type="date" name="edited_date" class="form-control" value="{{$off->edited_date}}"></td>
-                                        <td><select name="closure" id="closure" class="form-control" style=" width: 150px; ">
+                                        <td  class="fwdSection"><input type="date" name="edited_date" class="form-control" value="{{$off->edited_date}}"></td>
+                                        <td  class="fwdSection"><select name="closure" id="closure" class="form-control" style=" width: 150px; ">
                                                 <option value="YES" {{$off->closure=="YES"?"selected":""}}>YES</option>
                                                 <option value="NO" {{$off->closure=="YES"?"selected":""}} >NO</option>
                                             </select></td>

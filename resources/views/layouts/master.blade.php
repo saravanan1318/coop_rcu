@@ -318,6 +318,96 @@
     $("#reply_sent_date").change(function(e){
         $("#closure").val("YES");
     });
+    $("#counter_filed").change(function(e){
+        var value=$("#counter_filed").val();
 
+        if(value=="YES")
+        {
+            $("#counter_filed_date").show();
+            $("[name='counter_filed_date']").prop("required", true);
+
+            $("#no_reason").hide();
+            $("[name='no_reason']").prop("required", false);
+
+
+        }
+        else{
+            $("#counter_filed_date").hide();
+            $("[name='counter_filed_date']").prop("required", false);
+            $("#no_reason").show();
+            $("[name='no_reason']").prop("required", true);
+        }
+
+    });
+    $("[name='respondents']").change(function (e){
+if($("[name='respondents']").val() ==5) {
+    $("#otherrespondername").show();
+    $("[name='otherrespondername']").prop("required", true);
+}
+else {
+    $("#otherrespondername").hide();
+    $("[name='otherrespondername']").prop("required", false);
+}
+    });
+
+    $("#interim_stay").change(function (e){
+        if($("#interim_stay").val()=="YES") {
+            $("#order_details").show();
+            $("[name='order_details']").prop("required", true);
+        }
+        else {
+            $("#order_details").hide();
+            $("[name='order_details']").prop("required", false);
+        }
+    });
+    $("#final_judgement").change(function (e){
+        if($("#final_judgement").val()=="YES") {
+            $("#direction_to_comply").show();
+            $("[name='direction_to_comply']").prop("required", true);
+        }
+        else {
+            $("#direction_to_comply").hide();
+            $("[name='direction_to_comply']").prop("required", false);
+        }
+    });
+    $("#writ_appeal").change(function (e){
+        if($("#writ_appeal").val()=="YES") {
+            $("#writ_appeal_details").show();
+            $("[name='writ_appeal_details']").prop("required", true);
+        }
+        else {
+            $("#writ_appeal_details").hide();
+            $("[name='writ_appeal_details']").prop("required", false);
+        }
+    });$("#writ_appeal_stay").change(function (e){
+        if($("#writ_appeal_stay").val()=="YES") {
+            $("#writ_appeal_stage").show();
+            $("[name='writ_appeal_stage']").prop("required", true);
+        }
+        else {
+            $("#writ_appeal_stage").hide();
+            $("[name='writ_appeal_stage']").prop("required", false);
+        }
+    });
+    $("#FWDSelection").change(function(){
+        if($(this).val()=="YES") {
+            $(".fwdSection").show();
+        }else{
+            $(".fwdSection").hide();
+        }
+    });
 </script>
+<style>
+    /*.fwdSection*/
+    /*{*/
+    /*    display: none;*/
+    /*}*/
+</style>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
+<script>
+    $(document).ready(function() {
+        // Initialize the select2 plugin for the multiple select dropdown
+        $('.js-example-basic-multiple').select2();
+    });
 </html>

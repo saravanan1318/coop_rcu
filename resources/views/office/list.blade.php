@@ -44,9 +44,9 @@
                         <th scope="col">Recevied Date</th>
                         <th scope="col">Fwd to Section Name </th>
                         <th scope="col">Reply Sent date</th>
-                        <th scope="col">Edited (New Section Name)</th>
-                        <th scope="col">Edited dated</th>
-                        <th scope="col">Closure</th>
+{{--                        <th scope="col">Edited (New Section Name)</th>--}}
+{{--                        <th scope="col">Edited dated</th>--}}
+{{--                        <th scope="col">Closure</th>--}}
                         <th scope="col">Action</th>
                     </tr>
                 </thead>
@@ -59,10 +59,10 @@
                         <td>{{ \Carbon\Carbon::parse($data->received_date)->format('d-m-Y') }}</td>
                         <td>{{ $data->fwd_section_name }}</td>
                         <td>{{ \Carbon\Carbon::parse($data->reply_sent_date)->format('d-m-Y') }}</td>
-                        <td>{{ $data->edited_section_name }}</td>
-                        <td>{{ \Carbon\Carbon::parse($data->edited_date)->format('d-m-Y') }}</td>
-                        <td>{{ $data->closure }}</td>
-                        <td><a class="btn btn-warning" href="edit/{{$data->id}}">Edit {{$data->id}}</a></td>
+{{--                        <td>{{ $data->edited_section_name }}</td>--}}
+{{--                        <td>{{ \Carbon\Carbon::parse($data->edited_date)->format('d-m-Y') }}</td>--}}
+{{--                        <td>{{ $data->closure }}</td>--}}
+                        <td><a class="btn btn-warning" href="edit/{{$data->id}}">Edit</a></td>
                     </tr>
 
                     @endforeach

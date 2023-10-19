@@ -52,11 +52,14 @@ class OfficeController extends Controller
     }
     function cmedit(Request $request)
     {
+//        return $request;
         $id=$request->input("id");
         $record = Office_cm::find($id);
-        $record->edited_new_section_name=$request->input("edited_new_section_name");
+        $record->edited_new_section_name=implode(",",$request->input("edited_new_section_name"));
         $record->edited_date=$request->input("edited_date");
+        $record->reply_sent_date=$request->input("reply_sent_date");
         $record->closure=$request->input("closure");
+        $record->isfwdnewsection=$request->input("FWDSelection");
         $record->update();
 
         $off = Office_cm::select('*')->where("id",$id)->first();
@@ -79,26 +82,26 @@ class OfficeController extends Controller
 
     function cmstore(Request $request)
     {
-        $request->validate([
-            'cm_cell_petition_no' => 'required|string|max:255',
-            'petitioner_name' => 'required|string|max:255',
-            'petition_related_to' => 'required|string|max:255',
-            'received_date' => 'required|date',
-            'fwd_to_section_name' => 'required|string|max:255',
-            'closure' => 'required|string|max:255',
-        ]);
+//        $request->validate([
+//            'cm_cell_petition_no' => 'required|string|max:255',
+//            'petitioner_name' => 'required|string|max:255',
+//            'petition_related_to' => 'required|string|max:255',
+//            'received_date' => 'required|date',
+//            'fwd_to_section_name' => 'required|string|max:255',
+//        ]);
 
-        $cmCellPetition = new Office_cm(); // Assuming "CmCellPetition" is your Eloquent model for the "CM CELL Petitions" table
+//        return $request;
+        $cmCellPetition = new Office_cm();  // Assuming "CmCellPetition" is your Eloquent model for the "CM CELL Petitions" table
 
         $cmCellPetition->cm_cell_petition_no = $request->input('cm_cell_petition_no');
         $cmCellPetition->petitioner_name = $request->input('petitioner_name');
-        $cmCellPetition->petition_related_to = $request->input('petition_related_to');
+        $cmCellPetition->petition_related_to = implode(",",$request->input('petition_related_to'));
         $cmCellPetition->received_date = $request->input('received_date');
-        $cmCellPetition->fwd_to_section_name = $request->input('fwd_to_section_name');
+        $cmCellPetition->fwd_to_section_name =implode(",", $request->input('fwd_to_section_name'));
         $cmCellPetition->reply_sent_date = $request->input('reply_sent_date');
-        $cmCellPetition->edited_new_section_name = $request->input('edited_new_section_name');
-        $cmCellPetition->edited_date = $request->input('edited_date');
-        $cmCellPetition->closure = $request->input('closure');
+//        $cmCellPetition->edited_new_section_name = $request->input('edited_new_section_name');
+//        $cmCellPetition->edited_date = $request->input('edited_date');
+//        $cmCellPetition->closure = $request->input('closure');
 
         $cmCellPetition->save();
 
