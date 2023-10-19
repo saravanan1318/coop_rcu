@@ -71,11 +71,30 @@ class OfficeController extends Controller
     function cmlist()
     {
 
-        $off=$offices = Office_cm::select('office_cm.*', 'mtr_petition_subject.subject', 'fwd_section.section_name as fwd_section_name', 'edited_section.section_name as edited_section_name')
-            ->leftjoin('mtr_petition_subject', 'office_cm.petition_related_to', '=', 'mtr_petition_subject.id')
-            ->leftjoin('mtr_section_name as fwd_section', 'office_cm.fwd_to_section_name', '=', 'fwd_section.id')
-            ->leftjoin('mtr_section_name as edited_section', 'office_cm.edited_new_section_name', '=', 'edited_section.id')
+//        $off=$offices = Office_cm::select('office_cm.*', 'mtr_petition_subject.subject', 'fwd_section.section_name as fwd_section_name', 'edited_section.section_name as edited_section_name')
+//            ->leftjoin('mtr_petition_subject', 'office_cm.petition_related_to', '=', 'mtr_petition_subject.id')
+//            ->leftjoin('mtr_section_name as fwd_section', 'office_cm.fwd_to_section_name', '=', 'fwd_section.id')
+//            ->leftjoin('mtr_section_name as edited_section1', 'office_cm.edited_new_section_name', '=', 'edited_section.id')
+//            ->get();
+
+        $off = DB::table('office_cm')
+            ->select(
+                'office_cm.*',
+                'mtr_petition_subject.subject',
+                DB::raw('(
+            SELECT GROUP_CONCAT(section_name ORDER BY section_name SEPARATOR \', \')
+            FROM mtr_section_name
+            WHERE id IN (SELECT DISTINCT id FROM mtr_section_name WHERE FIND_IN_SET(id, office_cm.fwd_to_section_name))
+        ) as fwd_section_name'),
+                DB::raw('(
+            SELECT GROUP_CONCAT(section_name ORDER BY section_name SEPARATOR \', \')
+            FROM mtr_section_name
+            WHERE id IN (SELECT DISTINCT id FROM mtr_section_name WHERE FIND_IN_SET(id, office_cm.edited_new_section_name))
+        ) as edited_section_name')
+            )
+            ->leftJoin('mtr_petition_subject', 'office_cm.petition_related_to', '=', 'mtr_petition_subject.id')
             ->get();
+
 
         return view("office.list", compact('off'));
     }

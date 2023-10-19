@@ -390,7 +390,9 @@ else {
         }
     });
     $("#FWDSelection").change(function(){
+
         if($(this).val()=="YES") {
+            $(".fwdSection").removeClass("d-none");
             $(".fwdSection").show();
         }else{
             $(".fwdSection").hide();

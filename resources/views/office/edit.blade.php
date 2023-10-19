@@ -55,10 +55,10 @@
                                         <th>Recevied Date</th>
                                         <th>Fwd to Section Name </th>
                                         <th>whether fwd new section</th>
-                                        <th class="fwdSection">Reply Sent date</th>
-                                        <th class="fwdSection">Edited (New Section Name)</th>
-                                        <th class="fwdSection">Edited dated</th>
-                                        <th class="fwdSection">Closure</th>
+                                        <th>Reply Sent date</th>
+                                        <th class="fwdSection {{$off->isfwdnewsection=="YES"?"":"d-none"}}">Edited (New Section Name)</th>
+                                        <th class="fwdSection {{$off->isfwdnewsection=="YES"?"":"d-none"}}">Edited dated</th>
+                                        <th>Closure</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -89,17 +89,17 @@
                                                 <option value="YES" {{$off->isfwdnewsection=="YES"?"selected":""}}>YES</option>
                                                 <option value="NO">NO</option>
                                             </select> </td>
-                                        <td  class="fwdSection"><input type="date" name="reply_sent_date" class="form-control" id="reply_sent_date" value="{{$off->reply_sent_date}}" ></td>
-                                        <td  class="fwdSection">
-                                            <select class="js-example-basic-multiple" multiple="multiple" data-rowid="1" name="edited_new_section_name[]" class="form-control" style=" width: 150px; " >
+                                        <td ><input type="date" name="reply_sent_date" class="form-control" id="reply_sent_date" value="{{$off->reply_sent_date}}" ></td>
+                                        <td  class="fwdSection {{$off->isfwdnewsection=="YES"?"":"d-none"}}">
+                                            <select class="js-example-basic-multiple d-" multiple="multiple" data-rowid="1" name="edited_new_section_name[]" style=" width: 150px; " >
                                                 <option value="">--SELECT--</option>
                                                 @foreach($section as $sec)
                                                 <option value="{{ $sec->id }}" {{in_array($sec->id,explode(",",$off->edited_new_section_name))?"selected":""}}>{{ $sec->section_name }}</option>
                                                 @endforeach
                                             </select>
                                         </td>
-                                        <td  class="fwdSection"><input type="date" name="edited_date" class="form-control" value="{{$off->edited_date}}"></td>
-                                        <td  class="fwdSection"><select name="closure" id="closure" class="form-control" style=" width: 150px; ">
+                                        <td  class="fwdSection {{$off->isfwdnewsection=="YES"?"":"d-none"}}"><input type="date" name="edited_date" class="form-control" value="{{$off->edited_date}}"></td>
+                                        <td ><select name="closure" id="closure" class="form-control" style=" width: 150px; ">
                                                 <option value="YES" {{$off->closure=="YES"?"selected":""}}>YES</option>
                                                 <option value="NO" {{$off->closure=="YES"?"selected":""}} >NO</option>
                                             </select></td>
