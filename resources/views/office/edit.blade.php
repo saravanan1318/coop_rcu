@@ -53,11 +53,12 @@
                                         <th>Petitioner Name</th>
                                         <th>Petition Subject </th>
                                         <th>Recevied Date</th>
-                                        <th>Fwd to Section Name </th>
-                                        <th>whether fwd new section</th>
-                                        <th>Reply Sent date</th>
+                                        <th>Forward to Section Name </th>
+                                        <th>whether Forward new section</th>
+
                                         <th class="fwdSection {{$off->isfwdnewsection=="YES"?"":"d-none"}}">Edited (New Section Name)</th>
                                         <th class="fwdSection {{$off->isfwdnewsection=="YES"?"":"d-none"}}">Edited dated</th>
+                                        <th>Reply Sent date</th>
                                         <th>Closure</th>
                                     </tr>
                                 </thead>
@@ -89,7 +90,7 @@
                                                 <option value="YES" {{$off->isfwdnewsection=="YES"?"selected":""}}>YES</option>
                                                 <option value="NO">NO</option>
                                             </select> </td>
-                                        <td ><input type="date" name="reply_sent_date" class="form-control" id="reply_sent_date" value="{{$off->reply_sent_date}}" ></td>
+
                                         <td  class="fwdSection {{$off->isfwdnewsection=="YES"?"":"d-none"}}">
                                             <select class="js-example-basic-multiple d-" multiple="multiple" data-rowid="1" name="edited_new_section_name[]" style=" width: 150px; " >
                                                 <option value="">--SELECT--</option>
@@ -99,6 +100,7 @@
                                             </select>
                                         </td>
                                         <td  class="fwdSection {{$off->isfwdnewsection=="YES"?"":"d-none"}}"><input type="date" name="edited_date" class="form-control" value="{{$off->edited_date}}"></td>
+                                        <td ><input type="date" name="reply_sent_date" class="form-control" id="reply_sent_date" value="{{$off->reply_sent_date}}" ></td>
                                         <td ><select name="closure" id="closure" class="form-control" style=" width: 150px; ">
                                                 <option value="YES" {{$off->closure=="YES"?"selected":""}}>YES</option>
                                                 <option value="NO" {{$off->closure=="YES"?"selected":""}} >NO</option>

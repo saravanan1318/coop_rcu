@@ -77,23 +77,39 @@ class OfficeController extends Controller
 //            ->leftjoin('mtr_section_name as edited_section1', 'office_cm.edited_new_section_name', '=', 'edited_section.id')
 //            ->get();
 
+//        $off = DB::table('office_cm')
+//            ->select(
+//                'office_cm.*',
+//                'mtr_petition_subject.subject',
+//                DB::raw('(
+//            SELECT GROUP_CONCAT(section_name ORDER BY section_name SEPARATOR \', \')
+//            FROM mtr_section_name
+//            WHERE id IN (SELECT DISTINCT id FROM mtr_section_name WHERE FIND_IN_SET(id, office_cm.fwd_to_section_name))
+//        ) as fwd_section_name'),
+//                DB::raw('(
+//            SELECT GROUP_CONCAT(section_name ORDER BY section_name SEPARATOR \', \')
+//            FROM mtr_section_name
+//            WHERE id IN (SELECT DISTINCT id FROM mtr_section_name WHERE FIND_IN_SET(id, office_cm.edited_new_section_name))
+//        ) as edited_section_name')
+//            )
+//            ->leftJoin('mtr_petition_subject', 'office_cm.petition_related_to', '=', 'mtr_petition_subject.id')
+//            ->get();
         $off = DB::table('office_cm')
-            ->select(
-                'office_cm.*',
-                'mtr_petition_subject.subject',
-                DB::raw('(
-            SELECT GROUP_CONCAT(section_name ORDER BY section_name SEPARATOR \', \')
-            FROM mtr_section_name
-            WHERE id IN (SELECT DISTINCT id FROM mtr_section_name WHERE FIND_IN_SET(id, office_cm.fwd_to_section_name))
-        ) as fwd_section_name'),
-                DB::raw('(
-            SELECT GROUP_CONCAT(section_name ORDER BY section_name SEPARATOR \', \')
-            FROM mtr_section_name
-            WHERE id IN (SELECT DISTINCT id FROM mtr_section_name WHERE FIND_IN_SET(id, office_cm.edited_new_section_name))
-        ) as edited_section_name')
-            )
-            ->leftJoin('mtr_petition_subject', 'office_cm.petition_related_to', '=', 'mtr_petition_subject.id')
-            ->get();
+    ->select('office_cm.*')
+    ->selectRaw('(SELECT GROUP_CONCAT(section_name ORDER BY section_name SEPARATOR \', \')
+        FROM mtr_section_name
+        WHERE id IN (SELECT DISTINCT id FROM mtr_section_name WHERE FIND_IN_SET(id, office_cm.fwd_to_section_name))
+    ) as fwd_section_name')
+    ->selectRaw('(SELECT GROUP_CONCAT(section_name ORDER BY section_name SEPARATOR \', \')
+        FROM mtr_section_name
+        WHERE id IN (SELECT DISTINCT id FROM mtr_section_name WHERE FIND_IN_SET(id, office_cm.edited_new_section_name))
+    ) as edited_section_name')
+    ->selectRaw('(SELECT GROUP_CONCAT(subject ORDER BY subject SEPARATOR \', \')
+        FROM mtr_petition_subject
+        WHERE id IN (SELECT DISTINCT id FROM mtr_petition_subject WHERE FIND_IN_SET(id, office_cm.petition_related_to))
+    ) as subject')
+    ->get();
+
 
 
         return view("office.list", compact('off'));
