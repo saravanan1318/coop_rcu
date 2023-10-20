@@ -8,6 +8,7 @@ use App\Models\Mtr_section_name;
 use App\Models\Office_case;
 use App\Models\Office_cm;
 use App\Models\Respondents;
+use App\Models\RTI_APPEAL;
 use App\Models\SubjectCase;
 use App\Models\TypeofCase;
 use App\Models\YESORNO;
@@ -68,6 +69,34 @@ class OfficeController extends Controller
         return redirect('/office/cm/list')->with('status', 'CM CELL Petition Updated successfully');
     }
 
+    function rtiadd(Request $request){
+        $region=Mtr_region::all();
+        $section=Mtr_section_name::all();
+        $section=Mtr_section_name::all();
+       return  view('office.rti.add',compact('region','section'));
+
+    }
+    function rtistore(Request $request)
+    {
+        $records=new RTI_APPEAL();
+        $records->fill($request->all());
+
+        // Save the model to the database
+        $records->save();
+        return redirect('/office/rti/list')->with('status', 'RTI Petition added successfully');
+    }
+
+    function rtilist(){
+        $rti=RTI_APPEAL::select('rti_appeal.*')
+            ->selectRaw('mtrregion.region_name AS region_name')
+            ->selectRaw('mtrfwdregion.region_name AS fwd_region_name')
+            ->selectRaw('mtrsec.section_name AS frwdsectionName')
+            ->leftJoin('mtr_region AS mtrregion', 'mtrregion.id', '=', 'rti_appeal.region')
+            ->leftJoin('mtr_region AS mtrfwdregion', 'mtrfwdregion.id', '=', 'rti_appeal.frwdregion')
+            ->leftJoin('mtr_section_name AS mtrsec', 'mtrsec.id', '=', 'rti_appeal.frwdsection')
+            ->get();
+        return view('office.rti.list',compact('rti'));
+    }
     function cmlist()
     {
 
@@ -113,6 +142,7 @@ class OfficeController extends Controller
 
 
         return view("office.list", compact('off'));
+
     }
 
     function cmstore(Request $request)

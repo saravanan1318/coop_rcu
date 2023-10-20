@@ -398,12 +398,33 @@ else {
             $(".fwdSection").hide();
         }
     });
+    $("#frwdsectionType").change(function(){
+
+
+
+        if($(this).val()=="SECTION") {
+
+            $(".hidefield").hide();
+            $(".fwdsection").show();
+        }
+        if($(this).val()=="REGION") {
+
+            $(".hidefield").hide();
+            $(".fwdregion").show();
+        }
+        if($(this).val()=="OTHERS") {
+
+            $(".hidefield").hide();
+            $(".fwdother").show();
+        }
+    });
 </script>
 <style>
-    /*.fwdSection*/
-    /*{*/
-    /*    display: none;*/
-    /*}*/
+    .hidefield
+    {
+        display: none;
+    }
+
 </style>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
