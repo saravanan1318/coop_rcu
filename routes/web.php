@@ -301,9 +301,15 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/office/cm/edit/{id}', [OfficeController::class, 'cmeditlist']);
     Route::post('/office/cm/edit', [OfficeController::class, 'cmedit']);
 
+    Route::get('/office/rtipet/add', [OfficeController::class, 'rtipetadd']);
+    Route::post('/office/rtipet/store', [OfficeController::class, 'rtipetstore']);
+    Route::get('/office/rtipet/list', [OfficeController::class, 'rtipetlist']);
+
     Route::get('/office/RTI/add', [OfficeController::class, 'rtiadd']);
     Route::post('/office/rti/store', [OfficeController::class, 'rtistore']);
     Route::get('/office/rti/list', [OfficeController::class, 'rtilist']);
+
+
 
     Route::get('/office/case/list', [OfficeController::class, 'caselist']);
     Route::get('/office/case/add', [OfficeController::class, 'caseadd']);
