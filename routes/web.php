@@ -4,6 +4,7 @@ use App\Http\Controllers\GeneralController;
 use App\Http\Controllers\JsonController;
 use App\Http\Controllers\MasterController;
 use App\Http\Controllers\OfficeController;
+use App\Http\Controllers\SocietyStaffController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WebsiteController;
@@ -308,6 +309,12 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/office/RTI/add', [OfficeController::class, 'rtiadd']);
     Route::post('/office/rti/store', [OfficeController::class, 'rtistore']);
     Route::get('/office/rti/list', [OfficeController::class, 'rtilist']);
+
+    Route::get('/society/staff/add', [SocietyStaffController::class, 'add']);
+    Route::post('/society/staff/store', [SocietyStaffController::class, 'store']);
+    Route::get('/society/staff/edit/{id}', [SocietyStaffController::class, 'edit']);
+    Route::post('/society/staff/edit', [SocietyStaffController::class, 'updateData']);
+    Route::get('/society/staff/list', [SocietyStaffController::class, 'list']);
 
 
 

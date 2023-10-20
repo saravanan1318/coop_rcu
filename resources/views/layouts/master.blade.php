@@ -418,6 +418,33 @@ else {
             $(".fwdother").show();
         }
     });
+    $("#isObtainCoopTraing").change(function(){
+        if($(this).val()=="YES") {
+
+            $(".iscooptraing").show();
+        }
+        else {
+            $(".iscooptraing").hide();
+        }
+    });
+    $("#appointmentType").change(function(){
+        if($(this).val()=="Regular") {
+
+            $(".regularoption").show();
+        }
+        else {
+            $(".regularoption").hide();
+        }
+    });
+    $("#isonDeputation").change(function(){
+        if($(this).val()=="YES") {
+
+            $(".deputationoption").show();
+        }
+        else {
+            $(".deputationoption").hide();
+        }
+    });
 </script>
 <style>
     .hidefield
