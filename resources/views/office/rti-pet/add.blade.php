@@ -74,7 +74,7 @@
                                                                 <option value="{{$value->id}}">{{$value->region_name}}</option>
                                                             @endforeach
                                                         </select></td>
-                                                    <td><input type="date" name="petitionrecieved" class="form-control" id="petitionrecieved" required></td>
+                                                    <td><input type="date" name="petitionrecieved" class="form-control" id="petitionrecieved" required max="{{date('Y-m-d',strtotime(now()))}}"></td>
                                                     <td><input type="text" name="fileNo" class="form-control" id="fileNo" required></td>
                                                     <td><select class="js-example-basic-multiple w-100"  multiple="multiple" name="frwdsectionType[]" id="frwdsectionType">
                                                             <option value="">Please select</option>

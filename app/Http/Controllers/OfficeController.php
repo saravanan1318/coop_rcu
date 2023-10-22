@@ -128,14 +128,30 @@ class OfficeController extends Controller
     }
 
     function rtipetlist(){
-        $rti=RTI::select('rti_petition.*')
+//        $rti=RTI::select('rti_petition.*')
+//            ->selectRaw('mtrregion.region_name AS region_name')
+//            ->selectRaw('mtrfwdregion.region_name AS fwd_region_name')
+//            ->selectRaw('mtrsec.section_name AS frwdsectionName')
+//            ->leftJoin('mtr_region AS mtrregion', 'mtrregion.id', '=', 'rti_petition.region')
+//            ->leftJoin('mtr_region AS mtrfwdregion', 'mtrfwdregion.id', '=', 'rti_petition.frwdregion')
+//            ->leftJoin('mtr_section_name AS mtrsec', 'mtrsec.id', '=', 'rti_petition.frwdsection')
+//            ->get();
+        $rti= RTI::select('rti_petition.*')
             ->selectRaw('mtrregion.region_name AS region_name')
             ->selectRaw('mtrfwdregion.region_name AS fwd_region_name')
             ->selectRaw('mtrsec.section_name AS frwdsectionName')
+            ->selectRaw('GROUP_CONCAT(msn.section_name) AS frwdsection_names')
             ->leftJoin('mtr_region AS mtrregion', 'mtrregion.id', '=', 'rti_petition.region')
             ->leftJoin('mtr_region AS mtrfwdregion', 'mtrfwdregion.id', '=', 'rti_petition.frwdregion')
             ->leftJoin('mtr_section_name AS mtrsec', 'mtrsec.id', '=', 'rti_petition.frwdsection')
+            ->leftJoin('mtr_section_name AS msn', function ($join) {
+                $join->on(function ($query) {
+                    $query->whereRaw('FIND_IN_SET(msn.id, rti_petition.frwdsection)');
+                });
+            })
+            ->groupBy('rti_petition.frwdsection')
             ->get();
+
         return view('office.rti-pet.list',compact('rti'));
     }
 
