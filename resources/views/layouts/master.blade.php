@@ -400,23 +400,24 @@ else {
     });
     $("#frwdsectionType").change(function(){
 
-
-
-        if($(this).val()=="SECTION") {
-
-            $(".hidefield").hide();
+ var frwdValue=["SECTION","REGION","OTHERS"];
+        $(".hidefield").hide();
+        if($(this).val().includes("SECTION")) {
             $(".fwdsection").show();
         }
-        if($(this).val()=="REGION") {
+        if($(this).val().includes("REGION")) {
 
-            $(".hidefield").hide();
             $(".fwdregion").show();
         }
-        if($(this).val()=="OTHERS") {
+        if($(this).val().includes("OTHERS")) {
 
-            $(".hidefield").hide();
             $(".fwdother").show();
         }
+        if($(this).val().length==0)
+        {
+            $(".hidefield").hide();
+        }
+
     });
     $("#isObtainCoopTraing").change(function(){
         if($(this).val()=="YES") {
@@ -453,11 +454,11 @@ else {
     }
 
 </style>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
 <script>
     $(document).ready(function() {
         // Initialize the select2 plugin for the multiple select dropdown
         $('.js-example-basic-multiple').select2();
     });
+</script>
 </html>

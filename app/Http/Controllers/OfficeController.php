@@ -10,12 +10,14 @@ use App\Models\Office_cm;
 use App\Models\Respondents;
 use App\Models\RTI;
 use App\Models\RTI_APPEAL;
+use App\Models\Society_Staff;
 use App\Models\SubjectCase;
 use App\Models\TypeofCase;
 use App\Models\YESORNO;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class OfficeController extends Controller
 {
@@ -109,6 +111,14 @@ class OfficeController extends Controller
     }
     function rtipetstore(Request $request)
     {
+        Log::info($request);
+        $frwdsectionType = implode(",", $request->input("frwdsectionType"));
+        $request["frwdsectionType"]=$frwdsectionType;
+        $frwdsection = implode(",", $request->input("frwdsection"));
+        $request["frwdsection"]=$frwdsection;
+//        $request->merge(['frwdsectionType' => $frwdsectionType]);
+        Log::info("after edit");
+        Log::info($request);
         $records=new RTI();
         $records->fill($request->all());
 
@@ -129,6 +139,31 @@ class OfficeController extends Controller
         return view('office.rti-pet.list',compact('rti'));
     }
 
+    function rtipetedit(Request $request,$id)
+    {
+        $rti=RTI::where('id',$id)->first();
+        $region=Mtr_region::all();
+        $section=Mtr_section_name::all();
+        $section=Mtr_section_name::all();
+        return view('office.rti-pet.edit',compact('rti','region','section'));
+
+    }
+    function rtipeteditdate(Request $request){
+                $id=$request->input("id");
+        $frwdsectionType = implode(",", $request->input("frwdsectionType"));
+        $request["frwdsectionType"]=$frwdsectionType;
+        $frwdsection = implode(",", $request->input("frwdsection"));
+        $request["frwdsection"]=$frwdsection;
+        $record = RTI::find($id); // Replace $id with the ID of the record you want to update
+
+        if ($record) {
+            $record->fill($request->all());
+            $record->save();
+
+            return redirect('/office/rtipet/list')->with('status', 'RTI petition Updated successfully');
+
+        }
+    }
     function cmlist()
     {
 

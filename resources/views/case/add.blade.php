@@ -44,14 +44,15 @@
                             <form action="{{url("/office/case/store")}}" method="post" id="cmform" class="row g-3">
                                 @csrf
                                 <div class="row margindiv">
-                                    <div class="col-4 mt-4"><label>Region</label>
+                                    <div class="row">
+                                    <div class="col-3 mt-4"><label>Region</label>
                                         <select class="form-control" name="region" required>
                                             <option value="">Please select Region</option>
                                             @foreach($region as $regionvalue)
                                                 <option value="{{$regionvalue->id}}">{{$regionvalue->region_name}}</option>
                                             @endforeach
                                         </select></div>
-                                    <div class="col-4 mt-4"><label>Type of Case</label>
+                                    <div class="col-3 mt-4"><label>Type of Case</label>
                                         <select class="form-control" name="type_of_case" required>
                                             <option value="">Please select Type</option>
                                             @foreach($typeofcase as $value)
@@ -59,14 +60,29 @@
                                             @endforeach
                                         </select>
                                     </div>
-                                    <div class="col-4 mt-4">
+                                    <div class="col-3 mt-4">
                                         <label>Case Number</label>
                                         <input type="text" required class="form-control" name="case_no">
                                     </div>
-                                    <div class="col-4 mt-4">
+                                    <div class="col-3 mt-4">
                                         <label>years</label>
-                                        <input type="Number" required class="form-control" name="year">
+                                        <select class="form-control" name="year" id="year" required>
+
+                                            <option value="">Please select Year</option>
+                                            <?php
+                                                for($i=1950;$i<=date('Y',strtotime(now()));$i++)
+                                                {
+                                                    ?>
+                                                    <option value="{{$i}}">{{$i}}</option>
+                                            <?php
+
+                                                }
+                                                ?>
+                                        </select>
+                                        <span id="year_display"></span>
                                     </div>
+                                    </div>
+                                    <div class="row">
                                     <div class="col-4 mt-4">
                                         <label>Petitioner</label>
                                         <input type="text" required class="form-control" name="petitioner">
@@ -80,6 +96,12 @@
                                             @endforeach
                                         </select>
                                     </div>
+                                        <div class="col-4 mt-4" id="otherrespondername" style="display: none">
+                                            <label>Other Respondents Detais</label>
+                                            <input type="text" name="otherrespondername" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="row">
                                     <div class="col-4 mt-4">
                                         <label>Subject of Case</label>
                                         <select class="form-control" name="subject_of_case" required>
@@ -93,6 +115,8 @@
                                         <label>Prayer</label>
                                         <input type="text" required class="form-control" name="prayer">
                                     </div>
+                                    </div>
+                                    <div class="row">
                                     <div class="col-4 mt-4">
                                         <label>Counter filed </label>
                                         <select class="form-control" name="counter_filed" id="counter_filed" required>
@@ -102,37 +126,42 @@
                                             @endforeach
                                         </select>
                                     </div>
-                                    <div class="col-4 mt-4">
+                                    <div class="col-4 mt-4"  style="display: none" id="counter_filed_date" >
                                         <label>If Yes, Counter filed date </label>
-                                        <input type="date"  class="form-control" name="counter_filed_date">
+                                        <input type="date"  class="form-control" name="counter_filed_date" >
                                     </div>
-                                    <div class="col-4 mt-4">
+                                    <div class="col-4 mt-4" id="no_reason" style="display: none">
                                         <label>If No, Reason </label>
-                                        <input type="text"  class="form-control" name="no_reason">
+                                        <textarea   class="form-control" name="no_reason"  cols="2"></textarea>
                                     </div>
+                                    </div>
+                                    <div class="row">
                                     <div class="col-4 mt-4">
                                         <label>Whether any Interim Stay given </label>
-                                        <select class="form-control" name="interim_stay" required>
+                                        <select class="form-control" name="interim_stay" id="interim_stay" required>
                                             <option value="">Please select respondents</option>
                                             @foreach($yesorno as $value)
                                                 <option value="{{$value->value}}">{{$value->ShowValue}}</option>
                                             @endforeach
                                         </select>
                                     </div>
-                                    <div class="col-4 mt-4">
+                                    <div class="col-4 mt-4" id="order_details" style="display: none">
                                         <label>If Yes, Order details</label>
-                                        <input type="text" class="form-control" name="order_details">
+<textarea cols="2" class="form-control" name="order_details"></textarea>
+
                                     </div>
-                                    <div class="col-4 mt-4">
+                                    </div>
+                                    <div class="row">
+                                    <div class="col-4 mt-4" >
                                         <label>Final Judgement </label>
-                                        <select class="form-control" name="final_judgement" required>
+                                        <select class="form-control" name="final_judgement" id="final_judgement" required>
                                             <option value="">Please select </option>
                                             @foreach($yesorno as $value)
                                                 <option value="{{$value->value}}">{{$value->ShowValue}}</option>
                                             @endforeach
                                         </select>
                                     </div>
-                                    <div class="col-4 mt-4">
+                                    <div class="col-4 mt-4" id="direction_to_comply" style="display: none">
                                         <label>If direction is issued whom to comply with time  limit  </label>
                                         <input type="text" required class="form-control" name="direction_to_comply">
                                     </div>
@@ -145,31 +174,37 @@
                                             @endforeach
                                         </select>
                                     </div>
+                                    </div>
+
+                                    <div class="row">
                                     <div class="col-4 mt-4">
                                         <label>If any Writ Appeal</label>
-                                        <select class="form-control" name="writ_appeal" required>
+                                        <select class="form-control" name="writ_appeal" id="writ_appeal" required>
                                             <option value="">Please select </option>
                                             @foreach($yesorno as $value)
                                                 <option value="{{$value->value}}">{{$value->ShowValue}}</option>
                                             @endforeach
                                         </select>
                                     </div>
-                                    <div class="col-4 mt-4">
+                                    <div class="col-4 mt-4" id="writ_appeal_details" style="display: none">
                                         <label> If yes  filed by whom and Writ Appeal No.</label>
                                         <input type="text"  class="form-control" name="writ_appeal_details">
                                     </div>
+                                    </div>
+                                    <div class="row">
                                     <div class="col-4 mt-4">
                                         <label> Whether stay obtained  to Writ Petition </label>
-                                        <select class="form-control" name="writ_appeal_stay" required>
+                                        <select class="form-control" name="writ_appeal_stay" id="writ_appeal_stay" required>
                                             <option value="">Please select </option>
                                             @foreach($yesorno as $value)
                                                 <option value="{{$value->value}}">{{$value->ShowValue}}</option>
                                             @endforeach
                                         </select>
                                     </div>
-                                    <div class="col-4 mt-4">
+                                    <div class="col-4 mt-4" id="writ_appeal_stage" style="display: none">
                                         <label> Writ appeal stage </label>
                                         <textarea class="form-control" name="writ_appeal_stage" cols="2"></textarea>
+                                    </div>
                                     </div>
                                     <div class="col-md-10">
                                         <!-- Other form fields go here -->
@@ -192,8 +227,3 @@
     <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
 
 @endsection<!-- End #main -->
-<script>
-    $("#counter_filed").change(function(e){
-        alert("test");
-    });
-</script>

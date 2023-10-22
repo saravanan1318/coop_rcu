@@ -43,11 +43,11 @@
                         <th scope="col">Date of Petition received </th>
                         <th scope="col">RTI Petition File No.</th>
                         <th scope="col">Forwarded to Section, Region, Other Department 6(3)</th>
-                        <th scope="col">Forwarded Value</th>
+{{--                        <th scope="col">Forwarded Value</th>--}}
                         <th scope="col">PIO to whom transferred</th>
                         <th scope="col">Date of Disposal of Petition</th>
 {{--                        <th scope="col">Closure</th>--}}
-{{--                        <th scope="col">Action</th>--}}
+                        <th scope="col">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -58,11 +58,11 @@
                         <td>{{ \Carbon\Carbon::parse($data->petitionrecieved)->format('d-m-Y') }}</td>
                         <td>{{ $data->fileNo }}</td>
                         <td>{{ $data->frwdsectionType }}</td>
-                        <td>{{ !empty($data->fwd_region_name)?$data->fwd_region_name:(!empty($data->frwdsectionName)?$data->frwdsectionName:$data->frwdother )}}</td>
+{{--                        <td>{{ !empty($data->fwd_region_name)?$data->fwd_region_name:(!empty($data->frwdsectionName)?$data->frwdsectionName:$data->frwdother )}}</td>--}}
                         <td>{{ $data->whompassed }}</td>
                         <td>{{ \Carbon\Carbon::parse($data->disposaldateofpetition)->format('d-m-Y') }}</td>
 {{--                        <td>{{ $data->closure }}</td>--}}
-{{--                        <td><a class="btn btn-warning" href="edit/{{$data->id}}">Edit</a></td>--}}
+                        <td><a class="btn btn-warning" href="edit/{{$data->id}}">Edit</a></td>
                     </tr>
 
                     @endforeach

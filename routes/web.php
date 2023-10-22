@@ -305,6 +305,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/office/rtipet/add', [OfficeController::class, 'rtipetadd']);
     Route::post('/office/rtipet/store', [OfficeController::class, 'rtipetstore']);
     Route::get('/office/rtipet/list', [OfficeController::class, 'rtipetlist']);
+    Route::get('/office/rtipet/edit/{id}', [OfficeController::class, 'rtipetedit']);
+    Route::post('/office/rtipet/edit', [OfficeController::class, 'rtipeteditdate']);
 
     Route::get('/office/RTI/add', [OfficeController::class, 'rtiadd']);
     Route::post('/office/rti/store', [OfficeController::class, 'rtistore']);
@@ -331,7 +333,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/md/servicelist', [MDController::class, 'serviceslist']);
     Route::get('/md/croploanlist', [MDController::class, 'croploanlist']);
 
-    Route::get('/md/loanreport', [SuperAdminController::class, 'loanreport']);
+    Route::get('/md/loanreport', [SuperAdminController::class, 'loanreportsuperadmin']);
     Route::get('/md/croploanreport', [SuperAdminController::class, 'croploanreport']);
     Route::get('/md/depositreport', [SuperAdminController::class, 'depositreport']);
     Route::get('/md/purchasereport', [SuperAdminController::class, 'purchasereport']);
