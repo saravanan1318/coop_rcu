@@ -135,7 +135,7 @@ class OfficeController extends Controller
 
         // Save the model to the database
         $records->save();
-        return redirect('/office/rti/list')->with('status', 'RTI Petition added successfully');
+        return redirect('/office/FPEI/list')->with('status', 'Expenditures and income added successfully');
     }
     function FPEIlist(){
         $result= DB::table('fpsexpenseandincome')
