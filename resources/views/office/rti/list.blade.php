@@ -49,7 +49,7 @@
                         <th scope="col">Date of Second Appeal Petition received (TNIC)</th>
                         <th scope="col">Final Order passed (TNIC)</th>
 {{--                        <th scope="col">Closure</th>--}}
-{{--                        <th scope="col">Action</th>--}}
+                        <th scope="col">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -66,7 +66,7 @@
                         <td>{{ \Carbon\Carbon::parse($data->disposaldateofAppeal)->format('d-m-Y') }}</td>
                         <td>{{ \Carbon\Carbon::parse($data->TNIC)->format('d-m-Y') }}</td>
 {{--                        <td>{{ $data->closure }}</td>--}}
-{{--                        <td><a class="btn btn-warning" href="edit/{{$data->id}}">Edit</a></td>--}}
+                        <td><a class="btn btn-warning" href="edit/{{$data->id}}">Edit</a></td>
                     </tr>
 
                     @endforeach

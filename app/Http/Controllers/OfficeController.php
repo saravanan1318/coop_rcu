@@ -101,6 +101,27 @@ class OfficeController extends Controller
         return view('office.rti.list',compact('rti'));
     }
 
+    function rtiedit(Request $request,$id)
+    {
+        $rti=RTI_APPEAL::where('id',$id)->first();
+        $region=Mtr_region::all();
+        $section=Mtr_section_name::all();
+        $section=Mtr_section_name::all();
+        return  view('office.rti.edit',compact('region','section','rti'));
+    }
+
+    function rtieditdata(Request $request){
+        $id=$request->input("id");
+        $record = RTI_APPEAL::find($id); // Replace $id with the ID of the record you want to update
+
+        if ($record) {
+            $record->fill($request->all());
+            $record->save();
+
+            return redirect('/office/rti/list')->with('status', 'RTI apeal  Updated successfully');
+
+        }
+    }
 
     function rtipetadd(Request $request){
         $region=Mtr_region::all();
