@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\FPSEXPENTITURE;
 use App\Models\Mtr_petition_subject;
 use App\Models\Mtr_region;
 use App\Models\Mtr_section_name;
@@ -123,6 +124,26 @@ class OfficeController extends Controller
         }
     }
 
+
+    function FPEIadd(){
+        $region=Mtr_region::all();
+        return view("office.fps.add",compact('region'));
+    }
+    function FPEIstore(Request $request){
+        $records=new FPSEXPENTITURE();
+        $records->fill($request->all());
+
+        // Save the model to the database
+        $records->save();
+        return redirect('/office/rti/list')->with('status', 'RTI Petition added successfully');
+    }
+    function FPEIlist(){
+        $result= DB::table('fpsexpenseandincome')
+            ->leftJoin('mtr_region AS mtrregion', 'mtrregion.id', '=', 'fpsexpenseandincome.region')
+            ->select('fpsexpenseandincome.*', 'mtrregion.region_name AS region_name')
+            ->get();
+        return view("office.fps.list",compact('result'));
+    }
     function rtipetadd(Request $request){
         $region=Mtr_region::all();
         $section=Mtr_section_name::all();

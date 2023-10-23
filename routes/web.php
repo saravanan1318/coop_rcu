@@ -314,6 +314,11 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/office/rti/edit/{id}', [OfficeController::class, 'rtiedit']);
     Route::post('/office/rti/edit', [OfficeController::class, 'rtieditdata']);
 
+
+    Route::get('/office/FPEI/add', [OfficeController::class, 'FPEIadd']);
+    Route::post('/office/FPEI/store', [OfficeController::class, 'FPEIstore']);
+    Route::get('/office/FPEI/list', [OfficeController::class, 'FPEIlist']);
+
     Route::get('/society/staff/add', [SocietyStaffController::class, 'add']);
     Route::post('/society/staff/store', [SocietyStaffController::class, 'store']);
     Route::get('/society/staff/edit/{id}', [SocietyStaffController::class, 'edit']);

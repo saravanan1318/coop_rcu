@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{!empty($title)?$title: "COOP"}}</title>
-  @include('partials.styles')
+    @include('partials.styles')
 </head>
 <body>
-    @include('partials.header')
-    @include('partials.societymenu')
-    @yield('content')
-    @include('partials.footer')
-    @include('partials.scripts')
+@include('partials.header')
+@include('partials.societymenu')
+@yield('content')
+@include('partials.footer')
+@include('partials.scripts')
 </body>
 {{--<!-- jQuery -->--}}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -30,11 +30,11 @@
     $(document).ready(function () {
 
         function exportDataToJSON(dataTable) {
-            const tableData = dataTable.rows({ page: 'current' }).data().toArray();
+            const tableData = dataTable.rows({page: 'current'}).data().toArray();
             const jsonContent = JSON.stringify(tableData);
 
             // Create a temporary anchor element to trigger the download
-            const blob = new Blob([jsonContent], { type: 'application/json' });
+            const blob = new Blob([jsonContent], {type: 'application/json'});
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url;
@@ -43,7 +43,7 @@
             URL.revokeObjectURL(url);
         }
 
-        $('#data-table').DataTable( {
+        $('#data-table').DataTable({
             dom: 'Bfrtip',
             buttons: [
                 {
@@ -51,7 +51,7 @@
                     text: '<i class="fas fa-file-excel"></i> Export Excel',
                     className: 'btn btn-outline btn-success m-2', // Add a custom class for the Excel button
                     exportOptions: {
-                        columns: ':visible' ,// Export only visible columns
+                        columns: ':visible',// Export only visible columns
                     }
                 },
                 {
@@ -59,7 +59,7 @@
                     text: '<i class="fas fa-file-pdf"></i> Export PDF',
                     className: 'btn btn-outline btn-success m-2',
                     exportOptions: {
-                        columns: ':visible' ,// Export only visible columns
+                        columns: ':visible',// Export only visible columns
                     }
                 },
                 // {
@@ -77,9 +77,9 @@
             // columnDefs: [
             //     { targets: [0, 2], orderable: false } // Disable sorting for columns 0 and 1
             // ]
-        } );
+        });
 
-        $('#data-table-dashboard').DataTable( {
+        $('#data-table-dashboard').DataTable({
             dom: 'Bfrtip',
             buttons: [
                 {
@@ -87,7 +87,7 @@
                     text: '<i class="fas fa-file-excel"></i> Export Excel',
                     className: 'btn btn-outline btn-success m-2', // Add a custom class for the Excel button
                     exportOptions: {
-                        columns: ':visible' ,// Export only visible columns
+                        columns: ':visible',// Export only visible columns
                     }
                 },
             ],
@@ -98,7 +98,7 @@
             // columnDefs: [
             //     { targets: [0, 2], orderable: false } // Disable sorting for columns 0 and 1
             // ]
-        } );
+        });
         table.buttons().container().appendTo('#export-buttons');
     });
 
@@ -126,23 +126,28 @@
     .dataTables_filter {
         display: none;
     }
+
     .dataTables_wrapper .dt-buttons {
         float: right;
         margin-right: 10px; /* Add some right margin for spacing */
     }
+
     #data-table, #data-table-dashboard {
         border: 1px solid #000; /* Add a 1px solid black border to the table */
     }
-    #data-table-dashboard
-    {
+
+    #data-table-dashboard {
         border: 1px solid #000; /* Add a 1px solid black border to the table */
     }
+
     tr.odd {
         background-color: #f5f8fe !important;
     }
-    .filterpaddings{
+
+    .filterpaddings {
         padding: 20px 0px 4px 20px;
     }
+
     input[type=number]::-webkit-inner-spin-button,
     input[type=number]::-webkit-outer-spin-button {
         -webkit-appearance: none;
@@ -255,18 +260,15 @@
             }
         });
     });
-    $('#generateSampleFile').on('click', function(e) {
+    $('#generateSampleFile').on('click', function (e) {
         e.preventDefault();
         // Get the circle value from the input field
         var circleValue = $('#circle').val();
         var csrfToken = $('meta[name="csrf-token"]').attr('content');
-        if(circleValue =="")
-        {
+        if (circleValue == "") {
             alert("Please select circle ");
 
-        }
-        else
-        {
+        } else {
             $.ajax({
                 type: 'POST',
                 url: '/jr/generatesampleFiles',
@@ -275,7 +277,7 @@
                 headers: {
                     'X-CSRF-TOKEN': csrfToken // Use the csrfToken variable
                 },
-                success: function(response) {
+                success: function (response) {
                     // Handle the response from the server
                     console.log(response);
                     // URL of the file to download
@@ -289,7 +291,7 @@
 // Trigger a click event on the anchor to initiate the download
                     downloadLink.click();
                 },
-                error: function(xhr, status, error) {
+                error: function (xhr, status, error) {
                     console.log(xhr.responseText);
                     alert("Facing some technical issue ");
                 }
@@ -300,29 +302,28 @@
         // Perform the AJAX request
 
     });
-    $("#initiated_during_month_seventeena").change(function(e){
-        var total=$("#disciplinary_total_seventeena").val();
+    $("#initiated_during_month_seventeena").change(function (e) {
+        var total = $("#disciplinary_total_seventeena").val();
         $("#disposed_this_month_seventeena").attr("max", total);
 
     });
-    $("#initiated_during_month_seventeenb").change(function(e){
-        var total=$("#disciplinary_total_seventeenb").val();
+    $("#initiated_during_month_seventeenb").change(function (e) {
+        var total = $("#disciplinary_total_seventeenb").val();
         $("#disposed_this_month_seventeenb").attr("max", total);
 
     });
-    $("#Initiated_during_the_month").change(function(e){
-        var total=$("#total").val();
+    $("#Initiated_during_the_month").change(function (e) {
+        var total = $("#total").val();
         $("#disposed_this_month").attr("max", total);
 
     });
-    $("#reply_sent_date").change(function(e){
+    $("#reply_sent_date").change(function (e) {
         $("#closure").val("YES");
     });
-    $("#counter_filed").change(function(e){
-        var value=$("#counter_filed").val();
+    $("#counter_filed").change(function (e) {
+        var value = $("#counter_filed").val();
 
-        if(value=="YES")
-        {
+        if (value == "YES") {
             $("#counter_filed_date").show();
             $("[name='counter_filed_date']").prop("required", true);
 
@@ -330,8 +331,7 @@
             $("[name='no_reason']").prop("required", false);
 
 
-        }
-        else{
+        } else {
             $("#counter_filed_date").hide();
             $("[name='counter_filed_date']").prop("required", false);
             $("#no_reason").show();
@@ -339,124 +339,153 @@
         }
 
     });
-    $("[name='respondents']").change(function (e){
-if($("[name='respondents']").val() ==5) {
-    $("#otherrespondername").show();
-    $("[name='otherrespondername']").prop("required", true);
-}
-else {
-    $("#otherrespondername").hide();
-    $("[name='otherrespondername']").prop("required", false);
-}
+    $("[name='respondents']").change(function (e) {
+        if ($("[name='respondents']").val() == 5) {
+            $("#otherrespondername").show();
+            $("[name='otherrespondername']").prop("required", true);
+        } else {
+            $("#otherrespondername").hide();
+            $("[name='otherrespondername']").prop("required", false);
+        }
     });
 
-    $("#interim_stay").change(function (e){
-        if($("#interim_stay").val()=="YES") {
+    $("#interim_stay").change(function (e) {
+        if ($("#interim_stay").val() == "YES") {
             $("#order_details").show();
             $("[name='order_details']").prop("required", true);
-        }
-        else {
+        } else {
             $("#order_details").hide();
             $("[name='order_details']").prop("required", false);
         }
     });
-    $("#final_judgement").change(function (e){
-        if($("#final_judgement").val()=="YES") {
+    $("#final_judgement").change(function (e) {
+        if ($("#final_judgement").val() == "YES") {
             $("#direction_to_comply").show();
             $("[name='direction_to_comply']").prop("required", true);
-        }
-        else {
+        } else {
             $("#direction_to_comply").hide();
             $("[name='direction_to_comply']").prop("required", false);
         }
     });
-    $("#writ_appeal").change(function (e){
-        if($("#writ_appeal").val()=="YES") {
+    $("#writ_appeal").change(function (e) {
+        if ($("#writ_appeal").val() == "YES") {
             $("#writ_appeal_details").show();
             $("[name='writ_appeal_details']").prop("required", true);
-        }
-        else {
+        } else {
             $("#writ_appeal_details").hide();
             $("[name='writ_appeal_details']").prop("required", false);
         }
-    });$("#writ_appeal_stay").change(function (e){
-        if($("#writ_appeal_stay").val()=="YES") {
+    });
+    $("#writ_appeal_stay").change(function (e) {
+        if ($("#writ_appeal_stay").val() == "YES") {
             $("#writ_appeal_stage").show();
             $("[name='writ_appeal_stage']").prop("required", true);
-        }
-        else {
+        } else {
             $("#writ_appeal_stage").hide();
             $("[name='writ_appeal_stage']").prop("required", false);
         }
     });
-    $("#FWDSelection").change(function(){
+    $("#FWDSelection").change(function () {
 
-        if($(this).val()=="YES") {
+        if ($(this).val() == "YES") {
             $(".fwdSection").removeClass("d-none");
             $(".fwdSection").show();
-        }else{
+        } else {
             $(".fwdSection").hide();
         }
     });
-    $("#frwdsectionType").change(function(){
+    $("#frwdsectionType").change(function () {
 
- var frwdValue=["SECTION","REGION","OTHERS"];
+        var frwdValue = ["SECTION", "REGION", "OTHERS"];
         $(".hidefield").hide();
-        if($(this).val().includes("SECTION")) {
+        if ($(this).val().includes("SECTION")) {
             $(".fwdsection").show();
         }
-        if($(this).val().includes("REGION")) {
+        if ($(this).val().includes("REGION")) {
 
             $(".fwdregion").show();
         }
-        if($(this).val().includes("OTHERS")) {
+        if ($(this).val().includes("OTHERS")) {
 
             $(".fwdother").show();
         }
-        if($(this).val().length==0)
-        {
+        if ($(this).val().length == 0) {
             $(".hidefield").hide();
         }
 
     });
-    $("#isObtainCoopTraing").change(function(){
-        if($(this).val()=="YES") {
+    $("#isObtainCoopTraing").change(function () {
+        if ($(this).val() == "YES") {
 
             $(".iscooptraing").show();
-        }
-        else {
+        } else {
             $(".iscooptraing").hide();
         }
     });
-    $("#appointmentType").change(function(){
-        if($(this).val()=="Regular") {
+    $("#appointmentType").change(function () {
+        if ($(this).val() == "Regular") {
 
             $(".regularoption").show();
-        }
-        else {
+        } else {
             $(".regularoption").hide();
         }
     });
-    $("#isonDeputation").change(function(){
-        if($(this).val()=="YES") {
+    $("#isonDeputation").change(function () {
+        if ($(this).val() == "YES") {
 
             $(".deputationoption").show();
-        }
-        else {
+        } else {
             $(".deputationoption").hide();
         }
     });
+
+    function FPSChangesExpens() {
+        var contiogencharge =0;
+        var tpexpense =0;
+        var rentexpense =0;
+        var ebcharge =0;
+        var printstation =0;
+        var maintanaceexpense =0;
+        var otherexpense =0;
+        var expenseTotal =0;
+        var marginmoney =0;
+        var saleemptygunnies =0;
+        var totalincome =0;
+
+
+         contiogencharge = parseFloat($("#contiogencharge").val())|| 0;
+         tpexpense = parseFloat($("#tpexpense").val())|| 0;
+         rentexpense = parseFloat($("#rentexpense").val())|| 0;
+         ebcharge = parseFloat($("#ebcharge").val())|| 0;
+         printstation = parseFloat($("#printstation").val())|| 0;
+         maintanaceexpense = parseFloat($("#maintanaceexpense").val())|| 0;
+         otherexpense = parseFloat($("#otherexpense").val())|| 0;
+         expenseTotal = contiogencharge
+            + tpexpense
+            + rentexpense
+            + ebcharge
+            + printstation
+            + maintanaceexpense
+            + otherexpense;
+        $("#totalexpense").val(expenseTotal);
+        marginmoney = parseFloat($("#marginmoney").val())|| 0;
+        saleemptygunnies = parseFloat($("#saleemptygunnies").val())|| 0;
+        totalincome=marginmoney+saleemptygunnies;
+        var difference= totalincome-  expenseTotal;
+        $("#totalincome").val(totalincome);
+        $("#difference").val(difference);
+
+    }
 </script>
 <style>
-    .hidefield
-    {
+    .hidefield {
         display: none;
     }
 
 </style>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
 <script>
-    $(document).ready(function() {
+    $(document).ready(function () {
         // Initialize the select2 plugin for the multiple select dropdown
         $('.js-example-basic-multiple').select2();
     });

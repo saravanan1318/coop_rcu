@@ -3117,6 +3117,23 @@
                       </li>
                   </ul>
               </li>
+              <li class="nav-item">
+                  <a class="nav-link collapsed" data-bs-target="#fairpriceincome&Expenditures-nav" data-bs-toggle="collapse" href="#">
+                      <i class="bi bi-journal-text"></i><span>Fair Price (Expenditures & Income)</span><i class="bi bi-chevron-down ms-auto"></i>
+                  </a>
+                  <ul id="fairpriceincome&Expenditures-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                      <li>
+                          <a href="/office/FPEI/add">
+                              <i class="bi bi-circle"></i><span>Entry</span>
+                          </a>
+                      </li>
+                      <li>
+                          <a href="/office/FPEI/list">
+                              <i class="bi bi-circle"></i><span>View</span>
+                          </a>
+                      </li>
+                  </ul>
+              </li>
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#court-case-nav" data-bs-toggle="collapse" href="#">
           <i class="bi bi-journal-text"></i><span>Court Cases</span><i class="bi bi-chevron-down ms-auto"></i>
