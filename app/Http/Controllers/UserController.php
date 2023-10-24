@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Hash;
 use Excel;
 
 use App\Models\User;
+use App\Models\Mtr_role;
 
 use App\Models\Godowns;
 
@@ -35,11 +36,11 @@ class UserController extends Controller
             abort(403);
         });
     }
-    
+
     function jrusers(Request $request) {
         $jrusers = DB::table('users')->where('role','3')
             ->leftJoin('mtr_region', 'mtr_region.id', 'users.region_id')
-            ->select('users.id','users.name','mtr_region.region_name')
+            ->select('users.id','users.username','mtr_region.region_name')
             ->get();
         $title = "List of JR Users";
         // return $jrusers;
@@ -88,13 +89,13 @@ class UserController extends Controller
         $user->update();
         return redirect('/superadmin/jrusers')->with('success', 'User Updated Successfully...');
     }
-    
+
     // Dr Users
     function drusers(Request $request) {
         $drusers = DB::table('users')->where('role','4')
             ->leftJoin('mtr_region', 'mtr_region.id', 'users.region_id')
             ->leftJoin('mtr_circle', 'mtr_circle.id', 'users.circle_id')
-            ->select('users.id','users.name','mtr_region.region_name','mtr_circle.circle_name')
+            ->select('users.id','users.username','mtr_region.region_name','mtr_circle.circle_name')
             ->get();
         $title = "List of DR Users";
         return view("superadmin.user",compact("drusers","title"));
@@ -154,7 +155,7 @@ class UserController extends Controller
             ->leftJoin('mtr_region', 'mtr_region.id', 'users.region_id')
             ->leftJoin('mtr_circle', 'mtr_circle.id', 'users.circle_id')
             ->leftJoin('mtr_society', 'mtr_society.id', 'users.society_id')
-            ->select('users.id','users.name','mtr_region.region_name','mtr_circle.circle_name','mtr_society.society_name')
+            ->select('users.id','users.username','mtr_region.region_name','mtr_circle.circle_name','mtr_society.society_name')
             ->get();
         $title = "List of Society Users";
         return view("superadmin.user",compact("societyusers","title"));
@@ -215,10 +216,42 @@ class UserController extends Controller
     }
 
     // Role
-    function userrole(Request $request) {
-        $roles = DB::table('mtr_role')->get();
+    function role(Request $request) {
+        $roles = DB::table('mtr_role')
+            ->where('id', '>=', '3')
+            ->get();
         $title = "List of Roles";
         return view("superadmin.user",compact("roles","title"));
+    }
+    function roleAdd(Request $request) {
+        $title = "Add Role";
+        return view("superadmin.roleedit")->with("title",$title);
+    }
+    function roleStore(Request $request) {
+        $role = new Mtr_role;
+        $role->role_name = $request->role;
+        $role->save();
+
+        return redirect('/superadmin/userrole')->with('success', 'Role Added Successfully...');
+    }
+    function roleEdit(Request $request, $id) {
+        $role = Mtr_role::find($id);
+        if(empty($role)) {
+            return redirect('/superadmin/userrole')->with('warning', 'Role does not exist!');
+        }
+        $title = "Edit Role";
+        return view("superadmin.roleedit",compact("role","title"));
+
+    }
+    function roleUpdate(Request $request, $id) {
+        $role = Mtr_role::find($id);
+        if(empty($role)) {
+            return redirect('/superadmin/userrole')->with('warning', 'Role does not exist!');
+        }
+        $role->role_name = $request->role;
+        $role->update();
+
+        return redirect('/superadmin/userrole')->with('success', 'Role Updated Successfully...');
     }
 
 }

@@ -12,13 +12,7 @@
                 </nav>
             </div><!-- End Page Title -->
             <div>
-                @if(isset($jrusers))
-                    <p style="align:right;"><a href="jrusers/add" class="btn btn-primary"><i class="bi bi-plus"></i> Add New</a></p>
-                @elseif(isset($drusers))
-                    <p style="align:right;"><a href="drusers/add" class="btn btn-primary"><i class="bi bi-plus"></i> Add New</a></p>
-                @elseif(isset($societyusers))
-                    <p style="align:right;"><a href="societyusers/add" class="btn btn-primary"><i class="bi bi-plus"></i> Add New</a></p>
-                @endif
+                <p style="align:right;"><a href="{{url()->current()}}/add" class="btn btn-primary"><i class="bi bi-plus"></i> Add New</a></p>
             </div>
         </div>
         @if (session('success'))
@@ -41,7 +35,7 @@
                             <tr><th colspan="6"><center>{{$title}}</center></th></tr>
                             <tr>
                                 <th>S.No</th>
-{{--                                <th>Name</th>--}}
+                                <th>User Name</th>
                                 <th>Region Name</th>
                                 <th>Edit</th>
                             </tr>
@@ -55,7 +49,7 @@
                                 @endphp
                                 <tr>
                                     <td>{{$tmp}}</td>
-{{--                                    <td>{{$user->name}}</td>--}}
+                                    <td>{{$user->username}}</td>
                                     <td>{{$user->region_name}}</td>
                                     <td><a href="jrusers/edit/{{$user->id}}" class="btn btn-warning btn-sm"><i class="bi bi-pencil"></i> Edit</a></td>
                                 </tr>
@@ -69,7 +63,7 @@
                             <tr><th colspan="6"><center>{{$title}}</center></th></tr>
                             <tr>
                                 <th>S.No</th>
-{{--                                <th>Name</th>--}}
+                                <th>User Name</th>
                                 <th>Region Name</th>
                                 <th>Circle Name</th>
                                 <th>Edit</th>
@@ -84,7 +78,7 @@
                                 @endphp
                                 <tr>
                                     <td>{{$tmp}}</td>
-{{--                                    <td>{{$user->name}}</td>--}}
+                                    <td>{{$user->username}}</td>
                                     <td>{{$user->region_name}}</td>
                                     <td>{{$user->circle_name}}</td>
                                     <td><a href="drusers/edit/{{$user->id}}" class="btn btn-warning btn-sm"><i class="bi bi-pencil"></i> Edit</a></td>
@@ -99,7 +93,7 @@
                             <tr><th colspan="6"><center>{{$title}}</center></th></tr>
                             <tr>
                                 <th>S.No</th>
-{{--                                <th>Name</th>--}}
+                                <th>User Name</th>
                                 <th>Region Name</th>
                                 <th>Circle Name</th>
                                 <th>Society Name</th>
@@ -115,7 +109,7 @@
                                 @endphp
                                 <tr>
                                     <td>{{$tmp}}</td>
-{{--                                    <td>{{$user->name}}</td>--}}
+                                    <td>{{$user->username}}</td>
                                     <td>{{$user->region_name}}</td>
                                     <td>{{$user->circle_name}}</td>
                                     <td>{{$user->society_name}}</td>
@@ -132,6 +126,7 @@
                             <tr>
                                 <th>S.No</th>
                                 <th>Role Name</th>
+                                <th>Edit</th>
                             </tr>
                             </thead>
                             <tbody id="logged-datas">
@@ -144,6 +139,7 @@
                                 <tr>
                                     <td>{{$tmp}}</td>
                                     <td>{{$role->role_name}}</td>
+                                    <td><a href="userrole/edit/{{$role->id}}" class="btn btn-warning btn-sm"><i class="bi bi-pencil"></i> Edit</a></td>
                                 </tr>
                             @endforeach
                             </tbody>

@@ -360,52 +360,118 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/md/duesaltreport', [SuperAdminController::class, 'duesaltreport']);
 
 
+
     // Ranjith Routes
     // Master Controller
     Route::get('/superadmin/regionmaster', [MasterController::class, 'region']);
-    Route::get('/superadmin/circlemaster', [MasterController::class, 'circle']);
-    Route::get('/superadmin/societymaster', [MasterController::class, 'society']);
-    Route::get('/superadmin/societytypemaster', [MasterController::class, 'societytype']);
-    Route::get('/superadmin/districtmaster', [MasterController::class, 'district']);
-    Route::get('/superadmin/blockmaster', [MasterController::class, 'block']);
-    Route::get('/superadmin/villagemaster', [MasterController::class, 'village']);
-    Route::get('/superadmin/cropmaster', [MasterController::class, 'crop']);
-    Route::get('/superadmin/depositmaster', [MasterController::class, 'deposit']);
-    Route::get('/superadmin/loanmaster', [MasterController::class, 'loan']);
-    Route::get('/superadmin/purchasemaster', [MasterController::class, 'purchase']);
-    Route::get('/superadmin/salemaster', [MasterController::class, 'sale']);
-    Route::get('/superadmin/servicemaster', [MasterController::class, 'service']);
-    Route::get('/superadmin/minomilletmtr', [MasterController::class, 'minomillet']);
     Route::get('/superadmin/regionmaster/add', [MasterController::class, 'regionAdd']);
-    Route::get('/superadmin/circlemaster/add', [MasterController::class, 'circleAdd']);
-    Route::get('/superadmin/societymaster/add', [MasterController::class, 'societyAdd']);
     Route::post('/superadmin/regionmaster/add', [MasterController::class, 'regionStore']);
-    Route::post('/superadmin/circlemaster/add', [MasterController::class, 'circleStore']);
-    Route::post('/superadmin/societymaster/add', [MasterController::class, 'societyStore']);
     Route::get('/superadmin/regionmaster/edit/{id}', [MasterController::class, 'regionEdit']);
-    Route::get('/superadmin/circlemaster/edit/{id}', [MasterController::class, 'circleEdit']);
-    Route::get('/superadmin/societymaster/edit/{id}', [MasterController::class, 'societyEdit']);
     Route::post('/superadmin/regionmaster/edit/{id}', [MasterController::class, 'regionUpdate']);
+
+    Route::get('/superadmin/circlemaster', [MasterController::class, 'circle']);
+    Route::get('/superadmin/circlemaster/add', [MasterController::class, 'circleAdd']);
+    Route::post('/superadmin/circlemaster/add', [MasterController::class, 'circleStore']);
+    Route::get('/superadmin/circlemaster/edit/{id}', [MasterController::class, 'circleEdit']);
     Route::post('/superadmin/circlemaster/edit/{id}', [MasterController::class, 'circleUpdate']);
+
+    Route::get('/superadmin/societymaster', [MasterController::class, 'society']);
+    Route::get('/superadmin/societymaster/add', [MasterController::class, 'societyAdd']);
+    Route::post('/superadmin/societymaster/add', [MasterController::class, 'societyStore']);
+    Route::get('/superadmin/societymaster/edit/{id}', [MasterController::class, 'societyEdit']);
     Route::post('/superadmin/societymaster/edit/{id}', [MasterController::class, 'societyUpdate']);
+
+    Route::get('/superadmin/societytypemaster', [MasterController::class, 'societytype']);
+    Route::get('/superadmin/societytypemaster/add', [MasterController::class, 'societytypeAdd']);
+    Route::post('/superadmin/societytypemaster/add', [MasterController::class, 'societytypeStore']);
+    Route::get('/superadmin/societytypemaster/edit/{id}', [MasterController::class, 'societytypeEdit']);
+    Route::post('/superadmin/societytypemaster/edit/{id}', [MasterController::class, 'societytypeUpdate']);
+
+    Route::get('/superadmin/districtmaster', [MasterController::class, 'district']);
+    Route::get('/superadmin/districtmaster/add', [MasterController::class, 'districtAdd']);
+    Route::post('/superadmin/districtmaster/add', [MasterController::class, 'districtStore']);
+    Route::get('/superadmin/districtmaster/edit/{id}', [MasterController::class, 'districtEdit']);
+    Route::post('/superadmin/districtmaster/edit/{id}', [MasterController::class, 'districtUpdate']);
+
+    Route::get('/superadmin/blockmaster', [MasterController::class, 'block']);
+    Route::get('/superadmin/blockmaster/add', [MasterController::class, 'blockAdd']);
+    Route::post('/superadmin/blockmaster/add', [MasterController::class, 'blockStore']);
+    Route::get('/superadmin/blockmaster/edit/{id}', [MasterController::class, 'blockEdit']);
+    Route::post('/superadmin/blockmaster/edit/{id}', [MasterController::class, 'blockUpdate']);
+
+    Route::get('/superadmin/villagemaster', [MasterController::class, 'village']);
+    Route::get('/superadmin/villagemaster/add', [MasterController::class, 'villageAdd']);
+    Route::post('/superadmin/villagemaster/add', [MasterController::class, 'villageStore']);
+    Route::get('/superadmin/villagemaster/edit/{id}', [MasterController::class, 'villageEdit']);
+    Route::post('/superadmin/villagemaster/edit/{id}', [MasterController::class, 'villageUpdate']);
+
+    Route::get('/superadmin/cropmaster', [MasterController::class, 'crop']);
+    Route::get('/superadmin/cropmaster/add', [MasterController::class, 'cropAdd']);
+    Route::post('/superadmin/cropmaster/add', [MasterController::class, 'cropStore']);
+    Route::get('/superadmin/cropmaster/edit/{id}', [MasterController::class, 'cropEdit']);
+    Route::post('/superadmin/cropmaster/edit/{id}', [MasterController::class, 'cropUpdate']);
+
+    Route::get('/superadmin/depositmaster', [MasterController::class, 'deposit']);
+    Route::get('/superadmin/depositmaster/add', [MasterController::class, 'depositAdd']);
+    Route::post('/superadmin/depositmaster/add', [MasterController::class, 'depositStore']);
+    Route::get('/superadmin/depositmaster/edit/{id}', [MasterController::class, 'depositEdit']);
+    Route::post('/superadmin/depositmaster/edit/{id}', [MasterController::class, 'depositUpdate']);
+
+    Route::get('/superadmin/loanmaster', [MasterController::class, 'loan']);
+    Route::get('/superadmin/loanmaster/add', [MasterController::class, 'loanAdd']);
+    Route::post('/superadmin/loanmaster/add', [MasterController::class, 'loanStore']);
+    Route::get('/superadmin/loanmaster/edit/{id}', [MasterController::class, 'loanEdit']);
+    Route::post('/superadmin/loanmaster/edit/{id}', [MasterController::class, 'loanUpdate']);
+
+    Route::get('/superadmin/purchasemaster', [MasterController::class, 'purchase']);
+    Route::get('/superadmin/purchasemaster/add', [MasterController::class, 'purchaseAdd']);
+    Route::post('/superadmin/purchasemaster/add', [MasterController::class, 'purchaseStore']);
+    Route::get('/superadmin/purchasemaster/edit/{id}', [MasterController::class, 'purchaseEdit']);
+    Route::post('/superadmin/purchasemaster/edit/{id}', [MasterController::class, 'purchaseUpdate']);
+
+    Route::get('/superadmin/salemaster', [MasterController::class, 'sale']);
+    Route::get('/superadmin/salemaster/add', [MasterController::class, 'saleAdd']);
+    Route::post('/superadmin/salemaster/add', [MasterController::class, 'saleStore']);
+    Route::get('/superadmin/salemaster/edit/{id}', [MasterController::class, 'saleEdit']);
+    Route::post('/superadmin/salemaster/edit/{id}', [MasterController::class, 'saleUpdate']);
+
+    Route::get('/superadmin/servicemaster', [MasterController::class, 'service']);
+    Route::get('/superadmin/servicemaster/add', [MasterController::class, 'serviceAdd']);
+    Route::post('/superadmin/servicemaster/add', [MasterController::class, 'serviceStore']);
+    Route::get('/superadmin/servicemaster/edit/{id}', [MasterController::class, 'serviceEdit']);
+    Route::post('/superadmin/servicemaster/edit/{id}', [MasterController::class, 'serviceUpdate']);
+
+    Route::get('/superadmin/minomilletmtr', [MasterController::class, 'minomillet']);
+    Route::get('/superadmin/minomilletmtr/add', [MasterController::class, 'minomilletAdd']);
+    Route::post('/superadmin/minomilletmtr/add', [MasterController::class, 'minomilletStore']);
+    Route::get('/superadmin/minomilletmtr/edit/{id}', [MasterController::class, 'minomilletEdit']);
+    Route::post('/superadmin/minomilletmtr/edit/{id}', [MasterController::class, 'minomilletUpdate']);
+
     // User Controller
     Route::get('/superadmin/jrusers', [UserController::class, 'jrusers']);
-    Route::get('/superadmin/drusers', [UserController::class, 'drusers']);
-    Route::get('/superadmin/societyusers', [UserController::class, 'societyusers']);
-    Route::get('/superadmin/userrole', [UserController::class, 'userrole']);
     Route::get('/superadmin/jrusers/add', [UserController::class, 'jrusersAdd']);
-    Route::get('/superadmin/drusers/add', [UserController::class, 'drusersAdd']);
-    Route::get('/superadmin/societyusers/add', [UserController::class, 'societyusersAdd']);
     Route::post('/superadmin/jrusers/add', [UserController::class, 'jrusersStore']);
-    Route::post('/superadmin/drusers/add', [UserController::class, 'drusersStore']);
-    Route::post('/superadmin/societyusers/add', [UserController::class, 'societyusersStore']);
     Route::get('/superadmin/jrusers/edit/{id}', [UserController::class, 'jrusersEdit']);
-    Route::get('/superadmin/drusers/edit/{id}', [UserController::class, 'drusersEdit']);
-    Route::get('/superadmin/societyusers/edit/{id}', [UserController::class, 'societyusersEdit']);
     Route::post('/superadmin/jrusers/edit/{id}', [UserController::class, 'jrusersUpdate']);
+
+    Route::get('/superadmin/drusers', [UserController::class, 'drusers']);
+    Route::get('/superadmin/drusers/add', [UserController::class, 'drusersAdd']);
+    Route::post('/superadmin/drusers/add', [UserController::class, 'drusersStore']);
+    Route::get('/superadmin/drusers/edit/{id}', [UserController::class, 'drusersEdit']);
     Route::post('/superadmin/drusers/edit/{id}', [UserController::class, 'drusersUpdate']);
+
+    Route::get('/superadmin/societyusers', [UserController::class, 'societyusers']);
+    Route::get('/superadmin/societyusers/add', [UserController::class, 'societyusersAdd']);
+    Route::post('/superadmin/societyusers/add', [UserController::class, 'societyusersStore']);
+    Route::get('/superadmin/societyusers/edit/{id}', [UserController::class, 'societyusersEdit']);
     Route::post('/superadmin/societyusers/edit/{id}', [UserController::class, 'societyusersUpdate']);
-    //End Ranjith Routes
+
+    Route::get('/superadmin/userrole', [UserController::class, 'role']);
+    Route::get('/superadmin/userrole/add', [UserController::class, 'roleAdd']);
+    Route::post('/superadmin/userrole/add', [UserController::class, 'roleStore']);
+    Route::get('/superadmin/userrole/edit/{id}', [UserController::class, 'roleEdit']);
+    Route::post('/superadmin/userrole/edit/{id}', [UserController::class, 'roleUpdate']);
+    // End Ranjith Routes
 
 
     //PDS Controller
