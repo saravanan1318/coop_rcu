@@ -79,7 +79,7 @@
                                             </div>
                                         @endif
                                         @php
-                                            $loanTypeValue="";
+                                            $loanTypeValue="-";
                                         @endphp
                                         @if(isset($loantypes))
                                             <div class="col-3 ">

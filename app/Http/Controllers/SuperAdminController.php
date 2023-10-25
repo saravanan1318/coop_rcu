@@ -467,6 +467,7 @@ class SuperAdminController extends Controller
 
             }
 
+            return view("superadmin.loanreport", compact('loanreportdate', 'results', 'societiestypes', 'societyTypesFilter', 'regions', 'regionFilter', 'circles', 'circleFilter', 'loantypes', 'startDate', 'endDate', 'societyTypesFilter', 'loantypeFilter'));
             return view("superadmin.supradminloanreport", compact('loanreportdate', 'results', 'societiestypes', 'societyTypesFilter', 'regions', 'regionFilter', 'circles', 'circleFilter', 'loantypes', 'startDate', 'endDate', 'societyTypesFilter', 'loantypeFilter'));
         }
     }
