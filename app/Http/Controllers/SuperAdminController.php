@@ -430,7 +430,9 @@ class SuperAdminController extends Controller
 
             return view("superadmin.loanreport", compact('loanreportdate', 'district','Regionresults', 'societiestypes', 'societyTypesFilter', 'regions', 'regionFilter', 'circles', 'circleFilter', 'loantypes', 'startDate', 'endDate', 'societyTypesFilter', 'loantypeFilter'));
 
-        }else {
+        }
+        else {
+
 
             if (!empty($regionFilter)) {
 
@@ -465,10 +467,11 @@ class SuperAdminController extends Controller
                 FROM loan WHERE loan.loantype_id = a.id), 0 ) / IFNULL( (SELECT SUM(loan_onetimeentry.annual_target) FROM loan_onetimeentry
                 WHERE loan_onetimeentry.loan_id = a.id), 0 ) * 100, 2 ), '%' ) AS Percent_of_Loan from `mtr_loan` as `a`") );
 
+
             }
 
+//            return view("superadmin.loanreport", compact('loanreportdate','results', 'district', 'societiestypes', 'societyTypesFilter', 'regions', 'regionFilter', 'circles', 'circleFilter', 'loantypes', 'startDate', 'endDate', 'societyTypesFilter', 'loantypeFilter'));
             return view("superadmin.loanreport", compact('loanreportdate', 'results', 'societiestypes', 'societyTypesFilter', 'regions', 'regionFilter', 'circles', 'circleFilter', 'loantypes', 'startDate', 'endDate', 'societyTypesFilter', 'loantypeFilter'));
-            return view("superadmin.supradminloanreport", compact('loanreportdate', 'results', 'societiestypes', 'societyTypesFilter', 'regions', 'regionFilter', 'circles', 'circleFilter', 'loantypes', 'startDate', 'endDate', 'societyTypesFilter', 'loantypeFilter'));
         }
     }
 

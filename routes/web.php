@@ -340,7 +340,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/md/servicelist', [MDController::class, 'serviceslist']);
     Route::get('/md/croploanlist', [MDController::class, 'croploanlist']);
 
-    Route::get('/md/loanreport', [SuperAdminController::class, 'loanreportsuperadmin']);
+//    Route::get('/md/loanreport', [SuperAdminController::class, 'loanreportsuperadmin']);
+    Route::get('/md/loanreport', [SuperAdminController::class, 'loanreport']);
     Route::get('/md/croploanreport', [SuperAdminController::class, 'croploanreport']);
     Route::get('/md/depositreport', [SuperAdminController::class, 'depositreport']);
     Route::get('/md/purchasereport', [SuperAdminController::class, 'purchasereport']);
