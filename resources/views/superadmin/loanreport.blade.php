@@ -79,7 +79,7 @@
                                             </div>
                                         @endif
                                         @php
-                                            $loanTypeValue="-";
+                                            $loanTypeValue="ALL";
                                         @endphp
                                         @if(isset($loantypes))
                                             <div class="col-3 ">
@@ -206,13 +206,13 @@
                                                     <center>Date</center>
                                                 </th>
                                                 <th scope="col" rowspan="1">
-                                                    <center>Total District</center>
+                                                    <center>Total {{isset($Regionresults)?"Circles":(isset($Circleresults)?"Society":"District")}}</center>
                                                 </th>
                                                 <th scope="col" rowspan="1">
-                                                    <center>Target 2023-2024</center>
+                                                    <center>Target 2023-2024 (RS.)</center>
                                                 </th>
                                                 <th scope="col" rowspan="1">
-                                                    <center>Achievement </center>
+                                                    <center>Achievement (RS.)</center>
                                                 </th>
                                                 <th scope="col" rowspan="1">
                                                     <center>% of Achievement</center>
@@ -257,16 +257,16 @@
                                                 <div class="row">
                                                     <div class="col-4">Society Type: {{$showCase}}  </div>
                                                     <div class="col-4">Loan Type: {{$loanTypeValue}}</div>
-                                                    <div class="col-2">Date From: {{!empty($startDate)?date("d-m-Y",strtotime($startDate)):"-"}} </div>
-                                                    <div class="col-2">Date To: {{!empty($endDate)?date("d-m-Y",strtotime($endDate)):"-"}}</div>
+                                                    <div class="col-2">Date From: {{!empty($startDate)?date("d-m-Y",strtotime($startDate)):date('d-m-Y', strtotime(now() . ' -30 days'))}} </div>
+                                                    <div class="col-2">Date To: {{!empty($endDate)?date("d-m-Y",strtotime($endDate)):date('d-m-Y', strtotime(now()))}}</div>
                                                 </div>
                                                 </th>
 
                                         </tr>
                                         <tr>
                                             <th scope="col">Region Name</th>
-                                            <th scope="col">Target (2023-2024)</th>
-                                            <th scope="col">Achievement</th>
+                                            <th scope="col">Target (2023-2024) (RS.)</th>
+                                            <th scope="col">Achievement (RS.)</th>
                                             <th scope="col">% Of Achievement</th>
                                         </tr>
 
@@ -294,10 +294,21 @@
                                             </th>
                                         </tr>
                                         <tr>
+                                            <th colspan="4">
+                                                <div class="row">
+                                                    <div class="col-4">Society Type: {{$showCase}}  </div>
+                                                    <div class="col-4">Loan Type: {{$loanTypeValue}}</div>
+                                                    <div class="col-2">Date From: {{!empty($startDate)?date("d-m-Y",strtotime($startDate)):date('d-m-Y', strtotime(now() . ' -30 days'))}} </div>
+                                                    <div class="col-2">Date To: {{!empty($endDate)?date("d-m-Y",strtotime($endDate)):date('d-m-Y', strtotime(now()))}}</div>
+                                                </div>
+                                            </th>
+
+                                        </tr>
+                                        <tr>
                                             <th scope="col">Circle Name</th>
-                                            <th scope="col">Target (2023-2024)</th>
-                                            <th scope="col">Achievement</th>
-                                            <th scope="col">% Of Loans</th>
+                                            <th scope="col">Target (2023-2024) (RS.)</th>
+                                            <th scope="col">Achievement (RS.)</th>
+                                            <th scope="col">% Of Achievement</th>
                                         </tr>
 
                                         </thead>
@@ -325,10 +336,21 @@
                                             </th>
                                         </tr>
                                         <tr>
+                                            <th colspan="4">
+                                                <div class="row">
+                                                    <div class="col-4">Society Type: {{$showCase}}  </div>
+                                                    <div class="col-4">Loan Type: {{$loanTypeValue}}</div>
+                                                    <div class="col-2">Date From: {{!empty($startDate)?date("d-m-Y",strtotime($startDate)):date('d-m-Y', strtotime(now() . ' -30 days'))}} </div>
+                                                    <div class="col-2">Date To: {{!empty($endDate)?date("d-m-Y",strtotime($endDate)):date('d-m-Y', strtotime(now()))}}</div>
+                                                </div>
+                                            </th>
+
+                                        </tr>
+                                        <tr>
                                             <th scope="col">Societies Name</th>
-                                            <th scope="col">Target (2023-2024)</th>
-                                            <th scope="col">Achievement</th>
-                                            <th scope="col">% Of Loans</th>
+                                            <th scope="col">Target (2023-2024) (RS.)</th>
+                                            <th scope="col">Achievement (RS.)</th>
+                                            <th scope="col">% Of Achievement</th>
                                         </tr>
 
                                         </thead>

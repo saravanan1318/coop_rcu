@@ -316,7 +316,7 @@ class SuperAdminController extends Controller
                 WHERE loan.user_id IN (
                     SELECT users.id FROM users
                     WHERE users.region_id = a.id
-                )) AS Disbursed_Amount'),
+                )AND loan.created_at >= DATE_SUB(NOW(), INTERVAL 30 DAY)) AS Disbursed_Amount'),
                         DB::raw('CONCAT(
                     ROUND(
                         IFNULL(
@@ -326,7 +326,7 @@ class SuperAdminController extends Controller
                                  SELECT users.id
                                  FROM users
                                  WHERE users.region_id = a.id
-                             )), 0
+                             )AND loan.created_at >= DATE_SUB(NOW(), INTERVAL 30 DAY)), 0
                         ) /
                         IFNULL(
                             (SELECT SUM(loan_onetimeentry.annual_target)
