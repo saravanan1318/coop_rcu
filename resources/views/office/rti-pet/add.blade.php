@@ -88,7 +88,7 @@
                                                                 <option value="{{$value->id}}">{{$value->section_name}}</option>
                                                             @endforeach
                                                         </select></td>
-                                                    <td class="hidefield fwdregion"><select class="form-control w-100" name="frwdregion" id="frwdregion" >
+                                                    <td class="hidefield fwdregion"><select class="js-example-basic-multiple w-100"   multiple="multiple" name="frwdregion[]" id="frwdregion" >
                                                             <option value="" selected>Please select</option>
                                                             @foreach($region as $value)
                                                                 <option value="{{$value->id}}">{{$value->region_name}}</option>

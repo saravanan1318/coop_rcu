@@ -153,14 +153,34 @@ class OfficeController extends Controller
     }
     function rtipetstore(Request $request)
     {
-        Log::info($request);
-        $frwdsectionType = implode(",", $request->input("frwdsectionType"));
+
+        $array = $request->input("frwdsectionType");
+        $filteredArray = array_filter($array, function($value) {
+            return !empty($value);
+        });
+        $filteredArray = array_values($filteredArray);
+        $frwdsectionType = implode(",", $filteredArray);
         $request["frwdsectionType"]=$frwdsectionType;
-        $frwdsection = implode(",", $request->input("frwdsection"));
+
+        $array = $request->input("frwdsection");
+        $filteredArray = array_filter($array, function($value) {
+            return !empty($value);
+        });
+        $filteredArray = array_values($filteredArray);
+        $frwdsection = implode(",", $filteredArray);
         $request["frwdsection"]=$frwdsection;
-//        $request->merge(['frwdsectionType' => $frwdsectionType]);
-        Log::info("after edit");
-        Log::info($request);
+
+
+
+        $array = $request->input("frwdregion");
+        $filteredArray = array_filter($array, function($value) {
+            return !empty($value);
+        });
+
+        $filteredArray = array_values($filteredArray);
+        $frwdregion = implode(",", $filteredArray);
+        $request["frwdregion"]=$frwdregion;
+
         $records=new RTI();
         $records->fill($request->all());
 
@@ -183,6 +203,7 @@ class OfficeController extends Controller
             ->selectRaw('mtrfwdregion.region_name AS fwd_region_name')
             ->selectRaw('mtrsec.section_name AS frwdsectionName')
             ->selectRaw('GROUP_CONCAT(msn.section_name) AS frwdsection_names')
+            ->selectRaw('GROUP_CONCAT(mtrreg.region_name) AS fwd_region_names')
             ->leftJoin('mtr_region AS mtrregion', 'mtrregion.id', '=', 'rti_petition.region')
             ->leftJoin('mtr_region AS mtrfwdregion', 'mtrfwdregion.id', '=', 'rti_petition.frwdregion')
             ->leftJoin('mtr_section_name AS mtrsec', 'mtrsec.id', '=', 'rti_petition.frwdsection')
@@ -191,8 +212,32 @@ class OfficeController extends Controller
                     $query->whereRaw('FIND_IN_SET(msn.id, rti_petition.frwdsection)');
                 });
             })
+            ->leftJoin('mtr_region AS mtrreg', function ($join) {
+                $join->on(function ($query) {
+                    $query->whereRaw('FIND_IN_SET(mtrreg.id, rti_petition.frwdregion)');
+                });
+            })
             ->groupBy('rti_petition.frwdsection')
+            ->groupBy('rti_petition.frwdregion')
             ->get();
+//        $rti=RTI::select('rti_petition.*')
+//            ->selectRaw('GROUP_CONCAT(mtrregion.region_name) AS regionNames')
+//            ->selectRaw('GROUP_CONCAT(mtrfwdregion.region_name) AS fwd_region_names')
+//            ->selectRaw('mtrsec.section_name AS frwdsectionName')
+//            ->selectRaw('GROUP_CONCAT(msn.section_name) AS frwdsection_names')
+//            ->leftJoin('mtr_region AS mtrregion', 'mtrregion.id', '=', 'rti_petition.region')
+//            ->leftJoin('mtr_region AS mtrfwdregion', function ($join) {
+//                $join->on('mtrfwdregion.id', '=', 'rti_petition.frwdregion');
+//            })
+//            ->leftJoin('mtr_section_name AS mtrsec', 'mtrsec.id', '=', 'rti_petition.frwdsection')
+//            ->leftJoin('mtr_section_name AS msn', function ($join) {
+//                $join->on(function ($query) {
+//                    $query->whereRaw('FIND_IN_SET(msn.id, rti_petition.frwdsection)');
+//                });
+//            })
+//            ->groupBy('rti_petition.id') // Assuming 'id' is the primary key of the 'rti_petition' table
+//            ->get();
+
 
         return view('office.rti-pet.list',compact('rti'));
     }
@@ -212,7 +257,18 @@ class OfficeController extends Controller
         $request["frwdsectionType"]=$frwdsectionType;
         $frwdsection = implode(",", $request->input("frwdsection"));
         $request["frwdsection"]=$frwdsection;
+
+        $array = $request->input("frwdregion");
+        $filteredArray = array_filter($array, function($value) {
+            return !empty($value);
+        });
+
+        $filteredArray = array_values($filteredArray);
+        $frwdregion = implode(",", $filteredArray);
+        $request["frwdregion"]=$frwdregion;
+
         $record = RTI::find($id); // Replace $id with the ID of the record you want to update
+
 
         if ($record) {
             $record->fill($request->all());

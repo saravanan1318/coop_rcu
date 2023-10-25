@@ -1,4 +1,24 @@
 @extends('layouts.master')
+@php
+    function removeDuplicatesFromString($inputString) {
+        // Convert the string to an array of characters
+        $stringArray = explode(",",$inputString);
+
+        // Remove duplicates by using array_unique
+        $uniqueArray = array_unique($stringArray);
+
+        // Convert the unique array back to a string
+        $resultString = implode(',', $uniqueArray);
+
+        return $resultString;
+    }
+
+    // Example usage:
+    $inputString = "hello";
+    $result = removeDuplicatesFromString($inputString);
+    echo $result; // Output: "helo"
+
+@endphp
 @section('content')
 <main id="main" class="main">
   <div class="pagetitle">
@@ -60,8 +80,8 @@
                         <td>{{ \Carbon\Carbon::parse($data->petitionrecieved)->format('d-m-Y') }}</td>
                         <td>{{ $data->fileNo }}</td>
                         <td>{{ $data->frwdsectionType }}</td>
-                        <td>{{ (!empty($data->frwdsection_names)?$data->frwdsection_names:"")}}</td>
-                        <td>{{ !empty($data->fwd_region_name)?$data->fwd_region_name:"" }}</td>
+                        <td>{{ (!empty($data->frwdsection_names)?removeDuplicatesFromString($data->frwdsection_names):"")}}</td>
+                        <td>{{ !empty($data->fwd_region_names)?removeDuplicatesFromString($data->fwd_region_names):"" }}</td>
                         <td>{{ $data->frwdother }}</td>
                         <td>{{ $data->whompassed }}</td>
                         <td>{{ \Carbon\Carbon::parse($data->disposaldateofpetition)->format('d-m-Y') }}</td>

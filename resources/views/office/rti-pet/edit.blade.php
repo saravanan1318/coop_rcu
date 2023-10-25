@@ -92,10 +92,10 @@
                                                                 <option value="{{$value->id}}" {{in_array($value->id,explode(",",$rti->frwdsection))?"selected":""}}>{{$value->section_name}}</option>
                                                             @endforeach
                                                         </select></td>
-                                                    <td class="{{in_array("REGION",explode(",",$rti->frwdsectionType))?"":"hidefield"}} fwdregion"><select class="form-control w-100" name="frwdregion" id="frwdregion" >
+                                                    <td class="{{in_array("REGION",explode(",",$rti->frwdsectionType))?"":"hidefield"}} fwdregion"><select class="js-example-basic-multiple w-100"  multiple="multiple" name="frwdregion[]" id="frwdregion" >
                                                             <option value="" selected>Please select</option>
                                                             @foreach($region as $value)
-                                                                <option value="{{$value->id}}" {{$value->id== $rti->frwdregion?"selected":""}}>{{$value->region_name}}</option>
+                                                                <option value="{{$value->id}}" {{in_array($value->id,explode(",",$rti->frwdregion))?"selected":""}}>{{$value->region_name}}</option>
                                                             @endforeach
                                                         </select></td>
                                                     <td class="{{in_array("OTHERS",explode(",",$rti->frwdsectionType))?"":"hidefield"}} fwdother"><textarea cols="3" class="form-control w-auto" name="frwdother">{{$rti->frwdother}}</textarea></td>
