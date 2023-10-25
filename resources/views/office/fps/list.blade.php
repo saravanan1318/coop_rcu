@@ -38,7 +38,7 @@
                 <table class="table table-responsive table-bordered datatable" id="data-table">
                 <thead style="text-align: center">
                 <tr>
-                    <th rowspan="2">Name of the  Region</th>
+{{--                    <th rowspan="2">Name of the  Region</th>--}}
                     <th rowspan="2">Total No of Full Time FPS </th>
                     <th rowspan="2"> No of  Full time  FPS in Rental building</th>
                     <th colspan="7" ><center>Expenditures</center></th>
@@ -68,7 +68,7 @@
                 <tbody>
                     @foreach($result as $data)
                     <tr>
-                        <td>{{ $data->region_name }}</td>
+{{--                        <td>{{ $data->region_name }}</td>--}}
                         <td>{{ $data->FTFPS }}</td>
                         <td>{{ $data->FPSRental }}</td>
                         <td>{{ $data->contiogencharge }}</td>

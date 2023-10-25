@@ -86,7 +86,14 @@
                                                     @foreach($loantypes as $loantype)
                                                         {{--                                                            @if($loantype->id == $loantypeFilter)--}}
                                                         <option
-                                                            value="{{ $loantype->id }}" {{$loantypeFilter == $loantype->id ? "selected" : "" }}>{{ $loantype->loantype }}</option>
+                                                            value="{{ $loantype->id }}"
+                                                            <?php
+                                                                if($loantypeFilter == $loantype->id){
+                                                                    echo "selected";
+                                                                    $loanTypeValue=$loantype->loantype;
+                                                                }
+                                                                ?>
+                                                            >{{ $loantype->loantype }}</option>
                                                         {{--                                                            @endif--}}
                                                     @endforeach
                                                 </select>
@@ -196,7 +203,7 @@
                                                     <center>Date</center>
                                                 </th>
                                                 <th scope="col" rowspan="1">
-                                                    <center>Total Area</center>
+                                                    <center>Total District</center>
                                                 </th>
                                                 <th scope="col" rowspan="1">
                                                     <center>Target 2023-2024</center>
@@ -205,7 +212,7 @@
                                                     <center>Achievement </center>
                                                 </th>
                                                 <th scope="col" rowspan="1">
-                                                    <center>% of Loans</center>
+                                                    <center>% of Achievement</center>
                                                 </th>
                                             </tr>
                                             <tr>
@@ -240,12 +247,24 @@
                                             <th colspan="4">
                                                 <center>Loan Report - ({{$showCase}})</center>
                                             </th>
+
+                                        </tr>
+                                        <tr>
+                                            <th colspan="4">
+                                                <div class="row">
+                                                    <div class="col-4">Society Type: {{$showCase}}  </div>
+                                                    <div class="col-4">Loan Type: {{$loanTypeValue}}</div>
+                                                    <div class="col-2">Date From: {{!empty($startDate)?date("d-m-Y",strtotime($startDate)):"-"}} </div>
+                                                    <div class="col-2">Date To: {{!empty($endDate)?date("d-m-Y",strtotime($endDate)):"-"}}</div>
+                                                </div>
+                                                </th>
+
                                         </tr>
                                         <tr>
                                             <th scope="col">Region Name</th>
                                             <th scope="col">Target (2023-2024)</th>
                                             <th scope="col">Achievement</th>
-                                            <th scope="col">% Of Loans</th>
+                                            <th scope="col">% Of Achievement</th>
                                         </tr>
 
                                         </thead>

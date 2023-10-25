@@ -49,7 +49,95 @@
                                             @php
                                             $frowd=["SECTION","REGION","OTHERS"];
                                             @endphp
-                                            <table class="table  table-bordered" style=" ">
+
+                                            <div class="container">
+                                                <h6>Income earned and Expenditure incurred by the Fair Price Shops</h6>
+                                                <div class="row">
+{{--                                                    <div class="col-4">--}}
+{{--                                                        <label for="region">Name of the Region</label>--}}
+{{--                                                        <select class="form-control" name="region" id="region" required>--}}
+{{--                                                            <option value="">Please select</option>--}}
+{{--                                                            @foreach($region as $value)--}}
+{{--                                                                <option value="{{$value->id}}">{{$value->region_name}}</option>--}}
+{{--                                                            @endforeach--}}
+{{--                                                        </select>--}}
+{{--                                                    </div>--}}
+                                                    <div class="col-4">
+                                                        <label for="FTFPS">Total No of Full Time FPS</label>
+                                                        <input type="number" class="form-control" name="FTFPS" id="FTFPS" min="0" step="any" onkeypress="return isNumberKey(event)">
+                                                    </div>
+
+                                                    <div class="col-4">
+                                                        <label for="FPSRental">No of Full-time FPS in Rental building</label>
+                                                        <input type="number" class="form-control" name="FPSRental" id="FPSRental" min="0" step="any" onkeypress="return isNumberKey(event)">
+                                                    </div>
+                                                    <div class="col-4">
+                                                        <label for="contiogencharge">Establishment and Contingencies Charges</label>
+                                                        <input type="number" class="form-control" name="contiogencharge" id="contiogencharge" min="0" step="any" onkeypress="return isNumberKey(event)" onchange="FPSChangesExpens()">
+                                                    </div>
+                                                    <div class="col-12"><br><b><center>Expenditures</center></b></div>
+                                                    <div class="col-4">
+                                                        <label for="tpexpense">Transport Expenses</label>
+                                                        <input type="number" class="form-control" name="tpexpense" id="tpexpense" min="0" step="any" onkeypress="return isNumberKey(event)" onchange="FPSChangesExpens()">
+                                                    </div>
+                                                    <div class="col-4">
+                                                        <label for="rentexpense">Rental Expenses</label>
+                                                        <input type="number" class="form-control" name="rentexpense" id="rentexpense" min="0" step="any" onkeypress="return isNumberKey(event)" onchange="FPSChangesExpens()">
+                                                    </div>
+
+                                                    <div class="col-4">
+                                                        <label for="ebcharge">Electricity Charges</label>
+                                                        <input type="number" class="form-control" name="ebcharge" id="ebcharge" min="0" step="any" onkeypress="return isNumberKey(event)" onchange="FPSChangesExpens()">
+                                                    </div>
+                                                    <div class="col-4">
+                                                        <label for="printstation">Printing and Stationeries</label>
+                                                        <input type="number" class="form-control" name="printstation" id="printstation" min="0" step="any" onkeypress="return isNumberKey(event)" onchange="FPSChangesExpens()">
+                                                    </div>
+
+                                                    <div class="col-4">
+                                                        <label for="maintanaceexpense">FPS Maintenance Expenses</label>
+                                                        <input type="number" class="form-control" name="maintanaceexpense" id="maintanaceexpense" min="0" step="any" onkeypress="return isNumberKey(event)" onchange="FPSChangesExpens()">
+                                                    </div>
+                                                    <div class="col-4">
+                                                        <label for="otherexpense">Other Expenses</label>
+                                                        <input type="number" class="form-control" name="otherexpense" id="otherexpense" min="0" step="any" onkeypress="return isNumberKey(event)" onchange="FPSChangesExpens()">
+                                                    </div>
+
+                                                    <div class="col-4">
+                                                        <label for="totalexpense">Total Expenditure</label>
+                                                        <input type="number" class="form-control" name="totalexpense" id="totalexpense" min="0" step="any" onkeypress="return isNumberKey(event)" readonly>
+                                                    </div>
+                                                    <div class="col-12"><br><b><center>Income</center></b></div>
+                                                    <div class="col-4">
+                                                        <label for="marginmoney">Margin Money</label>
+                                                        <input type="number" class="form-control" name="marginmoney" id="marginmoney" min="0" step="any" onkeypress="return isNumberKey(event)" onchange="FPSChangesExpens()">
+                                                    </div>
+
+                                                    <div class="col-4">
+                                                        <label for="saleemptygunnies">Sale of Empty Gunnies</label>
+                                                        <input type="number" class="form-control" name="saleemptygunnies" id="saleemptygunnies" min="0" step="any" onkeypress="return isNumberKey(event)" onchange="FPSChangesExpens()">
+                                                    </div>
+                                                    <div class="col-4">
+                                                        <label for="totalincome">Total Income</label>
+                                                        <input type="number" class="form-control" name="totalincome" id="totalincome" min="0" step="any" onkeypress="return isNumberKey(event)" readonly>
+                                                    </div>
+
+                                                    <div class="col-4">
+                                                        <label for="difference">Difference</label>
+                                                        <input type="number" class="form-control" name="difference" id="difference" min="0" step="any" onkeypress="return isNumberKey(event)" readonly>
+                                                    </div>
+                                                </div>
+                                                <div class="row" ></div>
+                                            </div>
+                                            <br>
+
+
+
+
+
+
+
+                                            {{--<table class="table  table-bordered" style=" ">
                                                 <thead>
                                                 <h6>Income earned and Expenditure incurred  by the Fair Price Shops</h6>
                                                 <tr>
@@ -75,9 +163,9 @@
                                                     <th>Margin Money</th>
                                                     <th>Sale of Empty Gunnies</th>
 
-{{--                                                    <th>Date of Disposal of First Appeal Petition</th>--}}
-{{--                                                    <th>Date of Second Appeal Petition received (TNIC)</th>--}}
-{{--                                                    <th>Final Order passed (TNIC)</th>--}}
+                                                    <th>Date of Disposal of First Appeal Petition</th>
+                                                    <th>Date of Second Appeal Petition received (TNIC)</th>
+                                                    <th>Final Order passed (TNIC)</th>
                                                 </tr>
                                                 </thead>
                                                 <tbody>
@@ -104,7 +192,7 @@
                                                     <td><input type="number" class="form-control" name="difference" id="difference" min="0" step="any"  onkeypress="return isNumberKey(event)" readonly></td>
                                                 </tr>
                                                 </tbody>
-                                            </table>
+                                            </table>--}}
                                         </div>
                                     </div>
                                     <div class="col-md-10">
