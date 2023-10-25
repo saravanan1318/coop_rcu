@@ -78,6 +78,9 @@
                                                 </select>
                                             </div>
                                         @endif
+                                        @php
+                                            $loanTypeValue="";
+                                        @endphp
                                         @if(isset($loantypes))
                                             <div class="col-3 ">
                                                 <label for="society">Loan type:</label>
