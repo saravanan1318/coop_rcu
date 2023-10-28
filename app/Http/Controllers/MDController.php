@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Deposit_outstandings;
+use App\Models\Mtr_region;
+use App\Models\Mtr_societytype;
 use Validator;
 
 use App\Models\User;
@@ -70,7 +72,21 @@ class MDController extends Controller
     {
         return view("dashboard");
     }
-    
+    function notlogged(){
+
+        $region=Mtr_region::all();
+        $societyType= Mtr_societytype::all();
+        $regionswiseoverall = \Illuminate\Support\Facades\DB::table('mtr_region as a')
+            ->select([
+                'a.region_name as Region_Name',
+                'a.id as Region_ID',
+                DB::raw('(SELECT COUNT(DISTINCT ls.userid) FROM loggedsessions as ls WHERE ls.regionid = a.id AND DATE(ls.created_at) = CURDATE()) as logged_socities'),
+                DB::raw('(SELECT COUNT(*) FROM users WHERE users.region_id = a.id AND users.society_id IS NOT NULL) as total_no_of_society')
+            ])
+            ->get();
+        $title = "Details of societies not logged in the portal";
+        return view("rcs.rcsnotlogged" , compact('region','societyType','regionswiseoverall'));
+    }
     function loanlist()
     {
 
@@ -92,7 +108,7 @@ class MDController extends Controller
 
         return view("purchase.list", compact('purchases'));
     }
-    
+
     function saleslist()
     {
         $sales = Sales::select('*')->with('saletype')->paginate(5);

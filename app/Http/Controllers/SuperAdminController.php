@@ -1258,6 +1258,8 @@ class SuperAdminController extends Controller
         return view("superadmin.croploanreport", compact('croploan_entry', 'croploanreportdate'));*/
         $societiestypes = Mtr_societytype::all();
         $societyTypesFilter=$request->input('societyTypes');
+        $startDate=$request->input('startDate');
+        $endDate=$request->input('endDate');
         if(!empty($societyTypesFilter)) {
             /*$results = DB::table('mtr_region AS a')
                 ->select(
@@ -1346,6 +1348,7 @@ class SuperAdminController extends Controller
                 FROM croploan_entry
                 WHERE croploan_entry.user_id IN (
                     SELECT users.id FROM users
+                    SELECT users.id FROM users
                     WHERE users.region_id = a.id
                 )) AS noofappsanctioned'),
                     DB::raw('(SELECT IFNULL(SUM(croploan_entry.applicationpendingno), 0)
@@ -1406,9 +1409,8 @@ class SuperAdminController extends Controller
                 ->get();
 
         }
-        return view("superadmin.croploanreport", compact('results','societiestypes','societyTypesFilter'));
+        return view("superadmin.croploanreport", compact('results','societiestypes','societyTypesFilter','endDate','startDate'));
     }
-
 
     function userslist()
     {

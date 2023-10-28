@@ -99,6 +99,26 @@
             //     { targets: [0, 2], orderable: false } // Disable sorting for columns 0 and 1
             // ]
         });
+        $('#rcsdata-table').DataTable({
+            dom: 'Bfrtip',
+            buttons: [
+                {
+                    extend: 'excelHtml5',
+                    text: '<i class="fas fa-file-excel"></i> Export Excel',
+                    className: 'btn btn-outline btn-success m-2', // Add a custom class for the Excel button
+                    exportOptions: {
+                        columns: ':visible',// Export only visible columns
+                    }
+                },
+            ],
+            pageLength: 40,
+            lengthChange: false,
+            search: true,
+            order: [[32, 'asc']]
+            // columnDefs: [
+            //     { targets: [0, 2], orderable: false } // Disable sorting for columns 0 and 1
+            // ]
+        });
         table.buttons().container().appendTo('#export-buttons');
     });
 
@@ -481,6 +501,24 @@
     .hidefield {
         display: none;
     }
+    .classDanger{
+        background-color: #fd0001 !important;
+        color: white;
+    }
+    .classyellow{
+        background-color: #fdfd01 !important;
+        color: white;
+    }
+    .classgreen{
+        background-color: #92d050 !important;
+        color: white;
+    }
+    .classDrakblue{
+        background-color: #002060 !important;
+        color: white;
+    }
+
+
 
 </style>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
@@ -488,6 +526,11 @@
     $(document).ready(function () {
         // Initialize the select2 plugin for the multiple select dropdown
         $('.js-example-basic-multiple').select2();
+        @foreach($class_array as $key=>$value)
+        $('.result_{{$key}}').addClass('{{$value}}');
+        $('.result_{{$key}}').removeClass('odd');
+        $('.result_{{$key}}').removeClass('even');
+        @endforeach
     });
 </script>
 </html>

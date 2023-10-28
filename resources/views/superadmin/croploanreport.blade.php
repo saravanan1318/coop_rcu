@@ -122,6 +122,16 @@
                                         </div>
                                     @endif
 
+                                        <div class="col-3">
+                                            <label for="startDate">Start Date:</label>
+                                            <input type="date" class="form-control" id="startDate" name="startDate"
+                                                   value={{isset($startDate)?$startDate:""}} >
+                                        </div>
+                                        <div class="col-3">
+                                            <label for="endDate">End Date:</label>
+                                            <input type="date" class="form-control" id="endDate" name="endDate"
+                                                   value={{isset($endDate)?$endDate:""}} >
+                                        </div>
                                     <div class="col-3 mt-3" `>
                                         <button type="submit" class="btn btn-primary m-1">Apply Filters</button>
                                         <a href="{{ URL::current() }}" type="submit"
@@ -137,6 +147,16 @@
                                     <th colspan="10">
                                         <center>Crop Loan Report - ({{$showCase}})</center>
                                     </th>
+                                </tr>
+                                <tr>
+                                    <th colspan="10">
+                                        <div class="row">
+                                            <div class="col-4">Society Type: {{$showCase}}  </div>
+                                            <div class="col-2">Date From: {{!empty($startDate)?date("d-m-Y",strtotime($startDate)):date('d-m-Y', strtotime(now() . ' -30 days'))}} </div>
+                                            <div class="col-2">Date To: {{!empty($endDate)?date("d-m-Y",strtotime($endDate)):date('d-m-Y', strtotime(now()))}}</div>
+                                        </div>
+                                    </th>
+
                                 </tr>
                                 <tr>
                                     <th scope="col" >Region</th>

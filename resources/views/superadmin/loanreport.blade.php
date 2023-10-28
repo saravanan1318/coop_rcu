@@ -64,7 +64,7 @@
                                         {{--                                            @endif--}}
                                         @if(isset($societiestypes))
                                             <div class="col-3 ">
-                                                <label for="society">Types:</label>
+                                                <label for="society">Type of Society:</label>
                                                 <select name="societyTypes" id="societyTypes" class="form-control">
                                                     <option value="">All</option>
                                                     {{$showCase="ALL"}}
@@ -209,10 +209,10 @@
                                                     <center>Total {{isset($Regionresults)?"Circles":(isset($Circleresults)?"Society":"District")}}</center>
                                                 </th>
                                                 <th scope="col" rowspan="1">
-                                                    <center>Target 2023-2024 (RS.)</center>
+                                                    <center>Target 2023-2024<br>(Rs.)</center>
                                                 </th>
                                                 <th scope="col" rowspan="1">
-                                                    <center>Achievement (RS.)</center>
+                                                    <center>Achievement<br>(Rs.)</center>
                                                 </th>
                                                 <th scope="col" rowspan="1">
                                                     <center>% of Achievement</center>
@@ -265,8 +265,8 @@
                                         </tr>
                                         <tr>
                                             <th scope="col">Region Name</th>
-                                            <th scope="col">Target (2023-2024) (RS.)</th>
-                                            <th scope="col">Achievement (RS.)</th>
+                                            <th scope="col">Target (2023-2024)<br>(Rs.)</th>
+                                            <th scope="col">Achievement<br>(Rs.)</th>
                                             <th scope="col">% Of Achievement</th>
                                         </tr>
 
@@ -306,8 +306,8 @@
                                         </tr>
                                         <tr>
                                             <th scope="col">Circle Name</th>
-                                            <th scope="col">Target (2023-2024) (RS.)</th>
-                                            <th scope="col">Achievement (RS.)</th>
+                                            <th scope="col">Target (2023-2024)<br>(Rs.)</th>
+                                            <th scope="col">Achievement<br>(Rs.)</th>
                                             <th scope="col">% Of Achievement</th>
                                         </tr>
 
@@ -348,8 +348,8 @@
                                         </tr>
                                         <tr>
                                             <th scope="col">Societies Name</th>
-                                            <th scope="col">Target (2023-2024) (RS.)</th>
-                                            <th scope="col">Achievement (RS.)</th>
+                                            <th scope="col">Target (2023-2024)<br>(Rs.)</th>
+                                            <th scope="col">Achievement<br>(Rs.)</th>
                                             <th scope="col">% Of Achievement</th>
                                         </tr>
 

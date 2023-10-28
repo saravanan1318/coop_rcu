@@ -332,6 +332,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/office/case/store', [OfficeController::class, 'casestore']);
 
     Route::get('/md/dashboard', [MDController::class, 'dashboard']);
+    Route::get('/md/notlogged', [MDController::class, 'notlogged']);
     Route::get('/md/loanlist', [MDController::class, 'loanlist']);
     Route::get('/md/depositlist', [MDController::class, 'depositlist']);
     Route::get('/md/purchaselist', [MDController::class, 'purchaselist']);

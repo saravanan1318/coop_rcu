@@ -9,6 +9,12 @@
           </a>
       </li>
       <li class="nav-item">
+          <a class="nav-link " href="/md/notlogged">
+              <i class="bi bi-grid"></i>
+              <span>Not logged in report</span>
+          </a>
+      </li>
+      <li class="nav-item">
           <a class="nav-link collapsed" data-bs-target="#Report-nav" data-bs-toggle="collapse" href="#">
               <i class="bi bi-journal-text"></i><span>Reports</span><i class="bi bi-chevron-down ms-auto"></i>
           </a>
