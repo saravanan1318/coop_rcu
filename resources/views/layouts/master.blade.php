@@ -503,15 +503,15 @@
     }
     .classDanger{
         background-color: #fd0001 !important;
-        color: white;
+        color: black;
     }
     .classyellow{
         background-color: #fdfd01 !important;
-        color: white;
+        color: black;
     }
     .classgreen{
         background-color: #92d050 !important;
-        color: white;
+        color: black;
     }
     .classDrakblue{
         background-color: #002060 !important;
