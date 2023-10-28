@@ -139,7 +139,7 @@
                                                     ->where('region_id', $regionvalue->id);
                                             })
                                             ->whereDate('created_at', now()->toDateString())
-                                            ->groupBy('id')
+                                            ->groupBy('userid')
                                             ->get();
                                             $regionwiseloggedcount +=count($loggedSessionsCount);
                                         @endphp
