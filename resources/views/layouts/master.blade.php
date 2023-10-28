@@ -526,11 +526,13 @@
     $(document).ready(function () {
         // Initialize the select2 plugin for the multiple select dropdown
         $('.js-example-basic-multiple').select2();
+        @if(isset($class_array))
         @foreach($class_array as $key=>$value)
         $('.result_{{$key}}').addClass('{{$value}}');
         $('.result_{{$key}}').removeClass('odd');
         $('.result_{{$key}}').removeClass('even');
         @endforeach
+        @endif
     });
 </script>
 </html>
