@@ -319,6 +319,22 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/office/FPEI/store', [OfficeController::class, 'FPEIstore']);
     Route::get('/office/FPEI/list', [OfficeController::class, 'FPEIlist']);
 
+    Route::get('/office/annexureone/add', [OfficeController::class, 'annexureoneadd']);
+    Route::post('/office/annexureone/store', [OfficeController::class, 'annexureonestore']);
+    Route::get('/office/annexureone/list', [OfficeController::class, 'annexureonelist']);
+
+    Route::get('/office/annexuretwo/add', [OfficeController::class, 'annexuretwoadd']);
+    Route::post('/office/annexuretwo/store', [OfficeController::class, 'annexuretwostore']);
+    Route::get('/office/annexuretwo/list', [OfficeController::class, 'annexuretwolist']);
+
+    Route::get('/office/appeal/add', [OfficeController::class, 'appealadd']);
+    Route::post('/office/appeal/store', [OfficeController::class, 'appealstore']);
+    Route::get('/office/appeal/list', [OfficeController::class, 'appeallist']);
+
+    Route::get('/office/review/add', [OfficeController::class, 'reviewadd']);
+    Route::post('/office/review/store', [OfficeController::class, 'reviewstore']);
+    Route::get('/office/review/list', [OfficeController::class, 'reviewlist']);
+
     Route::get('/society/staff/add', [SocietyStaffController::class, 'add']);
     Route::post('/society/staff/store', [SocietyStaffController::class, 'store']);
     Route::get('/society/staff/edit/{id}', [SocietyStaffController::class, 'edit']);

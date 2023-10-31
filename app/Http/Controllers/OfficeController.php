@@ -6,8 +6,12 @@ use App\Models\FPSEXPENTITURE;
 use App\Models\Mtr_petition_subject;
 use App\Models\Mtr_region;
 use App\Models\Mtr_section_name;
+use App\Models\Office_annexureone;
+use App\Models\Office_annexuretwo;
+use App\Models\Office_appeal;
 use App\Models\Office_case;
 use App\Models\Office_cm;
+use App\Models\Office_review;
 use App\Models\Respondents;
 use App\Models\RTI;
 use App\Models\RTI_APPEAL;
@@ -434,5 +438,178 @@ class OfficeController extends Controller
         $case->save();
 
         return redirect('/office/case/list')->with('status', 'Court Case added successfully');
+    }
+    function annexureoneadd()
+    {
+
+        $annexureone = Office_annexureone::select('*')->paginate(5);
+        return view("office.annexureone.add", compact('annexureone'));
+    }
+
+    function annexureonelist()
+    {
+
+        $annexureone = Office_annexureone::select('*')->paginate(5);
+        return view("office.annexureone.list", compact('annexureone'));
+    }
+
+    function annexureonestore(Request $request)
+    {
+        // Validate the form data
+        $validatedData = $request->validate([
+            'pending_beginning' => 'required',
+            'liquidation_ordered' => 'required',
+            'revived_during_month' => 'required',
+            'wounded_up_during_month' => 'required',
+            'pending_end' => 'required',
+            'within_one_year' => 'required',
+            'one_to_five_years' => 'required',
+            'five_to_ten_years' => 'required',
+            'over_ten_years' => 'required',
+        ]);
+
+        $datas =  new Office_annexureone();
+        $datas->region_id = Auth::user()->region_id;
+        $datas->pending_beginning = $validatedData['pending_beginning'];
+        $datas->liquidation_ordered = $validatedData['liquidation_ordered'];
+        $datas->revived_during_month = $validatedData['revived_during_month'];
+        $datas->wounded_up_during_month = $validatedData['wounded_up_during_month'];
+        $datas->pending_end = $validatedData['pending_end'];
+        $datas->within_one_year = $validatedData['within_one_year'];
+        $datas->one_to_five_years = $validatedData['one_to_five_years'];
+        $datas->five_to_ten_years = $validatedData['five_to_ten_years'];
+        $datas->over_ten_years = $validatedData['over_ten_years'];
+        $datas->save();
+
+
+        return redirect('/office/annexureone/list')->with('status', 'Annexure One Added');
+    }
+
+    function annexuretwoadd()
+    {
+
+        $annexuretwo = Office_annexuretwo::select('*')->paginate(5);
+        return view("office.annexuretwo.add", compact('annexuretwo'));
+    }
+
+    function annexuretwolist()
+    {
+
+        $annexuretwo = Office_annexuretwo::select('*')->paginate(5);
+        return view("office.annexuretwo.list", compact('annexuretwo'));
+    }
+
+    function annexuretwostore(Request $request)
+    {
+        $validatedData = $request->validate([
+            'number_of_liquidated_societies' => 'required|numeric',
+            'total_assets_to_be_recovered' => 'required|numeric',
+            'total_liabilities_to_be_discharged' => 'required|numeric',
+            'government_share_capital' => 'required|numeric',
+            'government_loan' => 'required|numeric',
+            'other_dues_to_the_government' => 'required|numeric',
+            'total' => 'required|numeric',
+        ]);
+
+        $datas =  new Office_annexuretwo();
+        $datas->region_id = Auth::user()->region_id;
+        $datas->number_of_liquidated_societies = $request->input('number_of_liquidated_societies');
+        $datas->total_assets_to_be_recovered = $request->input('total_assets_to_be_recovered');
+        $datas->total_liabilities_to_be_discharged = $request->input('total_liabilities_to_be_discharged');
+        $datas->government_share_capital = $request->input('government_share_capital');
+        $datas->government_loan = $request->input('government_loan');
+        $datas->other_dues_to_the_government = $request->input('other_dues_to_the_government');
+        $datas->total = $request->input('total');
+        $datas->save();
+
+
+        return redirect('/office/annexuretwo/list')->with('status', 'Annexure Two Added');
+    }
+
+    function appealadd()
+    {
+
+        $appeal = Office_appeal::select('*')->paginate(5);
+        return view("office.appeal.add", compact('appeal'));
+    }
+
+    function appeallist()
+    {
+
+        $appeal = Office_appeal::select('*')->paginate(5);
+        return view("office.appeal.list", compact('appeal'));
+    }
+
+    function appealstore(Request $request)
+    {
+        $validatedData = $request->validate([
+            'pending_beginning' => 'required|numeric|',
+            'received_during_month' => 'required|numeric|',
+            'total' => 'required|numeric|',
+            'disposed_off_during_month' => 'required|numeric|',
+            'pending_end' => 'required|numeric|',
+            'within_3_months' => 'required|numeric|',
+            'three_to_6_months' => 'required|numeric|',
+            'six_to_12_months' => 'required|numeric|',
+            'over_one_year' => 'required|numeric|',
+        ]);
+        $datas =  new Office_appeal();
+        $datas->region_id = Auth::user()->region_id;
+        $datas->pending_beginning = $validatedData['pending_beginning'];
+        $datas->received_during_month = $validatedData['received_during_month'];
+        $datas->total = $validatedData['total'];
+        $datas->disposed_off_during_month = $validatedData['disposed_off_during_month'];
+        $datas->pending_end = $validatedData['pending_end'];
+        $datas->within_3_months = $validatedData['within_3_months'];
+        $datas->three_to_6_months = $validatedData['three_to_6_months'];
+        $datas->six_to_12_months = $validatedData['six_to_12_months'];
+        $datas->over_one_year = $validatedData['over_one_year'];
+        $datas->save();
+
+
+        return redirect('/office/appeal/list')->with('status', 'Appeal  Added');
+    }
+    function reviewadd()
+    {
+
+        $review = Office_review::select('*')->paginate(5);
+        return view("office.review.add", compact('review'));
+    }
+
+    function reviewlist()
+    {
+
+        $review = Office_appeal::select('*')->paginate(5);
+        return view("office.review.list", compact('review'));
+    }
+
+    function reviewstore(Request $request)
+    {
+        $validatedData = $request->validate([
+            'pending_beginning' => 'required|numeric',
+            'received_during_month' => 'required|numeric',
+            'total' => 'required|numeric',
+            'disposed_off_during_month' => 'required|numeric',
+            'pending_end' => 'required|numeric',
+            'within_3_months' => 'required|numeric',
+            'three_to_6_months' => 'required|numeric',
+            'six_to_12_months' => 'required|numeric',
+            'over_one_year' => 'required|numeric',
+        ]);
+        $datas =  new Office_review();
+        $datas->region_id = Auth::user()->region_id;
+        $datas->pending_beginning = $validatedData['pending_beginning'];
+        $datas->received_during_month = $validatedData['received_during_month'];
+        $datas->total = $validatedData['total'];
+        $datas->disposed_off_during_month = $validatedData['disposed_off_during_month'];
+        $datas->pending_end = $validatedData['pending_end'];
+        $datas->within_3_months = $validatedData['within_3_months'];
+        $datas->three_to_6_months = $validatedData['three_to_6_months'];
+        $datas->six_to_12_months = $validatedData['six_to_12_months'];
+        $datas->over_one_year = $validatedData['over_one_year'];
+        $datas->save();
+
+
+        return redirect('/office/review/list')->with('status', 'Review  Added');
     }
 }

@@ -3157,6 +3157,75 @@
                       </li>
                   </ul>
               </li>
+              <li class="nav-item">
+                  <a class="nav-link collapsed" data-bs-target="#annexure-one-nav" data-bs-toggle="collapse" href="#">
+                      <i class="bi bi-journal-text"></i><span>Annexure One</span><i class="bi bi-chevron-down ms-auto"></i>
+                  </a>
+                  <ul id="annexure-one-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
+                      <li>
+                          <a href="/office/annexureone/add">
+                              <i class="bi bi-circle"></i><span>Entry</span>
+                          </a>
+                      </li>
+                      <li>
+                          <a href="/office/annexureone/list">
+                              <i class="bi bi-circle"></i><span>View</span>
+                          </a>
+                      </li>
+                  </ul>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link collapsed" data-bs-target="#annexure-two-nav" data-bs-toggle="collapse" href="#">
+                      <i class="bi bi-journal-text"></i><span>Annexure Two</span><i class="bi bi-chevron-down ms-auto"></i>
+                  </a>
+                  <ul id="annexure-two-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
+                      <li>
+                          <a href="/office/annexuretwo/add">
+                              <i class="bi bi-circle"></i><span>Entry</span>
+                          </a>
+                      </li>
+                      <li>
+                          <a href="/office/annexuretwo/list">
+                              <i class="bi bi-circle"></i><span>View</span>
+                          </a>
+                      </li>
+                  </ul>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link collapsed" data-bs-target="#appeal-nav" data-bs-toggle="collapse" href="#">
+                      <i class="bi bi-journal-text"></i><span>Appeal</span><i class="bi bi-chevron-down ms-auto"></i>
+                  </a>
+                  <ul id="appeal-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
+                      <li>
+                          <a href="/office/appeal/add">
+                              <i class="bi bi-circle"></i><span>Entry</span>
+                          </a>
+                      </li>
+                      <li>
+                          <a href="/office/annexuretwo/list">
+                              <i class="bi bi-circle"></i><span>View</span>
+                          </a>
+                      </li>
+                  </ul>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link collapsed" data-bs-target="#review-nav" data-bs-toggle="collapse" href="#">
+                      <i class="bi bi-journal-text"></i><span>Review</span><i class="bi bi-chevron-down ms-auto"></i>
+                  </a>
+                  <ul id="review-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
+                      <li>
+                          <a href="/office/review/add">
+                              <i class="bi bi-circle"></i><span>Entry</span>
+                          </a>
+                      </li>
+                      <li>
+                          <a href="/office/annexuretwo/list">
+                              <i class="bi bi-circle"></i><span>View</span>
+                          </a>
+                      </li>
+                  </ul>
+              </li>
+
           </ul>
       @endif
 </aside><!-- End Sidebar-->
